@@ -7,7 +7,7 @@ export interface SiteRoute {
 }
 
 export const siteRoutes: SiteRoute[] = [
-  { slug: 'home', path: '/', label: 'Home', navGroup: 'primary', order: 1 },
+  { slug: 'home', path: '/', label: "William's Legacy", navGroup: 'primary', order: 1 },
   { slug: 'speaking', path: '/speaking', label: 'Speaking', navGroup: 'primary', order: 2 },
   { slug: 'services', path: '/services', label: 'Services', navGroup: 'primary', order: 3 },
   { slug: 'press', path: '/press', label: 'Press', navGroup: 'primary', order: 4 },

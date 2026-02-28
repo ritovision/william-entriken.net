@@ -1,0 +1,248 @@
+---
+import type { SidebarTocItem, SocialLink } from '../../../config/navigation';
+import type { SiteRoute } from '../../../config/site';
+
+interface Props {
+  currentPath: string;
+  routes: SiteRoute[];
+  socials: SocialLink[];
+  sidebarToc: SidebarTocItem[];
+}
+
+const { currentPath, routes, socials, sidebarToc } = Astro.props;
+
+const normalizePath = (path: string) => (path === '/' ? '/' : path.replace(/\/+$/, ''));
+const activePath = normalizePath(currentPath);
+const isDev = import.meta.env.DEV;
+---
+
+<div class="mobile-nav-wrap d-lg-none" data-mobile-nav data-dev={isDev ? 'true' : 'false'}>
+  <header class="mobile-nav-header" aria-label="Mobile navigation">
+    <div class="mobile-nav-header__bar">
+      <button
+        type="button"
+        class="mobile-nav-header__icon-btn"
+        aria-label="Open in-page sections"
+        aria-controls="mobile-drawer-toc"
+        aria-expanded="false"
+        data-mobile-open="toc"
+      >
+        <svg class="mobile-nav-header__icon mobile-nav-header__icon--stroke" viewBox="0 0 30 30" aria-hidden="true">
+          <path fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" d="M4.5 7.5c2.9-1.3 5.8-1.5 9-0.7v15.7c-3-0.8-5.9-0.5-9 0.9zM25.5 7.5c-2.9-1.3-5.8-1.5-9-0.7v15.7c3-0.8 5.9-0.5 9 0.9zM15 6.8v16.3" />
+        </svg>
+      </button>
+
+      <a href="/" class="mobile-nav-header__logo-link" aria-label="Home">
+        <img src="/images/brand/logomark.png" alt="William Entriken logomark" class="mobile-nav-header__logo" />
+      </a>
+
+      <button
+        type="button"
+        class="mobile-nav-header__icon-btn"
+        aria-label="Open main menu"
+        aria-controls="mobile-drawer-menu"
+        aria-expanded="false"
+        data-mobile-open="menu"
+      >
+        <svg class="mobile-nav-header__icon mobile-nav-header__icon--stroke" viewBox="0 0 24 24" aria-hidden="true">
+          <path fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" d="M3.5 6.5H20.5M3.5 12H20.5M3.5 17.5H20.5" />
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <div class="mobile-nav-spacer" aria-hidden="true"></div>
+
+  <button type="button" class="mobile-drawer-overlay" aria-label="Close mobile drawer" data-mobile-overlay></button>
+
+  <aside id="mobile-drawer-menu" class="mobile-drawer mobile-drawer--menu" role="dialog" aria-modal="false" aria-labelledby="mobile-drawer-menu-title" aria-hidden="true" data-mobile-drawer="menu" inert>
+    <div class="mobile-drawer__inner mobile-drawer__inner--menu">
+      <div class="mobile-drawer__header">
+        <span class="mobile-drawer__header-spacer" aria-hidden="true"></span>
+        <h2 id="mobile-drawer-menu-title" class="mobile-drawer__title m-0">Main Menu</h2>
+        <button type="button" class="mobile-drawer__close-btn" aria-label="Close main menu" data-mobile-close>
+          <svg class="mobile-nav-header__icon mobile-nav-header__icon--stroke" viewBox="0 0 24 24" aria-hidden="true">
+            <path fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6" d="M5 5L19 19M19 5L5 19" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="mobile-drawer__scroll">
+        <nav class="mobile-drawer__nav" aria-label="Main menu links">
+          <ul class="mobile-drawer__nav-list list-unstyled m-0 p-0">
+            {routes.map((route) => {
+              const isActive = activePath === normalizePath(route.path);
+
+              return (
+                <li class="mobile-drawer__nav-item">
+                  <a
+                    href={route.path}
+                    class:list={['mobile-drawer__nav-link', isActive && 'is-active']}
+                    aria-current={isActive ? 'page' : undefined}
+                    data-mobile-close-link
+                  >
+                    {route.label}
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
+      </div>
+
+      <div class="mobile-drawer__footer">
+        <div class="mobile-drawer__social-grid">
+          {socials.map((social) => (
+            <a
+              href={social.href}
+              class="mobile-drawer__social-link"
+              target="_blank"
+              rel="noreferrer"
+              aria-label={social.label}
+            >
+              <img src={social.iconSrc} alt="" class="mobile-drawer__social-icon" />
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <aside id="mobile-drawer-toc" class="mobile-drawer mobile-drawer--toc" role="dialog" aria-modal="false" aria-labelledby="mobile-drawer-toc-title" aria-hidden="true" data-mobile-drawer="toc" inert>
+    <div class="mobile-drawer__inner mobile-drawer__inner--toc">
+      <div class="mobile-drawer__header">
+        <span class="mobile-drawer__header-spacer" aria-hidden="true"></span>
+        <h2 id="mobile-drawer-toc-title" class="mobile-drawer__title m-0">In-page Sections</h2>
+        <button type="button" class="mobile-drawer__close-btn" aria-label="Close in-page sections" data-mobile-close>
+          <svg class="mobile-nav-header__icon mobile-nav-header__icon--stroke" viewBox="0 0 24 24" aria-hidden="true">
+            <path fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6" d="M5 5L19 19M19 5L5 19" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="mobile-drawer__scroll">
+        <nav class="mobile-drawer__nav" aria-label="In-page sections">
+          <ul class="mobile-drawer__nav-list list-unstyled m-0 p-0" data-mobile-toc-list>
+            {sidebarToc.map((item) => (
+              <li class="mobile-drawer__nav-item" data-mobile-toc-item>
+                <a href={`#${item.targetId}`} class="mobile-drawer__nav-link mobile-drawer__toc-link" data-mobile-toc-target={item.targetId} data-mobile-close-link>
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+          <p class="mobile-drawer__toc-empty text-gold m-0" data-mobile-toc-empty hidden>
+            No sections on this page yet.
+          </p>
+        </nav>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<script is:inline>
+  (() => {
+    const root = document.querySelector('[data-mobile-nav]');
+    if (!root) {
+      return;
+    }
+
+    const overlay = root.querySelector('[data-mobile-overlay]');
+    const drawers = Array.from(root.querySelectorAll('[data-mobile-drawer]'));
+    const openButtons = Array.from(root.querySelectorAll('[data-mobile-open]'));
+    const closeButtons = Array.from(root.querySelectorAll('[data-mobile-close]'));
+    const closeLinks = Array.from(root.querySelectorAll('[data-mobile-close-link]'));
+    const isDev = root.getAttribute('data-dev') === 'true';
+
+    let activeDrawer = '';
+
+    const setDrawerState = (name) => {
+      activeDrawer = name;
+
+      for (const drawer of drawers) {
+        const drawerName = drawer.getAttribute('data-mobile-drawer');
+        const isActive = Boolean(name) && drawerName === name;
+        drawer.classList.toggle('is-open', isActive);
+        drawer.setAttribute('aria-hidden', String(!isActive));
+        drawer.inert = !isActive;
+      }
+
+      for (const button of openButtons) {
+        const target = button.getAttribute('data-mobile-open');
+        button.setAttribute('aria-expanded', String(Boolean(name) && target === name));
+      }
+
+      if (overlay) {
+        overlay.classList.toggle('is-open', Boolean(name));
+      }
+    };
+
+    const closeDrawer = () => setDrawerState('');
+    const toggleDrawer = (name) => setDrawerState(activeDrawer === name ? '' : name);
+
+    for (const button of openButtons) {
+      button.addEventListener('click', () => {
+        const target = button.getAttribute('data-mobile-open');
+        if (target) {
+          toggleDrawer(target);
+        }
+      });
+    }
+
+    for (const button of closeButtons) {
+      button.addEventListener('click', closeDrawer);
+    }
+
+    for (const link of closeLinks) {
+      link.addEventListener('click', closeDrawer);
+    }
+
+    if (overlay) {
+      overlay.addEventListener('click', closeDrawer);
+    }
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && activeDrawer) {
+        closeDrawer();
+      }
+    });
+
+    const validateToc = () => {
+      const tocItems = Array.from(root.querySelectorAll('[data-mobile-toc-item]'));
+      for (const item of tocItems) {
+        const anchor = item.querySelector('[data-mobile-toc-target]');
+        const targetId = anchor?.getAttribute('data-mobile-toc-target');
+        if (!targetId) {
+          item.remove();
+          continue;
+        }
+
+        if (!document.getElementById(targetId)) {
+          item.remove();
+          if (isDev) {
+            console.warn(`[MobileNav] TOC target not found: #${targetId}`);
+          }
+        }
+      }
+
+      const tocList = root.querySelector('[data-mobile-toc-list]');
+      const tocEmpty = root.querySelector('[data-mobile-toc-empty]');
+      if (tocList && tocEmpty) {
+        const remaining = tocList.querySelectorAll('[data-mobile-toc-item]').length;
+        if (remaining === 0) {
+          tocEmpty.removeAttribute('hidden');
+        } else {
+          tocEmpty.setAttribute('hidden', '');
+        }
+      }
+    };
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', validateToc, { once: true });
+    } else {
+      validateToc();
+    }
+
+    setDrawerState('');
+  })();
+</script>

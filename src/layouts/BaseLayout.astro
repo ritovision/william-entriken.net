@@ -1,6 +1,7 @@
 ---
 import '../styles/main.scss';
 import DesktopSidebar from '../components/layout/desktop-sidebar/DesktopSidebar.astro';
+import MobileNav from '../components/layout/mobile-nav/MobileNav.astro';
 import type { SidebarTocItem } from '../config/navigation';
 import { socialLinks } from '../config/navigation';
 import { siteRoutes } from '../config/site';
@@ -37,6 +38,7 @@ const desktopRoutes = siteRoutes
     <link rel="stylesheet" href="/css/custom-animations.purged.css" />
   </head>
   <body class={bodyClass}>
+    <MobileNav currentPath={currentPath} routes={desktopRoutes} socials={socialLinks} sidebarToc={sidebarToc} />
     <div class="app-shell">
       <div class="desktop-sidebar-spacer d-none d-lg-block" aria-hidden="true"></div>
       <DesktopSidebar currentPath={currentPath} routes={desktopRoutes} socials={socialLinks} sidebarToc={sidebarToc} />
