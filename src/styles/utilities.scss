@@ -1,0 +1,101 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--color-primary);
+  color: var(--color-accent);
+}
+
+main,
+section,
+article,
+aside,
+header,
+footer {
+  border-radius: var(--radius-none);
+}
+
+.page-placeholder {
+  min-height: 100svh;
+  width: 100%;
+  background: var(--color-primary);
+}
+
+.container-95 {
+  width: min(95%, 1280px);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section-stack > * + * {
+  margin-top: 1.5rem;
+}
+
+.bg-primary-navy {
+  background: var(--color-primary);
+}
+
+.bg-white {
+  background: var(--color-white);
+}
+
+.bg-heading-gray {
+  background: var(--color-bg-heading);
+}
+
+.bg-content-dark {
+  background: var(--color-bg-content);
+}
+
+.text-gold {
+  color: var(--color-accent);
+}
+
+.text-white {
+  color: var(--color-white);
+}
+
+.text-black {
+  color: var(--color-black);
+}
+
+.border-gold {
+  border: 1px solid var(--border-gold);
+}
+
+.border-white {
+  border: 1px solid var(--border-white);
+}
+
+.btn-brand-navy {
+  background: var(--color-primary);
+  color: var(--color-white);
+  border: 1px solid var(--border-gold);
+  border-radius: var(--radius-btn-navy);
+}
+
+.btn-brand-gold-pill {
+  background: var(--color-accent);
+  color: var(--color-primary);
+  border: 1px solid var(--border-gold);
+  border-radius: var(--radius-btn-gold-pill);
+}
+
+@media (max-width: 767px) {
+  .content-width,
+  .container,
+  .container-fluid {
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}

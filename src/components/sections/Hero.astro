@@ -1,0 +1,22 @@
+---
+import Button from '../ui/Button.astro';
+
+interface Props {
+  eyebrow?: string;
+  heading?: string;
+  subheading?: string;
+  cta?: {
+    label: string;
+    href: string;
+  };
+}
+
+const { eyebrow, heading, subheading, cta } = Astro.props;
+---
+
+<section class="container-95 section-stack">
+  {eyebrow && <p class="text-gold">{eyebrow}</p>}
+  {heading && <h1 class="text-gold">{heading}</h1>}
+  {subheading && <p class="text-gold">{subheading}</p>}
+  {cta && <Button href={cta.href} label={cta.label} variant="gold-pill" />}
+</section>

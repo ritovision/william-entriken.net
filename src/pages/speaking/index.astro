@@ -1,0 +1,10 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import content from './_content.json';
+
+const { seo } = content;
+---
+
+<BaseLayout title={seo.title} description={seo.description}>
+  <main class="page-placeholder"></main>
+</BaseLayout>

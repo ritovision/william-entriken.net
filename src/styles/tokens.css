@@ -1,0 +1,16 @@
+:root {
+  --color-primary: #002754;
+  --color-accent: #eaaa00;
+  --color-secondary: #6059d4;
+  --color-bg-heading: #33343f;
+  --color-bg-content: #242323;
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  --border-gold: var(--color-accent);
+  --border-white: var(--color-white);
+
+  --radius-none: 0;
+  --radius-btn-navy: 8px;
+  --radius-btn-gold-pill: 50px;
+}

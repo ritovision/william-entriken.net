@@ -1,0 +1,15 @@
+---
+interface Props {
+  title: string;
+  tone?: 'gold' | 'white';
+  bg?: 'none' | 'heading-gray';
+}
+
+const { title, tone = 'gold', bg = 'none' } = Astro.props;
+const toneClass = tone === 'white' ? 'text-white' : 'text-gold';
+const bgClass = bg === 'heading-gray' ? 'bg-heading-gray' : '';
+---
+
+<div class={bgClass}>
+  <h2 class={toneClass}>{title}</h2>
+</div>

@@ -1,0 +1,39 @@
+@font-face {
+  font-family: 'Avenir-Bold';
+  src: url('/fonts/avenir/Avenir-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Avenir-Light';
+  src: url('/fonts/avenir/Avenir-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --font-heading: 'Avenir-Bold', 'Arial Black', Arial, sans-serif;
+  --font-body: 'Avenir-Light', Roboto, 'Segoe UI', Arial, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+}
+
+body,
+p,
+li,
+label,
+input,
+textarea,
+button {
+  font-family: var(--font-body);
+}

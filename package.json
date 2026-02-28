@@ -1,0 +1,38 @@
+{
+  "name": "william-entriken",
+  "version": "2.0.0",
+  "description": "Astro foundation for William Entriken multi-page site migration",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "prepare:styles": "node scripts/purge-css.mjs",
+    "dev": "pnpm run prepare:styles && astro dev --host 0.0.0.0 --port 4321",
+    "build": "pnpm run prepare:styles && astro build",
+    "preview": "astro preview --host 0.0.0.0 --port 4321",
+    "check": "astro check"
+  },
+  "keywords": [
+    "astro",
+    "bootstrap",
+    "react-islands"
+  ],
+  "license": "UNLICENSED",
+  "dependencies": {
+    "animate.css": "^4.1.1",
+    "astro": "^5.18.0",
+    "bootstrap": "^5.3.8",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "swiper": "^12.1.2"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.6",
+    "@astrojs/react": "^4.4.2",
+    "@fullhuman/postcss-purgecss": "^8.0.0",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "purgecss": "^8.0.0",
+    "sass": "^1.97.3",
+    "typescript": "^5.9.3"
+  }
+}
