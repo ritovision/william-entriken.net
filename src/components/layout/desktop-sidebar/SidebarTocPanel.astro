@@ -1,0 +1,24 @@
+---
+import type { SidebarTocItem } from '../../../config/navigation';
+
+interface Props {
+  toc: SidebarTocItem[];
+}
+
+const { toc } = Astro.props;
+---
+
+<nav class="desktop-sidebar__nav desktop-sidebar__toc-nav" aria-label="Table of contents">
+  <ul class="desktop-sidebar__nav-list list-unstyled m-0 p-0" data-toc-list>
+    {toc.map((item) => (
+      <li class="desktop-sidebar__nav-item" data-toc-item>
+        <a href={`#${item.targetId}`} class="desktop-sidebar__nav-link desktop-sidebar__toc-link" data-toc-target={item.targetId}>
+          {item.label}
+        </a>
+      </li>
+    ))}
+  </ul>
+  <p class="desktop-sidebar__toc-empty text-gold m-0" data-toc-empty hidden>
+    No sections on this page yet.
+  </p>
+</nav>

@@ -1,6 +1,7 @@
 ---
 import '../styles/main.scss';
-import DesktopSidebar from '../components/layout/DesktopSidebar.astro';
+import DesktopSidebar from '../components/layout/desktop-sidebar/DesktopSidebar.astro';
+import type { SidebarTocItem } from '../config/navigation';
 import { socialLinks } from '../config/navigation';
 import { siteRoutes } from '../config/site';
 
@@ -8,12 +9,14 @@ interface Props {
   title: string;
   description?: string;
   bodyClass?: string;
+  sidebarToc?: SidebarTocItem[];
 }
 
 const {
   title,
   description = '',
   bodyClass = '',
+  sidebarToc = [],
 } = Astro.props;
 
 const normalizePath = (path: string) => (path === '/' ? '/' : path.replace(/\/+$/, ''));
@@ -36,7 +39,7 @@ const desktopRoutes = siteRoutes
   <body class={bodyClass}>
     <div class="app-shell">
       <div class="desktop-sidebar-spacer d-none d-lg-block" aria-hidden="true"></div>
-      <DesktopSidebar currentPath={currentPath} routes={desktopRoutes} socials={socialLinks} />
+      <DesktopSidebar currentPath={currentPath} routes={desktopRoutes} socials={socialLinks} sidebarToc={sidebarToc} />
       <div class="app-main">
         <slot />
       </div>

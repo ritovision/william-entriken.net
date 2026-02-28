@@ -1,0 +1,33 @@
+---
+import type { SiteRoute } from '../../../config/site';
+
+interface Props {
+  currentPath: string;
+  routes: SiteRoute[];
+}
+
+const { currentPath, routes } = Astro.props;
+
+const normalizePath = (path: string) => (path === '/' ? '/' : path.replace(/\/+$/, ''));
+const activePath = normalizePath(currentPath);
+---
+
+<nav class="desktop-sidebar__nav" aria-label="Primary">
+  <ul class="desktop-sidebar__nav-list list-unstyled m-0 p-0">
+    {routes.map((route) => {
+      const isActive = activePath === normalizePath(route.path);
+
+      return (
+        <li class="desktop-sidebar__nav-item">
+          <a
+            href={route.path}
+            class:list={['desktop-sidebar__nav-link', isActive && 'is-active']}
+            aria-current={isActive ? 'page' : undefined}
+          >
+            {route.label}
+          </a>
+        </li>
+      );
+    })}
+  </ul>
+</nav>

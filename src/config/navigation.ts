@@ -4,6 +4,11 @@ export interface SocialLink {
   iconSrc: string;
 }
 
+export interface SidebarTocItem {
+  label: string;
+  targetId: string;
+}
+
 export const socialLinks: SocialLink[] = [
   {
     label: 'X',
