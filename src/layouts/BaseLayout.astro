@@ -1,5 +1,8 @@
 ---
 import '../styles/main.scss';
+import DesktopSidebar from '../components/layout/DesktopSidebar.astro';
+import { socialLinks } from '../config/navigation';
+import { siteRoutes } from '../config/site';
 
 interface Props {
   title: string;
@@ -12,6 +15,12 @@ const {
   description = '',
   bodyClass = '',
 } = Astro.props;
+
+const normalizePath = (path: string) => (path === '/' ? '/' : path.replace(/\/+$/, ''));
+const currentPath = normalizePath(Astro.url.pathname);
+const desktopRoutes = siteRoutes
+  .filter((route) => route.navGroup === 'primary')
+  .sort((a, b) => a.order - b.order);
 ---
 
 <!doctype html>
@@ -25,6 +34,12 @@ const {
     <link rel="stylesheet" href="/css/custom-animations.purged.css" />
   </head>
   <body class={bodyClass}>
-    <slot />
+    <div class="app-shell">
+      <div class="desktop-sidebar-spacer d-none d-lg-block" aria-hidden="true"></div>
+      <DesktopSidebar currentPath={currentPath} routes={desktopRoutes} socials={socialLinks} />
+      <div class="app-main">
+        <slot />
+      </div>
+    </div>
   </body>
 </html>
