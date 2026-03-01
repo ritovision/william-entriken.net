@@ -1,6 +1,8 @@
 ---
 import type { SidebarTocItem } from '../../../config/navigation';
 import type { SiteRoute } from '../../../config/site';
+import InPageSectionsIcon from '../../ui/icons/InPageSectionsIcon.astro';
+import MainMenuIcon from '../../ui/icons/MainMenuIcon.astro';
 import SidebarMenuPanel from './SidebarMenuPanel.astro';
 import SidebarTocPanel from './SidebarTocPanel.astro';
 
@@ -27,11 +29,7 @@ const isDev = import.meta.env.DEV;
       aria-controls="desktop-sidebar-panel-menu"
       data-tab-target="menu"
     >
-      <svg class="desktop-sidebar__tab-icon desktop-sidebar__tab-icon--fill" viewBox="0 0 150 150" aria-hidden="true">
-        <g transform="translate(0 -902.36)">
-          <path d="m80.444 988.84c-4.3279-4.3279-8.6557-8.6558-12.984-12.984-4.3355 8.6634-8.671 17.327-13.006 25.99 8.6633-4.3355 17.327-8.671 25.99-13.006zm6.9529 0.54512 20.456-40.911-40.911 20.456-20.456 40.911zm-15.534-65.559c-33.539 1.1165-59.499 40.305-46.152 71.406 9.3654 26.012 41.403 42.226 67.374 31.818 24.477-8.378 41.216-36.218 34.408-61.752-5.2645-24.298-28.876-43.488-54.07-41.502l-0.94171 0.0178-0.61828 0.0117zm71.9 52.998c0 37.626-30.502 68.129-68.129 68.129-37.626 0-68.129-30.502-68.129-68.129 0-37.626 30.502-68.129 68.129-68.129 37.626 0 68.129 30.502 68.129 68.129z" />
-        </g>
-      </svg>
+      <MainMenuIcon class="desktop-sidebar__tab-icon" />
       <span class="visually-hidden">Main menu</span>
     </button>
     <div class="desktop-sidebar__tab-divider" aria-hidden="true"></div>
@@ -44,9 +42,7 @@ const isDev = import.meta.env.DEV;
       aria-controls="desktop-sidebar-panel-toc"
       data-tab-target="toc"
     >
-      <svg class="desktop-sidebar__tab-icon desktop-sidebar__tab-icon--stroke" viewBox="0 0 30 30" aria-hidden="true">
-        <path fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" d="M4.5 7.5c2.9-1.3 5.8-1.5 9-0.7v15.7c-3-0.8-5.9-0.5-9 0.9zM25.5 7.5c-2.9-1.3-5.8-1.5-9-0.7v15.7c3-0.8 5.9-0.5 9 0.9zM15 6.8v16.3" />
-      </svg>
+      <InPageSectionsIcon class="desktop-sidebar__tab-icon" />
       <span class="visually-hidden">In-page sections</span>
     </button>
   </div>

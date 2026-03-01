@@ -1,6 +1,8 @@
 ---
 import type { SidebarTocItem, SocialLink } from '../../../config/navigation';
 import type { SiteRoute } from '../../../config/site';
+import InPageSectionsIcon from '../../ui/icons/InPageSectionsIcon.astro';
+import MainMenuIcon from '../../ui/icons/MainMenuIcon.astro';
 
 interface Props {
   currentPath: string;
@@ -27,9 +29,7 @@ const isDev = import.meta.env.DEV;
         aria-expanded="false"
         data-mobile-open="toc"
       >
-        <svg class="mobile-nav-header__icon mobile-nav-header__icon--stroke" viewBox="0 0 30 30" aria-hidden="true">
-          <path fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" d="M4.5 7.5c2.9-1.3 5.8-1.5 9-0.7v15.7c-3-0.8-5.9-0.5-9 0.9zM25.5 7.5c-2.9-1.3-5.8-1.5-9-0.7v15.7c3-0.8 5.9-0.5 9 0.9zM15 6.8v16.3" />
-        </svg>
+        <InPageSectionsIcon class="mobile-nav-header__icon" />
       </button>
 
       <a href="/" class="mobile-nav-header__logo-link" aria-label="Home">
@@ -59,7 +59,12 @@ const isDev = import.meta.env.DEV;
     <div class="mobile-drawer__inner mobile-drawer__inner--menu">
       <div class="mobile-drawer__header">
         <span class="mobile-drawer__header-spacer" aria-hidden="true"></span>
-        <h2 id="mobile-drawer-menu-title" class="mobile-drawer__title m-0">Main Menu</h2>
+        <h2 id="mobile-drawer-menu-title" class="mobile-drawer__title m-0">
+          <span class="mobile-drawer__title-content">
+            <MainMenuIcon class="mobile-drawer__title-icon" />
+            <span>Main Menu</span>
+          </span>
+        </h2>
         <button type="button" class="mobile-drawer__close-btn" aria-label="Close main menu" data-mobile-close>
           <svg class="mobile-nav-header__icon mobile-nav-header__icon--stroke" viewBox="0 0 24 24" aria-hidden="true">
             <path fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6" d="M5 5L19 19M19 5L5 19" />
@@ -112,7 +117,12 @@ const isDev = import.meta.env.DEV;
     <div class="mobile-drawer__inner mobile-drawer__inner--toc">
       <div class="mobile-drawer__header">
         <span class="mobile-drawer__header-spacer" aria-hidden="true"></span>
-        <h2 id="mobile-drawer-toc-title" class="mobile-drawer__title m-0">In-page Sections</h2>
+        <h2 id="mobile-drawer-toc-title" class="mobile-drawer__title m-0">
+          <span class="mobile-drawer__title-content">
+            <InPageSectionsIcon class="mobile-drawer__title-icon" />
+            <span>In-page Sections</span>
+          </span>
+        </h2>
         <button type="button" class="mobile-drawer__close-btn" aria-label="Close in-page sections" data-mobile-close>
           <svg class="mobile-nav-header__icon mobile-nav-header__icon--stroke" viewBox="0 0 24 24" aria-hidden="true">
             <path fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6" d="M5 5L19 19M19 5L5 19" />

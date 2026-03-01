@@ -135,6 +135,21 @@
   font-size: 1.05rem;
   line-height: 1.2;
   text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.mobile-drawer__title-content {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.mobile-drawer__title-icon {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 auto;
 }
 
 .mobile-drawer__close-btn {
