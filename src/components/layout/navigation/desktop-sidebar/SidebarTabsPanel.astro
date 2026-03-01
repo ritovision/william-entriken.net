@@ -76,18 +76,21 @@ const isDev = import.meta.env.DEV;
   import { setupTocActiveTracking, validateTocTargets } from '../scripts/tocTracking';
 
   (() => {
-    const roots = document.querySelectorAll('[data-sidebar-tabs]');
+    type TabTarget = 'menu' | 'toc';
+    const isTabTarget = (value: string | null): value is TabTarget => value === 'menu' || value === 'toc';
+
+    const roots = document.querySelectorAll<HTMLElement>('[data-sidebar-tabs]');
 
     for (const root of roots) {
-      const buttons = Array.from(root.querySelectorAll('[data-tab-target]'));
-      const panels = Array.from(root.querySelectorAll('[data-tab-panel]'));
-      const title = root.querySelector('[data-tab-title]');
+      const buttons = Array.from(root.querySelectorAll<HTMLButtonElement>('[data-tab-target]'));
+      const panels = Array.from(root.querySelectorAll<HTMLElement>('[data-tab-panel]'));
+      const title = root.querySelector<HTMLElement>('[data-tab-title]');
       const titleByTarget = {
         menu: 'Main Menu',
         toc: 'In-page Sections',
-      };
+      } satisfies Record<TabTarget, string>;
 
-      const setActiveTab = (target) => {
+      const setActiveTab = (target: TabTarget) => {
         if (title) {
           title.textContent = titleByTarget[target] || titleByTarget.menu;
         }
@@ -114,12 +117,12 @@ const isDev = import.meta.env.DEV;
       for (const button of buttons) {
         button.addEventListener('click', () => {
           const target = button.getAttribute('data-tab-target');
-          if (target) {
+          if (isTabTarget(target)) {
             setActiveTab(target);
           }
         });
 
-        button.addEventListener('keydown', (event) => {
+        button.addEventListener('keydown', (event: KeyboardEvent) => {
           const key = event.key;
           if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(key)) {
             return;
@@ -150,7 +153,7 @@ const isDev = import.meta.env.DEV;
 
           nextButton.focus();
           const target = nextButton.getAttribute('data-tab-target');
-          if (target) {
+          if (isTabTarget(target)) {
             setActiveTab(target);
           }
         });
