@@ -1,5 +1,6 @@
 ---
 import "../styles/main.scss";
+import SiteFooter from "../components/layout/footer/SiteFooter.astro";
 import AiAssistModal from "../components/layout/navigation/ai-assist/AiAssistModal.astro";
 import DesktopSidebar from "../components/layout/navigation/desktop-sidebar/DesktopSidebar.astro";
 import MobileNav from "../components/layout/navigation/mobile-nav/MobileNav.astro";
@@ -26,6 +27,9 @@ const normalizePath = (path: string) =>
 const currentPath = normalizePath(Astro.url.pathname);
 const desktopRoutes = siteRoutes
   .filter((route) => route.navGroup === "primary")
+  .sort((a, b) => a.order - b.order);
+const legalRoutes = siteRoutes
+  .filter((route) => route.navGroup === "legal")
   .sort((a, b) => a.order - b.order);
 ---
 
@@ -57,6 +61,7 @@ const desktopRoutes = siteRoutes
       />
       <div class="app-main">
         <slot />
+        <SiteFooter socials={socialLinks} legalLinks={legalRoutes} />
       </div>
     </div>
     <AiAssistModal />
