@@ -1,5 +1,7 @@
 ---
 import AskAiSparkIcon from "../../../ui/icons/AskAiSparkIcon.astro";
+import BrandClaudeIcon from "../../../ui/icons/brands/BrandClaudeIcon.astro";
+import BrandPerplexityIcon from "../../../ui/icons/brands/BrandPerplexityIcon.astro";
 ---
 
 <section
@@ -73,12 +75,7 @@ import AskAiSparkIcon from "../../../ui/icons/AskAiSparkIcon.astro";
           class="ai-assist-provider ai-assist-provider--claude"
           data-ai-provider="claude"
         >
-          <img
-            src="/images/icons/AI/claude-logo-white.png"
-            alt=""
-            class="ai-assist-provider__logo"
-            aria-hidden="true"
-          />
+          <BrandClaudeIcon class="ai-assist-provider__logo" />
           <span>Claude</span>
         </button>
 
@@ -87,12 +84,7 @@ import AskAiSparkIcon from "../../../ui/icons/AskAiSparkIcon.astro";
           class="ai-assist-provider ai-assist-provider--perplexity"
           data-ai-provider="perplexity"
         >
-          <img
-            src="/images/icons/AI/perplexity-logo-white.png"
-            alt=""
-            class="ai-assist-provider__logo"
-            aria-hidden="true"
-          />
+          <BrandPerplexityIcon class="ai-assist-provider__logo" />
           <span>Perplexity</span>
         </button>
       </div>

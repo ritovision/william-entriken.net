@@ -1,5 +1,6 @@
 ---
 import type { SocialLink } from "../../../../config/navigation";
+import SocialIcon from "../../../ui/icons/brands/SocialIcon.astro";
 
 interface Props {
   socials: SocialLink[];
@@ -19,11 +20,7 @@ const { socials } = Astro.props;
           rel="noreferrer"
           aria-label={social.label}
         >
-          <img
-            src={social.iconSrc}
-            alt=""
-            class="desktop-sidebar__social-icon"
-          />
+          <SocialIcon id={social.id} class="desktop-sidebar__social-icon" />
         </a>
       ))
     }

@@ -1,7 +1,9 @@
+export type SocialId = "x" | "youtube" | "twitch" | "linkedin" | "github";
+
 export interface SocialLink {
+  id: SocialId;
   label: string;
   href: string;
-  iconSrc: string;
 }
 
 export interface SidebarTocItem {
@@ -11,28 +13,28 @@ export interface SidebarTocItem {
 
 export const socialLinks: SocialLink[] = [
   {
+    id: "x",
     label: "X",
     href: "https://x.com/fulldecent",
-    iconSrc: "/images/icons/socials/x-white.png",
   },
   {
+    id: "youtube",
     label: "YouTube",
     href: "https://www.youtube.com/@fulldecent",
-    iconSrc: "/images/icons/socials/youtube-white.png",
   },
   {
+    id: "twitch",
     label: "Twitch",
     href: "https://www.twitch.tv/fulldecent",
-    iconSrc: "/images/icons/socials/twitch-white.png",
   },
   {
+    id: "linkedin",
     label: "LinkedIn",
     href: "https://www.linkedin.com/in/fulldecent/",
-    iconSrc: "/images/icons/socials/linkedin-white.png",
   },
   {
+    id: "github",
     label: "GitHub",
     href: "https://github.com/fulldecent",
-    iconSrc: "/images/icons/socials/github-white.png",
   },
 ];

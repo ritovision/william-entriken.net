@@ -4,6 +4,7 @@ import type { SiteRoute } from "../../../../config/site";
 import AskAiButton from "../ai-assist/AskAiButton.astro";
 import InPageSectionsIcon from "../../../ui/icons/InPageSectionsIcon.astro";
 import MainMenuIcon from "../../../ui/icons/MainMenuIcon.astro";
+import SocialIcon from "../../../ui/icons/brands/SocialIcon.astro";
 
 interface Props {
   currentPath: string;
@@ -157,11 +158,7 @@ const isDev = import.meta.env.DEV;
                 rel="noreferrer"
                 aria-label={social.label}
               >
-                <img
-                  src={social.iconSrc}
-                  alt=""
-                  class="mobile-drawer__social-icon"
-                />
+                <SocialIcon id={social.id} class="mobile-drawer__social-icon" />
               </a>
             ))
           }

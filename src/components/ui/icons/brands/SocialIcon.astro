@@ -1,0 +1,29 @@
+---
+import type { SocialId } from "../../../../config/navigation";
+import BrandGithubIcon from "./BrandGithubIcon.astro";
+import BrandLinkedinIcon from "./BrandLinkedinIcon.astro";
+import BrandTwitchIcon from "./BrandTwitchIcon.astro";
+import BrandXIcon from "./BrandXIcon.astro";
+import BrandYoutubeIcon from "./BrandYoutubeIcon.astro";
+
+interface Props {
+  id: SocialId;
+  class?: string;
+}
+
+const { id, class: className = "" } = Astro.props;
+---
+
+{
+  id === "x" ? (
+    <BrandXIcon class={className} />
+  ) : id === "youtube" ? (
+    <BrandYoutubeIcon class={className} />
+  ) : id === "twitch" ? (
+    <BrandTwitchIcon class={className} />
+  ) : id === "linkedin" ? (
+    <BrandLinkedinIcon class={className} />
+  ) : id === "github" ? (
+    <BrandGithubIcon class={className} />
+  ) : null
+}
