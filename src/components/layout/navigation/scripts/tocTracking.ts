@@ -16,10 +16,15 @@ interface TocEntry {
 }
 
 const getTargetId = (anchor: Element | null, targetAttribute: string) =>
-  anchor?.getAttribute(targetAttribute) || '';
+  anchor?.getAttribute(targetAttribute) || "";
 
-export const validateTocTargets = (root: ParentNode, options: TocTrackingOptions): void => {
-  const tocItems = Array.from(root.querySelectorAll<HTMLElement>(options.itemSelector));
+export const validateTocTargets = (
+  root: ParentNode,
+  options: TocTrackingOptions,
+): void => {
+  const tocItems = Array.from(
+    root.querySelectorAll<HTMLElement>(options.itemSelector),
+  );
 
   for (const item of tocItems) {
     const anchor = item.querySelector(options.anchorSelector);
@@ -32,7 +37,9 @@ export const validateTocTargets = (root: ParentNode, options: TocTrackingOptions
     if (!document.getElementById(targetId)) {
       item.remove();
       if (options.isDev) {
-        console.warn(`[${options.warningPrefix}] TOC target not found: #${targetId}`);
+        console.warn(
+          `[${options.warningPrefix}] TOC target not found: #${targetId}`,
+        );
       }
     }
   }
@@ -42,15 +49,20 @@ export const validateTocTargets = (root: ParentNode, options: TocTrackingOptions
   if (tocList && tocEmpty) {
     const remaining = tocList.querySelectorAll(options.itemSelector).length;
     if (remaining === 0) {
-      tocEmpty.removeAttribute('hidden');
+      tocEmpty.removeAttribute("hidden");
     } else {
-      tocEmpty.setAttribute('hidden', '');
+      tocEmpty.setAttribute("hidden", "");
     }
   }
 };
 
-export const setupTocActiveTracking = (root: ParentNode, options: TocTrackingOptions): void => {
-  const tocAnchors = Array.from(root.querySelectorAll<HTMLAnchorElement>(options.anchorSelector));
+export const setupTocActiveTracking = (
+  root: ParentNode,
+  options: TocTrackingOptions,
+): void => {
+  const tocAnchors = Array.from(
+    root.querySelectorAll<HTMLAnchorElement>(options.anchorSelector),
+  );
   const tocEntries: TocEntry[] = tocAnchors
     .map((anchor) => {
       const targetId = getTargetId(anchor, options.targetAttribute);
@@ -72,7 +84,7 @@ export const setupTocActiveTracking = (root: ParentNode, options: TocTrackingOpt
   }
 
   const markerRatio = options.markerRatio ?? 0;
-  let activeTargetId = '';
+  let activeTargetId = "";
   let rafPending = false;
 
   const setActiveToc = (targetId: string) => {
@@ -83,11 +95,11 @@ export const setupTocActiveTracking = (root: ParentNode, options: TocTrackingOpt
     activeTargetId = targetId;
     for (const entry of tocEntries) {
       const isActive = entry.targetId === targetId;
-      entry.anchor.classList.toggle('is-active', isActive);
+      entry.anchor.classList.toggle("is-active", isActive);
       if (isActive) {
-        entry.anchor.setAttribute('aria-current', 'location');
+        entry.anchor.setAttribute("aria-current", "location");
       } else {
-        entry.anchor.removeAttribute('aria-current');
+        entry.anchor.removeAttribute("aria-current");
       }
     }
   };
@@ -132,11 +144,11 @@ export const setupTocActiveTracking = (root: ParentNode, options: TocTrackingOpt
     });
   };
 
-  window.addEventListener('scroll', requestEvaluate, { passive: true });
-  window.addEventListener('resize', requestEvaluate);
+  window.addEventListener("scroll", requestEvaluate, { passive: true });
+  window.addEventListener("resize", requestEvaluate);
 
   for (const entry of tocEntries) {
-    entry.anchor.addEventListener('click', () => {
+    entry.anchor.addEventListener("click", () => {
       setActiveToc(entry.targetId);
     });
   }

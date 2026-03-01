@@ -1,10 +1,10 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import BaseLayout from "../layouts/BaseLayout.astro";
 
 const sections = Array.from({ length: 10 }, (_, index) => {
   const n = index + 1;
   return {
-    id: `home-section-${String(n).padStart(2, '0')}`,
+    id: `home-section-${String(n).padStart(2, "0")}`,
     title: `Home Demo Section ${n}`,
   };
 });
@@ -15,22 +15,31 @@ const sidebarToc = sections.map((section) => ({
 }));
 
 const paragraph =
-  'This is placeholder migration content for scroll and section navigation testing. It is intentionally long so you can verify sidebar behavior, table-of-contents anchors, and viewport flow on large pages.';
+  "This is placeholder migration content for scroll and section navigation testing. It is intentionally long so you can verify sidebar behavior, table-of-contents anchors, and viewport flow on large pages.";
 ---
 
-<BaseLayout title="William Entriken" description="Site foundation placeholder page." sidebarToc={sidebarToc}>
+<BaseLayout
+  title="William Entriken"
+  description="Site foundation placeholder page."
+  sidebarToc={sidebarToc}
+>
   <main class="page-placeholder">
     <div class="container-95 py-4">
-      {sections.map((section) => (
-        <section id={section.id} class="bg-content-dark border-white mb-4 p-4 section-stack">
-          <h2 class="text-gold m-0">{section.title}</h2>
-          <p class="text-white m-0">{paragraph}</p>
-          <p class="text-white m-0">{paragraph}</p>
-          <p class="text-white m-0">{paragraph}</p>
-          <p class="text-white m-0">{paragraph}</p>
-          <p class="text-white m-0">{paragraph}</p>
-        </section>
-      ))}
+      {
+        sections.map((section) => (
+          <section
+            id={section.id}
+            class="bg-content-dark border-white mb-4 p-4 section-stack"
+          >
+            <h2 class="text-gold m-0">{section.title}</h2>
+            <p class="text-white m-0">{paragraph}</p>
+            <p class="text-white m-0">{paragraph}</p>
+            <p class="text-white m-0">{paragraph}</p>
+            <p class="text-white m-0">{paragraph}</p>
+            <p class="text-white m-0">{paragraph}</p>
+          </section>
+        ))
+      }
     </div>
   </main>
 </BaseLayout>

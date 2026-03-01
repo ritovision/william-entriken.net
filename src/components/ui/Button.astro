@@ -2,16 +2,23 @@
 interface Props {
   href?: string;
   label: string;
-  variant?: 'navy' | 'gold-pill';
+  variant?: "navy" | "gold-pill";
   class?: string;
 }
 
-const { href, label, variant = 'navy', class: className = '' } = Astro.props;
-const variantClass = variant === 'gold-pill' ? 'btn-brand-gold-pill' : 'btn-brand-navy';
+const { href, label, variant = "navy", class: className = "" } = Astro.props;
+const variantClass =
+  variant === "gold-pill" ? "btn-brand-gold-pill" : "btn-brand-navy";
 ---
 
-{href ? (
-  <a href={href} class={`btn ${variantClass} ${className}`.trim()}>{label}</a>
-) : (
-  <button type="button" class={`btn ${variantClass} ${className}`.trim()}>{label}</button>
-)}
+{
+  href ? (
+    <a href={href} class={`btn ${variantClass} ${className}`.trim()}>
+      {label}
+    </a>
+  ) : (
+    <button type="button" class={`btn ${variantClass} ${className}`.trim()}>
+      {label}
+    </button>
+  )
+}

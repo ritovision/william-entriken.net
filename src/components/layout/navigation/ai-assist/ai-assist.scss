@@ -12,7 +12,9 @@
   font-size: 0.95rem;
   line-height: 1.2;
   text-align: center;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
 }
 
 .nav-ai-button:hover,

@@ -1,9 +1,9 @@
 ---
-import type { SidebarTocItem, SocialLink } from '../../../../config/navigation';
-import type { SiteRoute } from '../../../../config/site';
-import AskAiButton from '../ai-assist/AskAiButton.astro';
-import InPageSectionsIcon from '../../../ui/icons/InPageSectionsIcon.astro';
-import MainMenuIcon from '../../../ui/icons/MainMenuIcon.astro';
+import type { SidebarTocItem, SocialLink } from "../../../../config/navigation";
+import type { SiteRoute } from "../../../../config/site";
+import AskAiButton from "../ai-assist/AskAiButton.astro";
+import InPageSectionsIcon from "../../../ui/icons/InPageSectionsIcon.astro";
+import MainMenuIcon from "../../../ui/icons/MainMenuIcon.astro";
 
 interface Props {
   currentPath: string;
@@ -14,12 +14,17 @@ interface Props {
 
 const { currentPath, routes, socials, sidebarToc } = Astro.props;
 
-const normalizePath = (path: string) => (path === '/' ? '/' : path.replace(/\/+$/, ''));
+const normalizePath = (path: string) =>
+  path === "/" ? "/" : path.replace(/\/+$/, "");
 const activePath = normalizePath(currentPath);
 const isDev = import.meta.env.DEV;
 ---
 
-<div class="mobile-nav-wrap d-lg-none" data-mobile-nav data-dev={isDev ? 'true' : 'false'}>
+<div
+  class="mobile-nav-wrap d-lg-none"
+  data-mobile-nav
+  data-dev={isDev ? "true" : "false"}
+>
   <header class="mobile-nav-header" aria-label="Mobile navigation">
     <div class="mobile-nav-header__bar">
       <button
@@ -34,7 +39,11 @@ const isDev = import.meta.env.DEV;
       </button>
 
       <a href="/" class="mobile-nav-header__logo-link" aria-label="Home">
-        <img src="/images/brand/logomark.png" alt="William Entriken logomark" class="mobile-nav-header__logo" />
+        <img
+          src="/images/brand/logomark.png"
+          alt="William Entriken logomark"
+          class="mobile-nav-header__logo"
+        />
       </a>
 
       <button
@@ -45,8 +54,17 @@ const isDev = import.meta.env.DEV;
         aria-expanded="false"
         data-mobile-open="menu"
       >
-        <svg class="mobile-nav-header__icon mobile-nav-header__icon--stroke" viewBox="0 0 24 24" aria-hidden="true">
-          <path fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4" d="M3.5 6.5H20.5M3.5 12H20.5M3.5 17.5H20.5" />
+        <svg
+          class="mobile-nav-header__icon mobile-nav-header__icon--stroke"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2.4"
+            d="M3.5 6.5H20.5M3.5 12H20.5M3.5 17.5H20.5"></path>
         </svg>
       </button>
     </div>
@@ -54,9 +72,22 @@ const isDev = import.meta.env.DEV;
 
   <div class="mobile-nav-spacer" aria-hidden="true"></div>
 
-  <button type="button" class="mobile-drawer-overlay" aria-label="Close mobile drawer" data-mobile-overlay></button>
+  <button
+    type="button"
+    class="mobile-drawer-overlay"
+    aria-label="Close mobile drawer"
+    data-mobile-overlay></button>
 
-  <aside id="mobile-drawer-menu" class="mobile-drawer mobile-drawer--menu" role="dialog" aria-modal="false" aria-labelledby="mobile-drawer-menu-title" aria-hidden="true" data-mobile-drawer="menu" inert>
+  <aside
+    id="mobile-drawer-menu"
+    class="mobile-drawer mobile-drawer--menu"
+    role="dialog"
+    aria-modal="false"
+    aria-labelledby="mobile-drawer-menu-title"
+    aria-hidden="true"
+    data-mobile-drawer="menu"
+    inert
+  >
     <div class="mobile-drawer__inner mobile-drawer__inner--menu">
       <div class="mobile-drawer__header">
         <span class="mobile-drawer__header-spacer" aria-hidden="true"></span>
@@ -66,9 +97,23 @@ const isDev = import.meta.env.DEV;
             <span>Main Menu</span>
           </span>
         </h2>
-        <button type="button" class="mobile-drawer__close-btn" aria-label="Close main menu" data-mobile-close>
-          <svg class="mobile-nav-header__icon mobile-nav-header__icon--stroke" viewBox="0 0 24 24" aria-hidden="true">
-            <path fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6" d="M5 5L19 19M19 5L5 19" />
+        <button
+          type="button"
+          class="mobile-drawer__close-btn"
+          aria-label="Close main menu"
+          data-mobile-close
+        >
+          <svg
+            class="mobile-nav-header__icon mobile-nav-header__icon--stroke"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2.6"
+              d="M5 5L19 19M19 5L5 19"></path>
           </svg>
         </button>
       </div>
@@ -76,45 +121,65 @@ const isDev = import.meta.env.DEV;
       <div class="mobile-drawer__scroll">
         <nav class="mobile-drawer__nav" aria-label="Main menu links">
           <ul class="mobile-drawer__nav-list list-unstyled m-0 p-0">
-            {routes.map((route) => {
-              const isActive = activePath === normalizePath(route.path);
+            {
+              routes.map((route) => {
+                const isActive = activePath === normalizePath(route.path);
 
-              return (
-                <li class="mobile-drawer__nav-item">
-                  <a
-                    href={route.path}
-                    class:list={['mobile-drawer__nav-link', isActive && 'is-active']}
-                    aria-current={isActive ? 'page' : undefined}
-                    data-mobile-close-link
-                  >
-                    {route.label}
-                  </a>
-                </li>
-              );
-            })}
+                return (
+                  <li class="mobile-drawer__nav-item">
+                    <a
+                      href={route.path}
+                      class:list={[
+                        "mobile-drawer__nav-link",
+                        isActive && "is-active",
+                      ]}
+                      aria-current={isActive ? "page" : undefined}
+                      data-mobile-close-link
+                    >
+                      {route.label}
+                    </a>
+                  </li>
+                );
+              })
+            }
           </ul>
         </nav>
       </div>
 
       <div class="mobile-drawer__footer">
         <div class="mobile-drawer__social-grid">
-          {socials.map((social) => (
-            <a
-              href={social.href}
-              class="mobile-drawer__social-link"
-              target="_blank"
-              rel="noreferrer"
-              aria-label={social.label}
-            >
-              <img src={social.iconSrc} alt="" class="mobile-drawer__social-icon" />
-            </a>
-          ))}
+          {
+            socials.map((social) => (
+              <a
+                href={social.href}
+                class="mobile-drawer__social-link"
+                target="_blank"
+                rel="noreferrer"
+                aria-label={social.label}
+              >
+                <img
+                  src={social.iconSrc}
+                  alt=""
+                  class="mobile-drawer__social-icon"
+                />
+              </a>
+            ))
+          }
         </div>
       </div>
     </div>
   </aside>
 
-  <aside id="mobile-drawer-toc" class="mobile-drawer mobile-drawer--toc" role="dialog" aria-modal="false" aria-labelledby="mobile-drawer-toc-title" aria-hidden="true" data-mobile-drawer="toc" inert>
+  <aside
+    id="mobile-drawer-toc"
+    class="mobile-drawer mobile-drawer--toc"
+    role="dialog"
+    aria-modal="false"
+    aria-labelledby="mobile-drawer-toc-title"
+    aria-hidden="true"
+    data-mobile-drawer="toc"
+    inert
+  >
     <div class="mobile-drawer__inner mobile-drawer__inner--toc">
       <div class="mobile-drawer__header">
         <span class="mobile-drawer__header-spacer" aria-hidden="true"></span>
@@ -124,137 +189,196 @@ const isDev = import.meta.env.DEV;
             <span>In-page Sections</span>
           </span>
         </h2>
-        <button type="button" class="mobile-drawer__close-btn" aria-label="Close in-page sections" data-mobile-close>
-          <svg class="mobile-nav-header__icon mobile-nav-header__icon--stroke" viewBox="0 0 24 24" aria-hidden="true">
-            <path fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.6" d="M5 5L19 19M19 5L5 19" />
+        <button
+          type="button"
+          class="mobile-drawer__close-btn"
+          aria-label="Close in-page sections"
+          data-mobile-close
+        >
+          <svg
+            class="mobile-nav-header__icon mobile-nav-header__icon--stroke"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2.6"
+              d="M5 5L19 19M19 5L5 19"></path>
           </svg>
         </button>
       </div>
 
       <div class="mobile-drawer__scroll">
         <nav class="mobile-drawer__nav" aria-label="In-page sections">
-          <ul class="mobile-drawer__nav-list list-unstyled m-0 p-0" data-mobile-toc-list>
-            {sidebarToc.map((item) => (
-              <li class="mobile-drawer__nav-item" data-mobile-toc-item>
-                <a href={`#${item.targetId}`} class="mobile-drawer__nav-link mobile-drawer__toc-link" data-mobile-toc-target={item.targetId} data-mobile-close-link>
-                  {item.label}
-                </a>
-              </li>
-            ))}
+          <ul
+            class="mobile-drawer__nav-list list-unstyled m-0 p-0"
+            data-mobile-toc-list
+          >
+            {
+              sidebarToc.map((item) => (
+                <li class="mobile-drawer__nav-item" data-mobile-toc-item>
+                  <a
+                    href={`#${item.targetId}`}
+                    class="mobile-drawer__nav-link mobile-drawer__toc-link"
+                    data-mobile-toc-target={item.targetId}
+                    data-mobile-close-link
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))
+            }
           </ul>
-          <p class="mobile-drawer__toc-empty text-gold m-0" data-mobile-toc-empty hidden>
+          <p
+            class="mobile-drawer__toc-empty text-gold m-0"
+            data-mobile-toc-empty
+            hidden
+          >
             No sections on this page yet.
           </p>
         </nav>
       </div>
 
       <div class="mobile-drawer__footer mobile-drawer__footer--toc">
-        <AskAiButton class="mobile-drawer__ask-ai-button" mobileDrawerTrigger={true} />
+        <AskAiButton
+          class="mobile-drawer__ask-ai-button"
+          mobileDrawerTrigger={true}
+        />
       </div>
     </div>
   </aside>
 </div>
 
 <script>
-  import { setupTocActiveTracking, validateTocTargets } from '../scripts/tocTracking';
+  import {
+    setupTocActiveTracking,
+    validateTocTargets,
+  } from "../scripts/tocTracking";
 
   (() => {
-    type DrawerName = 'menu' | 'toc';
+    type DrawerName = "menu" | "toc";
 
-    const root = document.querySelector<HTMLElement>('[data-mobile-nav]');
+    const root = document.querySelector<HTMLElement>("[data-mobile-nav]");
     if (!root) {
       return;
     }
 
-    const overlay = root.querySelector<HTMLElement>('[data-mobile-overlay]');
-    const drawers = Array.from(root.querySelectorAll<HTMLElement>('[data-mobile-drawer]'));
-    const openButtons = Array.from(root.querySelectorAll<HTMLButtonElement>('[data-mobile-open]'));
-    const closeButtons = Array.from(root.querySelectorAll<HTMLButtonElement>('[data-mobile-close]'));
-    const closeLinks = Array.from(root.querySelectorAll<HTMLElement>('[data-mobile-close-link]'));
-    const mobileAiOpenButtons = Array.from(root.querySelectorAll<HTMLButtonElement>('[data-mobile-ai-open]'));
-    const tocLinks = Array.from(root.querySelectorAll<HTMLAnchorElement>('[data-mobile-toc-target]'));
-    const isDev = root.getAttribute('data-dev') === 'true';
+    const overlay = root.querySelector<HTMLElement>("[data-mobile-overlay]");
+    const drawers = Array.from(
+      root.querySelectorAll<HTMLElement>("[data-mobile-drawer]"),
+    );
+    const openButtons = Array.from(
+      root.querySelectorAll<HTMLButtonElement>("[data-mobile-open]"),
+    );
+    const closeButtons = Array.from(
+      root.querySelectorAll<HTMLButtonElement>("[data-mobile-close]"),
+    );
+    const closeLinks = Array.from(
+      root.querySelectorAll<HTMLElement>("[data-mobile-close-link]"),
+    );
+    const mobileAiOpenButtons = Array.from(
+      root.querySelectorAll<HTMLButtonElement>("[data-mobile-ai-open]"),
+    );
+    const tocLinks = Array.from(
+      root.querySelectorAll<HTMLAnchorElement>("[data-mobile-toc-target]"),
+    );
+    const isDev = root.getAttribute("data-dev") === "true";
 
-    let activeDrawer: DrawerName | '' = '';
+    let activeDrawer: DrawerName | "" = "";
 
     const setInert = (element: HTMLElement, inert: boolean) => {
-      if ('inert' in element) {
+      if ("inert" in element) {
         (element as HTMLElement & { inert: boolean }).inert = inert;
       }
 
       if (inert) {
-        element.setAttribute('inert', '');
+        element.setAttribute("inert", "");
       } else {
-        element.removeAttribute('inert');
+        element.removeAttribute("inert");
       }
     };
 
-    const setDrawerState = (name: DrawerName | '') => {
+    const setDrawerState = (name: DrawerName | "") => {
       activeDrawer = name;
 
       for (const drawer of drawers) {
-        const drawerName = drawer.getAttribute('data-mobile-drawer');
+        const drawerName = drawer.getAttribute("data-mobile-drawer");
         const isActive = Boolean(name) && drawerName === name;
-        drawer.classList.toggle('is-open', isActive);
-        drawer.setAttribute('aria-hidden', String(!isActive));
+        drawer.classList.toggle("is-open", isActive);
+        drawer.setAttribute("aria-hidden", String(!isActive));
         setInert(drawer, !isActive);
       }
 
       for (const button of openButtons) {
-        const target = button.getAttribute('data-mobile-open');
-        button.setAttribute('aria-expanded', String(Boolean(name) && target === name));
+        const target = button.getAttribute("data-mobile-open");
+        button.setAttribute(
+          "aria-expanded",
+          String(Boolean(name) && target === name),
+        );
       }
 
       if (overlay) {
-        overlay.classList.toggle('is-open', Boolean(name));
+        overlay.classList.toggle("is-open", Boolean(name));
       }
     };
 
-    const closeDrawer = () => setDrawerState('');
-    const toggleDrawer = (name: DrawerName) => setDrawerState(activeDrawer === name ? '' : name);
-    const isMobileViewport = () => window.matchMedia('(max-width: 991.98px)').matches;
+    const closeDrawer = () => setDrawerState("");
+    const toggleDrawer = (name: DrawerName) =>
+      setDrawerState(activeDrawer === name ? "" : name);
+    const isMobileViewport = () =>
+      window.matchMedia("(max-width: 991.98px)").matches;
     const getMobileScrollOffset = () => {
-      const cssValue = getComputedStyle(document.documentElement).getPropertyValue('--mobile-nav-height').trim();
+      const cssValue = getComputedStyle(document.documentElement)
+        .getPropertyValue("--mobile-nav-height")
+        .trim();
       const cssHeight = Number.parseFloat(cssValue);
-      const header = root.querySelector('.mobile-nav-header');
-      const measuredHeight = header instanceof HTMLElement ? header.getBoundingClientRect().height : 0;
-      const navHeight = Number.isFinite(cssHeight) && cssHeight > 0 ? cssHeight : measuredHeight;
+      const header = root.querySelector(".mobile-nav-header");
+      const measuredHeight =
+        header instanceof HTMLElement
+          ? header.getBoundingClientRect().height
+          : 0;
+      const navHeight =
+        Number.isFinite(cssHeight) && cssHeight > 0
+          ? cssHeight
+          : measuredHeight;
       return navHeight + 8;
     };
 
     for (const button of openButtons) {
-      button.addEventListener('click', () => {
-        const target = button.getAttribute('data-mobile-open');
-        if (target === 'menu' || target === 'toc') {
+      button.addEventListener("click", () => {
+        const target = button.getAttribute("data-mobile-open");
+        if (target === "menu" || target === "toc") {
           toggleDrawer(target);
         }
       });
     }
 
     for (const button of closeButtons) {
-      button.addEventListener('click', closeDrawer);
+      button.addEventListener("click", closeDrawer);
     }
 
     for (const link of closeLinks) {
-      link.addEventListener('click', closeDrawer);
+      link.addEventListener("click", closeDrawer);
     }
 
     for (const button of mobileAiOpenButtons) {
-      button.addEventListener('click', (event: MouseEvent) => {
+      button.addEventListener("click", (event: MouseEvent) => {
         event.preventDefault();
         event.stopPropagation();
         closeDrawer();
-        document.dispatchEvent(new CustomEvent('ai-assist:open'));
+        document.dispatchEvent(new CustomEvent("ai-assist:open"));
       });
     }
 
     for (const link of tocLinks) {
-      link.addEventListener('click', (event: MouseEvent) => {
+      link.addEventListener("click", (event: MouseEvent) => {
         if (!isMobileViewport()) {
           return;
         }
 
-        const targetId = link.getAttribute('data-mobile-toc-target');
+        const targetId = link.getAttribute("data-mobile-toc-target");
         if (!targetId) {
           return;
         }
@@ -265,50 +389,53 @@ const isDev = import.meta.env.DEV;
         }
 
         event.preventDefault();
-        const offsetTop = section.getBoundingClientRect().top + window.scrollY - getMobileScrollOffset();
-        window.scrollTo({ top: Math.max(0, offsetTop), behavior: 'smooth' });
-        history.replaceState(null, '', `#${targetId}`);
+        const offsetTop =
+          section.getBoundingClientRect().top +
+          window.scrollY -
+          getMobileScrollOffset();
+        window.scrollTo({ top: Math.max(0, offsetTop), behavior: "smooth" });
+        history.replaceState(null, "", `#${targetId}`);
       });
     }
 
     if (overlay) {
-      overlay.addEventListener('click', closeDrawer);
+      overlay.addEventListener("click", closeDrawer);
     }
 
-    document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape' && activeDrawer) {
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && activeDrawer) {
         closeDrawer();
       }
     });
 
     const initToc = () => {
       validateTocTargets(root, {
-        itemSelector: '[data-mobile-toc-item]',
-        anchorSelector: '[data-mobile-toc-target]',
-        listSelector: '[data-mobile-toc-list]',
-        emptySelector: '[data-mobile-toc-empty]',
-        targetAttribute: 'data-mobile-toc-target',
-        warningPrefix: 'MobileNav',
+        itemSelector: "[data-mobile-toc-item]",
+        anchorSelector: "[data-mobile-toc-target]",
+        listSelector: "[data-mobile-toc-list]",
+        emptySelector: "[data-mobile-toc-empty]",
+        targetAttribute: "data-mobile-toc-target",
+        warningPrefix: "MobileNav",
         isDev,
       });
 
       setupTocActiveTracking(root, {
-        itemSelector: '[data-mobile-toc-item]',
-        anchorSelector: '[data-mobile-toc-target]',
-        listSelector: '[data-mobile-toc-list]',
-        emptySelector: '[data-mobile-toc-empty]',
-        targetAttribute: 'data-mobile-toc-target',
-        warningPrefix: 'MobileNav',
+        itemSelector: "[data-mobile-toc-item]",
+        anchorSelector: "[data-mobile-toc-target]",
+        listSelector: "[data-mobile-toc-list]",
+        emptySelector: "[data-mobile-toc-empty]",
+        targetAttribute: "data-mobile-toc-target",
+        warningPrefix: "MobileNav",
         markerRatio: 0,
       });
     };
 
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initToc, { once: true });
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initToc, { once: true });
     } else {
       initToc();
     }
 
-    setDrawerState('');
+    setDrawerState("");
   })();
 </script>

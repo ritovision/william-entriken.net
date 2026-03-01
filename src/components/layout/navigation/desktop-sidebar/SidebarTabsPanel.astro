@@ -1,10 +1,10 @@
 ---
-import type { SidebarTocItem } from '../../../../config/navigation';
-import type { SiteRoute } from '../../../../config/site';
-import InPageSectionsIcon from '../../../ui/icons/InPageSectionsIcon.astro';
-import MainMenuIcon from '../../../ui/icons/MainMenuIcon.astro';
-import SidebarMenuPanel from './SidebarMenuPanel.astro';
-import SidebarTocPanel from './SidebarTocPanel.astro';
+import type { SidebarTocItem } from "../../../../config/navigation";
+import type { SiteRoute } from "../../../../config/site";
+import InPageSectionsIcon from "../../../ui/icons/InPageSectionsIcon.astro";
+import MainMenuIcon from "../../../ui/icons/MainMenuIcon.astro";
+import SidebarMenuPanel from "./SidebarMenuPanel.astro";
+import SidebarTocPanel from "./SidebarTocPanel.astro";
 
 interface Props {
   currentPath: string;
@@ -16,10 +16,18 @@ const { currentPath, routes, sidebarToc } = Astro.props;
 const isDev = import.meta.env.DEV;
 ---
 
-<div class="desktop-sidebar__tabs-region" data-sidebar-tabs data-dev={isDev ? 'true' : 'false'}>
+<div
+  class="desktop-sidebar__tabs-region"
+  data-sidebar-tabs
+  data-dev={isDev ? "true" : "false"}
+>
   <h2 class="desktop-sidebar__mode-title m-0" data-tab-title>Main Menu</h2>
 
-  <div class="desktop-sidebar__tabbox" role="tablist" aria-label="Sidebar navigation mode">
+  <div
+    class="desktop-sidebar__tabbox"
+    role="tablist"
+    aria-label="Sidebar navigation mode"
+  >
     <button
       type="button"
       id="desktop-sidebar-tab-menu"
@@ -73,22 +81,30 @@ const isDev = import.meta.env.DEV;
 </div>
 
 <script>
-  import { setupTocActiveTracking, validateTocTargets } from '../scripts/tocTracking';
+  import {
+    setupTocActiveTracking,
+    validateTocTargets,
+  } from "../scripts/tocTracking";
 
   (() => {
-    type TabTarget = 'menu' | 'toc';
-    const isTabTarget = (value: string | null): value is TabTarget => value === 'menu' || value === 'toc';
+    type TabTarget = "menu" | "toc";
+    const isTabTarget = (value: string | null): value is TabTarget =>
+      value === "menu" || value === "toc";
 
-    const roots = document.querySelectorAll<HTMLElement>('[data-sidebar-tabs]');
+    const roots = document.querySelectorAll<HTMLElement>("[data-sidebar-tabs]");
 
     for (const root of roots) {
-      const buttons = Array.from(root.querySelectorAll<HTMLButtonElement>('[data-tab-target]'));
-      const panels = Array.from(root.querySelectorAll<HTMLElement>('[data-tab-panel]'));
-      const title = root.querySelector<HTMLElement>('[data-tab-title]');
-      const sidebarContainer = root.closest<HTMLElement>('[data-sidebar-mode]');
+      const buttons = Array.from(
+        root.querySelectorAll<HTMLButtonElement>("[data-tab-target]"),
+      );
+      const panels = Array.from(
+        root.querySelectorAll<HTMLElement>("[data-tab-panel]"),
+      );
+      const title = root.querySelector<HTMLElement>("[data-tab-title]");
+      const sidebarContainer = root.closest<HTMLElement>("[data-sidebar-mode]");
       const titleByTarget = {
-        menu: 'Main Menu',
-        toc: 'In-page Sections',
+        menu: "Main Menu",
+        toc: "In-page Sections",
       } satisfies Record<TabTarget, string>;
 
       const setActiveTab = (target: TabTarget) => {
@@ -96,39 +112,39 @@ const isDev = import.meta.env.DEV;
           title.textContent = titleByTarget[target] || titleByTarget.menu;
         }
         if (sidebarContainer) {
-          sidebarContainer.setAttribute('data-sidebar-mode', target);
+          sidebarContainer.setAttribute("data-sidebar-mode", target);
         }
 
         for (const button of buttons) {
-          const isActive = button.getAttribute('data-tab-target') === target;
-          button.classList.toggle('is-active', isActive);
-          button.setAttribute('aria-selected', String(isActive));
+          const isActive = button.getAttribute("data-tab-target") === target;
+          button.classList.toggle("is-active", isActive);
+          button.setAttribute("aria-selected", String(isActive));
           button.tabIndex = isActive ? 0 : -1;
         }
 
         for (const panel of panels) {
-          const isActive = panel.getAttribute('data-tab-panel') === target;
-          panel.classList.toggle('is-active', isActive);
-          panel.setAttribute('aria-hidden', String(!isActive));
+          const isActive = panel.getAttribute("data-tab-panel") === target;
+          panel.classList.toggle("is-active", isActive);
+          panel.setAttribute("aria-hidden", String(!isActive));
           if (isActive) {
-            panel.removeAttribute('hidden');
+            panel.removeAttribute("hidden");
           } else {
-            panel.setAttribute('hidden', '');
+            panel.setAttribute("hidden", "");
           }
         }
       };
 
       for (const button of buttons) {
-        button.addEventListener('click', () => {
-          const target = button.getAttribute('data-tab-target');
+        button.addEventListener("click", () => {
+          const target = button.getAttribute("data-tab-target");
           if (isTabTarget(target)) {
             setActiveTab(target);
           }
         });
 
-        button.addEventListener('keydown', (event: KeyboardEvent) => {
+        button.addEventListener("keydown", (event: KeyboardEvent) => {
           const key = event.key;
-          if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(key)) {
+          if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(key)) {
             return;
           }
 
@@ -140,13 +156,13 @@ const isDev = import.meta.env.DEV;
           }
 
           let nextIndex = currentIndex;
-          if (key === 'ArrowLeft') {
+          if (key === "ArrowLeft") {
             nextIndex = (currentIndex - 1 + buttons.length) % buttons.length;
-          } else if (key === 'ArrowRight') {
+          } else if (key === "ArrowRight") {
             nextIndex = (currentIndex + 1) % buttons.length;
-          } else if (key === 'Home') {
+          } else if (key === "Home") {
             nextIndex = 0;
-          } else if (key === 'End') {
+          } else if (key === "End") {
             nextIndex = buttons.length - 1;
           }
 
@@ -156,39 +172,39 @@ const isDev = import.meta.env.DEV;
           }
 
           nextButton.focus();
-          const target = nextButton.getAttribute('data-tab-target');
+          const target = nextButton.getAttribute("data-tab-target");
           if (isTabTarget(target)) {
             setActiveTab(target);
           }
         });
       }
 
-      setActiveTab('menu');
+      setActiveTab("menu");
 
       const initToc = () => {
         validateTocTargets(root, {
-          itemSelector: '[data-toc-item]',
-          anchorSelector: '[data-toc-target]',
-          listSelector: '[data-toc-list]',
-          emptySelector: '[data-toc-empty]',
-          targetAttribute: 'data-toc-target',
-          warningPrefix: 'DesktopSidebar',
-          isDev: root.getAttribute('data-dev') === 'true',
+          itemSelector: "[data-toc-item]",
+          anchorSelector: "[data-toc-target]",
+          listSelector: "[data-toc-list]",
+          emptySelector: "[data-toc-empty]",
+          targetAttribute: "data-toc-target",
+          warningPrefix: "DesktopSidebar",
+          isDev: root.getAttribute("data-dev") === "true",
         });
 
         setupTocActiveTracking(root, {
-          itemSelector: '[data-toc-item]',
-          anchorSelector: '[data-toc-target]',
-          listSelector: '[data-toc-list]',
-          emptySelector: '[data-toc-empty]',
-          targetAttribute: 'data-toc-target',
-          warningPrefix: 'DesktopSidebar',
+          itemSelector: "[data-toc-item]",
+          anchorSelector: "[data-toc-target]",
+          listSelector: "[data-toc-list]",
+          emptySelector: "[data-toc-empty]",
+          targetAttribute: "data-toc-target",
+          warningPrefix: "DesktopSidebar",
           markerRatio: 0,
         });
       };
 
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initToc, { once: true });
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initToc, { once: true });
       } else {
         initToc();
       }

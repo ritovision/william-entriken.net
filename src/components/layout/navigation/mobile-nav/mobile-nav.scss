@@ -192,7 +192,9 @@
   font-family: var(--font-heading);
   text-decoration: none;
   text-align: center;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
 }
 
 .mobile-drawer__nav-link:visited {

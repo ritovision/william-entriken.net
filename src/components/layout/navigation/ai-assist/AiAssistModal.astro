@@ -1,5 +1,5 @@
 ---
-import AskAiSparkIcon from '../../../ui/icons/AskAiSparkIcon.astro';
+import AskAiSparkIcon from "../../../ui/icons/AskAiSparkIcon.astro";
 ---
 
 <section
@@ -15,7 +15,9 @@ import AskAiSparkIcon from '../../../ui/icons/AskAiSparkIcon.astro';
     <div class="ai-assist-modal__header">
       <div class="ai-assist-modal__title-wrap">
         <AskAiSparkIcon class="ai-assist-modal__title-icon" />
-        <h2 id="ai-assist-title" class="ai-assist-modal__title m-0">Ask your AI</h2>
+        <h2 id="ai-assist-title" class="ai-assist-modal__title m-0">
+          Ask your AI
+        </h2>
       </div>
       <button
         type="button"
@@ -23,15 +25,18 @@ import AskAiSparkIcon from '../../../ui/icons/AskAiSparkIcon.astro';
         data-ai-close-modal
         aria-label="Close Ask your AI modal"
       >
-        <svg class="ai-assist-modal__close-icon" viewBox="0 0 24 24" aria-hidden="true">
+        <svg
+          class="ai-assist-modal__close-icon"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
           <path
             fill="none"
             stroke="currentColor"
             stroke-linecap="round"
             stroke-linejoin="round"
             stroke-width="2.6"
-            d="M5 5L19 19M19 5L5 19"
-          />
+            d="M5 5L19 19M19 5L5 19"></path>
         </svg>
       </button>
     </div>
@@ -42,24 +47,52 @@ import AskAiSparkIcon from '../../../ui/icons/AskAiSparkIcon.astro';
         id="ai-assist-prompt"
         class="ai-assist-modal__textarea"
         data-ai-prompt
-        spellcheck="false"
-      ></textarea>
+        spellcheck="false"></textarea>
 
-      <p class="ai-assist-modal__submit-title m-0">Submit the message above to:</p>
+      <p class="ai-assist-modal__submit-title m-0">
+        Submit the message above to:
+      </p>
 
       <div class="ai-assist-modal__providers">
-        <button type="button" class="ai-assist-provider ai-assist-provider--chatgpt" data-ai-provider="chatgpt">
-          <img src="/images/icons/AI/ChatGPT-logo-white.png" alt="" class="ai-assist-provider__logo" aria-hidden="true" />
+        <button
+          type="button"
+          class="ai-assist-provider ai-assist-provider--chatgpt"
+          data-ai-provider="chatgpt"
+        >
+          <img
+            src="/images/icons/AI/ChatGPT-logo-white.png"
+            alt=""
+            class="ai-assist-provider__logo"
+            aria-hidden="true"
+          />
           <span>ChatGPT</span>
         </button>
 
-        <button type="button" class="ai-assist-provider ai-assist-provider--claude" data-ai-provider="claude">
-          <img src="/images/icons/AI/claude-logo-white.png" alt="" class="ai-assist-provider__logo" aria-hidden="true" />
+        <button
+          type="button"
+          class="ai-assist-provider ai-assist-provider--claude"
+          data-ai-provider="claude"
+        >
+          <img
+            src="/images/icons/AI/claude-logo-white.png"
+            alt=""
+            class="ai-assist-provider__logo"
+            aria-hidden="true"
+          />
           <span>Claude</span>
         </button>
 
-        <button type="button" class="ai-assist-provider ai-assist-provider--perplexity" data-ai-provider="perplexity">
-          <img src="/images/icons/AI/perplexity-logo-white.png" alt="" class="ai-assist-provider__logo" aria-hidden="true" />
+        <button
+          type="button"
+          class="ai-assist-provider ai-assist-provider--perplexity"
+          data-ai-provider="perplexity"
+        >
+          <img
+            src="/images/icons/AI/perplexity-logo-white.png"
+            alt=""
+            class="ai-assist-provider__logo"
+            aria-hidden="true"
+          />
           <span>Perplexity</span>
         </button>
       </div>
@@ -74,8 +107,7 @@ import AskAiSparkIcon from '../../../ui/icons/AskAiSparkIcon.astro';
         role="status"
         aria-live="polite"
         aria-atomic="true"
-        data-ai-copy-status
-      ></span>
+        data-ai-copy-status></span>
 
       <p class="ai-assist-modal__tos m-0">
         <a href="/terms-of-service">View terms of service</a>
@@ -85,7 +117,7 @@ import AskAiSparkIcon from '../../../ui/icons/AskAiSparkIcon.astro';
 </section>
 
 <script>
-  import { initAiAssistController } from '../scripts/ai-assist/aiAssistController';
+  import { initAiAssistController } from "../scripts/ai-assist/aiAssistController";
 
   initAiAssistController();
 </script>

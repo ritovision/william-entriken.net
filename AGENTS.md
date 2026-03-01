@@ -101,3 +101,8 @@ Use tokens defined in `src/styles/tokens.css` as source of truth:
 - Run `pnpm run lint` after large or complex edits.
 - If lint issues are straightforward and low risk, fix them as part of task completion.
 - If lint fixes involve nuance, behavior changes, or tradeoffs, ask the user how they want the fixes handled before applying them.
+
+## Formatting Workflow
+
+- Follow `prettier.config.mjs` as the single source of truth for formatting.
+- Do not hand-style formatting rules that conflict with Prettier output.

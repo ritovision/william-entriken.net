@@ -1,7 +1,7 @@
-import { isAIProvider, openAIDeeplink } from './aiDeeplinks';
-import { copyPageAsMarkdown } from './markdownCopy';
+import { isAIProvider, openAIDeeplink } from "./aiDeeplinks";
+import { copyPageAsMarkdown } from "./markdownCopy";
 
-const OPEN_EVENT_NAME = 'ai-assist:open';
+const OPEN_EVENT_NAME = "ai-assist:open";
 
 interface AiAssistRefs {
   modal: HTMLElement;
@@ -12,13 +12,17 @@ interface AiAssistRefs {
 
 let isInitialized = false;
 
-const getDefaultPrompt = (): string => `${window.location.href}\n\nExplain this page to me.`;
+const getDefaultPrompt = (): string =>
+  `${window.location.href}\n\nExplain this page to me.`;
 
 const resolveRefs = (): AiAssistRefs | null => {
-  const modal = document.querySelector<HTMLElement>('[data-ai-assist-modal]');
-  const prompt = document.querySelector<HTMLTextAreaElement>('[data-ai-prompt]');
-  const copyLabel = document.querySelector<HTMLElement>('[data-ai-copy-label]');
-  const copyStatus = document.querySelector<HTMLElement>('[data-ai-copy-status]');
+  const modal = document.querySelector<HTMLElement>("[data-ai-assist-modal]");
+  const prompt =
+    document.querySelector<HTMLTextAreaElement>("[data-ai-prompt]");
+  const copyLabel = document.querySelector<HTMLElement>("[data-ai-copy-label]");
+  const copyStatus = document.querySelector<HTMLElement>(
+    "[data-ai-copy-status]",
+  );
 
   if (!modal || !prompt || !copyLabel || !copyStatus) {
     return null;
@@ -39,14 +43,15 @@ export const initAiAssistController = (): void => {
 
   isInitialized = true;
 
-  const defaultCopyLabel = refs.copyLabel.textContent?.trim() || 'Copy Page as markdown';
+  const defaultCopyLabel =
+    refs.copyLabel.textContent?.trim() || "Copy Page as markdown";
   let resetCopyTimer: number | null = null;
 
-  const isModalOpen = (): boolean => refs.modal.classList.contains('is-open');
+  const isModalOpen = (): boolean => refs.modal.classList.contains("is-open");
 
   const resetCopyFeedback = (): void => {
     refs.copyLabel.textContent = defaultCopyLabel;
-    refs.copyStatus.textContent = '';
+    refs.copyStatus.textContent = "";
     if (resetCopyTimer !== null) {
       window.clearTimeout(resetCopyTimer);
       resetCopyTimer = null;
@@ -62,7 +67,7 @@ export const initAiAssistController = (): void => {
 
     resetCopyTimer = window.setTimeout(() => {
       refs.copyLabel.textContent = defaultCopyLabel;
-      refs.copyStatus.textContent = '';
+      refs.copyStatus.textContent = "";
       resetCopyTimer = null;
     }, 2000);
   };
@@ -78,8 +83,8 @@ export const initAiAssistController = (): void => {
     }
 
     refs.modal.hidden = false;
-    refs.modal.classList.add('is-open');
-    refs.modal.setAttribute('aria-hidden', 'false');
+    refs.modal.classList.add("is-open");
+    refs.modal.setAttribute("aria-hidden", "false");
     resetPrompt();
     resetCopyFeedback();
     refs.prompt.focus();
@@ -90,8 +95,8 @@ export const initAiAssistController = (): void => {
       return;
     }
 
-    refs.modal.classList.remove('is-open');
-    refs.modal.setAttribute('aria-hidden', 'true');
+    refs.modal.classList.remove("is-open");
+    refs.modal.setAttribute("aria-hidden", "true");
     refs.modal.hidden = true;
     resetPrompt();
     resetCopyFeedback();
@@ -108,48 +113,49 @@ export const initAiAssistController = (): void => {
   const handleCopyClick = async (): Promise<void> => {
     try {
       await copyPageAsMarkdown();
-      setCopyFeedback('Copied!', 'Copied!');
+      setCopyFeedback("Copied!", "Copied!");
     } catch (_error: unknown) {
-      setCopyFeedback('Failed to Copy!', 'Failed to copy page as markdown.');
+      setCopyFeedback("Failed to Copy!", "Failed to copy page as markdown.");
     }
   };
 
-  document.addEventListener('click', (event: MouseEvent) => {
+  document.addEventListener("click", (event: MouseEvent) => {
     const target = event.target;
     if (!(target instanceof Element)) {
       return;
     }
 
-    const closeTrigger = target.closest<HTMLElement>('[data-ai-close-modal]');
+    const closeTrigger = target.closest<HTMLElement>("[data-ai-close-modal]");
     if (closeTrigger && refs.modal.contains(closeTrigger)) {
       event.preventDefault();
       closeModal();
       return;
     }
 
-    const providerButton = target.closest<HTMLButtonElement>('[data-ai-provider]');
+    const providerButton =
+      target.closest<HTMLButtonElement>("[data-ai-provider]");
     if (providerButton && refs.modal.contains(providerButton)) {
       event.preventDefault();
-      handleProviderClick(providerButton.getAttribute('data-ai-provider'));
+      handleProviderClick(providerButton.getAttribute("data-ai-provider"));
       return;
     }
 
-    const copyButton = target.closest<HTMLButtonElement>('[data-ai-copy]');
+    const copyButton = target.closest<HTMLButtonElement>("[data-ai-copy]");
     if (copyButton && refs.modal.contains(copyButton)) {
       event.preventDefault();
       void handleCopyClick();
       return;
     }
 
-    const openTrigger = target.closest<HTMLElement>('[data-ai-open-modal]');
+    const openTrigger = target.closest<HTMLElement>("[data-ai-open-modal]");
     if (openTrigger) {
       event.preventDefault();
       openModal();
     }
   });
 
-  document.addEventListener('keydown', (event: KeyboardEvent) => {
-    if (event.key === 'Escape' && isModalOpen()) {
+  document.addEventListener("keydown", (event: KeyboardEvent) => {
+    if (event.key === "Escape" && isModalOpen()) {
       closeModal();
     }
   });

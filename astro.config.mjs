@@ -1,8 +1,8 @@
-import { defineConfig } from 'astro/config';
-import react from '@astrojs/react';
+import { defineConfig } from "astro/config";
+import react from "@astrojs/react";
 
 export default defineConfig({
-  output: 'static',
+  output: "static",
   integrations: [react()],
   server: {
     host: true,
@@ -17,7 +17,12 @@ export default defineConfig({
       preprocessorOptions: {
         scss: {
           quietDeps: true,
-          silenceDeprecations: ['import', 'global-builtin', 'color-functions', 'legacy-js-api'],
+          silenceDeprecations: [
+            "import",
+            "global-builtin",
+            "color-functions",
+            "legacy-js-api",
+          ],
         },
       },
     },

@@ -1,13 +1,13 @@
 ---
 interface Props {
   title: string;
-  tone?: 'gold' | 'white';
-  bg?: 'none' | 'heading-gray';
+  tone?: "gold" | "white";
+  bg?: "none" | "heading-gray";
 }
 
-const { title, tone = 'gold', bg = 'none' } = Astro.props;
-const toneClass = tone === 'white' ? 'text-white' : 'text-gold';
-const bgClass = bg === 'heading-gray' ? 'bg-heading-gray' : '';
+const { title, tone = "gold", bg = "none" } = Astro.props;
+const toneClass = tone === "white" ? "text-white" : "text-gold";
+const bgClass = bg === "heading-gray" ? "bg-heading-gray" : "";
 ---
 
 <div class={bgClass}>

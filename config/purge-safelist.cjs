@@ -3,16 +3,11 @@ module.exports = {
     /^animate__/, // Animate.css classes
     /^fade-/,
     /^is-/,
-    'show',
-    'hide',
-    'active',
-    'visible'
+    "show",
+    "hide",
+    "active",
+    "visible",
   ],
-  deep: [
-    /^swiper-/
-  ],
-  greedy: [
-    /data-aos/,
-    /aria-/
-  ]
+  deep: [/^swiper-/],
+  greedy: [/data-aos/, /aria-/],
 };

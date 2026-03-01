@@ -1,5 +1,5 @@
 ---
-import type { SocialLink } from '../../../../config/navigation';
+import type { SocialLink } from "../../../../config/navigation";
 
 interface Props {
   socials: SocialLink[];
@@ -10,16 +10,22 @@ const { socials } = Astro.props;
 
 <div class="desktop-sidebar__social-wrap">
   <div class="desktop-sidebar__social-grid">
-    {socials.map((social) => (
-      <a
-        href={social.href}
-        class="desktop-sidebar__social-link"
-        target="_blank"
-        rel="noreferrer"
-        aria-label={social.label}
-      >
-        <img src={social.iconSrc} alt="" class="desktop-sidebar__social-icon" />
-      </a>
-    ))}
+    {
+      socials.map((social) => (
+        <a
+          href={social.href}
+          class="desktop-sidebar__social-link"
+          target="_blank"
+          rel="noreferrer"
+          aria-label={social.label}
+        >
+          <img
+            src={social.iconSrc}
+            alt=""
+            class="desktop-sidebar__social-icon"
+          />
+        </a>
+      ))
+    }
   </div>
 </div>
