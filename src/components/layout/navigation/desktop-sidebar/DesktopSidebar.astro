@@ -1,6 +1,7 @@
 ---
 import type { SidebarTocItem, SocialLink } from '../../../../config/navigation';
 import type { SiteRoute } from '../../../../config/site';
+import AskAiButton from '../ai-assist/AskAiButton.astro';
 import SidebarSocialPanel from './SidebarSocialPanel.astro';
 import SidebarTabsPanel from './SidebarTabsPanel.astro';
 
@@ -15,7 +16,7 @@ const { currentPath, routes, socials, sidebarToc } = Astro.props;
 ---
 
 <aside class="desktop-sidebar d-none d-lg-flex" aria-label="Desktop navigation">
-  <div class="desktop-sidebar__inner">
+  <div class="desktop-sidebar__inner" data-sidebar-mode="menu">
     <div class="desktop-sidebar__logo-wrap">
       <a href="/" class="desktop-sidebar__logo-link" aria-label="Home">
         <img src="/images/brand/wordmark.png" alt="William Entriken wordmark" class="desktop-sidebar__logo" width="200" />
@@ -23,6 +24,15 @@ const { currentPath, routes, socials, sidebarToc } = Astro.props;
     </div>
 
     <SidebarTabsPanel currentPath={currentPath} routes={routes} sidebarToc={sidebarToc} />
-    <SidebarSocialPanel socials={socials} />
+
+    <div class="desktop-sidebar__footer-panel desktop-sidebar__footer-panel--menu">
+      <SidebarSocialPanel socials={socials} />
+    </div>
+
+    <div class="desktop-sidebar__footer-panel desktop-sidebar__footer-panel--toc">
+      <div class="desktop-sidebar__ask-ai-wrap">
+        <AskAiButton class="desktop-sidebar__ask-ai-button" />
+      </div>
+    </div>
   </div>
 </aside>

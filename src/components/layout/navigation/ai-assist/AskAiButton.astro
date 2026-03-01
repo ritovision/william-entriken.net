@@ -1,0 +1,28 @@
+---
+import AskAiSparkIcon from '../../../ui/icons/AskAiSparkIcon.astro';
+
+interface Props {
+  class?: string;
+  label?: string;
+  ariaLabel?: string;
+  mobileDrawerTrigger?: boolean;
+}
+
+const {
+  class: className = '',
+  label = 'Ask your AI',
+  ariaLabel = 'Ask your AI',
+  mobileDrawerTrigger = false,
+} = Astro.props;
+---
+
+<button
+  type="button"
+  class:list={['nav-ai-button', className]}
+  data-ai-open-modal
+  data-mobile-ai-open={mobileDrawerTrigger ? 'true' : undefined}
+  aria-label={ariaLabel}
+>
+  <AskAiSparkIcon class="nav-ai-button__icon" />
+  <span class="nav-ai-button__label">{label}</span>
+</button>

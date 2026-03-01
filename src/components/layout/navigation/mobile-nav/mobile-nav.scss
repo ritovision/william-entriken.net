@@ -112,7 +112,7 @@
 }
 
 .mobile-drawer__inner--toc {
-  grid-template-rows: auto minmax(0, 1fr);
+  grid-template-rows: auto minmax(0, 1fr) auto;
 }
 
 .mobile-drawer__header {
@@ -201,7 +201,7 @@
 
 .mobile-drawer__nav-link:hover {
   background: var(--color-accent);
-  color: var(--color-white);
+  color: var(--color-primary);
 }
 
 .mobile-drawer__nav-link.is-active,
@@ -213,6 +213,11 @@
 .mobile-drawer__footer {
   padding: 1rem;
   border-top: 1px solid var(--border-gold);
+}
+
+.mobile-drawer__footer--toc {
+  padding-top: 0.8rem;
+  padding-bottom: 0.8rem;
 }
 
 .mobile-drawer__social-grid {
@@ -235,6 +240,10 @@
   display: block;
 }
 
+.mobile-drawer__ask-ai-button {
+  width: 100%;
+}
+
 .mobile-drawer__toc-empty {
   width: 100%;
   border-top: 1px solid var(--border-gold);
@@ -246,7 +255,8 @@
 .mobile-nav-header__logo-link:focus,
 .mobile-drawer__close-btn:focus,
 .mobile-drawer__nav-link:focus,
-.mobile-drawer__social-link:focus {
+.mobile-drawer__social-link:focus,
+.mobile-drawer__ask-ai-button:focus {
   outline: none;
 }
 
@@ -254,7 +264,8 @@
 .mobile-nav-header__logo-link:focus-visible,
 .mobile-drawer__close-btn:focus-visible,
 .mobile-drawer__nav-link:focus-visible,
-.mobile-drawer__social-link:focus-visible {
+.mobile-drawer__social-link:focus-visible,
+.mobile-drawer__ask-ai-button:focus-visible {
   outline: 2px solid var(--color-white);
   outline-offset: 2px;
 }

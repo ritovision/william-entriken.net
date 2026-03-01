@@ -85,6 +85,7 @@ const isDev = import.meta.env.DEV;
       const buttons = Array.from(root.querySelectorAll<HTMLButtonElement>('[data-tab-target]'));
       const panels = Array.from(root.querySelectorAll<HTMLElement>('[data-tab-panel]'));
       const title = root.querySelector<HTMLElement>('[data-tab-title]');
+      const sidebarContainer = root.closest<HTMLElement>('[data-sidebar-mode]');
       const titleByTarget = {
         menu: 'Main Menu',
         toc: 'In-page Sections',
@@ -93,6 +94,9 @@ const isDev = import.meta.env.DEV;
       const setActiveTab = (target: TabTarget) => {
         if (title) {
           title.textContent = titleByTarget[target] || titleByTarget.menu;
+        }
+        if (sidebarContainer) {
+          sidebarContainer.setAttribute('data-sidebar-mode', target);
         }
 
         for (const button of buttons) {

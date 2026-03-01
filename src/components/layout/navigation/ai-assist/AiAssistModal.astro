@@ -1,0 +1,91 @@
+---
+import AskAiSparkIcon from '../../../ui/icons/AskAiSparkIcon.astro';
+---
+
+<section
+  class="ai-assist-modal"
+  role="dialog"
+  aria-modal="false"
+  aria-labelledby="ai-assist-title"
+  aria-hidden="true"
+  data-ai-assist-modal
+  hidden
+>
+  <div class="ai-assist-modal__sheet">
+    <div class="ai-assist-modal__header">
+      <div class="ai-assist-modal__title-wrap">
+        <AskAiSparkIcon class="ai-assist-modal__title-icon" />
+        <h2 id="ai-assist-title" class="ai-assist-modal__title m-0">Ask your AI</h2>
+      </div>
+      <button
+        type="button"
+        class="ai-assist-modal__close"
+        data-ai-close-modal
+        aria-label="Close Ask your AI modal"
+      >
+        <svg class="ai-assist-modal__close-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2.6"
+            d="M5 5L19 19M19 5L5 19"
+          />
+        </svg>
+      </button>
+    </div>
+
+    <div class="ai-assist-modal__body">
+      <label for="ai-assist-prompt" class="visually-hidden">Prompt text</label>
+      <textarea
+        id="ai-assist-prompt"
+        class="ai-assist-modal__textarea"
+        data-ai-prompt
+        spellcheck="false"
+      ></textarea>
+
+      <p class="ai-assist-modal__submit-title m-0">Submit the message above to:</p>
+
+      <div class="ai-assist-modal__providers">
+        <button type="button" class="ai-assist-provider ai-assist-provider--chatgpt" data-ai-provider="chatgpt">
+          <img src="/images/icons/AI/ChatGPT-logo-white.png" alt="" class="ai-assist-provider__logo" aria-hidden="true" />
+          <span>ChatGPT</span>
+        </button>
+
+        <button type="button" class="ai-assist-provider ai-assist-provider--claude" data-ai-provider="claude">
+          <img src="/images/icons/AI/claude-logo-white.png" alt="" class="ai-assist-provider__logo" aria-hidden="true" />
+          <span>Claude</span>
+        </button>
+
+        <button type="button" class="ai-assist-provider ai-assist-provider--perplexity" data-ai-provider="perplexity">
+          <img src="/images/icons/AI/perplexity-logo-white.png" alt="" class="ai-assist-provider__logo" aria-hidden="true" />
+          <span>Perplexity</span>
+        </button>
+      </div>
+
+      <hr class="ai-assist-modal__divider" />
+
+      <button type="button" class="ai-assist-modal__copy" data-ai-copy>
+        <span data-ai-copy-label>Copy Page as markdown</span>
+      </button>
+      <span
+        class="visually-hidden"
+        role="status"
+        aria-live="polite"
+        aria-atomic="true"
+        data-ai-copy-status
+      ></span>
+
+      <p class="ai-assist-modal__tos m-0">
+        <a href="/terms-of-service">View terms of service</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { initAiAssistController } from '../scripts/ai-assist/aiAssistController';
+
+  initAiAssistController();
+</script>
