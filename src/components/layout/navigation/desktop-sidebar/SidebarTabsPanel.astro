@@ -1,8 +1,8 @@
 ---
-import type { SidebarTocItem } from '../../../config/navigation';
-import type { SiteRoute } from '../../../config/site';
-import InPageSectionsIcon from '../../ui/icons/InPageSectionsIcon.astro';
-import MainMenuIcon from '../../ui/icons/MainMenuIcon.astro';
+import type { SidebarTocItem } from '../../../../config/navigation';
+import type { SiteRoute } from '../../../../config/site';
+import InPageSectionsIcon from '../../../ui/icons/InPageSectionsIcon.astro';
+import MainMenuIcon from '../../../ui/icons/MainMenuIcon.astro';
 import SidebarMenuPanel from './SidebarMenuPanel.astro';
 import SidebarTocPanel from './SidebarTocPanel.astro';
 
@@ -72,136 +72,11 @@ const isDev = import.meta.env.DEV;
   </div>
 </div>
 
-<script is:inline>
+<script>
+  import { setupTocActiveTracking, validateTocTargets } from '../scripts/tocTracking';
+
   (() => {
     const roots = document.querySelectorAll('[data-sidebar-tabs]');
-
-    const setupTocActiveTracking = (root) => {
-      const tocAnchors = Array.from(root.querySelectorAll('[data-toc-target]'));
-      const tocEntries = tocAnchors
-        .map((anchor) => {
-          const targetId = anchor.getAttribute('data-toc-target');
-          if (!targetId) {
-            return null;
-          }
-
-          const section = document.getElementById(targetId);
-          if (!section) {
-            return null;
-          }
-
-          return { anchor, targetId, section };
-        })
-        .filter(Boolean);
-
-      if (tocEntries.length === 0) {
-        return;
-      }
-
-      const markerRatio = 0;
-      let activeTargetId = '';
-      let rafPending = false;
-
-      const setActiveToc = (targetId) => {
-        if (activeTargetId === targetId) {
-          return;
-        }
-
-        activeTargetId = targetId;
-        for (const entry of tocEntries) {
-          const isActive = entry.targetId === targetId;
-          entry.anchor.classList.toggle('is-active', isActive);
-          if (isActive) {
-            entry.anchor.setAttribute('aria-current', 'location');
-          } else {
-            entry.anchor.removeAttribute('aria-current');
-          }
-        }
-      };
-
-      const evaluateActiveToc = () => {
-        const markerY = window.innerHeight * markerRatio;
-        let crossingEntry = null;
-        let firstBelowEntry = null;
-        let lastEntry = null;
-
-        for (const entry of tocEntries) {
-          const rect = entry.section.getBoundingClientRect();
-          lastEntry = entry;
-
-          if (rect.top <= markerY && rect.bottom > markerY) {
-            crossingEntry = entry;
-            break;
-          }
-
-          if (!firstBelowEntry && rect.top > markerY) {
-            firstBelowEntry = entry;
-          }
-        }
-
-        const nextActiveEntry = crossingEntry || firstBelowEntry || lastEntry;
-        if (!nextActiveEntry) {
-          return;
-        }
-
-        setActiveToc(nextActiveEntry.targetId);
-      };
-
-      const requestEvaluate = () => {
-        if (rafPending) {
-          return;
-        }
-
-        rafPending = true;
-        window.requestAnimationFrame(() => {
-          rafPending = false;
-          evaluateActiveToc();
-        });
-      };
-
-      window.addEventListener('scroll', requestEvaluate, { passive: true });
-      window.addEventListener('resize', requestEvaluate);
-
-      for (const entry of tocEntries) {
-        entry.anchor.addEventListener('click', () => {
-          setActiveToc(entry.targetId);
-        });
-      }
-
-      requestEvaluate();
-    };
-
-    const validateToc = (root) => {
-      const tocItems = Array.from(root.querySelectorAll('[data-toc-item]'));
-      const isDev = root.getAttribute('data-dev') === 'true';
-
-      for (const item of tocItems) {
-        const anchor = item.querySelector('[data-toc-target]');
-        const targetId = anchor?.getAttribute('data-toc-target');
-        if (!targetId) {
-          item.remove();
-          continue;
-        }
-
-        if (!document.getElementById(targetId)) {
-          item.remove();
-          if (isDev) {
-            console.warn(`[DesktopSidebar] TOC target not found: #${targetId}`);
-          }
-        }
-      }
-
-      const tocList = root.querySelector('[data-toc-list]');
-      const tocEmpty = root.querySelector('[data-toc-empty]');
-      if (tocList && tocEmpty) {
-        const remainingItems = tocList.querySelectorAll('[data-toc-item]').length;
-        if (remainingItems === 0) {
-          tocEmpty.removeAttribute('hidden');
-        } else {
-          tocEmpty.setAttribute('hidden', '');
-        }
-      }
-    };
 
     for (const root of roots) {
       const buttons = Array.from(root.querySelectorAll('[data-tab-target]'));
@@ -284,8 +159,25 @@ const isDev = import.meta.env.DEV;
       setActiveTab('menu');
 
       const initToc = () => {
-        validateToc(root);
-        setupTocActiveTracking(root);
+        validateTocTargets(root, {
+          itemSelector: '[data-toc-item]',
+          anchorSelector: '[data-toc-target]',
+          listSelector: '[data-toc-list]',
+          emptySelector: '[data-toc-empty]',
+          targetAttribute: 'data-toc-target',
+          warningPrefix: 'DesktopSidebar',
+          isDev: root.getAttribute('data-dev') === 'true',
+        });
+
+        setupTocActiveTracking(root, {
+          itemSelector: '[data-toc-item]',
+          anchorSelector: '[data-toc-target]',
+          listSelector: '[data-toc-list]',
+          emptySelector: '[data-toc-empty]',
+          targetAttribute: 'data-toc-target',
+          warningPrefix: 'DesktopSidebar',
+          markerRatio: 0,
+        });
       };
 
       if (document.readyState === 'loading') {

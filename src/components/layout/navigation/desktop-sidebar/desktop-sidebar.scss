@@ -165,14 +165,10 @@
 
 .desktop-sidebar__nav-link.is-active {
   color: var(--color-white);
+  background: rgba(234, 170, 0, 0.2);
 }
 
 .desktop-sidebar__nav-link.is-active:visited {
-  color: var(--color-white);
-}
-
-.desktop-sidebar__toc-link.is-active,
-.desktop-sidebar__toc-link.is-active:visited {
   color: var(--color-white);
   background: rgba(234, 170, 0, 0.2);
 }

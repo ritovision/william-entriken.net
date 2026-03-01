@@ -1,8 +1,8 @@
 ---
-import type { SidebarTocItem, SocialLink } from '../../../config/navigation';
-import type { SiteRoute } from '../../../config/site';
-import InPageSectionsIcon from '../../ui/icons/InPageSectionsIcon.astro';
-import MainMenuIcon from '../../ui/icons/MainMenuIcon.astro';
+import type { SidebarTocItem, SocialLink } from '../../../../config/navigation';
+import type { SiteRoute } from '../../../../config/site';
+import InPageSectionsIcon from '../../../ui/icons/InPageSectionsIcon.astro';
+import MainMenuIcon from '../../../ui/icons/MainMenuIcon.astro';
 
 interface Props {
   currentPath: string;
@@ -150,7 +150,9 @@ const isDev = import.meta.env.DEV;
   </aside>
 </div>
 
-<script is:inline>
+<script>
+  import { setupTocActiveTracking, validateTocTargets } from '../scripts/tocTracking';
+
   (() => {
     const root = document.querySelector('[data-mobile-nav]');
     if (!root) {
@@ -217,40 +219,32 @@ const isDev = import.meta.env.DEV;
       }
     });
 
-    const validateToc = () => {
-      const tocItems = Array.from(root.querySelectorAll('[data-mobile-toc-item]'));
-      for (const item of tocItems) {
-        const anchor = item.querySelector('[data-mobile-toc-target]');
-        const targetId = anchor?.getAttribute('data-mobile-toc-target');
-        if (!targetId) {
-          item.remove();
-          continue;
-        }
+    const initToc = () => {
+      validateTocTargets(root, {
+        itemSelector: '[data-mobile-toc-item]',
+        anchorSelector: '[data-mobile-toc-target]',
+        listSelector: '[data-mobile-toc-list]',
+        emptySelector: '[data-mobile-toc-empty]',
+        targetAttribute: 'data-mobile-toc-target',
+        warningPrefix: 'MobileNav',
+        isDev,
+      });
 
-        if (!document.getElementById(targetId)) {
-          item.remove();
-          if (isDev) {
-            console.warn(`[MobileNav] TOC target not found: #${targetId}`);
-          }
-        }
-      }
-
-      const tocList = root.querySelector('[data-mobile-toc-list]');
-      const tocEmpty = root.querySelector('[data-mobile-toc-empty]');
-      if (tocList && tocEmpty) {
-        const remaining = tocList.querySelectorAll('[data-mobile-toc-item]').length;
-        if (remaining === 0) {
-          tocEmpty.removeAttribute('hidden');
-        } else {
-          tocEmpty.setAttribute('hidden', '');
-        }
-      }
+      setupTocActiveTracking(root, {
+        itemSelector: '[data-mobile-toc-item]',
+        anchorSelector: '[data-mobile-toc-target]',
+        listSelector: '[data-mobile-toc-list]',
+        emptySelector: '[data-mobile-toc-empty]',
+        targetAttribute: 'data-mobile-toc-target',
+        warningPrefix: 'MobileNav',
+        markerRatio: 0,
+      });
     };
 
     if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', validateToc, { once: true });
+      document.addEventListener('DOMContentLoaded', initToc, { once: true });
     } else {
-      validateToc();
+      initToc();
     }
 
     setDrawerState('');
