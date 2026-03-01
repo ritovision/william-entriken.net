@@ -44,9 +44,22 @@
 .desktop-sidebar__tabs-region {
   width: 100%;
   display: grid;
-  grid-template-rows: auto minmax(0, 1fr);
+  grid-template-rows: auto auto minmax(0, 1fr);
   min-height: 0;
   overflow: hidden;
+}
+
+.desktop-sidebar__mode-title {
+  width: 100%;
+  color: var(--color-accent);
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  line-height: 1.2;
+  text-align: center;
+  padding: 0.75rem 1rem;
+  margin-bottom: -1px;
+  position: relative;
+  z-index: 1;
 }
 
 .desktop-sidebar__tabbox {
