@@ -89,3 +89,15 @@ Use tokens defined in `src/styles/tokens.css` as source of truth:
 2. Build page-local pieces under `src/pages/<slug>/_components` only when not reusable.
 3. Promote repeated patterns to `src/components/sections` or `src/components/ui`.
 4. Preserve tokenized styling and avoid one-off hex values where possible.
+
+## Type Safety Rules
+
+- Prefer explicit types and avoid `any`/implicit `any` in TypeScript and inline scripts.
+- Prefer `unknown` instead of `any` when a type is not known yet; use `any` only as a last resort.
+- If `any` is unavoidable, document why with a concise inline comment.
+
+## Linting Workflow
+
+- Run `pnpm run lint` after large or complex edits.
+- If lint issues are straightforward and low risk, fix them as part of task completion.
+- If lint fixes involve nuance, behavior changes, or tradeoffs, ask the user how they want the fixes handled before applying them.
