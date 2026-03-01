@@ -1,6 +1,122 @@
 {
   "seo": {
     "title": "Terms of Service | William Entriken",
-    "description": ""
-  }
+    "description": "Terms and conditions for using WilliamEntriken.net."
+  },
+  "title": "Terms of Service",
+  "lastUpdated": "March 1, 2026",
+  "sections": [
+    {
+      "id": "introduction",
+      "title": "1. Introduction",
+      "paragraphs": [
+        "Welcome to WilliamEntriken.net. By accessing and using this website, you agree to be bound by the following terms and conditions.",
+        "If you do not agree with any part of these terms, you should not use this website."
+      ]
+    },
+    {
+      "id": "intellectual-property-rights",
+      "title": "2. Intellectual Property Rights",
+      "paragraphs": [
+        "The content on WilliamEntriken.net, including texts, graphics, images, and logos, is owned by William Entriken or used under fair use.",
+        "It is protected by copyright laws and treaties around the world. All rights are reserved.",
+        "You may not reproduce, distribute, modify, or use the content without prior written consent from William Entriken."
+      ]
+    },
+    {
+      "id": "user-responsibilities",
+      "title": "3. User Responsibilities",
+      "paragraphs": [
+        "You are responsible for ensuring that your use of the website complies with all local, national, or international laws and regulations.",
+        "You must also ensure that all information you provide on the website is accurate and truthful."
+      ]
+    },
+    {
+      "id": "user-content",
+      "title": "4. User Content",
+      "paragraphs": [
+        "You may be able to submit content to the website.",
+        "You retain all rights to any content you submit, but you grant us a license to use, store, and copy that content and to distribute and make it available to third parties.",
+        "We reserve the right to remove any content at our discretion."
+      ]
+    },
+    {
+      "id": "confidentiality-of-submissions",
+      "title": "5. Confidentiality of Submissions",
+      "paragraphs": [
+        "We treat information submitted via forms on this website with care and consider it private.",
+        "However, we are not liable for breaches of confidentiality caused by unauthorized acts of third parties or through no fault of our own."
+      ]
+    },
+    {
+      "id": "limitation-of-liability",
+      "title": "6. Limitation of Liability",
+      "paragraphs": [
+        "William Entriken will not be liable for unauthorized access to, or use of, personal data or any damages arising from your use of the site.",
+        "No guarantees are made concerning the security, reliability, or timeliness of responses to submissions made through the site."
+      ]
+    },
+    {
+      "id": "purchases-and-advisory-retainer-plans",
+      "title": "7. Purchases and Advisory Retainer Plans",
+      "paragraphs": [
+        "Purchases of advisory retainer plans without prior discussion are subject to unilateral rejection and refunds at the discretion of William Entriken."
+      ]
+    },
+    {
+      "id": "right-to-reject-projects",
+      "title": "8. Right to Reject Projects",
+      "paragraphs": [
+        "William Entriken reserves the right to accept or reject any projects or interactions in his sole discretion, without explanation."
+      ]
+    },
+    {
+      "id": "press-images",
+      "title": "9. Press Images",
+      "paragraphs": [
+        "Images on the press page are licensed under Creative Commons 4 and may be used freely by the press for lawful purposes."
+      ]
+    },
+    {
+      "id": "no-endorsements",
+      "title": "10. No Endorsements",
+      "paragraphs": [
+        "Mention of projects derived from or related to William Entriken's work does not constitute an endorsement or affiliation with those projects."
+      ]
+    },
+    {
+      "id": "use-of-ai",
+      "title": "11. Use of AI Tools and Third-Party Services",
+      "paragraphs": [
+        "The \"Ask your AI\" feature is provided only as a convenience to open third-party AI providers through deeplinks.",
+        "Any use of third-party providers, including ChatGPT, Claude, and Perplexity, is solely between you and the applicable provider under that provider's own terms, privacy policy, and practices.",
+        "We not track, store, keep records of, or receive notifications about any conversations you have with those providers.",
+        "We are not responsible for your use of those third-party services, including any claims, losses, disputes, outputs, or actions that occur on or because of those services.",
+        "We are not sponsored by, affiliated with, or paid by those providers for including these links."
+      ]
+    },
+    {
+      "id": "changes-to-terms-of-service",
+      "title": "12. Changes to Terms of Service",
+      "paragraphs": [
+        "These terms may be amended or updated from time to time to reflect changes in practices or changes in law.",
+        "You are encouraged to review these terms regularly."
+      ]
+    },
+    {
+      "id": "governing-law",
+      "title": "13. Governing Law",
+      "paragraphs": [
+        "These terms are governed by and construed in accordance with the laws of Pennsylvania, without regard to its conflict-of-law principles."
+      ]
+    },
+    {
+      "id": "contact-us",
+      "title": "14. Contact Us",
+      "paragraphs": [
+        "If you have any questions about these terms, contact us at:"
+      ],
+      "email": "info@WilliamEntriken.net"
+    }
+  ]
 }
