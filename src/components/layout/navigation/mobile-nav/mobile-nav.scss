@@ -235,6 +235,12 @@
   display: inline-flex;
   justify-content: center;
   color: var(--color-white);
+  transition: color 0.5s ease;
+}
+
+.mobile-drawer__social-link:hover,
+.mobile-drawer__social-link:focus-visible {
+  color: var(--color-accent);
 }
 
 .mobile-drawer__social-icon {

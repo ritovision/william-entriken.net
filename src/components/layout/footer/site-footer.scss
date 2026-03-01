@@ -56,6 +56,12 @@
   display: inline-flex;
   justify-content: center;
   color: var(--color-accent);
+  transition: color 0.5s ease;
+}
+
+.site-footer__social-link:hover,
+.site-footer__social-link:focus-visible {
+  color: var(--color-white);
 }
 
 .site-footer__social-icon {

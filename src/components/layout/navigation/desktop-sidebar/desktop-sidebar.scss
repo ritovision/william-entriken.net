@@ -213,6 +213,12 @@
   display: inline-flex;
   justify-content: center;
   color: var(--color-white);
+  transition: color 0.5s ease;
+}
+
+.desktop-sidebar__social-link:hover,
+.desktop-sidebar__social-link:focus-visible {
+  color: var(--color-accent);
 }
 
 .desktop-sidebar__social-icon {
