@@ -1,0 +1,214 @@
+.desktop-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1040;
+  width: var(--sidebar-width-desktop);
+  height: 100dvh;
+  background: var(--color-primary);
+  border-right: 1px solid var(--border-gold);
+  overflow: hidden;
+}
+
+.desktop-sidebar__inner {
+  height: 100%;
+  min-height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.desktop-sidebar__logo-wrap {
+  width: 100%;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.desktop-sidebar__logo-link {
+  display: inline-block;
+}
+
+.desktop-sidebar__logo {
+  width: 200px;
+  max-width: 90%;
+  height: auto;
+}
+
+.desktop-sidebar__nav {
+  width: 100%;
+}
+
+.desktop-sidebar__tabs-region {
+  width: 100%;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  min-height: 0;
+  overflow: hidden;
+}
+
+.desktop-sidebar__tabbox {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1px 1fr;
+  border: 1px solid var(--border-gold);
+}
+
+.desktop-sidebar__tab-divider {
+  width: 1px;
+  background: var(--border-gold);
+}
+
+.desktop-sidebar__tab-button {
+  appearance: none;
+  border: 0;
+  margin: 0;
+  padding: 0.75rem;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  color: var(--color-accent);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.desktop-sidebar__tab-button.is-active {
+  background: var(--color-accent);
+  color: var(--color-primary);
+}
+
+.desktop-sidebar__tab-button:not(.is-active):hover {
+  background: var(--color-accent);
+  color: var(--color-primary);
+}
+
+.desktop-sidebar__logo-link:focus,
+.desktop-sidebar__tab-button:focus,
+.desktop-sidebar__nav-link:focus,
+.desktop-sidebar__social-link:focus {
+  outline: none;
+}
+
+.desktop-sidebar__logo-link:focus-visible,
+.desktop-sidebar__tab-button:focus-visible,
+.desktop-sidebar__nav-link:focus-visible,
+.desktop-sidebar__social-link:focus-visible {
+  outline: 2px solid var(--color-white);
+  outline-offset: 2px;
+}
+
+.desktop-sidebar__tab-icon {
+  width: 22px;
+  height: 22px;
+}
+
+.desktop-sidebar__tab-icon--fill path {
+  fill: currentColor;
+}
+
+.desktop-sidebar__tab-icon--stroke path {
+  stroke: currentColor;
+}
+
+.desktop-sidebar__tab-panels {
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.desktop-sidebar__panel {
+  display: none;
+}
+
+.desktop-sidebar__panel.is-active {
+  display: block;
+}
+
+.desktop-sidebar__nav-list {
+  width: 100%;
+}
+
+.desktop-sidebar__nav-item {
+  border-top: 1px solid var(--border-gold);
+}
+
+.desktop-sidebar__nav-item:last-child {
+  border-bottom: 1px solid var(--border-gold);
+}
+
+.desktop-sidebar__nav-link {
+  display: block;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-family: var(--font-heading);
+  color: var(--color-accent);
+  text-decoration: none;
+  text-align: center;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.desktop-sidebar__nav-link:visited {
+  color: var(--color-accent);
+}
+
+.desktop-sidebar__nav-link:hover {
+  background: var(--color-accent);
+  color: var(--color-white);
+  text-decoration: none;
+}
+
+.desktop-sidebar__nav-link.is-active {
+  color: var(--color-white);
+}
+
+.desktop-sidebar__nav-link.is-active:visited {
+  color: var(--color-white);
+}
+
+.desktop-sidebar__toc-link.is-active,
+.desktop-sidebar__toc-link.is-active:visited {
+  color: var(--color-white);
+  background: rgba(234, 170, 0, 0.2);
+}
+
+.desktop-sidebar__social-wrap {
+  width: 100%;
+  align-self: stretch;
+  padding: 1rem;
+  border-top: 1px solid var(--border-gold);
+}
+
+.desktop-sidebar__social-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.desktop-sidebar__social-link {
+  width: 25px;
+  flex: 0 0 25px;
+  display: inline-flex;
+  justify-content: center;
+}
+
+.desktop-sidebar__social-icon {
+  width: 25px;
+  height: auto;
+  display: block;
+}
+
+.desktop-sidebar__toc-empty {
+  width: 100%;
+  border-top: 1px solid var(--border-gold);
+  padding: 0.75rem 1rem;
+  text-align: center;
+}
+
+@media (min-width: 992px) {
+  .desktop-sidebar-spacer {
+    width: var(--sidebar-width-desktop);
+    min-height: 100dvh;
+  }
+}
