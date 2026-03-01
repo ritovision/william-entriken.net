@@ -154,21 +154,36 @@ const isDev = import.meta.env.DEV;
   import { setupTocActiveTracking, validateTocTargets } from '../scripts/tocTracking';
 
   (() => {
-    const root = document.querySelector('[data-mobile-nav]');
+    type DrawerName = 'menu' | 'toc';
+
+    const root = document.querySelector<HTMLElement>('[data-mobile-nav]');
     if (!root) {
       return;
     }
 
-    const overlay = root.querySelector('[data-mobile-overlay]');
-    const drawers = Array.from(root.querySelectorAll('[data-mobile-drawer]'));
-    const openButtons = Array.from(root.querySelectorAll('[data-mobile-open]'));
-    const closeButtons = Array.from(root.querySelectorAll('[data-mobile-close]'));
-    const closeLinks = Array.from(root.querySelectorAll('[data-mobile-close-link]'));
+    const overlay = root.querySelector<HTMLElement>('[data-mobile-overlay]');
+    const drawers = Array.from(root.querySelectorAll<HTMLElement>('[data-mobile-drawer]'));
+    const openButtons = Array.from(root.querySelectorAll<HTMLButtonElement>('[data-mobile-open]'));
+    const closeButtons = Array.from(root.querySelectorAll<HTMLButtonElement>('[data-mobile-close]'));
+    const closeLinks = Array.from(root.querySelectorAll<HTMLElement>('[data-mobile-close-link]'));
+    const tocLinks = Array.from(root.querySelectorAll<HTMLAnchorElement>('[data-mobile-toc-target]'));
     const isDev = root.getAttribute('data-dev') === 'true';
 
-    let activeDrawer = '';
+    let activeDrawer: DrawerName | '' = '';
 
-    const setDrawerState = (name) => {
+    const setInert = (element: HTMLElement, inert: boolean) => {
+      if ('inert' in element) {
+        (element as HTMLElement & { inert: boolean }).inert = inert;
+      }
+
+      if (inert) {
+        element.setAttribute('inert', '');
+      } else {
+        element.removeAttribute('inert');
+      }
+    };
+
+    const setDrawerState = (name: DrawerName | '') => {
       activeDrawer = name;
 
       for (const drawer of drawers) {
@@ -176,7 +191,7 @@ const isDev = import.meta.env.DEV;
         const isActive = Boolean(name) && drawerName === name;
         drawer.classList.toggle('is-open', isActive);
         drawer.setAttribute('aria-hidden', String(!isActive));
-        drawer.inert = !isActive;
+        setInert(drawer, !isActive);
       }
 
       for (const button of openButtons) {
@@ -190,12 +205,21 @@ const isDev = import.meta.env.DEV;
     };
 
     const closeDrawer = () => setDrawerState('');
-    const toggleDrawer = (name) => setDrawerState(activeDrawer === name ? '' : name);
+    const toggleDrawer = (name: DrawerName) => setDrawerState(activeDrawer === name ? '' : name);
+    const isMobileViewport = () => window.matchMedia('(max-width: 991.98px)').matches;
+    const getMobileScrollOffset = () => {
+      const cssValue = getComputedStyle(document.documentElement).getPropertyValue('--mobile-nav-height').trim();
+      const cssHeight = Number.parseFloat(cssValue);
+      const header = root.querySelector('.mobile-nav-header');
+      const measuredHeight = header instanceof HTMLElement ? header.getBoundingClientRect().height : 0;
+      const navHeight = Number.isFinite(cssHeight) && cssHeight > 0 ? cssHeight : measuredHeight;
+      return navHeight + 8;
+    };
 
     for (const button of openButtons) {
       button.addEventListener('click', () => {
         const target = button.getAttribute('data-mobile-open');
-        if (target) {
+        if (target === 'menu' || target === 'toc') {
           toggleDrawer(target);
         }
       });
@@ -207,6 +231,29 @@ const isDev = import.meta.env.DEV;
 
     for (const link of closeLinks) {
       link.addEventListener('click', closeDrawer);
+    }
+
+    for (const link of tocLinks) {
+      link.addEventListener('click', (event: MouseEvent) => {
+        if (!isMobileViewport()) {
+          return;
+        }
+
+        const targetId = link.getAttribute('data-mobile-toc-target');
+        if (!targetId) {
+          return;
+        }
+
+        const section = document.getElementById(targetId);
+        if (!section) {
+          return;
+        }
+
+        event.preventDefault();
+        const offsetTop = section.getBoundingClientRect().top + window.scrollY - getMobileScrollOffset();
+        window.scrollTo({ top: Math.max(0, offsetTop), behavior: 'smooth' });
+        history.replaceState(null, '', `#${targetId}`);
+      });
     }
 
     if (overlay) {
