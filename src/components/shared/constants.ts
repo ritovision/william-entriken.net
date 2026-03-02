@@ -7,3 +7,10 @@ export const BRAND_COLORS = {
   white: "#FFFFFF",
   black: "#000000",
 } as const;
+
+export const SEO_DEFAULTS = {
+  title: "William Entriken",
+  description: "William Entriken official website.",
+  ogImage: "/images/brand/OG/OG-image.png",
+  siteName: "William Entriken",
+} as const;

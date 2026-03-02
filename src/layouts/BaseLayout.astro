@@ -7,23 +7,35 @@ import MobileNav from "@components/layout/navigation/mobile-nav/MobileNav.astro"
 import type { SidebarTocItem } from "@config/navigation";
 import { socialLinks } from "@config/navigation";
 import { siteRoutes } from "@config/site";
+import { SEO_DEFAULTS } from "@shared/constants";
+import type { SeoBlock } from "@shared/types";
 
 interface Props {
-  title: string;
+  seo?: SeoBlock;
+  title?: string;
   description?: string;
   bodyClass?: string;
   sidebarToc?: SidebarTocItem[];
 }
 
 const {
+  seo,
   title,
-  description = "",
+  description,
   bodyClass = "",
   sidebarToc = [],
 } = Astro.props;
 
 const normalizePath = (path: string) =>
   path === "/" ? "/" : path.replace(/\/+$/, "");
+const getNonEmpty = (value?: string) => {
+  const trimmed = value?.trim();
+  return trimmed ? trimmed : undefined;
+};
+const isAbsoluteUrl = (value: string) =>
+  value.startsWith("http://") || value.startsWith("https://");
+const siteBaseUrl = Astro.site ?? new URL(Astro.url.origin);
+
 const currentPath = normalizePath(Astro.url.pathname);
 const desktopRoutes = siteRoutes
   .filter((route) => route.navGroup === "primary")
@@ -31,6 +43,24 @@ const desktopRoutes = siteRoutes
 const legalRoutes = siteRoutes
   .filter((route) => route.navGroup === "legal")
   .sort((a, b) => a.order - b.order);
+const canonicalTarget = getNonEmpty(seo?.canonicalPath) ?? Astro.url.pathname;
+const canonicalHref = isAbsoluteUrl(canonicalTarget)
+  ? new URL(canonicalTarget).href
+  : new URL(canonicalTarget, siteBaseUrl).href;
+
+const effectiveTitle =
+  getNonEmpty(seo?.title) ?? getNonEmpty(title) ?? SEO_DEFAULTS.title;
+const effectiveDescription =
+  getNonEmpty(seo?.description) ??
+  getNonEmpty(description) ??
+  SEO_DEFAULTS.description;
+const ogTitle = getNonEmpty(seo?.ogTitle) ?? effectiveTitle;
+const ogDescription = getNonEmpty(seo?.ogDescription) ?? effectiveDescription;
+const ogImageTarget = getNonEmpty(seo?.ogImage) ?? SEO_DEFAULTS.ogImage;
+const ogImageHref = isAbsoluteUrl(ogImageTarget)
+  ? new URL(ogImageTarget).href
+  : new URL(ogImageTarget, siteBaseUrl).href;
+const ogImageAlt = `${ogTitle} social preview`;
 ---
 
 <!doctype html>
@@ -38,8 +68,22 @@ const legalRoutes = siteRoutes
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content={description} />
-    <title>{title}</title>
+    <meta name="description" content={effectiveDescription} />
+    <link rel="canonical" href={canonicalHref} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={SEO_DEFAULTS.siteName} />
+    <meta property="og:title" content={ogTitle} />
+    <meta property="og:description" content={ogDescription} />
+    <meta property="og:url" content={canonicalHref} />
+    <meta property="og:image" content={ogImageHref} />
+    <meta property="og:image:alt" content={ogImageAlt} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={ogTitle} />
+    <meta name="twitter:description" content={ogDescription} />
+    <meta name="twitter:image" content={ogImageHref} />
+    <title>{effectiveTitle}</title>
+    <link rel="icon" type="image/png" href="/images/brand/SEO/favicon.png" />
+    <link rel="apple-touch-icon" href="/images/brand/logomark-square.png" />
     <link rel="stylesheet" href="/css/animate.purged.css" />
     <link rel="stylesheet" href="/css/custom-animations.purged.css" />
   </head>

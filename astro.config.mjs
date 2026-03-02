@@ -3,6 +3,7 @@ import react from "@astrojs/react";
 
 export default defineConfig({
   output: "static",
+  site: "https://williamentriken.net",
   integrations: [react()],
   server: {
     host: true,

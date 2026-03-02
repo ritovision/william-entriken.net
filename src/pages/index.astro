@@ -16,13 +16,13 @@ const sidebarToc = sections.map((section) => ({
 
 const paragraph =
   "This is placeholder migration content for scroll and section navigation testing. It is intentionally long so you can verify sidebar behavior, table-of-contents anchors, and viewport flow on large pages.";
+const seo = {
+  title: "William Entriken",
+  description: "Site foundation placeholder page.",
+};
 ---
 
-<BaseLayout
-  title="William Entriken"
-  description="Site foundation placeholder page."
-  sidebarToc={sidebarToc}
->
+<BaseLayout seo={seo} sidebarToc={sidebarToc}>
   <main class="page-placeholder">
     <div class="container-95 py-4">
       {

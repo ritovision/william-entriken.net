@@ -18,11 +18,7 @@ const sidebarToc = sections.map((section) => ({
 }));
 ---
 
-<BaseLayout
-  title={seo.title}
-  description={seo.description}
-  sidebarToc={sidebarToc}
->
+<BaseLayout seo={seo} sidebarToc={sidebarToc}>
   <main class="privacy-page page-placeholder">
     <article class="privacy-page__inner container-95 border-white">
       <header class="privacy-page__header">
