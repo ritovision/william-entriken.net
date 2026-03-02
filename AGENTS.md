@@ -28,6 +28,22 @@ This repository is a large multi-page Astro migration. Optimize for clean struct
 - `src/components/islands`: React interactive islands only
 - `src/components/shared`: shared types and constants
 
+## Import Alias Rules
+
+- Use domain aliases for non-local imports:
+  - `@components/*` -> `src/components/*`
+  - `@layouts/*` -> `src/layouts/*`
+  - `@ui/*` -> `src/components/ui/*`
+  - `@sections/*` -> `src/components/sections/*`
+  - `@config/*` -> `src/config/*`
+  - `@styles/*` -> `src/styles/*`
+  - `@islands/*` -> `src/components/islands/*`
+  - `@shared/*` -> `src/components/shared/*`
+- Keep same-folder imports relative (`./...`).
+- Keep page-local imports relative (`./_content.json`, `./_components/...`).
+- Do not use a generic `@/` fallback alias.
+- Prefer replacing deep `../...` imports with approved aliases when touching files.
+
 ## Content Injection Rules
 
 - Default content format is JSON (`_content.json`).

@@ -1,8 +1,8 @@
 ---
-import type { SidebarTocItem } from "../../../../config/navigation";
-import type { SiteRoute } from "../../../../config/site";
-import InPageSectionsIcon from "../../../ui/icons/InPageSectionsIcon.astro";
-import MainMenuIcon from "../../../ui/icons/MainMenuIcon.astro";
+import type { SidebarTocItem } from "@config/navigation";
+import type { SiteRoute } from "@config/site";
+import InPageSectionsIcon from "@ui/icons/InPageSectionsIcon.astro";
+import MainMenuIcon from "@ui/icons/MainMenuIcon.astro";
 import SidebarMenuPanel from "./SidebarMenuPanel.astro";
 import SidebarTocPanel from "./SidebarTocPanel.astro";
 
@@ -84,7 +84,7 @@ const isDev = import.meta.env.DEV;
   import {
     setupTocActiveTracking,
     validateTocTargets,
-  } from "../scripts/tocTracking";
+  } from "@components/layout/navigation/scripts/tocTracking";
 
   (() => {
     type TabTarget = "menu" | "toc";

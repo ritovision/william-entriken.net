@@ -1,11 +1,11 @@
 ---
-import type { SidebarTocItem, SocialLink } from '../../../../config/navigation';
-import type { SiteRoute } from '../../../../config/site';
-import AskAiButton from '../ai-assist/AskAiButton.astro';
-import Image from '../../../ui/Image.astro';
-import InPageSectionsIcon from '../../../ui/icons/InPageSectionsIcon.astro';
-import MainMenuIcon from '../../../ui/icons/MainMenuIcon.astro';
-import SocialIcon from '../../../ui/icons/brands/SocialIcon.astro';
+import type { SidebarTocItem, SocialLink } from '@config/navigation';
+import type { SiteRoute } from '@config/site';
+import AskAiButton from '@components/layout/navigation/ai-assist/AskAiButton.astro';
+import Image from '@ui/Image.astro';
+import InPageSectionsIcon from '@ui/icons/InPageSectionsIcon.astro';
+import MainMenuIcon from '@ui/icons/MainMenuIcon.astro';
+import SocialIcon from '@ui/icons/brands/SocialIcon.astro';
 
 interface Props {
   currentPath: string;
@@ -254,7 +254,7 @@ const isDev = import.meta.env.DEV;
   import {
     setupTocActiveTracking,
     validateTocTargets,
-  } from '../scripts/tocTracking';
+  } from '@components/layout/navigation/scripts/tocTracking';
 
   (() => {
     type DrawerName = 'menu' | 'toc';
