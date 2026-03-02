@@ -1,0 +1,71 @@
+---
+import CoverageFeedBase from '@sections/CoverageFeedBase.astro';
+import {
+  PRESS_COVERAGE_REMOTE_URL,
+  isCoverageUrlLinkable,
+  normalizePressCoverage,
+} from '@shared/coverageData';
+
+interface Props {
+  items: unknown;
+  id?: string;
+  class?: string;
+}
+
+const {
+  items,
+  id = 'press-coverage-feed',
+  class: className = '',
+} = Astro.props;
+
+const normalizedItems = normalizePressCoverage(items);
+---
+
+<CoverageFeedBase
+  id={id}
+  kind="press"
+  remoteUrl={PRESS_COVERAGE_REMOTE_URL}
+  items={normalizedItems}
+  listAriaLabel="Press coverage"
+  class={className}
+>
+  {
+    normalizedItems.map((item) => {
+      const linkable = isCoverageUrlLinkable(item.url);
+
+      return (
+        <article class="coverage-card coverage-card--press border-gold" data-coverage-card data-coverage-key={item.key}>
+          {
+            linkable ? (
+              <a
+                href={item.url}
+                class="coverage-card__link"
+                aria-label={`Open entry: ${item.title}`}
+              >
+                <p class="coverage-card__date m-0">{item.date}</p>
+                <p class="coverage-card__meta m-0">
+                  {item.authors.length > 0
+                    ? item.authors.join(', ')
+                    : 'Unknown author'}
+                </p>
+                <p class="coverage-card__meta m-0">{item.publication}</p>
+                <h3 class="coverage-card__title m-0">{item.title}</h3>
+              </a>
+            ) : (
+              <div class="coverage-card__content">
+                <p class="coverage-card__date m-0">{item.date}</p>
+                <p class="coverage-card__meta m-0">
+                  {item.authors.length > 0
+                    ? item.authors.join(', ')
+                    : 'Unknown author'}
+                </p>
+                <p class="coverage-card__meta m-0">{item.publication}</p>
+                <h3 class="coverage-card__title m-0">{item.title}</h3>
+              </div>
+            )
+          }
+        </article>
+      );
+    })
+  }
+</CoverageFeedBase>

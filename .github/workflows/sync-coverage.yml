@@ -1,0 +1,42 @@
+name: Sync Coverage Data
+
+on:
+  schedule:
+    - cron: '17 9 * * *'
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Sync coverage datasets
+        run: node scripts/sync-external-coverage.mjs
+
+      - name: Create pull request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          branch: chore/sync-coverage-data
+          delete-branch: true
+          commit-message: 'chore(data): sync external coverage datasets'
+          title: 'chore(data): sync external coverage datasets'
+          body: |
+            Automated sync from upstream source datasets.
+
+            Updated files:
+            - src/data/press-coverage.json
+            - src/data/speaking-events.json
+          add-paths: |
+            src/data/press-coverage.json
+            src/data/speaking-events.json

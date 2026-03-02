@@ -1,0 +1,13 @@
+---
+import SpeakingEventsFeed from '@sections/SpeakingEventsFeed.astro';
+import speakingEvents from '../../../data/speaking-events.json';
+---
+
+<section
+  id="speaking-events"
+  class="container-95 section-stack"
+  aria-label="Speaking events section"
+>
+  <h2 class="text-gold text-center m-0">Speaking Events</h2>
+  <SpeakingEventsFeed items={speakingEvents} />
+</section>

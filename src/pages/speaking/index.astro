@@ -1,10 +1,19 @@
 ---
-import BaseLayout from "@layouts/BaseLayout.astro";
-import content from "./_content.json";
+import BaseLayout from '@layouts/BaseLayout.astro';
+import SpeakingEventsPanel from './_components/SpeakingEventsPanel.astro';
+import content from './_content.json';
 
 const { seo } = content;
+const sidebarToc = [
+  {
+    label: 'Speaking Events',
+    targetId: 'speaking-events',
+  },
+];
 ---
 
-<BaseLayout seo={seo}>
-  <main class="page-placeholder"></main>
+<BaseLayout seo={seo} sidebarToc={sidebarToc}>
+  <main class="page-placeholder">
+    <SpeakingEventsPanel />
+  </main>
 </BaseLayout>

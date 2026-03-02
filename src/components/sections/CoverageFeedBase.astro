@@ -1,0 +1,69 @@
+---
+import type { CoverageFeedItem, CoverageFeedKind } from '@shared/coverageData';
+
+interface Props {
+  id: string;
+  kind: CoverageFeedKind;
+  remoteUrl: string;
+  items: CoverageFeedItem[];
+  listAriaLabel: string;
+  class?: string;
+}
+
+const {
+  id,
+  kind,
+  remoteUrl,
+  items,
+  listAriaLabel,
+  class: className = '',
+} = Astro.props;
+---
+
+<section
+  id={id}
+  class:list={['coverage-feed', className]}
+  data-coverage-feed
+  data-coverage-kind={kind}
+  data-coverage-remote-url={remoteUrl}
+  data-coverage-keys={JSON.stringify(items.map((item) => item.key))}
+>
+  <p
+    class="coverage-feed__status border-gold m-0"
+    role="status"
+    aria-live="polite"
+    aria-atomic="true"
+    data-coverage-status
+    hidden
+  >
+    Updating...
+  </p>
+
+  <div
+    class="coverage-feed__viewport bg-primary-navy border-gold"
+    data-coverage-viewport
+    aria-label={listAriaLabel}
+  >
+    <div class="coverage-feed__cards" data-coverage-cards>
+      <slot />
+    </div>
+
+    <div class="coverage-feed__overlay" data-coverage-overlay>
+      <div class="coverage-feed__overlay-gradient" aria-hidden="true"></div>
+      <button
+        type="button"
+        class="btn b-g-default-button coverage-feed__expand-button"
+        data-coverage-expand
+        aria-expanded="false"
+      >
+        See full list
+      </button>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { initCoverageFeeds } from '@sections/scripts/coverageFeedRuntime';
+
+  initCoverageFeeds();
+</script>

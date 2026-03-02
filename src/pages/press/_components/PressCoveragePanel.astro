@@ -1,0 +1,13 @@
+---
+import PressCoverageFeed from '@sections/PressCoverageFeed.astro';
+import pressCoverage from '../../../data/press-coverage.json';
+---
+
+<section
+  id="press-list"
+  class="container-95 section-stack"
+  aria-label="Press coverage section"
+>
+  <h2 class="text-gold text-center m-0">Press List</h2>
+  <PressCoverageFeed items={pressCoverage} />
+</section>

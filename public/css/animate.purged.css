@@ -104,6 +104,10 @@
     -webkit-animation-iteration-count: 1 !important;
     animation-iteration-count: 1 !important;
   }
+
+  .animate__animated[class*='Out'] {
+    opacity: 0;
+  }
 }
 /* Attention seekers  */
 @-webkit-keyframes bounce {
