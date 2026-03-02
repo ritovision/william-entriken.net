@@ -15,7 +15,10 @@
     "format": "prettier . --write",
     "format:check": "prettier . --check",
     "check:all": "pnpm run check && pnpm run lint && pnpm run format:check",
-    "generate:brand-icons": "node scripts/generate-brand-icons.mjs"
+    "generate:brand-icons": "node scripts/generate-brand-icons.mjs",
+    "perf:lhci:legal": "pnpm run build && lhci autorun --config=./lighthouserc.cjs",
+    "perf:lhci:legal:collect": "pnpm run build && lhci collect --config=./lighthouserc.cjs",
+    "perf:lhci:legal:assert": "lhci assert --config=./lighthouserc.cjs"
   },
   "keywords": [
     "astro",
@@ -36,6 +39,7 @@
     "@astrojs/react": "^4.4.2",
     "@eslint/js": "^9.39.3",
     "@fullhuman/postcss-purgecss": "^8.0.0",
+    "@lhci/cli": "^0.15.1",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "eslint": "^9.39.3",
