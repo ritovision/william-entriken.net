@@ -1,6 +1,7 @@
 ---
 import type { SidebarTocItem } from "@config/navigation";
 import type { SiteRoute } from "@config/site";
+import BGSwitch from "@ui/BGSwitch.astro";
 import InPageSectionsIcon from "@ui/icons/InPageSectionsIcon.astro";
 import MainMenuIcon from "@ui/icons/MainMenuIcon.astro";
 import SidebarMenuPanel from "./SidebarMenuPanel.astro";
@@ -14,6 +15,23 @@ interface Props {
 
 const { currentPath, routes, sidebarToc } = Astro.props;
 const isDev = import.meta.env.DEV;
+
+const switchOptions = [
+  {
+    id: "menu",
+    label: "Main menu",
+    ariaLabel: "Main menu",
+    controlsId: "desktop-sidebar-panel-menu",
+    icon: MainMenuIcon,
+  },
+  {
+    id: "toc",
+    label: "In-page sections",
+    ariaLabel: "In-page sections",
+    controlsId: "desktop-sidebar-panel-toc",
+    icon: InPageSectionsIcon,
+  },
+] as const;
 ---
 
 <div
@@ -23,44 +41,21 @@ const isDev = import.meta.env.DEV;
 >
   <h2 class="desktop-sidebar__mode-title m-0" data-tab-title>Main Menu</h2>
 
-  <div
-    class="desktop-sidebar__tabbox"
-    role="tablist"
-    aria-label="Sidebar navigation mode"
-  >
-    <button
-      type="button"
-      id="desktop-sidebar-tab-menu"
-      class="desktop-sidebar__tab-button is-active"
-      role="tab"
-      aria-selected="true"
-      aria-controls="desktop-sidebar-panel-menu"
-      data-tab-target="menu"
-    >
-      <MainMenuIcon class="desktop-sidebar__tab-icon" />
-      <span class="visually-hidden">Main menu</span>
-    </button>
-    <div class="desktop-sidebar__tab-divider" aria-hidden="true"></div>
-    <button
-      type="button"
-      id="desktop-sidebar-tab-toc"
-      class="desktop-sidebar__tab-button"
-      role="tab"
-      aria-selected="false"
-      aria-controls="desktop-sidebar-panel-toc"
-      data-tab-target="toc"
-    >
-      <InPageSectionsIcon class="desktop-sidebar__tab-icon" />
-      <span class="visually-hidden">In-page sections</span>
-    </button>
-  </div>
+  <BGSwitch
+    id="desktop-sidebar-mode-switch"
+    class="desktop-sidebar__switch"
+    ariaLabel="Sidebar navigation mode"
+    activeId="menu"
+    options={switchOptions}
+    iconOnly={true}
+  />
 
   <div class="desktop-sidebar__tab-panels">
     <div
       id="desktop-sidebar-panel-menu"
       class="desktop-sidebar__panel is-active"
       role="tabpanel"
-      aria-labelledby="desktop-sidebar-tab-menu"
+      aria-labelledby="desktop-sidebar-mode-switch-tab-menu"
       aria-hidden="false"
       data-tab-panel="menu"
     >
@@ -70,7 +65,7 @@ const isDev = import.meta.env.DEV;
       id="desktop-sidebar-panel-toc"
       class="desktop-sidebar__panel"
       role="tabpanel"
-      aria-labelledby="desktop-sidebar-tab-toc"
+      aria-labelledby="desktop-sidebar-mode-switch-tab-toc"
       aria-hidden="true"
       data-tab-panel="toc"
       hidden
@@ -88,15 +83,13 @@ const isDev = import.meta.env.DEV;
 
   (() => {
     type TabTarget = "menu" | "toc";
-    const isTabTarget = (value: string | null): value is TabTarget =>
+    const isTabTarget = (value: unknown): value is TabTarget =>
       value === "menu" || value === "toc";
 
     const roots = document.querySelectorAll<HTMLElement>("[data-sidebar-tabs]");
 
     for (const root of roots) {
-      const buttons = Array.from(
-        root.querySelectorAll<HTMLButtonElement>("[data-tab-target]"),
-      );
+      const switchRoot = root.querySelector<HTMLElement>("[data-b-g-switch]");
       const panels = Array.from(
         root.querySelectorAll<HTMLElement>("[data-tab-panel]"),
       );
@@ -115,13 +108,6 @@ const isDev = import.meta.env.DEV;
           sidebarContainer.setAttribute("data-sidebar-mode", target);
         }
 
-        for (const button of buttons) {
-          const isActive = button.getAttribute("data-tab-target") === target;
-          button.classList.toggle("is-active", isActive);
-          button.setAttribute("aria-selected", String(isActive));
-          button.tabIndex = isActive ? 0 : -1;
-        }
-
         for (const panel of panels) {
           const isActive = panel.getAttribute("data-tab-panel") === target;
           panel.classList.toggle("is-active", isActive);
@@ -134,47 +120,11 @@ const isDev = import.meta.env.DEV;
         }
       };
 
-      for (const button of buttons) {
-        button.addEventListener("click", () => {
-          const target = button.getAttribute("data-tab-target");
-          if (isTabTarget(target)) {
-            setActiveTab(target);
-          }
-        });
-
-        button.addEventListener("keydown", (event: KeyboardEvent) => {
-          const key = event.key;
-          if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(key)) {
-            return;
-          }
-
-          event.preventDefault();
-
-          const currentIndex = buttons.indexOf(button);
-          if (currentIndex < 0) {
-            return;
-          }
-
-          let nextIndex = currentIndex;
-          if (key === "ArrowLeft") {
-            nextIndex = (currentIndex - 1 + buttons.length) % buttons.length;
-          } else if (key === "ArrowRight") {
-            nextIndex = (currentIndex + 1) % buttons.length;
-          } else if (key === "Home") {
-            nextIndex = 0;
-          } else if (key === "End") {
-            nextIndex = buttons.length - 1;
-          }
-
-          const nextButton = buttons[nextIndex];
-          if (!nextButton) {
-            return;
-          }
-
-          nextButton.focus();
-          const target = nextButton.getAttribute("data-tab-target");
-          if (isTabTarget(target)) {
-            setActiveTab(target);
+      if (switchRoot) {
+        switchRoot.addEventListener("b-g-switch:change", (event: Event) => {
+          const customEvent = event as CustomEvent<{ id?: unknown }>;
+          if (isTabTarget(customEvent.detail?.id)) {
+            setActiveTab(customEvent.detail.id);
           }
         });
       }

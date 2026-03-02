@@ -76,45 +76,11 @@
   z-index: 1;
 }
 
-.desktop-sidebar__tabbox {
+.desktop-sidebar__switch {
   width: 100%;
-  display: grid;
-  grid-template-columns: 1fr 1px 1fr;
-  border: 1px solid var(--border-gold);
-}
-
-.desktop-sidebar__tab-divider {
-  width: 1px;
-  background: var(--border-gold);
-}
-
-.desktop-sidebar__tab-button {
-  appearance: none;
-  border: 0;
-  margin: 0;
-  padding: 0.75rem;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  background: transparent;
-  color: var(--color-accent);
-  transition:
-    background-color 0.2s ease,
-    color 0.2s ease;
-}
-
-.desktop-sidebar__tab-button.is-active {
-  background: var(--color-accent);
-  color: var(--color-primary);
-}
-
-.desktop-sidebar__tab-button:not(.is-active):hover {
-  background: var(--color-accent);
-  color: var(--color-primary);
 }
 
 .desktop-sidebar__logo-link:focus,
-.desktop-sidebar__tab-button:focus,
 .desktop-sidebar__nav-link:focus,
 .desktop-sidebar__social-link:focus,
 .desktop-sidebar__ask-ai-button:focus {
@@ -122,17 +88,11 @@
 }
 
 .desktop-sidebar__logo-link:focus-visible,
-.desktop-sidebar__tab-button:focus-visible,
 .desktop-sidebar__nav-link:focus-visible,
 .desktop-sidebar__social-link:focus-visible,
 .desktop-sidebar__ask-ai-button:focus-visible {
   outline: 2px solid var(--color-white);
   outline-offset: 2px;
-}
-
-.desktop-sidebar__tab-icon {
-  width: 22px;
-  height: 22px;
 }
 
 .desktop-sidebar__tab-panels {
