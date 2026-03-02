@@ -2,22 +2,47 @@
 interface Props {
   href?: string;
   label: string;
-  variant?: "navy" | "gold-pill";
+  variant?: "default" | "navy" | "gold-pill";
   class?: string;
+  id?: string;
+  ariaLabel?: string;
+  type?: "button" | "submit" | "reset";
 }
 
-const { href, label, variant = "navy", class: className = "" } = Astro.props;
+const {
+  href,
+  label,
+  variant = "navy",
+  class: className = "",
+  id,
+  ariaLabel,
+  type = "button",
+} = Astro.props;
 const variantClass =
-  variant === "gold-pill" ? "btn-brand-gold-pill" : "btn-brand-navy";
+  variant === "gold-pill"
+    ? "btn-brand-gold-pill"
+    : variant === "default"
+      ? "b-g-default-button"
+      : "btn-brand-navy";
 ---
 
 {
   href ? (
-    <a href={href} class={`btn ${variantClass} ${className}`.trim()}>
+    <a
+      id={id}
+      href={href}
+      class={`btn ${variantClass} ${className}`.trim()}
+      aria-label={ariaLabel}
+    >
       {label}
     </a>
   ) : (
-    <button type="button" class={`btn ${variantClass} ${className}`.trim()}>
+    <button
+      id={id}
+      type={type}
+      class={`btn ${variantClass} ${className}`.trim()}
+      aria-label={ariaLabel}
+    >
       {label}
     </button>
   )
