@@ -1,0 +1,152 @@
+---
+import type { ImageMetadata } from 'astro';
+import './image.css';
+
+type ImageSource = string | ImageMetadata | Promise<{ default: ImageMetadata }>;
+type ImageFit = 'cover' | 'contain' | 'fill' | 'none' | 'scale-down';
+
+interface Props {
+  src: ImageSource;
+  alt: string;
+  class?: string;
+  imgClass?: string;
+  aspectRatio?: string;
+  fit?: ImageFit;
+  priority?: boolean;
+  sizes?: string;
+  fallbackLabel?: string;
+}
+
+const {
+  src,
+  alt,
+  class: wrapperClass = '',
+  imgClass = '',
+  aspectRatio = '1 / 1',
+  fit = 'contain',
+  priority = false,
+  sizes,
+  fallbackLabel,
+} = Astro.props;
+
+const resolvedSrc =
+  typeof src === 'string'
+    ? src
+    : 'then' in src
+      ? (await src).default.src
+      : src.src;
+const isDecorative = alt.trim() === '';
+const effectiveFallbackLabel = fallbackLabel ?? alt;
+const loading = priority ? 'eager' : 'lazy';
+const decoding = priority ? 'sync' : 'async';
+const fetchPriority = priority ? 'high' : 'auto';
+---
+
+<span
+  class:list={['ui-image', wrapperClass]}
+  style={`--ui-image-aspect-ratio: ${aspectRatio}; --ui-image-fit: ${fit};`}
+  data-ui-image
+  data-ui-image-decorative={isDecorative ? 'true' : 'false'}
+  data-ui-image-fallback-label={effectiveFallbackLabel}
+>
+  <img
+    src={resolvedSrc}
+    alt={alt}
+    class:list={['ui-image__img', imgClass]}
+    loading={loading}
+    decoding={decoding}
+    fetchpriority={fetchPriority}
+    sizes={sizes}
+    data-ui-image-img
+  />
+  <span class="ui-image__fallback" data-ui-image-fallback>
+    <span class="ui-image__waves" aria-hidden="true"></span>
+  </span>
+</span>
+
+<script>
+  const setFallbackA11y = (
+    root: HTMLElement,
+    fallback: HTMLElement,
+    hasError: boolean,
+  ) => {
+    const isDecorative = root.dataset.uiImageDecorative === 'true';
+    const fallbackLabel = root.dataset.uiImageFallbackLabel ?? '';
+
+    if (!hasError) {
+      fallback.setAttribute('aria-hidden', 'true');
+      fallback.removeAttribute('role');
+      fallback.removeAttribute('aria-label');
+      return;
+    }
+
+    if (isDecorative) {
+      fallback.setAttribute('aria-hidden', 'true');
+      fallback.removeAttribute('role');
+      fallback.removeAttribute('aria-label');
+      return;
+    }
+
+    fallback.setAttribute('aria-hidden', 'false');
+    fallback.setAttribute('role', 'img');
+    fallback.setAttribute('aria-label', fallbackLabel);
+  };
+
+  const setErrorState = (root: HTMLElement, hasError: boolean) => {
+    const fallback = root.querySelector<HTMLElement>(
+      '[data-ui-image-fallback]',
+    );
+    if (!fallback) {
+      return;
+    }
+
+    root.toggleAttribute('data-image-error', hasError);
+    setFallbackA11y(root, fallback, hasError);
+  };
+
+  const bindImage = (root: HTMLElement) => {
+    if (root.dataset.uiImageBound === 'true') {
+      return;
+    }
+
+    const image = root.querySelector<HTMLImageElement>('[data-ui-image-img]');
+    if (!image) {
+      return;
+    }
+
+    root.dataset.uiImageBound = 'true';
+    setErrorState(root, false);
+
+    image.addEventListener('load', () => {
+      setErrorState(root, false);
+    });
+
+    image.addEventListener('error', () => {
+      setErrorState(root, true);
+    });
+
+    if (image.complete && image.naturalWidth === 0) {
+      setErrorState(root, true);
+    }
+  };
+
+  const bindAllImages = (container: ParentNode = document) => {
+    const roots = Array.from(
+      container.querySelectorAll<HTMLElement>('[data-ui-image]'),
+    );
+
+    for (const root of roots) {
+      bindImage(root);
+    }
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => bindAllImages(), {
+      once: true,
+    });
+  } else {
+    bindAllImages();
+  }
+
+  document.addEventListener('astro:page-load', () => bindAllImages());
+</script>

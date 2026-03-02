@@ -1,9 +1,10 @@
 ---
-import type { SidebarTocItem, SocialLink } from "../../../../config/navigation";
-import type { SiteRoute } from "../../../../config/site";
-import AskAiButton from "../ai-assist/AskAiButton.astro";
-import SidebarSocialPanel from "./SidebarSocialPanel.astro";
-import SidebarTabsPanel from "./SidebarTabsPanel.astro";
+import type { SidebarTocItem, SocialLink } from '../../../../config/navigation';
+import type { SiteRoute } from '../../../../config/site';
+import AskAiButton from '../ai-assist/AskAiButton.astro';
+import Image from '../../../ui/Image.astro';
+import SidebarSocialPanel from './SidebarSocialPanel.astro';
+import SidebarTabsPanel from './SidebarTabsPanel.astro';
 
 interface Props {
   currentPath: string;
@@ -19,11 +20,11 @@ const { currentPath, routes, socials, sidebarToc } = Astro.props;
   <div class="desktop-sidebar__inner" data-sidebar-mode="menu">
     <div class="desktop-sidebar__logo-wrap">
       <a href="/" class="desktop-sidebar__logo-link" aria-label="Home">
-        <img
+        <Image
           src="/images/brand/wordmark.png"
           alt="William Entriken wordmark"
-          class="desktop-sidebar__logo"
-          width="200"
+          imgClass="desktop-sidebar__logo"
+          aspectRatio="4 / 1"
         />
       </a>
     </div>

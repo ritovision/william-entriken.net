@@ -83,6 +83,16 @@ Use tokens defined in `src/styles/tokens.css` as source of truth:
 - Page-specific image assets belong in `public/images/pages/<slug>/`.
 - Avenir fonts belong in `public/fonts/avenir/`.
 
+## Image Component Policy
+
+- Use `src/components/ui/Image.astro` for raster images by default.
+- Do not add raw `<img>` unless there is a documented exception.
+- Keep shared/static brand assets (logos, icons, social marks) in `public/images/...`.
+- Put non-shared content images that benefit from Astro optimization in `src/assets/...` (or a local `images/` folder near the page/component and import them).
+- If an image is reused across multiple pages/components, move it to a shared asset location (`src/assets/shared/...` or `public/images/...`).
+- Prefer `aspectRatio` on `Image.astro` for layout stability.
+- `alt` is required for meaningful images; use `alt=""` only for decorative images.
+
 ## Migration Workflow
 
 1. Add/adjust page JSON content in the page folder.

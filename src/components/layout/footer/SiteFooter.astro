@@ -1,6 +1,7 @@
 ---
 import type { SocialLink } from '../../../config/navigation';
 import type { SiteRoute } from '../../../config/site';
+import Image from '../../ui/Image.astro';
 import SocialIcon from '../../ui/icons/brands/SocialIcon.astro';
 
 interface Props {
@@ -17,34 +18,38 @@ const { socials, legalLinks } = Astro.props;
 
     <div class="site-footer__content-row">
       <a href="/" class="site-footer__wordmark-link" aria-label="Home">
-        <img
+        <Image
           src="/images/brand/wordmark.png"
           alt="William Entriken wordmark"
-          class="site-footer__wordmark"
-          width="147"
+          imgClass="site-footer__wordmark"
+          aspectRatio="4 / 1"
         />
       </a>
 
       <div class="site-footer__social-grid" aria-label="Social media links">
-        {socials.map((social) => (
-          <a
-            href={social.href}
-            class="site-footer__social-link"
-            target="_blank"
-            rel="noreferrer"
-            aria-label={social.label}
-          >
-            <SocialIcon id={social.id} class="site-footer__social-icon" />
-          </a>
-        ))}
+        {
+          socials.map((social) => (
+            <a
+              href={social.href}
+              class="site-footer__social-link"
+              target="_blank"
+              rel="noreferrer"
+              aria-label={social.label}
+            >
+              <SocialIcon id={social.id} class="site-footer__social-icon" />
+            </a>
+          ))
+        }
       </div>
 
       <nav class="site-footer__legal" aria-label="Legal links">
-        {legalLinks.map((route) => (
-          <a href={route.path} class="site-footer__legal-link">
-            {route.label}
-          </a>
-        ))}
+        {
+          legalLinks.map((route) => (
+            <a href={route.path} class="site-footer__legal-link">
+              {route.label}
+            </a>
+          ))
+        }
       </nav>
     </div>
 

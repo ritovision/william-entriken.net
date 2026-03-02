@@ -1,10 +1,11 @@
 ---
-import type { SidebarTocItem, SocialLink } from "../../../../config/navigation";
-import type { SiteRoute } from "../../../../config/site";
-import AskAiButton from "../ai-assist/AskAiButton.astro";
-import InPageSectionsIcon from "../../../ui/icons/InPageSectionsIcon.astro";
-import MainMenuIcon from "../../../ui/icons/MainMenuIcon.astro";
-import SocialIcon from "../../../ui/icons/brands/SocialIcon.astro";
+import type { SidebarTocItem, SocialLink } from '../../../../config/navigation';
+import type { SiteRoute } from '../../../../config/site';
+import AskAiButton from '../ai-assist/AskAiButton.astro';
+import Image from '../../../ui/Image.astro';
+import InPageSectionsIcon from '../../../ui/icons/InPageSectionsIcon.astro';
+import MainMenuIcon from '../../../ui/icons/MainMenuIcon.astro';
+import SocialIcon from '../../../ui/icons/brands/SocialIcon.astro';
 
 interface Props {
   currentPath: string;
@@ -16,7 +17,7 @@ interface Props {
 const { currentPath, routes, socials, sidebarToc } = Astro.props;
 
 const normalizePath = (path: string) =>
-  path === "/" ? "/" : path.replace(/\/+$/, "");
+  path === '/' ? '/' : path.replace(/\/+$/, '');
 const activePath = normalizePath(currentPath);
 const isDev = import.meta.env.DEV;
 ---
@@ -24,7 +25,7 @@ const isDev = import.meta.env.DEV;
 <div
   class="mobile-nav-wrap d-lg-none"
   data-mobile-nav
-  data-dev={isDev ? "true" : "false"}
+  data-dev={isDev ? 'true' : 'false'}
 >
   <header class="mobile-nav-header" aria-label="Mobile navigation">
     <div class="mobile-nav-header__bar">
@@ -40,10 +41,11 @@ const isDev = import.meta.env.DEV;
       </button>
 
       <a href="/" class="mobile-nav-header__logo-link" aria-label="Home">
-        <img
+        <Image
           src="/images/brand/logomark.png"
           alt="William Entriken logomark"
-          class="mobile-nav-header__logo"
+          imgClass="mobile-nav-header__logo"
+          aspectRatio="1 / 1"
         />
       </a>
 
@@ -131,10 +133,10 @@ const isDev = import.meta.env.DEV;
                     <a
                       href={route.path}
                       class:list={[
-                        "mobile-drawer__nav-link",
-                        isActive && "is-active",
+                        'mobile-drawer__nav-link',
+                        isActive && 'is-active',
                       ]}
-                      aria-current={isActive ? "page" : undefined}
+                      aria-current={isActive ? 'page' : undefined}
                       data-mobile-close-link
                     >
                       {route.label}
@@ -252,86 +254,86 @@ const isDev = import.meta.env.DEV;
   import {
     setupTocActiveTracking,
     validateTocTargets,
-  } from "../scripts/tocTracking";
+  } from '../scripts/tocTracking';
 
   (() => {
-    type DrawerName = "menu" | "toc";
+    type DrawerName = 'menu' | 'toc';
 
-    const root = document.querySelector<HTMLElement>("[data-mobile-nav]");
+    const root = document.querySelector<HTMLElement>('[data-mobile-nav]');
     if (!root) {
       return;
     }
 
-    const overlay = root.querySelector<HTMLElement>("[data-mobile-overlay]");
+    const overlay = root.querySelector<HTMLElement>('[data-mobile-overlay]');
     const drawers = Array.from(
-      root.querySelectorAll<HTMLElement>("[data-mobile-drawer]"),
+      root.querySelectorAll<HTMLElement>('[data-mobile-drawer]'),
     );
     const openButtons = Array.from(
-      root.querySelectorAll<HTMLButtonElement>("[data-mobile-open]"),
+      root.querySelectorAll<HTMLButtonElement>('[data-mobile-open]'),
     );
     const closeButtons = Array.from(
-      root.querySelectorAll<HTMLButtonElement>("[data-mobile-close]"),
+      root.querySelectorAll<HTMLButtonElement>('[data-mobile-close]'),
     );
     const closeLinks = Array.from(
-      root.querySelectorAll<HTMLElement>("[data-mobile-close-link]"),
+      root.querySelectorAll<HTMLElement>('[data-mobile-close-link]'),
     );
     const mobileAiOpenButtons = Array.from(
-      root.querySelectorAll<HTMLButtonElement>("[data-mobile-ai-open]"),
+      root.querySelectorAll<HTMLButtonElement>('[data-mobile-ai-open]'),
     );
     const tocLinks = Array.from(
-      root.querySelectorAll<HTMLAnchorElement>("[data-mobile-toc-target]"),
+      root.querySelectorAll<HTMLAnchorElement>('[data-mobile-toc-target]'),
     );
-    const isDev = root.getAttribute("data-dev") === "true";
+    const isDev = root.getAttribute('data-dev') === 'true';
 
-    let activeDrawer: DrawerName | "" = "";
+    let activeDrawer: DrawerName | '' = '';
 
     const setInert = (element: HTMLElement, inert: boolean) => {
-      if ("inert" in element) {
+      if ('inert' in element) {
         (element as HTMLElement & { inert: boolean }).inert = inert;
       }
 
       if (inert) {
-        element.setAttribute("inert", "");
+        element.setAttribute('inert', '');
       } else {
-        element.removeAttribute("inert");
+        element.removeAttribute('inert');
       }
     };
 
-    const setDrawerState = (name: DrawerName | "") => {
+    const setDrawerState = (name: DrawerName | '') => {
       activeDrawer = name;
 
       for (const drawer of drawers) {
-        const drawerName = drawer.getAttribute("data-mobile-drawer");
+        const drawerName = drawer.getAttribute('data-mobile-drawer');
         const isActive = Boolean(name) && drawerName === name;
-        drawer.classList.toggle("is-open", isActive);
-        drawer.setAttribute("aria-hidden", String(!isActive));
+        drawer.classList.toggle('is-open', isActive);
+        drawer.setAttribute('aria-hidden', String(!isActive));
         setInert(drawer, !isActive);
       }
 
       for (const button of openButtons) {
-        const target = button.getAttribute("data-mobile-open");
+        const target = button.getAttribute('data-mobile-open');
         button.setAttribute(
-          "aria-expanded",
+          'aria-expanded',
           String(Boolean(name) && target === name),
         );
       }
 
       if (overlay) {
-        overlay.classList.toggle("is-open", Boolean(name));
+        overlay.classList.toggle('is-open', Boolean(name));
       }
     };
 
-    const closeDrawer = () => setDrawerState("");
+    const closeDrawer = () => setDrawerState('');
     const toggleDrawer = (name: DrawerName) =>
-      setDrawerState(activeDrawer === name ? "" : name);
+      setDrawerState(activeDrawer === name ? '' : name);
     const isMobileViewport = () =>
-      window.matchMedia("(max-width: 991.98px)").matches;
+      window.matchMedia('(max-width: 991.98px)').matches;
     const getMobileScrollOffset = () => {
       const cssValue = getComputedStyle(document.documentElement)
-        .getPropertyValue("--mobile-nav-height")
+        .getPropertyValue('--mobile-nav-height')
         .trim();
       const cssHeight = Number.parseFloat(cssValue);
-      const header = root.querySelector(".mobile-nav-header");
+      const header = root.querySelector('.mobile-nav-header');
       const measuredHeight =
         header instanceof HTMLElement
           ? header.getBoundingClientRect().height
@@ -344,38 +346,38 @@ const isDev = import.meta.env.DEV;
     };
 
     for (const button of openButtons) {
-      button.addEventListener("click", () => {
-        const target = button.getAttribute("data-mobile-open");
-        if (target === "menu" || target === "toc") {
+      button.addEventListener('click', () => {
+        const target = button.getAttribute('data-mobile-open');
+        if (target === 'menu' || target === 'toc') {
           toggleDrawer(target);
         }
       });
     }
 
     for (const button of closeButtons) {
-      button.addEventListener("click", closeDrawer);
+      button.addEventListener('click', closeDrawer);
     }
 
     for (const link of closeLinks) {
-      link.addEventListener("click", closeDrawer);
+      link.addEventListener('click', closeDrawer);
     }
 
     for (const button of mobileAiOpenButtons) {
-      button.addEventListener("click", (event: MouseEvent) => {
+      button.addEventListener('click', (event: MouseEvent) => {
         event.preventDefault();
         event.stopPropagation();
         closeDrawer();
-        document.dispatchEvent(new CustomEvent("ai-assist:open"));
+        document.dispatchEvent(new CustomEvent('ai-assist:open'));
       });
     }
 
     for (const link of tocLinks) {
-      link.addEventListener("click", (event: MouseEvent) => {
+      link.addEventListener('click', (event: MouseEvent) => {
         if (!isMobileViewport()) {
           return;
         }
 
-        const targetId = link.getAttribute("data-mobile-toc-target");
+        const targetId = link.getAttribute('data-mobile-toc-target');
         if (!targetId) {
           return;
         }
@@ -390,49 +392,49 @@ const isDev = import.meta.env.DEV;
           section.getBoundingClientRect().top +
           window.scrollY -
           getMobileScrollOffset();
-        window.scrollTo({ top: Math.max(0, offsetTop), behavior: "smooth" });
-        history.replaceState(null, "", `#${targetId}`);
+        window.scrollTo({ top: Math.max(0, offsetTop), behavior: 'smooth' });
+        history.replaceState(null, '', `#${targetId}`);
       });
     }
 
     if (overlay) {
-      overlay.addEventListener("click", closeDrawer);
+      overlay.addEventListener('click', closeDrawer);
     }
 
-    document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape" && activeDrawer) {
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && activeDrawer) {
         closeDrawer();
       }
     });
 
     const initToc = () => {
       validateTocTargets(root, {
-        itemSelector: "[data-mobile-toc-item]",
-        anchorSelector: "[data-mobile-toc-target]",
-        listSelector: "[data-mobile-toc-list]",
-        emptySelector: "[data-mobile-toc-empty]",
-        targetAttribute: "data-mobile-toc-target",
-        warningPrefix: "MobileNav",
+        itemSelector: '[data-mobile-toc-item]',
+        anchorSelector: '[data-mobile-toc-target]',
+        listSelector: '[data-mobile-toc-list]',
+        emptySelector: '[data-mobile-toc-empty]',
+        targetAttribute: 'data-mobile-toc-target',
+        warningPrefix: 'MobileNav',
         isDev,
       });
 
       setupTocActiveTracking(root, {
-        itemSelector: "[data-mobile-toc-item]",
-        anchorSelector: "[data-mobile-toc-target]",
-        listSelector: "[data-mobile-toc-list]",
-        emptySelector: "[data-mobile-toc-empty]",
-        targetAttribute: "data-mobile-toc-target",
-        warningPrefix: "MobileNav",
+        itemSelector: '[data-mobile-toc-item]',
+        anchorSelector: '[data-mobile-toc-target]',
+        listSelector: '[data-mobile-toc-list]',
+        emptySelector: '[data-mobile-toc-empty]',
+        targetAttribute: 'data-mobile-toc-target',
+        warningPrefix: 'MobileNav',
         markerRatio: 0,
       });
     };
 
-    if (document.readyState === "loading") {
-      document.addEventListener("DOMContentLoaded", initToc, { once: true });
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initToc, { once: true });
     } else {
       initToc();
     }
 
-    setDrawerState("");
+    setDrawerState('');
   })();
 </script>

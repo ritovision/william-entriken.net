@@ -1,7 +1,8 @@
 ---
-import AskAiSparkIcon from "../../../ui/icons/AskAiSparkIcon.astro";
-import BrandClaudeIcon from "../../../ui/icons/brands/BrandClaudeIcon.astro";
-import BrandPerplexityIcon from "../../../ui/icons/brands/BrandPerplexityIcon.astro";
+import AskAiSparkIcon from '../../../ui/icons/AskAiSparkIcon.astro';
+import Image from '../../../ui/Image.astro';
+import BrandClaudeIcon from '../../../ui/icons/brands/BrandClaudeIcon.astro';
+import BrandPerplexityIcon from '../../../ui/icons/brands/BrandPerplexityIcon.astro';
 ---
 
 <section
@@ -61,11 +62,11 @@ import BrandPerplexityIcon from "../../../ui/icons/brands/BrandPerplexityIcon.as
           class="ai-assist-provider ai-assist-provider--chatgpt"
           data-ai-provider="chatgpt"
         >
-          <img
+          <Image
             src="/images/icons/AI/ChatGPT-logo-white.png"
             alt=""
-            class="ai-assist-provider__logo"
-            aria-hidden="true"
+            imgClass="ai-assist-provider__logo"
+            aspectRatio="1 / 1"
           />
           <span>ChatGPT</span>
         </button>
@@ -109,7 +110,7 @@ import BrandPerplexityIcon from "../../../ui/icons/brands/BrandPerplexityIcon.as
 </section>
 
 <script>
-  import { initAiAssistController } from "../scripts/ai-assist/aiAssistController";
+  import { initAiAssistController } from '../scripts/ai-assist/aiAssistController';
 
   initAiAssistController();
 </script>
