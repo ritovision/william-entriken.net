@@ -3,3 +3,4 @@ node_modules/
 dist/
 .lighthouseci/
 .DS_Store
+coverage/
