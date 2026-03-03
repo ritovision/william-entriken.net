@@ -11,7 +11,7 @@
       "description": "Please use the email below:",
       "background": "content-dark",
       "image": {
-        "src": "/images/pages/contact/will-sunglasses.jpg",
+        "src": "/images/shared/will-sunglasses.jpg",
         "alt": "William Entriken wearing sunglasses"
       },
       "email": {

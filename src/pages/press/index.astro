@@ -1,10 +1,15 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
+import PressContactCard from '@sections/PressContactCard.astro';
 import PressCoveragePanel from './_components/PressCoveragePanel.astro';
 import content from './_content.json';
 
-const { seo } = content;
+const { seo, pressContact } = content;
 const sidebarToc = [
+  {
+    label: pressContact.title,
+    targetId: pressContact.id,
+  },
   {
     label: 'Press List',
     targetId: 'press-list',
@@ -14,6 +19,7 @@ const sidebarToc = [
 
 <BaseLayout seo={seo} sidebarToc={sidebarToc}>
   <main class="page-placeholder">
+    <PressContactCard {...pressContact} />
     <PressCoveragePanel />
   </main>
 </BaseLayout>

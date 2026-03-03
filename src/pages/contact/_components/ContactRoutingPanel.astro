@@ -1,6 +1,6 @@
 ---
 import Button from '@ui/Button.astro';
-import Image from '@ui/Image.astro';
+import PressContactCard from '@sections/PressContactCard.astro';
 import './contact-routing-panel.css';
 
 interface ContactCta {
@@ -52,68 +52,52 @@ const getBackgroundClass = (background: ContactRoutingSection['background']) =>
   </section>
 
   {
-    sections.map((section) => (
-      <section
-        id={section.id}
-        class:list={[
-          'contact-routing__block',
-          section.image ? 'contact-routing__block--press' : 'contact-routing__block--standard',
-          'section-stack',
-          getBackgroundClass(section.background),
-          section.border && 'border-gold',
-        ]}
-        aria-label={section.title}
-        data-contact-routing-block
-      >
-        {section.image ? (
-          <>
-            <h2 class="contact-routing__title contact-routing__title--center text-gold m-0">
-              {section.title}
-            </h2>
+    sections.map((section) =>
+      section.image && section.email ? (
+        <PressContactCard
+          id={section.id}
+          title={section.title}
+          description={section.description}
+          email={section.email}
+          image={section.image}
+          cta={section.cta}
+          background={section.background}
+          border={section.border}
+          data-contact-routing-block
+        />
+      ) : (
+        <section
+          id={section.id}
+          class:list={[
+            'contact-routing__block',
+            'contact-routing__block--standard',
+            'section-stack',
+            getBackgroundClass(section.background),
+            section.border && 'border-gold',
+          ]}
+          aria-label={section.title}
+          data-contact-routing-block
+        >
+          <h2 class="contact-routing__title text-gold m-0">{section.title}</h2>
+          <p class="contact-routing__description text-white m-0">{section.description}</p>
 
-            <div class="contact-routing__press-layout">
-              <div class="contact-routing__press-copy">
-                <p class="contact-routing__description text-white m-0">{section.description}</p>
-                {section.email && (
-                  <a class="contact-routing__email text-white" href={`mailto:${section.email.address}`}>
-                    {section.email.label}
-                  </a>
-                )}
-              </div>
+          {section.email && (
+            <a class="contact-routing__email text-white" href={`mailto:${section.email.address}`}>
+              {section.email.label}
+            </a>
+          )}
 
-              <Image
-                src={section.image.src}
-                alt={section.image.alt}
-                class="contact-routing__image"
-                imgClass="contact-routing__image-img"
-                aspectRatio="1 / 1"
-                fit="cover"
-              />
-            </div>
-          </>
-        ) : (
-          <>
-            <h2 class="contact-routing__title text-gold m-0">{section.title}</h2>
-            <p class="contact-routing__description text-white m-0">{section.description}</p>
-
-            {section.email && (
-              <a class="contact-routing__email text-white" href={`mailto:${section.email.address}`}>
-                {section.email.label}
-              </a>
-            )}
-          </>
-        )}
-
-        {section.cta && (
-          <Button
-            href={section.cta.href}
-            label={section.cta.label}
-            variant="gold-pill"
-            class="contact-routing__button"
-          />
-        )}
-      </section>
-    ))
+          {section.cta && (
+            <Button
+              href={section.cta.href}
+              label={section.cta.label}
+              variant="gold-pill"
+              class="contact-routing__button"
+            />
+          )}
+        </section>
+      ),
+    )
   }
 </section>
 

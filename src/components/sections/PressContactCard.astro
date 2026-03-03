@@ -1,0 +1,78 @@
+---
+import Button from '@ui/Button.astro';
+import Image from '@ui/Image.astro';
+import './press-contact-card.css';
+
+interface Props {
+  id?: string;
+  title: string;
+  description: string;
+  email: {
+    address: string;
+    label: string;
+  };
+  image: {
+    src: string;
+    alt: string;
+  };
+  cta?: {
+    label: string;
+    href: string;
+  };
+  background?: 'content-dark' | 'heading-gray' | 'primary-navy';
+  border?: boolean;
+}
+
+const {
+  id,
+  title,
+  description,
+  email,
+  image,
+  cta,
+  background = 'content-dark',
+  border,
+} = Astro.props;
+
+const bgClass =
+  background === 'content-dark'
+    ? 'bg-content-dark'
+    : background === 'heading-gray'
+      ? 'bg-heading-gray'
+      : 'bg-primary-navy';
+---
+
+<section
+  id={id}
+  class:list={['press-contact-card', 'section-stack', bgClass, border && 'border-gold']}
+  aria-label={title}
+>
+  <h2 class="press-contact-card__title text-gold m-0">{title}</h2>
+
+  <div class="press-contact-card__layout">
+    <div class="press-contact-card__copy">
+      <p class="press-contact-card__description text-white m-0">{description}</p>
+      <a class="press-contact-card__email text-white" href={`mailto:${email.address}`}>
+        {email.label}
+      </a>
+    </div>
+
+    <Image
+      src={image.src}
+      alt={image.alt}
+      class="press-contact-card__image"
+      imgClass="press-contact-card__image-img"
+      aspectRatio="1 / 1"
+      fit="cover"
+    />
+  </div>
+
+  {cta && (
+    <Button
+      href={cta.href}
+      label={cta.label}
+      variant="gold-pill"
+      class="press-contact-card__button"
+    />
+  )}
+</section>
