@@ -1,0 +1,42 @@
+---
+import Image from '@ui/Image.astro';
+import './speaking-heading-panel.css';
+
+interface SpeakingHeroImage {
+  src: string;
+  alt: string;
+}
+
+interface SpeakingHeroSection {
+  title: string;
+  description: string;
+  backgroundImage: SpeakingHeroImage;
+}
+
+interface Props {
+  section: SpeakingHeroSection;
+}
+
+const { section } = Astro.props;
+---
+
+<section class="speaking-heading" aria-label={section.title}>
+  <Image
+    src={section.backgroundImage.src}
+    alt={section.backgroundImage.alt}
+    class="speaking-heading__image"
+    imgClass="speaking-heading__image-tag"
+    aspectRatio="16 / 6"
+    fit="cover"
+    priority
+  />
+
+  <div class="speaking-heading__overlay">
+    <h1 class="speaking-heading__title text-gold text-center m-0">
+      {section.title}
+    </h1>
+    <p class="speaking-heading__description text-white m-0">
+      {section.description}
+    </p>
+  </div>
+</section>

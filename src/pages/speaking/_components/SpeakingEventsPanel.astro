@@ -5,9 +5,15 @@ import speakingEvents from '../../../data/speaking-events.json';
 
 <section
   id="speaking-events"
-  class="container-95 section-stack"
+  class="container-95 section-stack speaking-events-panel"
   aria-label="Speaking events section"
 >
   <h2 class="text-gold text-center m-0">Speaking Events</h2>
   <SpeakingEventsFeed items={speakingEvents} />
 </section>
+
+<style>
+  .speaking-events-panel {
+    margin-bottom: 4rem;
+  }
+</style>

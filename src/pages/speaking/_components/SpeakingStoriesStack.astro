@@ -1,0 +1,96 @@
+---
+import Image from '@ui/Image.astro';
+import './speaking-stories-stack.css';
+
+interface SpeakingStoryImage {
+  src: string;
+  alt: string;
+}
+
+type SpeakingStorySegment =
+  | {
+      type: 'text';
+      text: string;
+    }
+  | {
+      type: 'link';
+      label: string;
+      href: string;
+    };
+
+interface SpeakingStoryItem {
+  title: string;
+  image: SpeakingStoryImage;
+  bodySegments: SpeakingStorySegment[];
+}
+
+interface SpeakingStoriesSection {
+  id: string;
+  items: SpeakingStoryItem[];
+}
+
+interface Props {
+  section: SpeakingStoriesSection;
+}
+
+const { section } = Astro.props;
+---
+
+<section
+  id={section.id}
+  class="speaking-stories"
+  aria-label="Speaking stories section"
+>
+  {
+    section.items.map((item, index) => {
+      const isOddPosition = index % 2 === 0;
+
+      return (
+        <article
+          class:list={[
+            'speaking-stories__block',
+            isOddPosition
+              ? 'speaking-stories__block--dark'
+              : 'speaking-stories__block--light',
+          ]}
+        >
+          <div
+            class:list={[
+              'speaking-stories__inner',
+              'container-95',
+              !isOddPosition && 'speaking-stories__inner--reverse',
+            ]}
+          >
+            <h2 class="speaking-stories__title text-gold m-0">{item.title}</h2>
+
+            <Image
+              src={item.image.src}
+              alt={item.image.alt}
+              class="speaking-stories__image"
+              imgClass="speaking-stories__image-tag"
+              aspectRatio="4 / 3"
+              fit="cover"
+            />
+
+            <p class="speaking-stories__body text-white m-0">
+              {item.bodySegments.map((segment) =>
+                segment.type === 'link' ? (
+                  <a
+                    class="speaking-stories__inline-link"
+                    href={segment.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {segment.label}
+                  </a>
+                ) : (
+                  segment.text
+                ),
+              )}
+            </p>
+          </div>
+        </article>
+      );
+    })
+  }
+</section>
