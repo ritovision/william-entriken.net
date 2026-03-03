@@ -65,6 +65,8 @@ Use tokens defined in `src/styles/tokens.css` as source of truth:
 
 - Heading family: Avenir heavy fallback to Arial bold stack
 - Body family: Avenir light fallback to Roboto/system sans stack
+- Headings should be centered by default
+- Use Title Case for headings (capitalize major words; keep short prepositions/conjunctions/articles lowercase unless first or last)
 - Use black text on white backgrounds
 - Prefer gold/white text on dark backgrounds
 

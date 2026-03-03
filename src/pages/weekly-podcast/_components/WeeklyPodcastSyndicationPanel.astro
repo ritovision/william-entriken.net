@@ -1,0 +1,173 @@
+---
+import Image from "@ui/Image.astro";
+import "./weekly-podcast-syndication-panel.css";
+
+interface SyndicationPlatform {
+  label: string;
+  href: string;
+  imageSrc: string;
+  imageAlt: string;
+}
+
+interface SyndicationSection {
+  id: string;
+  title: string;
+  platforms: SyndicationPlatform[];
+}
+
+interface Props {
+  section: SyndicationSection;
+}
+
+const { section } = Astro.props;
+const platformPairs = section.platforms.reduce<SyndicationPlatform[][]>(
+  (pairs, platform, index) => {
+    if (index % 2 === 0) {
+      pairs.push([platform]);
+      return pairs;
+    }
+
+    pairs[pairs.length - 1].push(platform);
+    return pairs;
+  },
+  [],
+);
+---
+
+<section
+  id={section.id}
+  class="container-95 weekly-podcast-syndication section-stack"
+  aria-label={section.title}
+  data-weekly-syndication
+>
+  <div class="weekly-podcast-syndication__heading-clip">
+    <h2 class="weekly-podcast-syndication__heading text-gold text-center m-0" data-weekly-syndication-heading>
+      {section.title}
+    </h2>
+  </div>
+
+  <div class="weekly-podcast-syndication__pairs" aria-label="Podcast platform links">
+    {
+      platformPairs.map((pair) => (
+        <div class="weekly-podcast-syndication__platforms">
+          {pair.map((platform) => (
+            <a
+              href={platform.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Listen on ${platform.label}`}
+              class="weekly-podcast-syndication__platform-link"
+              data-weekly-syndication-link
+            >
+              <Image
+                src={platform.imageSrc}
+                alt={platform.imageAlt}
+                class="weekly-podcast-syndication__platform-image"
+                imgClass="weekly-podcast-syndication__platform-image-img"
+                aspectRatio="3 / 1"
+                fit="contain"
+              />
+            </a>
+          ))}
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<script>
+  const revealSyndicationPanel = (panel: HTMLElement) => {
+    const heading = panel.querySelector<HTMLElement>(
+      '[data-weekly-syndication-heading]',
+    );
+    const links = Array.from(
+      panel.querySelectorAll<HTMLElement>('[data-weekly-syndication-link]'),
+    );
+
+    if (heading) {
+      heading.classList.remove('weekly-podcast-syndication__heading--pre');
+      heading.style.setProperty('--animate-duration', '0.7s');
+      heading.classList.add('animate__animated', 'animate__fadeInUp');
+    }
+
+    for (const [index, link] of links.entries()) {
+      link.classList.remove('weekly-podcast-syndication__platform-link--pre');
+      link.style.setProperty('--animate-duration', '1s');
+      link.style.setProperty('--animate-delay', `${index * 0.08}s`);
+      link.classList.add('animate__animated', 'animate__fadeIn');
+    }
+  };
+
+  const bindSyndicationPanels = (root: ParentNode = document) => {
+    const panels = Array.from(
+      root.querySelectorAll<HTMLElement>('[data-weekly-syndication]'),
+    );
+    if (!panels.length) {
+      return;
+    }
+
+    const unboundPanels: HTMLElement[] = [];
+
+    for (const panel of panels) {
+      if (panel.dataset.weeklySyndicationBound === 'true') {
+        continue;
+      }
+
+      panel.dataset.weeklySyndicationBound = 'true';
+      unboundPanels.push(panel);
+
+      panel
+        .querySelector<HTMLElement>('[data-weekly-syndication-heading]')
+        ?.classList.add('weekly-podcast-syndication__heading--pre');
+
+      const links = Array.from(
+        panel.querySelectorAll<HTMLElement>('[data-weekly-syndication-link]'),
+      );
+      for (const link of links) {
+        link.classList.add('weekly-podcast-syndication__platform-link--pre');
+      }
+    }
+
+    if (!unboundPanels.length) {
+      return;
+    }
+
+    if (!('IntersectionObserver' in window)) {
+      for (const panel of unboundPanels) {
+        revealSyndicationPanel(panel);
+      }
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries, currentObserver) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) {
+            continue;
+          }
+
+          revealSyndicationPanel(entry.target as HTMLElement);
+          currentObserver.unobserve(entry.target);
+        }
+      },
+      {
+        threshold: 0.25,
+        rootMargin: '0px 0px -10% 0px',
+      },
+    );
+
+    for (const panel of unboundPanels) {
+      observer.observe(panel);
+    }
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => bindSyndicationPanels(), {
+      once: true,
+    });
+  } else {
+    bindSyndicationPanels();
+  }
+
+  document.addEventListener('astro:page-load', () => bindSyndicationPanels());
+</script>

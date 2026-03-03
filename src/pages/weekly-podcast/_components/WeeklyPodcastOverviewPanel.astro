@@ -1,0 +1,190 @@
+---
+import BrandTwitchIcon from "@ui/icons/brands/BrandTwitchIcon.astro";
+import BrandXIcon from "@ui/icons/brands/BrandXIcon.astro";
+import Button from "@ui/Button.astro";
+import Image from "@ui/Image.astro";
+import "./weekly-podcast-overview-panel.css";
+
+interface OverviewPoster {
+  src: string;
+  alt: string;
+}
+
+interface OverviewLeftColumn {
+  title: string;
+  lead: string;
+  detailsLines?: string[];
+  description: string;
+}
+
+interface OverviewRightColumn {
+  twitchPrompt: string;
+  twitchHref: string;
+  xPrompt: string;
+  xHref: string;
+  contributePrompt: string;
+  buttonLabel: string;
+  buttonHref: string;
+}
+
+interface OverviewSection {
+  id: string;
+  title: string;
+  poster: OverviewPoster;
+  leftColumn: OverviewLeftColumn;
+  rightColumn: OverviewRightColumn;
+}
+
+interface Props {
+  section: OverviewSection;
+}
+
+const { section } = Astro.props;
+---
+
+<section
+  id={section.id}
+  class="container-95 weekly-podcast-overview"
+  aria-label={section.title}
+  data-weekly-overview
+>
+  <h1 class="weekly-podcast-overview__title text-white text-center m-0">{section.title}</h1>
+
+  <Image
+    src={section.poster.src}
+    alt={section.poster.alt}
+    class="weekly-podcast-overview__poster animate__animated animate__backInUp"
+    imgClass="weekly-podcast-overview__poster-img"
+    aspectRatio="1 / 1"
+    fit="contain"
+    priority
+  />
+
+  <div class="weekly-podcast-overview__columns">
+    <div class="weekly-podcast-overview__column weekly-podcast-overview__column--left">
+      <h2 class="weekly-podcast-overview__left-title text-white m-0" data-weekly-overview-title>
+        {section.leftColumn.title}
+      </h2>
+      <p class="weekly-podcast-overview__lead text-gold m-0">{section.leftColumn.lead}</p>
+
+      <div class="weekly-podcast-overview__details">
+        {
+          (section.leftColumn.detailsLines ?? []).map((line) => (
+            <p class="weekly-podcast-overview__detail-line text-white m-0">{line}</p>
+          ))
+        }
+      </div>
+
+      <p class="weekly-podcast-overview__description text-white m-0">{section.leftColumn.description}</p>
+    </div>
+
+    <div class="weekly-podcast-overview__column weekly-podcast-overview__column--right">
+      <p class="weekly-podcast-overview__prompt text-white m-0">{section.rightColumn.twitchPrompt}</p>
+      <a
+        href={section.rightColumn.twitchHref}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Watch Community Service Hour on Twitch"
+        class="weekly-podcast-overview__icon-link text-gold"
+      >
+        <BrandTwitchIcon class="weekly-podcast-overview__icon" />
+      </a>
+
+      <p class="weekly-podcast-overview__prompt text-white m-0">{section.rightColumn.xPrompt}</p>
+      <a
+        href={section.rightColumn.xHref}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Join Community Service Hour discussion on X"
+        class="weekly-podcast-overview__icon-link text-gold"
+      >
+        <BrandXIcon class="weekly-podcast-overview__icon" />
+      </a>
+
+      <p class="weekly-podcast-overview__prompt text-white m-0">
+        {section.rightColumn.contributePrompt}
+      </p>
+
+      <Button
+        href={section.rightColumn.buttonHref}
+        label={section.rightColumn.buttonLabel}
+        variant="gold-pill"
+        class="weekly-podcast-overview__button"
+      />
+    </div>
+  </div>
+</section>
+
+<script>
+  const revealOverviewTitle = (panel: HTMLElement) => {
+    const title = panel.querySelector<HTMLElement>('[data-weekly-overview-title]');
+    if (!title) {
+      return;
+    }
+
+    title.classList.remove('weekly-podcast-overview__left-title--pre');
+    title.classList.add('weekly-podcast-overview__left-title--reveal');
+  };
+
+  const bindWeeklyOverviewPanels = (root: ParentNode = document) => {
+    const panels = Array.from(root.querySelectorAll<HTMLElement>('[data-weekly-overview]'));
+    if (!panels.length) {
+      return;
+    }
+
+    const unboundPanels: HTMLElement[] = [];
+
+    for (const panel of panels) {
+      if (panel.dataset.weeklyOverviewBound === 'true') {
+        continue;
+      }
+
+      panel.dataset.weeklyOverviewBound = 'true';
+      unboundPanels.push(panel);
+      panel
+        .querySelector<HTMLElement>('[data-weekly-overview-title]')
+        ?.classList.add('weekly-podcast-overview__left-title--pre');
+    }
+
+    if (!unboundPanels.length) {
+      return;
+    }
+
+    if (!('IntersectionObserver' in window)) {
+      for (const panel of unboundPanels) {
+        revealOverviewTitle(panel);
+      }
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries, currentObserver) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) {
+            continue;
+          }
+
+          revealOverviewTitle(entry.target as HTMLElement);
+          currentObserver.unobserve(entry.target);
+        }
+      },
+      {
+        threshold: 0.3,
+      },
+    );
+
+    for (const panel of unboundPanels) {
+      observer.observe(panel);
+    }
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => bindWeeklyOverviewPanels(), {
+      once: true,
+    });
+  } else {
+    bindWeeklyOverviewPanels();
+  }
+
+  document.addEventListener('astro:page-load', () => bindWeeklyOverviewPanels());
+</script>
