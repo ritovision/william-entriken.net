@@ -1,10 +1,31 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
+import ServicesFormPanel from "./_components/ServicesFormPanel.astro";
 import content from "./_content.json";
 
-const { seo } = content;
+interface ServicesPageContent {
+  seo: {
+    title: string;
+    description: string;
+  };
+  formSection: {
+    id: string;
+    title: string;
+    submitLabel: string;
+  };
+}
+
+const { seo, formSection } = content as ServicesPageContent;
+const sidebarToc = [
+  {
+    label: formSection.title,
+    targetId: formSection.id,
+  },
+];
 ---
 
-<BaseLayout seo={seo}>
-  <main class="page-placeholder"></main>
+<BaseLayout seo={seo} sidebarToc={sidebarToc}>
+  <main class="page-placeholder">
+    <ServicesFormPanel section={formSection} />
+  </main>
 </BaseLayout>

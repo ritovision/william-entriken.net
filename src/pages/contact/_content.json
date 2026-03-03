@@ -2,5 +2,10 @@
   "seo": {
     "title": "Contact | William Entriken",
     "description": ""
+  },
+  "formSection": {
+    "id": "contact-form-section",
+    "title": "Contact",
+    "submitLabel": "Send"
   }
 }

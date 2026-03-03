@@ -1,13 +1,30 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 import SpeakingEventsPanel from './_components/SpeakingEventsPanel.astro';
+import SpeakingFormPanel from './_components/SpeakingFormPanel.astro';
 import content from './_content.json';
 
-const { seo } = content;
+interface SpeakingPageContent {
+  seo: {
+    title: string;
+    description: string;
+  };
+  formSection: {
+    id: string;
+    title: string;
+    submitLabel: string;
+  };
+}
+
+const { seo, formSection } = content as SpeakingPageContent;
 const sidebarToc = [
   {
     label: 'Speaking Events',
     targetId: 'speaking-events',
+  },
+  {
+    label: formSection.title,
+    targetId: formSection.id,
   },
 ];
 ---
@@ -15,5 +32,6 @@ const sidebarToc = [
 <BaseLayout seo={seo} sidebarToc={sidebarToc}>
   <main class="page-placeholder">
     <SpeakingEventsPanel />
+    <SpeakingFormPanel section={formSection} />
   </main>
 </BaseLayout>

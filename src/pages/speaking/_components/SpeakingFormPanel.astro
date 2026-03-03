@@ -1,0 +1,130 @@
+---
+import FormResultModal from '@sections/FormResultModal.astro';
+
+interface SpeakingFormSection {
+  id: string;
+  title: string;
+  submitLabel: string;
+}
+
+interface Props {
+  section: SpeakingFormSection;
+}
+
+const { section } = Astro.props;
+---
+
+<section
+  id={section.id}
+  class="forms-panel container-95 section-stack"
+  aria-label={`${section.title} section`}
+>
+  <h2 class="forms-panel__title text-gold text-center m-0">{section.title}</h2>
+
+  <form
+    id="speaking-form"
+    class="site-form"
+    data-form-kind="speaking"
+    novalidate
+  >
+    <div class="site-form__grid">
+      <input
+        type="text"
+        name="firstName"
+        placeholder="First Name *"
+        required
+        maxlength="50"
+      />
+      <input
+        type="text"
+        name="lastName"
+        placeholder="Last Name"
+        maxlength="50"
+      />
+
+      <input
+        type="text"
+        name="organizationName"
+        placeholder="Organization *"
+        required
+        maxlength="50"
+      />
+      <input
+        type="text"
+        name="position"
+        placeholder="Position *"
+        required
+        maxlength="50"
+      />
+
+      <div class="site-form__date-grid site-form__full">
+        <select name="dateMonth" required>
+          <option value="" disabled selected>Month</option>
+          <option>Jan</option>
+          <option>Feb</option>
+          <option>Mar</option>
+          <option>Apr</option>
+          <option>May</option>
+          <option>Jun</option>
+          <option>Jul</option>
+          <option>Aug</option>
+          <option>Sep</option>
+          <option>Oct</option>
+          <option>Nov</option>
+          <option>Dec</option>
+        </select>
+
+        <input
+          type="text"
+          name="dateDay"
+          placeholder="Day"
+          maxlength="2"
+          inputmode="numeric"
+          pattern="\\d*"
+        />
+
+        <input
+          type="text"
+          name="dateYear"
+          placeholder="Year"
+          maxlength="4"
+          inputmode="numeric"
+          pattern="\\d*"
+        />
+      </div>
+
+      <input
+        type="email"
+        name="email"
+        placeholder="Email *"
+        required
+        maxlength="50"
+      />
+      <input type="tel" name="phone" placeholder="Phone" maxlength="50" />
+
+      <textarea
+        name="details"
+        class="site-form__full"
+        placeholder="Details About Opportunity *"
+        rows="4"
+        required
+        maxlength="2500"></textarea>
+
+      <button
+        type="submit"
+        class="btn btn-brand-gold-pill site-form__submit site-form__full"
+      >
+        {section.submitLabel}
+      </button>
+
+    </div>
+  </form>
+
+  <FormResultModal idPrefix="speaking" />
+</section>
+
+<script>
+  import { initFormRuntime } from '@sections/scripts/formRuntime';
+
+  initFormRuntime();
+</script>

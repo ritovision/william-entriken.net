@@ -1,10 +1,31 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
+import ContactFormPanel from "./_components/ContactFormPanel.astro";
 import content from "./_content.json";
 
-const { seo } = content;
+interface ContactPageContent {
+  seo: {
+    title: string;
+    description: string;
+  };
+  formSection: {
+    id: string;
+    title: string;
+    submitLabel: string;
+  };
+}
+
+const { seo, formSection } = content as ContactPageContent;
+const sidebarToc = [
+  {
+    label: formSection.title,
+    targetId: formSection.id,
+  },
+];
 ---
 
-<BaseLayout seo={seo}>
-  <main class="page-placeholder"></main>
+<BaseLayout seo={seo} sidebarToc={sidebarToc}>
+  <main class="page-placeholder">
+    <ContactFormPanel section={formSection} />
+  </main>
 </BaseLayout>

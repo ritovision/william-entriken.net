@@ -13,7 +13,9 @@ export default getViteConfig({
       include: [
         'src/components/layout/navigation/scripts/ai-assist/**/*.ts',
         'src/components/sections/scripts/coverageFeedRuntime.ts',
+        'src/components/sections/scripts/formRuntime.ts',
         'src/components/shared/coverageData.ts',
+        'src/components/shared/forms/**/*.ts',
       ],
     },
   },

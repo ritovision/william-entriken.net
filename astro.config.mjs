@@ -14,6 +14,9 @@ export default defineConfig({
     port: 4321,
   },
   vite: {
+    optimizeDeps: {
+      include: ['zod'],
+    },
     css: {
       preprocessorOptions: {
         scss: {

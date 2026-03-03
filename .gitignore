@@ -4,3 +4,4 @@ dist/
 .lighthouseci/
 .DS_Store
 coverage/
+.env

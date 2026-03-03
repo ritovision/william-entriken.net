@@ -14,4 +14,21 @@
   --radius-none: 0;
   --radius-btn-navy: 8px;
   --radius-btn-gold-pill: 50px;
+
+  --form-max-width: 800px;
+  --form-field-bg: var(--color-bg-heading);
+  --form-field-text: var(--color-white);
+  --form-field-placeholder: var(--color-white);
+  --form-field-radius: 10px;
+  --form-field-shadow: 0 2px 4px rgb(0 0 0 / 0.2);
+  --form-field-padding-y: 8px;
+  --form-field-padding-x: 8px;
+  --form-message-color: var(--color-white);
+  --form-message-min-height: 1.2em;
+  --form-invalid-ring: #dc3545;
+  --form-modal-z-index: 3;
+  --form-modal-overlay-bg: rgb(0 0 0 / 0.7);
+  --form-modal-overlay-blur: 2px;
+  --form-modal-max-height: min(84svh, 640px);
+  --form-modal-scroll-max-height: min(48svh, 340px);
 }

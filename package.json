@@ -37,7 +37,8 @@
     "bootstrap": "^5.3.8",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
-    "swiper": "^12.1.2"
+    "swiper": "^12.1.2",
+    "zod": "^4.3.6"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.6",

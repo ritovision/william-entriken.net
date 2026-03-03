@@ -2,5 +2,10 @@
   "seo": {
     "title": "Speaking | William Entriken",
     "description": ""
+  },
+  "formSection": {
+    "id": "speaking-form-section",
+    "title": "Speaking Inquiry",
+    "submitLabel": "Submit"
   }
 }
