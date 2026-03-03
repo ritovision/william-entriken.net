@@ -4,22 +4,125 @@ import PressContactCard from '@sections/PressContactCard.astro';
 import PressCoveragePanel from './_components/PressCoveragePanel.astro';
 import content from './_content.json';
 
-const { seo, pressContact } = content;
+interface FactSheetField {
+  label: string;
+  value?: string;
+  href?: string;
+  items?: string[];
+  links?: { name: string; url: string; description?: string }[];
+}
+
+const { seo, pressContact, shortBio, detailedBio, importantClarifications, factSheet } = content;
 const sidebarToc = [
-  {
-    label: pressContact.title,
-    targetId: pressContact.id,
-  },
-  {
-    label: 'Press List',
-    targetId: 'press-list',
-  },
+  { label: pressContact.title, targetId: pressContact.id },
+  { label: shortBio.title, targetId: shortBio.id },
+  { label: detailedBio.title, targetId: detailedBio.id },
+  { label: importantClarifications.title, targetId: importantClarifications.id },
+  { label: factSheet.title, targetId: factSheet.id },
+  { label: 'Press List', targetId: 'press-list' },
 ];
 ---
 
 <BaseLayout seo={seo} sidebarToc={sidebarToc}>
   <main class="page-placeholder">
-    <PressContactCard {...pressContact} />
+    <div class="container-95" style="margin-top: 2rem;">
+      <PressContactCard {...pressContact} />
+    </div>
+
+    <h1 class="text-gold text-center" style="margin: 3rem 0;">Press Kit</h1>
+
+    <section id={shortBio.id} class="press-block container-95 section-stack bg-heading-gray border-gold" aria-label={shortBio.title}>
+      <h2 class="text-gold text-center m-0">{shortBio.title}</h2>
+      <p class="text-white m-0">{shortBio.body}</p>
+    </section>
+
+    <section id={detailedBio.id} class="press-block container-95 section-stack bg-content-dark border-gold" aria-label={detailedBio.title}>
+      <h2 class="text-gold text-center m-0">{detailedBio.title}</h2>
+      {detailedBio.paragraphs.map((p: string) => <p class="text-white m-0">{p}</p>)}
+    </section>
+
+    <section
+      id={importantClarifications.id}
+      class="press-block container-95 section-stack bg-heading-gray border-gold"
+      aria-label={importantClarifications.title}
+    >
+      <h2 class="text-gold text-center m-0">{importantClarifications.title}</h2>
+      <p class="text-white m-0">{importantClarifications.body}</p>
+    </section>
+
+    <section
+      id={factSheet.id}
+      class="press-block container-95 section-stack bg-primary-navy border-gold"
+      aria-label={factSheet.title}
+    >
+      <h2 class="text-gold text-center m-0">{factSheet.title}</h2>
+      <p class="text-white m-0">
+        Information may also be found on the Wikipedia article entitled &ldquo;<a href="https://en.wikipedia.org/wiki/William_Entriken" class="text-white" target="_blank" rel="noopener noreferrer">William Entriken</a>&rdquo; and possibly other articles relating to civic hacking, NFTs, blockchain and cybersecurity.
+      </p>
+
+      <dl class="text-white m-0">
+        {(factSheet.fields as FactSheetField[]).map((field) => (
+          <>
+            <dt class="text-gold"><strong>{field.label}</strong></dt>
+            {field.value && (
+              <dd>
+                {field.href ? (
+                  <a href={field.href} class="text-white">{field.value}</a>
+                ) : (
+                  field.value
+                )}
+              </dd>
+            )}
+            {field.items && (
+              <dd>
+                <ul>
+                  {field.items.map((item: string) => <li>{item}</li>)}
+                </ul>
+              </dd>
+            )}
+            {field.links && (
+              <dd>
+                <ul>
+                  {field.links.map((link: { name: string; url: string; description?: string }) => (
+                    <li>
+                      <a href={link.url} class="text-white" target="_blank" rel="noopener noreferrer">
+                        {link.name}
+                      </a>
+                      {link.description && ` \u2014 ${link.description}`}
+                    </li>
+                  ))}
+                </ul>
+              </dd>
+            )}
+          </>
+        ))}
+      </dl>
+    </section>
+
     <PressCoveragePanel />
   </main>
 </BaseLayout>
+
+<style>
+  .press-block {
+    padding: 1rem;
+  }
+
+  .press-block h2 {
+    margin-bottom: 1.5rem !important;
+  }
+
+  .press-block p + p {
+    margin-top: 1.25rem !important;
+  }
+
+  .press-block dl {
+    margin-bottom: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .press-block {
+      padding: 1.25rem;
+    }
+  }
+</style>
