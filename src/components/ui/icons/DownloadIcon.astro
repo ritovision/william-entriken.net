@@ -1,0 +1,37 @@
+---
+interface Props {
+  class?: string;
+  title?: string;
+  ariaLabel?: string;
+  decorative?: boolean;
+}
+
+const {
+  class: className = '',
+  title,
+  ariaLabel,
+  decorative = true,
+} = Astro.props;
+
+const normalizedAriaLabel = ariaLabel?.trim() ?? '';
+const hasAriaLabel = normalizedAriaLabel.length > 0;
+const isDecorative = decorative && !hasAriaLabel;
+---
+
+<svg
+  class={className}
+  viewBox="0 0 29.978 29.978"
+  aria-hidden={isDecorative ? 'true' : undefined}
+  aria-label={hasAriaLabel ? normalizedAriaLabel : undefined}
+  role={hasAriaLabel ? 'img' : undefined}
+>
+  {title && <title>{title}</title>}
+  <path
+    fill="currentColor"
+    d="M25.462 19.105v6.848H4.515v-6.848H.489v8.861c0 1.111.9 2.012 2.016 2.012h24.967c1.115 0 2.016-.9 2.016-2.012v-8.861h-4.026Z"
+  />
+  <path
+    fill="currentColor"
+    d="M14.62 18.426 8.856 11.46s-.877-.828.074-.828h3.248s0-.557 0-1.416V.493S12.049 0 12.793 0c.75 0 4.035 0 4.572 0 .536 0 .524.416.524.416 0 1.762 0 6.373 0 8.742 0 .768 0 1.266 0 1.266s1.842 0 2.998 0c1.154 0 .285.867.285.867s-4.904 6.51-5.588 7.193c-.492.495-.964-.058-.964-.058Z"
+  />
+</svg>

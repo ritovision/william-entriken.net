@@ -1,0 +1,266 @@
+---
+import DownloadIcon from '@ui/icons/DownloadIcon.astro';
+import Image from '@ui/Image.astro';
+import './press-media-gallery.css';
+
+interface MediaGalleryImage {
+  src: string;
+  alt: string;
+}
+
+interface Props {
+  id: string;
+  title: string;
+  expandLabel: string;
+  visibleCount: {
+    mobile: number;
+    desktop: number;
+  };
+  images: MediaGalleryImage[];
+}
+
+const { id, title, expandLabel, visibleCount, images } = Astro.props;
+const listId = `${id}-media-list`;
+---
+
+<section
+  id={id}
+  class="press-media-gallery container-95 section-stack"
+  aria-label={title}
+  data-press-media-gallery
+  data-visible-mobile={String(visibleCount.mobile)}
+  data-visible-desktop={String(visibleCount.desktop)}
+>
+  <h2 class="text-gold text-center m-0">{title}</h2>
+
+  <div class="press-media-gallery__viewport bg-primary-navy border-gold" data-press-media-viewport>
+    <div
+      id={listId}
+      class="press-media-gallery__masonry"
+      data-press-media-list
+      role="list"
+      aria-label={`${title} items`}
+    >
+      {
+        images.map((image, index) => {
+          const overlayId = `${id}-media-overlay-${index + 1}`;
+
+          return (
+            <article
+              class="press-media-gallery__item border-gold"
+              data-press-media-item
+              role="listitem"
+            >
+              <button
+                type="button"
+                class="press-media-gallery__toggle"
+                aria-label={`Show media actions for ${image.alt}`}
+                aria-expanded="false"
+                aria-controls={overlayId}
+                data-press-media-toggle
+              >
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  class="press-media-gallery__image"
+                  imgClass="press-media-gallery__image-tag"
+                  aspectRatio="auto"
+                  fit="contain"
+                />
+              </button>
+
+              <div id={overlayId} class="press-media-gallery__overlay" role="group" aria-label={`Actions for ${image.alt}`}>
+                <p class="press-media-gallery__overlay-label m-0">{image.alt}</p>
+                <a
+                  href={image.src}
+                  download
+                  class="press-media-gallery__download text-gold"
+                  aria-label={`Download ${image.alt}`}
+                  data-press-media-download
+                >
+                  <DownloadIcon class="press-media-gallery__download-icon" />
+                </a>
+              </div>
+            </article>
+          );
+        })
+      }
+    </div>
+
+    <div class="press-media-gallery__expand" data-press-media-expand-wrap>
+      <div class="press-media-gallery__expand-gradient" aria-hidden="true"></div>
+      <button
+        type="button"
+        class="btn b-g-default-button press-media-gallery__expand-button"
+        data-press-media-expand
+        aria-expanded="false"
+        aria-controls={listId}
+      >
+        {expandLabel}
+      </button>
+    </div>
+  </div>
+</section>
+
+<script>
+  const DESKTOP_MEDIA_QUERY = '(min-width: 992px)';
+
+  interface PressMediaGalleryState {
+    expanded: boolean;
+    mobileVisible: number;
+    desktopVisible: number;
+  }
+
+  interface PressMediaGalleryElements {
+    root: HTMLElement;
+    items: HTMLElement[];
+    expandWrap: HTMLElement;
+    expandButton: HTMLButtonElement;
+  }
+
+  const readPositiveInt = (value: string | undefined, fallback: number): number => {
+    const parsed = Number.parseInt(value ?? '', 10);
+    return Number.isFinite(parsed) && parsed > 0 ? parsed : fallback;
+  };
+
+  const clearActiveCards = (items: HTMLElement[]): void => {
+    for (const item of items) {
+      item.classList.remove('is-active');
+      const toggle = item.querySelector<HTMLButtonElement>('[data-press-media-toggle]');
+      toggle?.setAttribute('aria-expanded', 'false');
+    }
+  };
+
+  const isDesktopViewport = (): boolean => window.matchMedia(DESKTOP_MEDIA_QUERY).matches;
+
+  const syncGalleryVisibility = (
+    elements: PressMediaGalleryElements,
+    state: PressMediaGalleryState,
+  ): void => {
+    const baseLimit = isDesktopViewport() ? state.desktopVisible : state.mobileVisible;
+    const limit = state.expanded ? elements.items.length : baseLimit;
+
+    let hasHiddenItems = false;
+    for (const [index, item] of elements.items.entries()) {
+      const shouldHide = index >= limit;
+      item.hidden = shouldHide;
+      if (shouldHide) {
+        hasHiddenItems = true;
+      }
+    }
+
+    if (hasHiddenItems) {
+      clearActiveCards(elements.items);
+    }
+
+    const showExpand = !state.expanded && hasHiddenItems;
+    elements.expandWrap.hidden = !showExpand;
+    elements.expandButton.hidden = !showExpand;
+    elements.expandButton.setAttribute('aria-expanded', state.expanded ? 'true' : 'false');
+  };
+
+  const toggleCardActiveState = (items: HTMLElement[], nextCard: HTMLElement): void => {
+    const shouldActivate = !nextCard.classList.contains('is-active');
+    clearActiveCards(items);
+    if (!shouldActivate) {
+      return;
+    }
+
+    nextCard.classList.add('is-active');
+    const toggle = nextCard.querySelector<HTMLButtonElement>('[data-press-media-toggle]');
+    toggle?.setAttribute('aria-expanded', 'true');
+  };
+
+  const bindPressMediaGallery = (root: HTMLElement): void => {
+    if (root.dataset.pressMediaBound === 'true') {
+      return;
+    }
+
+    const items = Array.from(
+      root.querySelectorAll<HTMLElement>('[data-press-media-item]'),
+    );
+    const expandWrap = root.querySelector<HTMLElement>('[data-press-media-expand-wrap]');
+    const expandButton =
+      root.querySelector<HTMLButtonElement>('[data-press-media-expand]');
+
+    if (!items.length || !expandWrap || !expandButton) {
+      return;
+    }
+
+    root.dataset.pressMediaBound = 'true';
+
+    const state: PressMediaGalleryState = {
+      expanded: false,
+      mobileVisible: readPositiveInt(root.dataset.visibleMobile, 4),
+      desktopVisible: readPositiveInt(root.dataset.visibleDesktop, 6),
+    };
+
+    const elements: PressMediaGalleryElements = {
+      root,
+      items,
+      expandWrap,
+      expandButton,
+    };
+
+    for (const item of items) {
+      item
+        .querySelector<HTMLButtonElement>('[data-press-media-toggle]')
+        ?.addEventListener('click', () => {
+          toggleCardActiveState(items, item);
+        });
+
+      item
+        .querySelector<HTMLElement>('[data-press-media-download]')
+        ?.addEventListener('click', (event) => {
+          event.stopPropagation();
+        });
+    }
+
+    document.addEventListener('click', (event) => {
+      const target = event.target as Element | null;
+      if (target?.closest('[data-press-media-item]')) {
+        return;
+      }
+
+      clearActiveCards(items);
+    });
+
+    document.addEventListener('keydown', (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        clearActiveCards(items);
+      }
+    });
+
+    expandButton.addEventListener('click', () => {
+      state.expanded = true;
+      elements.root.classList.add('is-expanded');
+      syncGalleryVisibility(elements, state);
+    });
+
+    window.addEventListener('resize', () => {
+      syncGalleryVisibility(elements, state);
+    });
+
+    syncGalleryVisibility(elements, state);
+  };
+
+  const bindAllPressMediaGalleries = (scope: ParentNode = document): void => {
+    const galleries = Array.from(
+      scope.querySelectorAll<HTMLElement>('[data-press-media-gallery]'),
+    );
+
+    for (const gallery of galleries) {
+      bindPressMediaGallery(gallery);
+    }
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => bindAllPressMediaGalleries(), {
+      once: true,
+    });
+  } else {
+    bindAllPressMediaGalleries();
+  }
+
+  document.addEventListener('astro:page-load', () => bindAllPressMediaGalleries());
+</script>

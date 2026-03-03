@@ -9,7 +9,7 @@
     "description": "Please use the email below:",
     "background": "content-dark",
     "image": {
-      "src": "/images/shared/will-sunglasses.jpg",
+      "src": "/images/shared/will/will-sunglasses.jpg",
       "alt": "William Entriken wearing sunglasses"
     },
     "email": {
@@ -113,6 +113,45 @@
           { "name": "YouTube", "url": "https://www.youtube.com/user/fulldecent" },
           { "name": "OpenSea", "url": "https://opensea.io/fulldecent" }
         ]
+      }
+    ]
+  },
+  "mediaGallery": {
+    "id": "media-gallery",
+    "title": "Media Gallery",
+    "expandLabel": "See More",
+    "visibleCount": {
+      "mobile": 4,
+      "desktop": 6
+    },
+    "images": [
+      {
+        "src": "/images/shared/will/Will-NFT-Tallinn.jpg",
+        "alt": "Will NFT Tallinn"
+      },
+      {
+        "src": "/images/shared/will/Will-Entriken.png",
+        "alt": "Will Entriken"
+      },
+      {
+        "src": "/images/shared/will/will-sunglasses.jpg",
+        "alt": "Will Sunglasses"
+      },
+      {
+        "src": "/images/shared/will/Will-headshot.jpg",
+        "alt": "Will Headshot"
+      },
+      {
+        "src": "/images/shared/will/Will-event-mural.png",
+        "alt": "Will Event Mural"
+      },
+      {
+        "src": "/images/shared/will/Will-mic-panel.jpg",
+        "alt": "Will Mic Panel"
+      },
+      {
+        "src": "/images/shared/will/will-suit.jpg",
+        "alt": "Will Suit"
       }
     ]
   }

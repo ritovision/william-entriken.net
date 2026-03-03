@@ -2,6 +2,7 @@
 import BaseLayout from '@layouts/BaseLayout.astro';
 import PressContactCard from '@sections/PressContactCard.astro';
 import PressCoveragePanel from './_components/PressCoveragePanel.astro';
+import PressMediaGallery from './_components/PressMediaGallery.astro';
 import content from './_content.json';
 
 interface FactSheetField {
@@ -12,13 +13,82 @@ interface FactSheetField {
   links?: { name: string; url: string; description?: string }[];
 }
 
-const { seo, pressContact, shortBio, detailedBio, importantClarifications, factSheet } = content;
+interface PressContactSection {
+  id: string;
+  title: string;
+  description: string;
+  background: 'content-dark' | 'heading-gray' | 'primary-navy';
+  image: {
+    src: string;
+    alt: string;
+  };
+  email: {
+    address: string;
+    label: string;
+  };
+}
+
+interface BioSection {
+  id: string;
+  title: string;
+  body: string;
+}
+
+interface DetailedBioSection {
+  id: string;
+  title: string;
+  paragraphs: string[];
+}
+
+interface MediaGalleryImage {
+  src: string;
+  alt: string;
+}
+
+interface MediaGallerySection {
+  id: string;
+  title: string;
+  expandLabel: string;
+  visibleCount: {
+    mobile: number;
+    desktop: number;
+  };
+  images: MediaGalleryImage[];
+}
+
+interface PressPageContent {
+  seo: {
+    title: string;
+    description: string;
+  };
+  pressContact: PressContactSection;
+  shortBio: BioSection;
+  detailedBio: DetailedBioSection;
+  importantClarifications: BioSection;
+  factSheet: {
+    id: string;
+    title: string;
+    fields: FactSheetField[];
+  };
+  mediaGallery: MediaGallerySection;
+}
+
+const {
+  seo,
+  pressContact,
+  shortBio,
+  detailedBio,
+  importantClarifications,
+  factSheet,
+  mediaGallery,
+} = content as PressPageContent;
 const sidebarToc = [
   { label: pressContact.title, targetId: pressContact.id },
   { label: shortBio.title, targetId: shortBio.id },
   { label: detailedBio.title, targetId: detailedBio.id },
   { label: importantClarifications.title, targetId: importantClarifications.id },
   { label: factSheet.title, targetId: factSheet.id },
+  { label: mediaGallery.title, targetId: mediaGallery.id },
   { label: 'Press List', targetId: 'press-list' },
 ];
 ---
@@ -98,6 +168,8 @@ const sidebarToc = [
         ))}
       </dl>
     </section>
+
+    <PressMediaGallery {...mediaGallery} />
 
     <PressCoveragePanel />
   </main>

@@ -1,0 +1,148 @@
+.press-media-gallery {
+  position: relative;
+  margin-top: var(--space-section-xl);
+}
+
+.press-media-gallery__viewport {
+  position: relative;
+  overflow: hidden;
+  padding: 0.75rem;
+}
+
+.press-media-gallery__masonry {
+  column-gap: 0.75rem;
+  column-count: 1;
+}
+
+.press-media-gallery__item {
+  position: relative;
+  margin: 0 0 0.75rem;
+  break-inside: avoid;
+  display: block;
+  background: var(--color-primary);
+  overflow: hidden;
+}
+
+.press-media-gallery__toggle {
+  width: 100%;
+  display: block;
+  padding: 0;
+  border: 0;
+  margin: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.press-media-gallery__toggle:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.press-media-gallery__item[hidden] {
+  display: none;
+}
+
+.press-media-gallery__image {
+  width: 100%;
+  display: block;
+}
+
+.press-media-gallery__image-tag {
+  width: 100%;
+  height: auto;
+  border: 0;
+}
+
+.press-media-gallery__overlay {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem;
+  text-align: center;
+  background: rgb(0 0 0 / 0.75);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.press-media-gallery__item:hover .press-media-gallery__overlay,
+.press-media-gallery__item:focus-within .press-media-gallery__overlay,
+.press-media-gallery__item.is-active .press-media-gallery__overlay {
+  opacity: 1;
+}
+
+.press-media-gallery__overlay-label {
+  font-family: var(--font-heading);
+  color: var(--color-accent);
+  line-height: 1.25;
+}
+
+.press-media-gallery__download {
+  width: 2.25rem;
+  height: 2.25rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  border: 1px solid var(--border-gold);
+  border-radius: var(--radius-none);
+  background: rgb(var(--color-primary-rgb) / 0.55);
+  pointer-events: auto;
+}
+
+.press-media-gallery__download:hover,
+.press-media-gallery__download:focus-visible {
+  background: var(--color-accent);
+  color: var(--color-primary);
+}
+
+.press-media-gallery__download-icon {
+  width: 1.35rem;
+  height: 1.35rem;
+}
+
+.press-media-gallery__expand {
+  position: absolute;
+  inset: auto 0 0;
+  height: clamp(88px, 18svh, 130px);
+  display: grid;
+  align-content: end;
+  justify-items: center;
+  padding: 0.75rem;
+  pointer-events: none;
+}
+
+.press-media-gallery__expand-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgb(var(--color-primary-rgb) / 0) 0%,
+    rgb(var(--color-primary-rgb) / 0.74) 45%,
+    rgb(var(--color-primary-rgb) / 1) 100%
+  );
+}
+
+.press-media-gallery__expand-button {
+  position: relative;
+  z-index: 1;
+  pointer-events: auto;
+  min-width: 180px;
+  padding: 0.6rem 1.25rem;
+  font-family: var(--font-heading);
+}
+
+@media (min-width: 576px) {
+  .press-media-gallery__masonry {
+    column-count: 2;
+  }
+}
+
+@media (min-width: 992px) {
+  .press-media-gallery__masonry {
+    column-count: 3;
+  }
+}
