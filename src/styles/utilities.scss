@@ -71,4 +71,17 @@
   color: var(--color-primary);
   border: 1px solid var(--border-gold);
   border-radius: var(--radius-btn-gold-pill);
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.btn-brand-gold-pill:hover,
+.btn-brand-gold-pill:focus-visible,
+.btn-brand-gold-pill:active,
+.btn-brand-gold-pill.active {
+  background: transparent;
+  color: var(--color-accent);
+  border-color: var(--border-gold);
 }

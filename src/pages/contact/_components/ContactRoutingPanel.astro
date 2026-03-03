@@ -1,0 +1,202 @@
+---
+import Button from '@ui/Button.astro';
+import Image from '@ui/Image.astro';
+import './contact-routing-panel.css';
+
+interface ContactCta {
+  label: string;
+  href: string;
+}
+
+interface ContactEmail {
+  address: string;
+  label: string;
+}
+
+interface ContactImage {
+  src: string;
+  alt: string;
+}
+
+interface ContactRoutingSection {
+  id: string;
+  title: string;
+  description: string;
+  background: 'content-dark' | 'heading-gray' | 'primary-navy';
+  border?: boolean;
+  email?: ContactEmail;
+  image?: ContactImage;
+  cta?: ContactCta;
+}
+
+interface Props {
+  warning: string;
+  sections: ContactRoutingSection[];
+}
+
+const { warning, sections } = Astro.props;
+
+const getBackgroundClass = (background: ContactRoutingSection['background']) =>
+  background === 'content-dark'
+    ? 'bg-content-dark'
+    : background === 'heading-gray'
+      ? 'bg-heading-gray'
+      : 'bg-primary-navy';
+---
+
+<section class="container-95 section-stack contact-routing">
+  <section class="bg-primary-navy contact-routing__warning" aria-label="Contact warning">
+    <p class="text-white m-0">
+      <strong>{warning}</strong>
+    </p>
+  </section>
+
+  {
+    sections.map((section) => (
+      <section
+        id={section.id}
+        class:list={[
+          'contact-routing__block',
+          section.image ? 'contact-routing__block--press' : 'contact-routing__block--standard',
+          'section-stack',
+          getBackgroundClass(section.background),
+          section.border && 'border-gold',
+        ]}
+        aria-label={section.title}
+        data-contact-routing-block
+      >
+        {section.image ? (
+          <>
+            <h2 class="contact-routing__title contact-routing__title--center text-gold m-0">
+              {section.title}
+            </h2>
+
+            <div class="contact-routing__press-layout">
+              <div class="contact-routing__press-copy">
+                <p class="contact-routing__description text-white m-0">{section.description}</p>
+                {section.email && (
+                  <a class="contact-routing__email text-white" href={`mailto:${section.email.address}`}>
+                    {section.email.label}
+                  </a>
+                )}
+              </div>
+
+              <Image
+                src={section.image.src}
+                alt={section.image.alt}
+                class="contact-routing__image"
+                imgClass="contact-routing__image-img"
+                aspectRatio="1 / 1"
+                fit="cover"
+              />
+            </div>
+          </>
+        ) : (
+          <>
+            <h2 class="contact-routing__title text-gold m-0">{section.title}</h2>
+            <p class="contact-routing__description text-white m-0">{section.description}</p>
+
+            {section.email && (
+              <a class="contact-routing__email text-white" href={`mailto:${section.email.address}`}>
+                {section.email.label}
+              </a>
+            )}
+          </>
+        )}
+
+        {section.cta && (
+          <Button
+            href={section.cta.href}
+            label={section.cta.label}
+            variant="gold-pill"
+            class="contact-routing__button"
+          />
+        )}
+      </section>
+    ))
+  }
+</section>
+
+<script>
+  const REVEAL_DELAYS_MS: Record<string, number> = {
+    'contact-press': 0,
+    'contact-services': 300,
+    'contact-speaking': 600,
+  };
+
+  const revealBlock = (block: HTMLElement) => {
+    block.classList.remove('contact-routing__block--pre');
+    block.style.setProperty('--animate-duration', '1s');
+    block.classList.add('animate__animated', 'animate__fadeIn');
+  };
+
+  const bindContactRouting = (root: ParentNode = document) => {
+    const blocks = Array.from(
+      root.querySelectorAll<HTMLElement>('[data-contact-routing-block]'),
+    );
+    if (!blocks.length) {
+      return;
+    }
+
+    const pageLoadStartedAt = performance.now();
+
+    const unboundBlocks: HTMLElement[] = [];
+    for (const block of blocks) {
+      if (block.dataset.contactRoutingBound === 'true') {
+        continue;
+      }
+
+      block.dataset.contactRoutingBound = 'true';
+      block.classList.add('contact-routing__block--pre');
+      unboundBlocks.push(block);
+    }
+
+    if (!unboundBlocks.length) {
+      return;
+    }
+
+    if (!('IntersectionObserver' in window)) {
+      for (const block of unboundBlocks) {
+        revealBlock(block);
+      }
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries, currentObserver) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) {
+            continue;
+          }
+
+          const block = entry.target as HTMLElement;
+          currentObserver.unobserve(block);
+
+          const delayMs = REVEAL_DELAYS_MS[block.id] ?? 0;
+          const earliestRevealAt = pageLoadStartedAt + delayMs;
+          const waitMs = Math.max(0, earliestRevealAt - performance.now());
+
+          window.setTimeout(() => revealBlock(block), waitMs);
+        }
+      },
+      {
+        threshold: 0.2,
+        rootMargin: '0px 0px -10% 0px',
+      },
+    );
+
+    for (const block of unboundBlocks) {
+      observer.observe(block);
+    }
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => bindContactRouting(), {
+      once: true,
+    });
+  } else {
+    bindContactRouting();
+  }
+
+  document.addEventListener('astro:page-load', () => bindContactRouting());
+</script>
