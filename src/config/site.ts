@@ -65,17 +65,24 @@ export const siteRoutes: SiteRoute[] = [
     order: 9,
   },
   {
+    slug: "portfolio-site",
+    path: "https://phor.net",
+    label: "Portfolio Site",
+    navGroup: "primary",
+    order: 10,
+  },
+  {
     slug: "terms-of-service",
     path: "/terms-of-service",
     label: "Terms of Service",
     navGroup: "legal",
-    order: 10,
+    order: 11,
   },
   {
     slug: "privacy-policy",
     path: "/privacy-policy",
     label: "Privacy Policy",
     navGroup: "legal",
-    order: 11,
+    order: 12,
   },
 ];
