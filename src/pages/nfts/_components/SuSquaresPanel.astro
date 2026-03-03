@@ -1,0 +1,124 @@
+---
+import Image from '@ui/Image.astro';
+import './su-squares-panel.css';
+
+interface IframeConfig {
+  title: string;
+  src: string;
+}
+
+interface SectionItem {
+  label: string;
+  text: string;
+}
+
+interface SectionBlock {
+  heading: string;
+  paragraphs?: string[];
+  items?: SectionItem[];
+}
+
+interface FeaturedImage {
+  src: string;
+  alt: string;
+  aspectRatio: string;
+}
+
+interface SuSquaresSection {
+  id: string;
+  title: string;
+  subtitle: string;
+  introParagraphs: string[];
+  billboardLead: string;
+  iframe: IframeConfig;
+  billboardNote: string;
+  closingParagraph: string;
+  featuredImages: FeaturedImage[];
+  sections: SectionBlock[];
+}
+
+interface Props {
+  section: SuSquaresSection;
+}
+
+const { section } = Astro.props;
+---
+
+<section
+  id={section.id}
+  class="su-squares-panel container-95 bg-heading-gray"
+  aria-label={section.title}
+>
+  <div class="su-squares-panel__inner">
+    <h2 class="text-gold text-center m-0">{section.title}</h2>
+    <h3 class="text-gold text-center m-0">{section.subtitle}</h3>
+
+    {
+      section.introParagraphs.map((paragraph: string) => (
+        <p class="text-white m-0">{paragraph}</p>
+      ))
+    }
+
+    <p class="text-white m-0">{section.billboardLead}</p>
+
+    <div class="su-squares-panel__iframe-frame">
+      <iframe
+        width="600"
+        height="600"
+        title={section.iframe.title}
+        src={section.iframe.src}
+        loading="lazy"
+        class="su-squares-panel__iframe"></iframe>
+    </div>
+
+    <p class="text-white m-0 su-squares-panel__note">
+      <em>{section.billboardNote}</em>
+    </p>
+
+    {
+      section.sections.map((contentSection: SectionBlock) => (
+        <section
+          class="su-squares-panel__content-section"
+          aria-label={contentSection.heading}
+        >
+          <h3 class="text-gold text-center m-0">{contentSection.heading}</h3>
+
+          {contentSection.paragraphs?.map((paragraph: string) => (
+            <p class="text-white m-0">{paragraph}</p>
+          ))}
+
+          {contentSection.items?.map((item: SectionItem) => (
+            <p class="text-white m-0">
+              <strong>{item.label}:</strong> {item.text}
+            </p>
+          ))}
+        </section>
+      ))
+    }
+
+    <p class="su-squares-panel__closing text-gold m-0">
+      {section.closingParagraph}
+    </p>
+
+    <div class="su-squares-panel__featured-row">
+      {
+        section.featuredImages.map((image: FeaturedImage) => (
+          <div class="su-squares-panel__featured-item">
+            <Image
+              src={image.src}
+              alt={image.alt}
+              class:list={[
+                'su-squares-panel__featured-image',
+                image.src.includes('Su-Squares-NFTnyc.jpg') &&
+                  'su-squares-panel__featured-image--nftnyc',
+              ]}
+              imgClass="su-squares-panel__featured-img-tag"
+              aspectRatio={image.aspectRatio}
+              fit="contain"
+            />
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

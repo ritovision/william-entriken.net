@@ -1,0 +1,72 @@
+.nfts-image-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.nfts-image-stack__item {
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.nfts-image-stack__item--left {
+  flex: 1 1 33.333%;
+}
+
+.nfts-image-stack__item--right {
+  flex: 2 1 66.666%;
+}
+
+.nfts-image-stack__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.nfts-image-stack__img {
+  width: 100%;
+  height: 100%;
+}
+
+.nfts-image-stack__title-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(84%, 360px);
+  padding: 0.9rem 1rem;
+}
+
+.nfts-image-stack__title-box h1 {
+  font-size: clamp(1.35rem, 2.1vw, 2rem);
+  line-height: 1.1;
+}
+
+@media (min-width: 768px) {
+  .nfts-image-stack__item {
+    height: clamp(180px, 18vw, 310px);
+  }
+}
+
+@media (max-width: 767px) {
+  .nfts-image-stack__item--right {
+    order: 1;
+    flex: 1 1 100%;
+  }
+
+  .nfts-image-stack__item--left {
+    order: 2;
+    flex: 1 1 100%;
+  }
+
+  .nfts-image-stack__title-box {
+    width: min(90%, 320px);
+  }
+
+  .nfts-image-stack__item {
+    height: auto;
+  }
+}

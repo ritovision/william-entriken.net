@@ -1,0 +1,58 @@
+---
+import Image from '@ui/Image.astro';
+import './nft-marketplaces-panel.css';
+
+interface MarketplaceItem {
+  name: string;
+  href: string;
+  image: {
+    src: string;
+    alt: string;
+  };
+}
+
+interface MarketplacesSection {
+  id: string;
+  title: string;
+  items: MarketplaceItem[];
+}
+
+interface Props {
+  section: MarketplacesSection;
+}
+
+const { section } = Astro.props;
+---
+
+<section
+  id={section.id}
+  class="nft-marketplaces-panel container-95 bg-primary-navy border-gold"
+  aria-label={section.title}
+>
+  <div class="nft-marketplaces-panel__inner">
+    <h2 class="text-gold text-center m-0">{section.title}</h2>
+
+    <div class="nft-marketplaces-panel__row">
+      {
+        section.items.map((item: MarketplaceItem) => (
+          <a
+            href={item.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="nft-marketplaces-panel__item"
+            aria-label={item.name}
+          >
+            <Image
+              src={item.image.src}
+              alt={item.image.alt}
+              class="nft-marketplaces-panel__image"
+              imgClass="nft-marketplaces-panel__img-tag"
+              aspectRatio="245 / 217"
+              fit="contain"
+            />
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>

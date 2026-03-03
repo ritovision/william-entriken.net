@@ -1,10 +1,78 @@
 ---
-import BaseLayout from "@layouts/BaseLayout.astro";
-import content from "./_content.json";
+import BaseLayout from '@layouts/BaseLayout.astro';
+import NftsImageStack from './_components/NftsImageStack.astro';
+import NftMarketplacesPanel from './_components/NftMarketplacesPanel.astro';
+import SuSquaresPanel from './_components/SuSquaresPanel.astro';
+import content from './_content.json';
 
-const { seo } = content;
+interface NftsImage {
+  src: string;
+  alt: string;
+}
+
+interface NftsHeroSection {
+  id: string;
+  title: string;
+  images: {
+    left: NftsImage;
+    right: NftsImage;
+  };
+}
+
+interface NftsPageContent {
+  seo: {
+    title: string;
+    description: string;
+  };
+  heroSection: NftsHeroSection;
+  suSquaresSection: {
+    id: string;
+    title: string;
+    subtitle: string;
+    introParagraphs: string[];
+    billboardLead: string;
+    iframe: {
+      title: string;
+      src: string;
+    };
+    billboardNote: string;
+    closingParagraph: string;
+    featuredImages: {
+      src: string;
+      alt: string;
+      aspectRatio: string;
+    }[];
+    sections: {
+      heading: string;
+      paragraphs?: string[];
+      items?: {
+        label: string;
+        text: string;
+      }[];
+    }[];
+  };
+  marketplacesSection: {
+    id: string;
+    title: string;
+    items: {
+      name: string;
+      href: string;
+      image: {
+        src: string;
+        alt: string;
+      };
+    }[];
+  };
+}
+
+const { seo, heroSection, suSquaresSection, marketplacesSection } =
+  content as NftsPageContent;
 ---
 
 <BaseLayout seo={seo}>
-  <main class="page-placeholder"></main>
+  <main class="page-placeholder">
+    <NftsImageStack section={heroSection} />
+    <SuSquaresPanel section={suSquaresSection} />
+    <NftMarketplacesPanel section={marketplacesSection} />
+  </main>
 </BaseLayout>

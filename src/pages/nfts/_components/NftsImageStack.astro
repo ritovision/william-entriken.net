@@ -1,0 +1,58 @@
+---
+import Image from '@ui/Image.astro';
+import './nfts-image-stack.css';
+
+interface NftsImage {
+  src: string;
+  alt: string;
+}
+
+interface NftsHeroSection {
+  id: string;
+  title: string;
+  images: {
+    left: NftsImage;
+    right: NftsImage;
+  };
+}
+
+interface Props {
+  section: NftsHeroSection;
+}
+
+const { section } = Astro.props;
+---
+
+<section
+  id={section.id}
+  class="nfts-image-stack container-95"
+  aria-label={section.title}
+>
+  <div class="nfts-image-stack__item nfts-image-stack__item--left">
+    <Image
+      src={section.images.left.src}
+      alt={section.images.left.alt}
+      class="nfts-image-stack__image"
+      imgClass="nfts-image-stack__img"
+      aspectRatio="1920 / 1080"
+      fit="cover"
+      priority
+    />
+  </div>
+
+  <div class="nfts-image-stack__item nfts-image-stack__item--right">
+    <Image
+      src={section.images.right.src}
+      alt={section.images.right.alt}
+      class="nfts-image-stack__image"
+      imgClass="nfts-image-stack__img"
+      aspectRatio="3522 / 2450"
+      fit="cover"
+      priority
+    />
+
+    <div class="nfts-image-stack__title-box bg-content-dark">
+      <h1 class="text-gold text-center m-0">{section.title}</h1>
+    </div>
+  </div>
+</section>
