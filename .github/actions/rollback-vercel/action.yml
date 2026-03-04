@@ -1,0 +1,25 @@
+name: Rollback Vercel
+description: Roll back a Vercel production deployment.
+
+inputs:
+  vercel_token:
+    description: Vercel API token.
+    required: true
+  deployment_url:
+    description: Deployment URL to roll back.
+    required: true
+  vercel_version:
+    description: Vercel CLI version.
+    required: false
+    default: latest
+
+runs:
+  using: composite
+  steps:
+    - name: Roll back deployment
+      shell: bash
+      env:
+        VERCEL_TOKEN: ${{ inputs.vercel_token }}
+      run: |
+        set -euo pipefail
+        npx --yes vercel@${{ inputs.vercel_version }} rollback "${{ inputs.deployment_url }}" --yes --token="$VERCEL_TOKEN"
