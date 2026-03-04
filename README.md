@@ -21,6 +21,7 @@
 - `pnpm run ci:vitest` runs Vitest without coverage gating.
 - `pnpm run ci:playwright:predeploy` runs Playwright against local predeploy preview.
 - `pnpm run ci:playwright:live` runs Playwright against `PRODUCTION_URL`.
+- `pnpm run link-check` builds the site and runs Linkinator checks against `dist` with `linkinator.config.json`.
 - `pnpm run ci:deploy:vercel` performs Vercel production pull/build/deploy using required environment variables.
 
 ## Production Pipeline
@@ -32,10 +33,22 @@ Job sequence:
 1. `validate-config`
 2. `lint`
 3. `vitest`
-4. `playwright_predeploy`
-5. `deploy`
-6. `playwright_postdeploy`
-7. `rollback_on_postdeploy_failure` (runs only when postdeploy Playwright fails)
+4. `link_check`
+5. `playwright_predeploy`
+6. `deploy`
+7. `playwright_postdeploy`
+8. `rollback_on_postdeploy_failure` (runs only when postdeploy Playwright fails)
+
+### Link Checking
+
+- Standalone workflow: [`.github/workflows/link-check.yml`](./.github/workflows/link-check.yml)
+- Triggered on pull requests and manual dispatch.
+- Scheduled workflow: [`.github/workflows/link-check-scheduled.yml`](./.github/workflows/link-check-scheduled.yml)
+- Runs weekly on Sunday at 00:00 UTC and supports manual dispatch.
+- Reuses local composite action: [`.github/actions/link-check/action.yml`](./.github/actions/link-check/action.yml)
+- Linkinator config: [`linkinator.config.json`](./linkinator.config.json)
+- Link checks skip coverage-heavy content routes (`/press` and `/speaking`) so unmanaged `src/data/press-coverage.json` and `src/data/speaking-events.json` links do not gate CI.
+- `linkinator-report.md` is uploaded as the `link-check-report` artifact in both standalone and production pipeline runs (including failures).
 
 ### Required GitHub Configuration
 

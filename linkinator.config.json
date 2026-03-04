@@ -1,0 +1,28 @@
+{
+  "recurse": true,
+  "cleanUrls": true,
+  "directoryListing": true,
+  "concurrency": 100,
+  "timeout": 30000,
+  "skip": [
+    "^https://williamentriken\\.net/.*$",
+    "https://www.linkedin.com",
+    "https://linkedin.com",
+    "https://www.twitter.com",
+    "https://twitter.com",
+    "https://x.com",
+    "https://www.facebook.com",
+    "https://facebook.com",
+    "https://www.instagram.com",
+    "https://instagram.com",
+    "https://www.phor.net",
+    ".*/dist/press(/|$).*",
+    ".*/dist/speaking(/|$).*",
+    ".*/(press|speaking)(/|$).*"
+  ],
+  "retry": true,
+  "retryErrors": true,
+  "retryErrorsCount": 3,
+  "markdown": true,
+  "verbosity": "error"
+}
