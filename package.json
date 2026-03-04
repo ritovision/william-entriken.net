@@ -43,6 +43,7 @@
   ],
   "license": "UNLICENSED",
   "dependencies": {
+    "@astrojs/sitemap": "^3.7.0",
     "animate.css": "^4.1.1",
     "astro": "^5.18.0",
     "bootstrap": "^5.3.8",
