@@ -1,14 +1,38 @@
 ---
-import BaseLayout from "@layouts/BaseLayout.astro";
-import type { SchemaBlock } from "@shared/types";
-import RitoProfilePlaceholderPanel from "./_components/RitoProfilePlaceholderPanel.astro";
-import content from "./_content.json";
+import BaseLayout from '@layouts/BaseLayout.astro';
+import type { SchemaBlock } from '@shared/types';
+import RitoBuildingSitePanel from './_components/RitoBuildingSitePanel.astro';
+import Ritoprofielpanel from './_components/ritoprofielpanel.astro';
+import RitoTestimonialPanel from './_components/RitoTestimonialPanel.astro';
+import content from './_content.json';
+
+interface CommentaryItem {
+  title: string;
+  body: string;
+}
+
+interface SelectedLink {
+  label: string;
+  href: string;
+}
+
+interface TestimonialImage {
+  src: string;
+  alt: string;
+}
+
+interface TestimonialSection {
+  id: string;
+  title: string;
+  quote: string;
+  image: TestimonialImage;
+}
 
 interface RitoProfile {
   name: string;
   alternateName: string[];
   role: string;
-  description: string;
+  summary: string;
   url: string;
   image: string;
   sameAs: string[];
@@ -16,7 +40,17 @@ interface RitoProfile {
     name: string;
     url: string;
   };
-  statusNote: string;
+  wordmarkLink: {
+    href: string;
+    src: string;
+    alt: string;
+  };
+  buildingThisSite: {
+    title: string;
+    items: CommentaryItem[];
+  };
+  selectedLinksTitle: string;
+  selectedLinks: SelectedLink[];
 }
 
 interface RitoProfilePageContent {
@@ -25,20 +59,21 @@ interface RitoProfilePageContent {
     description: string;
   };
   profile: RitoProfile;
+  testimonial: TestimonialSection;
 }
 
-const { seo, profile } = content as RitoProfilePageContent;
+const { seo, profile, testimonial } = content as RitoProfilePageContent;
 
 const siteBaseUrl = Astro.site ?? new URL(Astro.url.origin);
 const canonicalHref = new URL(Astro.url.pathname, siteBaseUrl).href;
-const aboutHref = new URL("/about", siteBaseUrl).href;
-const homeHref = new URL("/", siteBaseUrl).href;
+const aboutHref = new URL('/about', siteBaseUrl).href;
+const homeHref = new URL('/', siteBaseUrl).href;
 const profilePageId = `${canonicalHref}#profile`;
 const personId = `${canonicalHref}#person`;
 const breadcrumbId = `${canonicalHref}#breadcrumb`;
 
 const isAbsoluteUrl = (value: string) =>
-  value.startsWith("http://") || value.startsWith("https://");
+  value.startsWith('http://') || value.startsWith('https://');
 
 const imageHref = isAbsoluteUrl(profile.image)
   ? new URL(profile.image).href
@@ -47,49 +82,49 @@ const imageHref = isAbsoluteUrl(profile.image)
 const schema: SchemaBlock = {
   breadcrumbItems: [
     {
-      name: "Home",
+      name: 'Home',
       href: homeHref,
     },
     {
-      name: "About",
+      name: 'About',
       href: aboutHref,
     },
     {
-      name: "Rito",
+      name: 'Rito',
       href: canonicalHref,
     },
   ],
   graph: [
     {
-      "@type": "ProfilePage",
-      "@id": profilePageId,
+      '@type': 'ProfilePage',
+      '@id': profilePageId,
       url: canonicalHref,
       name: `${profile.name} Profile`,
       description: seo.description,
       mainEntity: {
-        "@id": personId,
+        '@id': personId,
       },
       breadcrumb: {
-        "@id": breadcrumbId,
+        '@id': breadcrumbId,
       },
     },
     {
-      "@type": "Person",
-      "@id": personId,
+      '@type': 'Person',
+      '@id': personId,
       name: profile.name,
       alternateName: profile.alternateName,
       jobTitle: profile.role,
-      description: profile.description,
+      description: profile.summary,
       url: profile.url,
       image: imageHref,
       sameAs: profile.sameAs,
       worksFor: {
-        "@type": "Organization",
+        '@type': 'Organization',
         name: profile.worksFor.name,
         url: profile.worksFor.url,
       },
       mainEntityOfPage: {
-        "@id": profilePageId,
+        '@id': profilePageId,
       },
     },
   ],
@@ -98,6 +133,8 @@ const schema: SchemaBlock = {
 
 <BaseLayout seo={seo} schema={schema}>
   <main class="page-placeholder">
-    <RitoProfilePlaceholderPanel profile={profile} />
+    <Ritoprofielpanel profile={profile} />
+    <RitoBuildingSitePanel section={profile.buildingThisSite} />
+    <RitoTestimonialPanel section={testimonial} />
   </main>
 </BaseLayout>

@@ -1,0 +1,55 @@
+.rito-testimonial-panel {
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+  padding: 1rem;
+  border: 1px solid var(--color-rito-panel-border);
+  display: grid;
+  row-gap: 1rem;
+}
+
+.rito-testimonial-panel__title {
+  color: var(--color-rito-heading);
+  text-align: center;
+}
+
+.rito-testimonial-panel__content {
+  display: grid;
+  row-gap: 1rem;
+  grid-template-areas:
+    'copy'
+    'image';
+}
+
+.rito-testimonial-panel__image-wrap {
+  grid-area: image;
+  width: min(100%, 220px);
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid transparent;
+  background: var(--color-primary);
+}
+
+.rito-testimonial-panel__image {
+  width: 100%;
+  height: 100%;
+}
+
+.rito-testimonial-panel__content p {
+  grid-area: copy;
+  line-height: 1.5;
+  white-space: pre-line;
+}
+
+@media (min-width: 992px) {
+  .rito-testimonial-panel__content {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 240px);
+    grid-template-areas: 'copy image';
+    column-gap: 1.25rem;
+    align-items: center;
+  }
+
+  .rito-testimonial-panel__image-wrap {
+    width: 100%;
+    margin: 0;
+  }
+}

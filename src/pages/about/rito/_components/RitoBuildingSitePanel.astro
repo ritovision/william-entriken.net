@@ -1,0 +1,60 @@
+---
+import './rito-building-site-panel.css';
+
+interface CommentaryItem {
+  title: string;
+  body: string;
+}
+
+interface BuildingThisSiteSection {
+  title: string;
+  items: CommentaryItem[];
+}
+
+interface Props {
+  section: BuildingThisSiteSection;
+}
+
+const { section } = Astro.props;
+const blogPhrase = 'Visit his blog to learn more.';
+const blogHref = 'https://blog.phor.net/';
+---
+
+<section
+  id="rito-building-site"
+  class="rito-building-site-panel container-95 bg-primary-navy"
+  aria-label={section.title}
+>
+  <h2 class="rito-building-site-panel__title m-0">{section.title}</h2>
+  <div class="rito-building-site-panel__commentary">
+    {
+      section.items.map((item) => {
+        const blogParts = item.body.split(blogPhrase);
+
+        return (
+          <article class="rito-building-site-panel__item">
+            <h3 class="rito-building-site-panel__item-title m-0">
+              {item.title}
+            </h3>
+            {blogParts.length === 2 ? (
+              <p class="text-white m-0">
+                {blogParts[0]}
+                <a
+                  href={blogHref}
+                  class="text-white"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {blogPhrase}
+                </a>
+                {blogParts[1]}
+              </p>
+            ) : (
+              <p class="text-white m-0">{item.body}</p>
+            )}
+          </article>
+        );
+      })
+    }
+  </div>
+</section>

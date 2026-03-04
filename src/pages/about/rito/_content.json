@@ -1,30 +1,86 @@
 {
   "seo": {
     "title": "About Rito | William Entriken",
-    "description": "Profile placeholder for Rito on William Entriken's website."
+    "description": "Short profile of Rito, the creator and maintainer of William Entriken's site, including structured profile schema and commentary on the build."
   },
   "profile": {
     "name": "Rito",
-    "alternateName": [
-      "Rito Rhymes",
-      "Matthew Pellerito"
+    "alternateName": ["Rito Rhymes", "Matthew Pellerito"],
+    "role": "Chief Product Officer, UX Leader, Full-Stack Engineer",
+    "summary": "Rito is the creator and maintainer of this site, integrating strategy, UX, branding, and engineering to present William Entriken's story clearly to technical and non-technical audiences.",
+    "summaryParagraphs": [
+      "Rito is a cross-functional authority who de-risks high-ambiguity product work to build flagship experiences.",
+      "His work is featured in high-profile media outlets including The New York Times, ScreenRant, and U.Today, and he's been profiled in feature interviews on NYC's Flagship 77 WABC radio and Stockhead magazine. Rito has contributed to core infrastructure projects including Git and Public Inbox, and has made high-visibility contributions to major Open Source projects' sites serving millions of users including Kubernetes, Ethereum EIP, OWASP, LangChain and Storybook."
     ],
-    "role": "Chief Product Officer",
-    "description": "Rito is a product, brand, and UX leader and full-stack engineer who integrates strategy, design, and technology to deliver flagship digital experiences.",
     "url": "https://ritovision.com/",
-    "image": "https://ritovision.com/images/home/intro/Rito-CEO.png",
+    "image": "/images/pages/about/rito/Rito-suit.png",
     "sameAs": [
-      "https://ritovision.com/",
+      "https://ritovision.com/press",
+      "https://ritovision.com/projects/oss",
+      "https://ritovision.com/projects/entriken",
+      "https://ritovision.com/projects/uas",
       "https://www.ritorhymes.com",
-      "https://ritoswap.com",
-      "https://www.instagram.com/ritorhymes",
-      "https://x.com/rito_rhymes",
-      "https://wabcradio.com/episode/rito-rhymes-rapper-and-crypto-nerd-6-8-22/"
+      "https://x.com/rito_rhymes"
     ],
     "worksFor": {
       "name": "RitoVision",
       "url": "https://ritovision.com/"
     },
-    "statusNote": "Full profile content is being prepared."
+    "wordmarkLink": {
+      "href": "https://ritovision.com/",
+      "src": "/images/shared/rito/ritovision-wordmark-tm.png",
+      "alt": "RitoVision wordmark"
+    },
+    "socialLinks": {
+      "linkedin": "https://www.linkedin.com/in/ritorhymes/",
+      "x": "https://x.com/rito_rhymes",
+      "instagram": "https://instagram.com/ritorhymes",
+      "github": "https://github.com/ritovision"
+    },
+    "buildingThisSite": {
+      "title": "Building This Site",
+      "items": [
+        {
+          "title": "Content Design Challenges",
+          "body": "A Story Too Big to Tell: With such a broad swath of impact and influence Will's work has had, it was difficult making a concise narrative that captured the essence of so many vastly different angles full of substance in each. Each topic Rito touched on or entity he merely \"mentioned\" had its own large story and many books could probably be written about it, but his mission was to design a succinct experience to capture the essence alone. A lot was lost, and Rito hopes the important essences were retained for you to grasp."
+        },
+        {
+          "title": "Technical Jargon",
+          "body": "If you do not have a technical background and you feel from reading this site you actually do understand what Will has done and the significant impact he has had, you are welcome. The blockchain world is very technical, very esoteric, and often very user-unfriendly to grasp. It was a meticulous task crafting digestible ways to present the information so its meaning felt obvious, without requiring a blockchain bootcamp or a Master's degree in distributed systems engineering."
+        },
+        {
+          "title": "A Missing Person",
+          "body": "Ultimately this site is designed to showcase Will's wide influence and notability to a mainstream, non-technical audience. It is not a biography, and it is not even about him as much as the vast ripples set in motion that can be attributed to his work. After reading this site's content, you can understand his legacy, but you still will not know much about him. Visit his blog to learn more."
+        }
+      ]
+    },
+    "selectedLinksTitle": "Selected Links",
+    "selectedLinks": [
+      {
+        "label": "RitoVision Press",
+        "href": "https://ritovision.com/press"
+      },
+      {
+        "label": "RitoVision OSS Projects",
+        "href": "https://ritovision.com/projects/oss"
+      },
+      {
+        "label": "Entriken Case Study",
+        "href": "https://ritovision.com/projects/entriken"
+      },
+      {
+        "label": "ERC Co-Authoring",
+        "href": "https://ritovision.com/projects/uas"
+      }
+    ]
+  },
+  "testimonial": {
+    "id": "rito-testimonial",
+    "title": "Testimonial from William",
+    "quote": "This guy is a strategic thinker and marketing planner & doer.\n\n60-page deck to define your product image? no problem\n\nPitch your project to a committee, who doesn't even know what they want? you got it\n\nGo from zero-to-guru in a month to understand your market in technical niche detail? done\n\nSelf-starter, comes back with solutions before you've specced the problem? on it\n\nI've personally seen him deliver each of these. So money. And has full product turns under belt.",
+    "image": {
+      "src": "/images/shared/will/Will-Entriken.png",
+      "alt": "William Entriken portrait"
+    }
   }
 }

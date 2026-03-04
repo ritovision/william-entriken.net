@@ -1,0 +1,28 @@
+.rito-building-site-panel {
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+  padding: 1rem;
+  border: 1px solid var(--color-rito-panel-border);
+  display: grid;
+  row-gap: 1rem;
+}
+
+.rito-building-site-panel__title,
+.rito-building-site-panel__item-title {
+  color: var(--color-rito-heading);
+  text-align: center;
+}
+
+.rito-building-site-panel__commentary {
+  display: grid;
+  row-gap: 1rem;
+}
+
+.rito-building-site-panel__item {
+  display: grid;
+  row-gap: 0.5rem;
+}
+
+.rito-building-site-panel__item p {
+  line-height: 1.5;
+}

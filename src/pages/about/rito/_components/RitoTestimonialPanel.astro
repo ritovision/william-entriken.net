@@ -1,0 +1,42 @@
+---
+import Image from '@ui/Image.astro';
+import './rito-testimonial-panel.css';
+
+interface TestimonialImage {
+  src: string;
+  alt: string;
+}
+
+interface TestimonialSection {
+  id: string;
+  title: string;
+  quote: string;
+  image: TestimonialImage;
+}
+
+interface Props {
+  section: TestimonialSection;
+}
+
+const { section } = Astro.props;
+---
+
+<section
+  id={section.id}
+  class="rito-testimonial-panel container-95 bg-primary-navy"
+  aria-label={section.title}
+>
+  <h2 class="rito-testimonial-panel__title m-0">{section.title}</h2>
+  <div class="rito-testimonial-panel__content">
+    <Image
+      src={section.image.src}
+      alt={section.image.alt}
+      class="rito-testimonial-panel__image-wrap"
+      imgClass="rito-testimonial-panel__image"
+      aspectRatio="1 / 1"
+      fit="contain"
+      bg="var(--color-primary)"
+    />
+    <p class="text-white m-0">{section.quote}</p>
+  </div>
+</section>
