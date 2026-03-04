@@ -8,10 +8,12 @@ import { socialLinks } from "@config/social";
 import { siteRoutes } from "@config/site";
 import type { SidebarTocItem } from "@config/site";
 import { SEO_DEFAULTS } from "@shared/constants";
-import type { SeoBlock } from "@shared/types";
+import { buildSchemaGraph, buildSchemaPayload } from "@shared/schema";
+import type { SchemaBlock, SeoBlock } from "@shared/types";
 
 interface Props {
   seo?: SeoBlock;
+  schema?: SchemaBlock;
   title?: string;
   description?: string;
   bodyClass?: string;
@@ -20,6 +22,7 @@ interface Props {
 
 const {
   seo,
+  schema,
   title,
   description,
   bodyClass = "",
@@ -61,6 +64,17 @@ const ogImageHref = isAbsoluteUrl(ogImageTarget)
   ? new URL(ogImageTarget).href
   : new URL(ogImageTarget, siteBaseUrl).href;
 const ogImageAlt = `${ogTitle} social preview`;
+
+const schemaGraph = buildSchemaGraph({
+  canonicalHref,
+  currentPath,
+  pageTitle: effectiveTitle,
+  pageDescription: effectiveDescription,
+  siteBaseUrl,
+  routes: siteRoutes,
+  schema,
+});
+const schemaPayload = buildSchemaPayload(schemaGraph);
 ---
 
 <!doctype html>
@@ -81,6 +95,12 @@ const ogImageAlt = `${ogTitle} social preview`;
     <meta name="twitter:title" content={ogTitle} />
     <meta name="twitter:description" content={ogDescription} />
     <meta name="twitter:image" content={ogImageHref} />
+    <script
+      type="application/ld+json"
+      is:inline
+      set:html={JSON.stringify(schemaPayload)}
+    ></script>
+    <slot name="head" />
     <title>{effectiveTitle}</title>
     <link rel="icon" type="image/png" href="/images/brand/SEO/favicon.png" />
     <link rel="apple-touch-icon" href="/images/brand/logomark-square.png" />

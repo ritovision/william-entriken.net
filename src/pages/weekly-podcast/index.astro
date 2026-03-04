@@ -1,8 +1,10 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
+import type { SchemaBlock } from "@shared/types";
 import WeeklyPodcastOverviewPanel from "./_components/WeeklyPodcastOverviewPanel.astro";
 import WeeklyPodcastSyndicationPanel from "./_components/WeeklyPodcastSyndicationPanel.astro";
 import content from "./_content.json";
+import schemaContent from "./_schema.json";
 
 interface WeeklyPodcastPlatform {
   label: string;
@@ -57,6 +59,7 @@ interface WeeklyPodcastContent {
 }
 
 const { seo, overviewSection, syndicationSection } = content as WeeklyPodcastContent;
+const schema = schemaContent as SchemaBlock;
 const sidebarToc = [
   {
     label: overviewSection.title,
@@ -69,7 +72,7 @@ const sidebarToc = [
 ];
 ---
 
-<BaseLayout seo={seo} sidebarToc={sidebarToc}>
+<BaseLayout seo={seo} schema={schema} sidebarToc={sidebarToc}>
   <main class="page-placeholder">
     <WeeklyPodcastOverviewPanel section={overviewSection} />
     <WeeklyPodcastSyndicationPanel section={syndicationSection} />

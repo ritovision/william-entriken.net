@@ -1,0 +1,103 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import type { SchemaBlock } from "@shared/types";
+import RitoProfilePlaceholderPanel from "./_components/RitoProfilePlaceholderPanel.astro";
+import content from "./_content.json";
+
+interface RitoProfile {
+  name: string;
+  alternateName: string[];
+  role: string;
+  description: string;
+  url: string;
+  image: string;
+  sameAs: string[];
+  worksFor: {
+    name: string;
+    url: string;
+  };
+  statusNote: string;
+}
+
+interface RitoProfilePageContent {
+  seo: {
+    title: string;
+    description: string;
+  };
+  profile: RitoProfile;
+}
+
+const { seo, profile } = content as RitoProfilePageContent;
+
+const siteBaseUrl = Astro.site ?? new URL(Astro.url.origin);
+const canonicalHref = new URL(Astro.url.pathname, siteBaseUrl).href;
+const aboutHref = new URL("/about", siteBaseUrl).href;
+const homeHref = new URL("/", siteBaseUrl).href;
+const profilePageId = `${canonicalHref}#profile`;
+const personId = `${canonicalHref}#person`;
+const breadcrumbId = `${canonicalHref}#breadcrumb`;
+
+const isAbsoluteUrl = (value: string) =>
+  value.startsWith("http://") || value.startsWith("https://");
+
+const imageHref = isAbsoluteUrl(profile.image)
+  ? new URL(profile.image).href
+  : new URL(profile.image, siteBaseUrl).href;
+
+const schema: SchemaBlock = {
+  breadcrumbItems: [
+    {
+      name: "Home",
+      href: homeHref,
+    },
+    {
+      name: "About",
+      href: aboutHref,
+    },
+    {
+      name: "Rito",
+      href: canonicalHref,
+    },
+  ],
+  graph: [
+    {
+      "@type": "ProfilePage",
+      "@id": profilePageId,
+      url: canonicalHref,
+      name: `${profile.name} Profile`,
+      description: seo.description,
+      mainEntity: {
+        "@id": personId,
+      },
+      breadcrumb: {
+        "@id": breadcrumbId,
+      },
+    },
+    {
+      "@type": "Person",
+      "@id": personId,
+      name: profile.name,
+      alternateName: profile.alternateName,
+      jobTitle: profile.role,
+      description: profile.description,
+      url: profile.url,
+      image: imageHref,
+      sameAs: profile.sameAs,
+      worksFor: {
+        "@type": "Organization",
+        name: profile.worksFor.name,
+        url: profile.worksFor.url,
+      },
+      mainEntityOfPage: {
+        "@id": profilePageId,
+      },
+    },
+  ],
+};
+---
+
+<BaseLayout seo={seo} schema={schema}>
+  <main class="page-placeholder">
+    <RitoProfilePlaceholderPanel profile={profile} />
+  </main>
+</BaseLayout>

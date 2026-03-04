@@ -2,5 +2,12 @@
   "seo": {
     "title": "About | William Entriken",
     "description": ""
-  }
+  },
+  "profiles": [
+    {
+      "label": "Rito",
+      "href": "/about/rito",
+      "description": "Profile placeholder with structured data while full content is being prepared."
+    }
+  ]
 }

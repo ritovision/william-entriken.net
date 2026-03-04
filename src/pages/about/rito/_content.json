@@ -1,0 +1,30 @@
+{
+  "seo": {
+    "title": "About Rito | William Entriken",
+    "description": "Profile placeholder for Rito on William Entriken's website."
+  },
+  "profile": {
+    "name": "Rito",
+    "alternateName": [
+      "Rito Rhymes",
+      "Matthew Pellerito"
+    ],
+    "role": "Chief Product Officer",
+    "description": "Rito is a product, brand, and UX leader and full-stack engineer who integrates strategy, design, and technology to deliver flagship digital experiences.",
+    "url": "https://ritovision.com/",
+    "image": "https://ritovision.com/images/home/intro/Rito-CEO.png",
+    "sameAs": [
+      "https://ritovision.com/",
+      "https://www.ritorhymes.com",
+      "https://ritoswap.com",
+      "https://www.instagram.com/ritorhymes",
+      "https://x.com/rito_rhymes",
+      "https://wabcradio.com/episode/rito-rhymes-rapper-and-crypto-nerd-6-8-22/"
+    ],
+    "worksFor": {
+      "name": "RitoVision",
+      "url": "https://ritovision.com/"
+    },
+    "statusNote": "Full profile content is being prepared."
+  }
+}

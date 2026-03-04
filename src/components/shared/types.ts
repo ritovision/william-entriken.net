@@ -7,6 +7,18 @@ export interface SeoBlock {
   canonicalPath?: string;
 }
 
+export type SchemaGraphNode = Record<string, unknown>;
+
+export interface SchemaBreadcrumbItem {
+  name: string;
+  href: string;
+}
+
+export interface SchemaBlock {
+  graph?: SchemaGraphNode[];
+  breadcrumbItems?: SchemaBreadcrumbItem[];
+}
+
 export interface CtaBlock {
   label: string;
   href: string;

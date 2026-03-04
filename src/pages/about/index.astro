@@ -2,9 +2,51 @@
 import BaseLayout from "@layouts/BaseLayout.astro";
 import content from "./_content.json";
 
-const { seo } = content;
+interface AboutProfileLink {
+  label: string;
+  href: string;
+  description: string;
+}
+
+interface AboutPageContent {
+  seo: {
+    title: string;
+    description: string;
+  };
+  profiles: AboutProfileLink[];
+}
+
+const { seo, profiles } = content as AboutPageContent;
 ---
 
 <BaseLayout seo={seo}>
-  <main class="page-placeholder"></main>
+  <main class="page-placeholder">
+    <section
+      id="about-profiles"
+      class="container-95 section-stack bg-content-dark border-gold"
+      aria-label="About profiles"
+      style="margin-top: 2rem; margin-bottom: 3rem;"
+    >
+      <h1 class="text-gold text-center m-0">Profiles</h1>
+      <p class="text-white text-center m-0">
+        Additional profile pages are linked below.
+      </p>
+
+      <ul class="list-unstyled m-0 p-0 d-grid gap-3">
+        {
+          profiles.map((profile) => (
+            <li class="bg-heading-gray border-gold p-3">
+              <h2 class="text-gold text-center m-0">{profile.label}</h2>
+              <p class="text-white text-center m-0">{profile.description}</p>
+              <p class="text-center m-0">
+                <a href={profile.href} class="text-white">
+                  View Profile
+                </a>
+              </p>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+  </main>
 </BaseLayout>

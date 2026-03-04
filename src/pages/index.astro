@@ -1,5 +1,7 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
+import type { SchemaBlock } from "@shared/types";
+import schemaContent from "./_schema.json";
 
 const sections = Array.from({ length: 10 }, (_, index) => {
   const n = index + 1;
@@ -20,9 +22,10 @@ const seo = {
   title: "William Entriken",
   description: "Site foundation placeholder page.",
 };
+const schema = schemaContent as SchemaBlock;
 ---
 
-<BaseLayout seo={seo} sidebarToc={sidebarToc}>
+<BaseLayout seo={seo} schema={schema} sidebarToc={sidebarToc}>
   <main class="page-placeholder">
     <div class="container-95 py-4">
       {

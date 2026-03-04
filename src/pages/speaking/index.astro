@@ -5,7 +5,9 @@ import SpeakingStoriesStack from './_components/SpeakingStoriesStack.astro';
 import SpeakingStoriesCtaBar from './_components/SpeakingStoriesCtaBar.astro';
 import SpeakingEventsPanel from './_components/SpeakingEventsPanel.astro';
 import SpeakingFormPanel from './_components/SpeakingFormPanel.astro';
+import type { SchemaBlock } from '@shared/types';
 import content from './_content.json';
+import schemaContent from './_schema.json';
 
 interface SpeakingStoryImage {
   src: string;
@@ -73,6 +75,7 @@ const {
   speakingStoriesCtaSection,
   formSection,
 } = content as SpeakingPageContent;
+const schema = schemaContent as SchemaBlock;
 const sidebarToc = [
   {
     label: 'Speaking Events',
@@ -85,7 +88,7 @@ const sidebarToc = [
 ];
 ---
 
-<BaseLayout seo={seo} sidebarToc={sidebarToc}>
+<BaseLayout seo={seo} schema={schema} sidebarToc={sidebarToc}>
   <main class="page-placeholder">
     <SpeakingHeadingPanel section={heroSection} />
     <SpeakingStoriesStack section={speakingStoriesSection} />

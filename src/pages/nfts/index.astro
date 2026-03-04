@@ -1,9 +1,11 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
+import type { SchemaBlock } from '@shared/types';
 import NftsImageStack from './_components/NftsImageStack.astro';
 import NftMarketplacesPanel from './_components/NftMarketplacesPanel.astro';
 import SuSquaresPanel from './_components/SuSquaresPanel.astro';
 import content from './_content.json';
+import schemaContent from './_schema.json';
 
 interface NftsImage {
   src: string;
@@ -67,9 +69,10 @@ interface NftsPageContent {
 
 const { seo, heroSection, suSquaresSection, marketplacesSection } =
   content as NftsPageContent;
+const schema = schemaContent as SchemaBlock;
 ---
 
-<BaseLayout seo={seo}>
+<BaseLayout seo={seo} schema={schema}>
   <main class="page-placeholder">
     <NftsImageStack section={heroSection} />
     <SuSquaresPanel section={suSquaresSection} />

@@ -1,7 +1,9 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
+import type { SchemaBlock } from "@shared/types";
 import ServicesFormPanel from "./_components/ServicesFormPanel.astro";
 import content from "./_content.json";
+import schemaContent from "./_schema.json";
 
 interface ServicesPageContent {
   seo: {
@@ -16,6 +18,7 @@ interface ServicesPageContent {
 }
 
 const { seo, formSection } = content as ServicesPageContent;
+const schema = schemaContent as SchemaBlock;
 const sidebarToc = [
   {
     label: formSection.title,
@@ -24,7 +27,7 @@ const sidebarToc = [
 ];
 ---
 
-<BaseLayout seo={seo} sidebarToc={sidebarToc}>
+<BaseLayout seo={seo} schema={schema} sidebarToc={sidebarToc}>
   <main class="page-placeholder">
     <ServicesFormPanel section={formSection} />
   </main>

@@ -1,0 +1,48 @@
+{
+  "graph": [
+    {
+      "@type": "Event",
+      "@id": "https://williamentriken.net/speaking#event-nft-nyc",
+      "name": "NFT.NYC",
+      "startDate": "2024-04-03",
+      "location": {
+        "@type": "Place",
+        "name": "New York City"
+      },
+      "description": "William Entriken has been a recurring honorary speaker at NFT.NYC.",
+      "performer": {
+        "@id": "https://williamentriken.net/#person"
+      },
+      "url": "https://nft.nyc/"
+    },
+    {
+      "@type": "Event",
+      "@id": "https://williamentriken.net/speaking#event-chain76",
+      "name": "Chain76",
+      "startDate": "2024-02-15",
+      "location": {
+        "@type": "Place",
+        "name": "Philadelphia"
+      },
+      "description": "William hosted and spoke at Philadelphia's first blockchain event focused on pharmaceutical supply chain topics.",
+      "performer": {
+        "@id": "https://williamentriken.net/#person"
+      },
+      "url": "https://chain76org.github.io/chain76.org/"
+    },
+    {
+      "@type": "Event",
+      "@id": "https://williamentriken.net/speaking#event-dallas-chamber",
+      "name": "Dallas Chamber of Commerce",
+      "startDate": "2023-11-20",
+      "location": {
+        "@type": "Place",
+        "name": "Dallas, TX"
+      },
+      "description": "William spoke about blockchain's impact on commerce at a North Texas Blockchain Alliance and Dallas Chamber event.",
+      "performer": {
+        "@id": "https://williamentriken.net/#person"
+      }
+    }
+  ]
+}

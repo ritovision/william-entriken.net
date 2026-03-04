@@ -1,0 +1,48 @@
+{
+  "graph": [
+    {
+      "@type": "PodcastSeries",
+      "@id": "https://williamentriken.net/weekly-podcast#series",
+      "name": "Community Service Hour",
+      "description": "Weekly Community Service Hour sessions hosted by William Entriken covering technology, markets, and interviews.",
+      "url": "https://williamentriken.net/weekly-podcast",
+      "inLanguage": "en",
+      "keywords": "podcast, technology, hacking, blockchain, NFT, interviews",
+      "actor": {
+        "@id": "https://williamentriken.net/#person"
+      },
+      "webFeed": "https://williamentriken.net/weekly-podcast/rss.xml",
+      "potentialAction": {
+        "@type": "ListenAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://podcasts.apple.com/us/podcast/community-service-hour/id1662422217"
+        }
+      }
+    },
+    {
+      "@type": "Event",
+      "@id": "https://williamentriken.net/weekly-podcast#event",
+      "name": "Community Service Hour Live Session",
+      "performer": {
+        "@id": "https://williamentriken.net/#person"
+      },
+      "startDate": "2024-08-20T18:00:00-05:00",
+      "location": {
+        "@type": "VirtualLocation",
+        "name": "Twitch",
+        "url": "https://www.twitch.tv/fulldecent"
+      },
+      "description": "Weekly live broadcast with interactive participation on Twitch and X.",
+      "url": "https://hour.gg",
+      "eventAttendanceMode": "http://schema.org/OnlineEventAttendanceMode",
+      "eventStatus": "http://schema.org/EventScheduled",
+      "offers": {
+        "@type": "Offer",
+        "availability": "http://schema.org/InStock",
+        "url": "https://www.twitch.tv/fulldecent",
+        "category": "primary"
+      }
+    }
+  ]
+}

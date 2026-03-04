@@ -1,0 +1,67 @@
+{
+  "graph": [
+    {
+      "@type": "Service",
+      "@id": "https://williamentriken.net/services#service",
+      "serviceType": "Advisory and Consulting Services",
+      "provider": {
+        "@id": "https://williamentriken.net/#person"
+      },
+      "description": "William Entriken provides advisory services including white paper review, code review, financial analysis, cybersecurity audits, and community event strategy.",
+      "areaServed": "Global",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Advisory Services Catalog",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "White Paper Writing and Review"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Code Review and Solutions Architecture"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Financial Analysis and Fundraising Support"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Business Planning and Team Strategy"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Cybersecurity Audits"
+            }
+          }
+        ]
+      },
+      "potentialAction": {
+        "@type": "Action",
+        "name": "Inquire About Retainership",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://williamentriken.net/services#services-form-section",
+          "actionPlatform": [
+            "http://schema.org/DesktopWebPlatform",
+            "http://schema.org/MobileWebPlatform"
+          ]
+        }
+      }
+    }
+  ]
+}
