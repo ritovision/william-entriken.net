@@ -1,3 +1,8 @@
+export interface SidebarTocItem {
+  label: string;
+  targetId: string;
+}
+
 export interface SiteRoute {
   slug: string;
   path: string;

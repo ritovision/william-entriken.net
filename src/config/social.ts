@@ -6,11 +6,6 @@ export interface SocialLink {
   href: string;
 }
 
-export interface SidebarTocItem {
-  label: string;
-  targetId: string;
-}
-
 export const socialLinks: SocialLink[] = [
   {
     id: "x",
