@@ -1,0 +1,47 @@
+---
+import Image from '@ui/Image.astro';
+import './about-bill-entriken-panel.css';
+
+interface AboutBillEntrikenImage {
+  src: string;
+  alt: string;
+  aspectRatio: string;
+}
+
+interface AboutBillEntrikenSection {
+  id: string;
+  title: string;
+  description: string;
+  image: AboutBillEntrikenImage;
+}
+
+interface Props {
+  section: AboutBillEntrikenSection;
+}
+
+const { section } = Astro.props;
+---
+
+<section
+  id={section.id}
+  class="about-bill-entriken-panel container-95 bg-primary-navy border-gold"
+  aria-label={section.title}
+>
+  <h2 class="about-bill-entriken-panel__title text-gold">
+    {section.title}
+  </h2>
+
+  <Image
+    src={section.image.src}
+    alt={section.image.alt}
+    class="about-bill-entriken-panel__image"
+    imgClass="about-bill-entriken-panel__img"
+    aspectRatio={section.image.aspectRatio}
+    fit="contain"
+    bg="var(--color-primary)"
+  />
+
+  <p class="about-bill-entriken-panel__description text-white">
+    {section.description}
+  </p>
+</section>

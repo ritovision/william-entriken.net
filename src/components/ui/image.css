@@ -5,6 +5,7 @@
   --ui-image-haze-alpha: 0.6;
   --ui-image-fit: contain;
   --ui-image-aspect-ratio: 1 / 1;
+  --ui-image-bg: transparent;
 
   position: relative;
   display: inline-block;
@@ -12,11 +13,13 @@
   vertical-align: middle;
   aspect-ratio: var(--ui-image-aspect-ratio);
   isolation: isolate;
+  background: var(--ui-image-bg);
 }
 
 .ui-image__img {
   display: block;
   object-fit: var(--ui-image-fit);
+  background: var(--ui-image-bg);
 }
 
 .ui-image__fallback {

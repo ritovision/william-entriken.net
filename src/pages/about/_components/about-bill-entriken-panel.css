@@ -1,0 +1,58 @@
+.about-bill-entriken-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 300px) minmax(0, 1fr);
+  grid-template-areas:
+    'image heading'
+    'image description';
+  gap: 1rem 1.25rem;
+  align-items: start;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  padding: 1rem;
+}
+
+.about-bill-entriken-panel__title {
+  grid-area: heading;
+  text-align: center;
+  margin: auto 0 1rem;
+}
+
+.about-bill-entriken-panel__image {
+  grid-area: image;
+  display: block;
+  width: 100%;
+  border: 1px solid transparent;
+  background: var(--color-primary);
+}
+
+.about-bill-entriken-panel__img {
+  width: 100%;
+  height: 100%;
+}
+
+.about-bill-entriken-panel__description {
+  grid-area: description;
+  line-height: 1.5;
+  margin: 0 0 1rem;
+}
+
+@media (max-width: 767px) {
+  .about-bill-entriken-panel {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      'heading'
+      'image'
+      'description';
+  }
+
+  .about-bill-entriken-panel__title {
+    text-align: center;
+  }
+
+  .about-bill-entriken-panel__image {
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    --ui-image-fit: cover;
+  }
+}

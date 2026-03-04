@@ -2,28 +2,30 @@
 interface Props {
   href?: string;
   label: string;
-  variant?: "default" | "navy" | "gold-pill";
+  variant?: 'default' | 'navy' | 'gold-pill' | 'case-study';
   class?: string;
   id?: string;
   ariaLabel?: string;
-  type?: "button" | "submit" | "reset";
+  type?: 'button' | 'submit' | 'reset';
 }
 
 const {
   href,
   label,
-  variant = "navy",
-  class: className = "",
+  variant = 'navy',
+  class: className = '',
   id,
   ariaLabel,
-  type = "button",
+  type = 'button',
 } = Astro.props;
 const variantClass =
-  variant === "gold-pill"
-    ? "btn-brand-gold-pill"
-    : variant === "default"
-      ? "b-g-default-button"
-      : "btn-brand-navy";
+  variant === 'gold-pill'
+    ? 'btn-brand-gold-pill'
+    : variant === 'case-study'
+      ? 'btn-brand-case-study'
+      : variant === 'default'
+        ? 'b-g-default-button'
+        : 'btn-brand-navy';
 ---
 
 {

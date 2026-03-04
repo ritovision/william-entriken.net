@@ -12,6 +12,7 @@ interface Props {
   imgClass?: string;
   aspectRatio?: string;
   fit?: ImageFit;
+  bg?: string;
   priority?: boolean;
   sizes?: string;
   fallbackLabel?: string;
@@ -24,6 +25,7 @@ const {
   imgClass = '',
   aspectRatio = '1 / 1',
   fit = 'contain',
+  bg = 'transparent',
   priority = false,
   sizes,
   fallbackLabel,
@@ -44,7 +46,7 @@ const fetchPriority = priority ? 'high' : 'auto';
 
 <span
   class:list={['ui-image', wrapperClass]}
-  style={`--ui-image-aspect-ratio: ${aspectRatio}; --ui-image-fit: ${fit};`}
+  style={`--ui-image-aspect-ratio: ${aspectRatio}; --ui-image-fit: ${fit}; --ui-image-bg: ${bg};`}
   data-ui-image
   data-ui-image-decorative={isDecorative ? 'true' : 'false'}
   data-ui-image-fallback-label={effectiveFallbackLabel}

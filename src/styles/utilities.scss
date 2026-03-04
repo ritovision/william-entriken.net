@@ -85,3 +85,23 @@
   color: var(--color-accent);
   border-color: var(--border-gold);
 }
+
+.btn-brand-case-study {
+  background: transparent;
+  color: var(--color-white);
+  border: 1px solid var(--color-rito-panel-border);
+  border-radius: var(--radius-btn-case-study);
+  transition:
+    background-color 1s ease,
+    color 1s ease,
+    border-color 1s ease;
+}
+
+.btn-brand-case-study:hover,
+.btn-brand-case-study:focus-visible,
+.btn-brand-case-study:active,
+.btn-brand-case-study.active {
+  background: var(--color-rito-panel-border);
+  color: var(--color-white);
+  border-color: var(--color-rito-panel-border);
+}

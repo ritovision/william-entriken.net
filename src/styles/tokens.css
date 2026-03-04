@@ -7,6 +7,8 @@
   --color-bg-content: #242323;
   --color-white: #ffffff;
   --color-black: #000000;
+  --color-rito-panel-border: #04426c;
+  --color-rito-heading: #fc1819;
 
   --border-gold: var(--color-accent);
   --border-white: var(--color-white);
@@ -14,6 +16,7 @@
   --radius-none: 0;
   --radius-btn-navy: 8px;
   --radius-btn-gold-pill: 50px;
+  --radius-btn-case-study: 10px;
   --space-section-xl: 5rem;
 
   --form-max-width: 800px;

@@ -1,11 +1,49 @@
 ---
-import BaseLayout from "@layouts/BaseLayout.astro";
-import content from "./_content.json";
+import BaseLayout from '@layouts/BaseLayout.astro';
+import AboutBillEntrikenPanel from './_components/AboutBillEntrikenPanel.astro';
+import AboutEntrikenIntroPanel from './_components/AboutEntrikenIntroPanel.astro';
+import AboutRitoPanel from './_components/AboutRitoPanel.astro';
+import content from './_content.json';
 
-interface AboutProfileLink {
-  label: string;
-  href: string;
+interface AboutEntrikenImage {
+  src: string;
+  alt: string;
+  aspectRatio: string;
+}
+
+interface AboutEntrikenIntroSection {
+  id: string;
+  title: string;
   description: string;
+  blogButtonLabel: string;
+  blogButtonHref: string;
+  images: {
+    willKids: AboutEntrikenImage;
+    su: AboutEntrikenImage;
+  };
+}
+
+interface AboutBillEntrikenSection {
+  id: string;
+  title: string;
+  description: string;
+  image: AboutEntrikenImage;
+}
+
+interface AboutRitoButtons {
+  profileLabel: string;
+  profileHref: string;
+  caseStudyLabel: string;
+  caseStudyHref: string;
+}
+
+interface AboutRitoSection {
+  id: string;
+  title: string;
+  subtitle: string;
+  paragraphs: string[];
+  image: AboutEntrikenImage;
+  buttons: AboutRitoButtons;
 }
 
 interface AboutPageContent {
@@ -13,40 +51,18 @@ interface AboutPageContent {
     title: string;
     description: string;
   };
-  profiles: AboutProfileLink[];
+  intro: AboutEntrikenIntroSection;
+  bill: AboutBillEntrikenSection;
+  rito: AboutRitoSection;
 }
 
-const { seo, profiles } = content as AboutPageContent;
+const { seo, intro, bill, rito } = content as AboutPageContent;
 ---
 
 <BaseLayout seo={seo}>
   <main class="page-placeholder">
-    <section
-      id="about-profiles"
-      class="container-95 section-stack bg-content-dark border-gold"
-      aria-label="About profiles"
-      style="margin-top: 2rem; margin-bottom: 3rem;"
-    >
-      <h1 class="text-gold text-center m-0">Profiles</h1>
-      <p class="text-white text-center m-0">
-        Additional profile pages are linked below.
-      </p>
-
-      <ul class="list-unstyled m-0 p-0 d-grid gap-3">
-        {
-          profiles.map((profile) => (
-            <li class="bg-heading-gray border-gold p-3">
-              <h2 class="text-gold text-center m-0">{profile.label}</h2>
-              <p class="text-white text-center m-0">{profile.description}</p>
-              <p class="text-center m-0">
-                <a href={profile.href} class="text-white">
-                  View Profile
-                </a>
-              </p>
-            </li>
-          ))
-        }
-      </ul>
-    </section>
+    <AboutEntrikenIntroPanel section={intro} />
+    <AboutBillEntrikenPanel section={bill} />
+    <AboutRitoPanel section={rito} />
   </main>
 </BaseLayout>
