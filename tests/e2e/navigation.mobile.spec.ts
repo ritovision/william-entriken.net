@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test';
-import { navigationTargets, pathPattern } from './navigationTargets';
+import { navigationTargets, pathPattern } from './helpers/navigationTargets';
 
 const navigationTimeoutMs = 15_000;
 const navigationAttempts = 2;

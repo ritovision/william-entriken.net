@@ -1,5 +1,5 @@
 import { expect, test, type Locator, type Page } from '@playwright/test';
-import { navigationTargets, pathPattern } from './navigationTargets';
+import { navigationTargets, pathPattern } from './helpers/navigationTargets';
 
 const desktopSidebarNavSelector =
   'aside.desktop-sidebar nav[aria-label="Main menu links"]';
