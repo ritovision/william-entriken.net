@@ -17,22 +17,25 @@ const sidebarToc = sections.map((section) => ({
 }));
 
 const paragraph =
-  "This is placeholder migration content for scroll and section navigation testing. It is intentionally long so you can verify sidebar behavior, table-of-contents anchors, and viewport flow on large pages.";
+  "This section is temporary content used to verify scroll behavior, section navigation anchors, and sidebar table-of-contents flow on large pages.";
 const seo = {
   title: "William Entriken",
-  description: "Site foundation placeholder page.",
+  description:
+    "Official site of William Entriken featuring services, speaking, media coverage, and contact information.",
 };
 const schema = schemaContent as SchemaBlock;
 ---
 
 <BaseLayout seo={seo} schema={schema} sidebarToc={sidebarToc}>
-  <main class="page-placeholder">
+  <main class="page-main" data-home-demo>
     <div class="container-95 py-4">
       {
-        sections.map((section) => (
+        sections.map((section, index) => (
           <section
             id={section.id}
             class="bg-content-dark border-white mb-4 p-4 section-stack"
+            data-home-demo-block
+            style={`--home-demo-delay: ${index * 0.08}s;`}
           >
             <h2 class="text-gold m-0">{section.title}</h2>
             <p class="text-white m-0">{paragraph}</p>
@@ -46,3 +49,84 @@ const schema = schemaContent as SchemaBlock;
     </div>
   </main>
 </BaseLayout>
+
+<style>
+  [data-home-demo-block].home-demo-block--pre {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+</style>
+
+<script>
+  const revealHomeDemoBlock = (block: HTMLElement) => {
+    block.classList.remove('home-demo-block--pre');
+    block.style.setProperty('--animate-duration', '0.6s');
+    block.style.setProperty(
+      '--animate-delay',
+      block.style.getPropertyValue('--home-demo-delay') || '0s',
+    );
+    block.classList.add('animate__animated', 'animate__fadeInUp');
+  };
+
+  const bindHomeDemoBlocks = (root: ParentNode = document) => {
+    const blocks = Array.from(
+      root.querySelectorAll<HTMLElement>('[data-home-demo-block]'),
+    );
+    if (!blocks.length) {
+      return;
+    }
+
+    const unboundBlocks: HTMLElement[] = [];
+    for (const block of blocks) {
+      if (block.dataset.homeDemoBound === 'true') {
+        continue;
+      }
+
+      block.dataset.homeDemoBound = 'true';
+      block.classList.add('home-demo-block--pre');
+      unboundBlocks.push(block);
+    }
+
+    if (!unboundBlocks.length) {
+      return;
+    }
+
+    if (!('IntersectionObserver' in window)) {
+      for (const block of unboundBlocks) {
+        revealHomeDemoBlock(block);
+      }
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries, currentObserver) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) {
+            continue;
+          }
+
+          revealHomeDemoBlock(entry.target as HTMLElement);
+          currentObserver.unobserve(entry.target);
+        }
+      },
+      {
+        threshold: 0.2,
+        rootMargin: '0px 0px -10% 0px',
+      },
+    );
+
+    for (const block of unboundBlocks) {
+      observer.observe(block);
+    }
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => bindHomeDemoBlocks(), {
+      once: true,
+    });
+  } else {
+    bindHomeDemoBlocks();
+  }
+
+  document.addEventListener('astro:page-load', () => bindHomeDemoBlocks());
+</script>
