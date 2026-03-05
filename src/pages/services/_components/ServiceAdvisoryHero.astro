@@ -1,0 +1,32 @@
+---
+import './service-advisory-hero.css';
+
+interface Props {
+  id: string;
+  heading: string;
+  description: string;
+}
+
+const { id, heading, description } = Astro.props;
+---
+
+<section id={id} class="advisory-hero">
+  <svg
+    class="advisory-hero__squiggle"
+    viewBox="0 0 1440 120"
+    preserveAspectRatio="xMidYMid slice"
+    aria-hidden="true"
+  >
+    <path
+      d="M-20 65 C200 65, 350 75, 550 55 S850 40, 1050 60 S1300 80, 1460 55"
+      fill="none"
+      stroke="var(--color-accent)"
+      stroke-width="12"
+      stroke-linecap="round"
+    />
+  </svg>
+  <div class="advisory-hero__content">
+    <h1 class="advisory-hero__heading text-gold">{heading}</h1>
+    <p class="advisory-hero__description">{description}</p>
+  </div>
+</section>

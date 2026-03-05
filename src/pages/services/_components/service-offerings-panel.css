@@ -1,0 +1,142 @@
+.service-offerings {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.service-offerings__heading {
+  text-align: center;
+  margin-bottom: var(--space-2rem);
+}
+
+.service-offerings__intro-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem 2rem;
+  margin-bottom: var(--space-2rem);
+}
+
+.service-offerings__portrait {
+  display: block;
+  width: min(220px, 100%);
+  margin: 0;
+}
+
+.service-offerings__portrait-img {
+  width: 100%;
+  height: 100%;
+}
+
+.service-offerings__intro {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  line-height: 1.6;
+}
+
+.service-offerings__cards {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  column-gap: 2rem;
+  row-gap: 5rem;
+}
+
+.service-offerings__card {
+  flex: 1 1 calc(50% - 1rem);
+  min-width: 0;
+}
+
+.service-offerings__card--pre {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.service-offerings__card--reveal {
+  animation: service-offerings-card-reveal 0.65s ease-out both;
+  animation-delay: var(--service-offerings-animate-delay, 0s);
+}
+
+@keyframes service-offerings-card-reveal {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  60% {
+    opacity: 0.75;
+    transform: translateY(0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.service-offerings__icon {
+  display: block;
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 1rem;
+  color: var(--color-white);
+}
+
+.service-offerings__title {
+  text-align: center;
+  line-height: 1.3;
+}
+
+.service-offerings__divider {
+  border: none;
+  border-top: 1px solid var(--color-white);
+  margin: 1rem 0;
+}
+
+.service-offerings__description {
+  line-height: 1.6;
+}
+
+.service-offerings__highlight {
+  margin-top: 1rem;
+  line-height: 1.6;
+}
+
+.service-offerings__links {
+  margin-top: 1rem;
+  padding-left: 1.25rem;
+}
+
+.service-offerings__links li + li {
+  margin-top: 0.5rem;
+}
+
+.service-offerings__links a {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-decoration-color: var(--color-accent);
+  text-underline-offset: 2px;
+}
+
+.service-offerings__links a:hover,
+.service-offerings__links a:focus-visible {
+  color: var(--color-white);
+  text-decoration-color: var(--color-white);
+}
+
+.service-offerings__button-wrap {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.service-offerings__button {
+  display: inline-block;
+}
+
+@media (max-width: 767px) {
+  .service-offerings__card {
+    flex-basis: 100%;
+  }
+}

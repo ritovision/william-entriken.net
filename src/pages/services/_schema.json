@@ -24,6 +24,13 @@
             "@type": "Offer",
             "itemOffered": {
               "@type": "Service",
+              "name": "Community Events and Hackathons"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
               "name": "Code Review and Solutions Architecture"
             }
           },

@@ -1,0 +1,43 @@
+.advisory-hero {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--space-section-xl) 1rem;
+  overflow: hidden;
+}
+
+.advisory-hero__squiggle {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  opacity: 1;
+}
+
+.advisory-hero__content {
+  position: relative;
+  z-index: 1;
+  background: rgb(var(--color-primary-rgb) / 0.75);
+  border: 1px solid var(--border-gold);
+  max-width: 800px;
+  padding: 3rem 100px;
+  text-align: center;
+}
+
+.advisory-hero__heading {
+  margin: 0 0 2rem;
+}
+
+.advisory-hero__description {
+  color: var(--color-white);
+  line-height: 1.7;
+  margin: 0;
+}
+
+@media (max-width: 767px) {
+  .advisory-hero__content {
+    padding: 2rem 1.5rem;
+  }
+}

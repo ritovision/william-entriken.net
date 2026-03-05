@@ -1,0 +1,117 @@
+.retainer-plans {
+  padding: var(--space-section-xl) 1rem;
+}
+
+.retainer-plans__heading {
+  text-align: center;
+  margin: 0 0 1.5rem;
+}
+
+.retainer-plans__description {
+  color: var(--color-white);
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 2rem;
+  line-height: 1.6;
+}
+
+.retainer-plans__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.retainer-plans__card {
+  aspect-ratio: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 2px solid var(--border-gold);
+  border-radius: 12px;
+  padding: 1rem;
+  background: var(--color-bg-content);
+  color: var(--color-white);
+}
+
+.retainer-plans__title {
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+  margin: 0 0 1em;
+}
+
+.retainer-plans__features {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto 1em;
+  text-align: left;
+}
+
+.retainer-plans__feature {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 6px 0;
+  text-align: center;
+}
+
+.retainer-plans__check {
+  width: 16px;
+  height: 16px;
+  fill: var(--color-accent);
+  margin-right: 8px;
+  flex-shrink: 0;
+}
+
+.retainer-plans__action {
+  margin-top: auto;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.retainer-plans__form {
+  width: 100%;
+}
+
+.retainer-plans__button {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+  background: var(--color-accent);
+  color: var(--color-black);
+  border: none;
+  border-radius: var(--radius-btn-navy);
+  cursor: pointer;
+  text-decoration: none;
+  box-sizing: border-box;
+  transition: background-color 0.2s ease;
+}
+
+.retainer-plans__button:hover,
+.retainer-plans__button:focus-visible {
+  background: #cca300;
+  color: var(--color-black);
+}
+
+@media (max-width: 575px) {
+  .retainer-plans__grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .retainer-plans__card {
+    width: 70%;
+    aspect-ratio: auto;
+  }
+
+  .retainer-plans__grid {
+    gap: 2rem;
+  }
+}

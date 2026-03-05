@@ -1,0 +1,31 @@
+---
+import './service-expertise-blocks.css';
+
+interface ExpertDomain {
+  number: string;
+  lines: string[];
+}
+
+interface Props {
+  id: string;
+  heading: string;
+  domains: ExpertDomain[];
+}
+
+const { id, heading, domains } = Astro.props;
+---
+
+<section id={id} class="expert-domains">
+  <h2 class="expert-domains__heading text-gold">{heading}</h2>
+  <div class="expert-domains__row">
+    {domains.map(({ number, lines }) => (
+      <div class="expert-domains__block">
+        <span class="expert-domains__number">{number}</span>
+        {lines.map((line) => (
+          <span class="expert-domains__line">{line}</span>
+        ))}
+        <hr class="expert-domains__hr" />
+      </div>
+    ))}
+  </div>
+</section>

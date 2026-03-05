@@ -1,0 +1,213 @@
+---
+import Button from "@ui/Button.astro";
+import Image from "@ui/Image.astro";
+import BusinessPlanningIcon from "./icons/BusinessPlanningIcon.astro";
+import CodeReviewIcon from "./icons/CodeReviewIcon.astro";
+import CommunityEventsIcon from "./icons/CommunityEventsIcon.astro";
+import CybersecurityAuditsIcon from "./icons/CybersecurityAuditsIcon.astro";
+import FinancialAnalysisIcon from "./icons/FinancialAnalysisIcon.astro";
+import WhitePaperIcon from "./icons/WhitePaperIcon.astro";
+import "./service-offerings-panel.css";
+
+type ServiceIconKey =
+  | "whitePaper"
+  | "communityEvents"
+  | "codeReview"
+  | "businessPlanning"
+  | "financialAnalysis"
+  | "cybersecurityAudits";
+
+interface ServiceOfferingLink {
+  label: string;
+  href: string;
+}
+
+interface ServiceOfferingButton {
+  label: string;
+  href: string;
+}
+
+interface ServiceOfferingCard {
+  iconKey: ServiceIconKey;
+  title: string;
+  description: string;
+  highlightText?: string;
+  links?: ServiceOfferingLink[];
+  button?: ServiceOfferingButton;
+}
+
+interface ServiceOfferingsSection {
+  id: string;
+  heading: string;
+  image: {
+    src: string;
+    alt: string;
+  };
+  intro: string;
+  cards: ServiceOfferingCard[];
+}
+
+interface Props {
+  section: ServiceOfferingsSection;
+}
+
+const { section } = Astro.props;
+
+const iconComponents = {
+  whitePaper: WhitePaperIcon,
+  communityEvents: CommunityEventsIcon,
+  codeReview: CodeReviewIcon,
+  businessPlanning: BusinessPlanningIcon,
+  financialAnalysis: FinancialAnalysisIcon,
+  cybersecurityAudits: CybersecurityAuditsIcon,
+} as const;
+---
+
+<section
+  id={section.id}
+  class="service-offerings container-95"
+  aria-label={`${section.heading} section`}
+>
+  <h2 class="service-offerings__heading text-gold">{section.heading}</h2>
+  <div class="service-offerings__intro-row">
+    <Image
+      src={section.image.src}
+      alt={section.image.alt}
+      class="service-offerings__portrait"
+      imgClass="service-offerings__portrait-img"
+      aspectRatio="1 / 1"
+      fit="contain"
+    />
+    <p class="service-offerings__intro text-gold m-0">{section.intro}</p>
+  </div>
+
+  <div class="service-offerings__cards">
+    {
+      section.cards.map((card, index) => {
+        const Icon = iconComponents[card.iconKey];
+
+        return (
+          <article
+            class="service-offerings__card service-offerings__card--pre"
+            data-service-offerings-card
+            style={`--service-offerings-delay: ${index * 0.08}s;`}
+          >
+            <Icon class="service-offerings__icon" />
+            <h3 class="service-offerings__title text-white m-0">{card.title}</h3>
+            <hr class="service-offerings__divider" />
+            <p class="service-offerings__description text-white m-0">{card.description}</p>
+            {card.highlightText ? (
+              <p class="service-offerings__highlight text-gold m-0">{card.highlightText}</p>
+            ) : null}
+            {card.links?.length ? (
+              <ul class="service-offerings__links m-0">
+                {card.links.map((link) => (
+                  <li>
+                    <a href={link.href} target="_blank" rel="noopener noreferrer">
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            ) : null}
+            {card.button ? (
+              <div class="service-offerings__button-wrap">
+                <Button
+                  href={card.button.href}
+                  label={card.button.label}
+                  variant="gold-pill"
+                  class="service-offerings__button"
+                />
+              </div>
+            ) : null}
+          </article>
+        );
+      })
+    }
+  </div>
+</section>
+
+<noscript>
+  <style>
+    .service-offerings__card--pre {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  </style>
+</noscript>
+
+<script>
+  const revealServiceOfferingsCard = (card: HTMLElement) => {
+    card.classList.remove('service-offerings__card--pre');
+    card.style.setProperty(
+      '--service-offerings-animate-delay',
+      card.style.getPropertyValue('--service-offerings-delay') || '0s',
+    );
+    card.classList.add('service-offerings__card--reveal');
+  };
+
+  const bindServiceOfferingsCards = (root: ParentNode = document) => {
+    const cards = Array.from(
+      root.querySelectorAll<HTMLElement>('[data-service-offerings-card]'),
+    );
+    if (!cards.length) {
+      return;
+    }
+
+    const unboundCards: HTMLElement[] = [];
+    for (const card of cards) {
+      if (card.dataset.serviceOfferingsBound === 'true') {
+        continue;
+      }
+
+      card.dataset.serviceOfferingsBound = 'true';
+      unboundCards.push(card);
+    }
+
+    if (!unboundCards.length) {
+      return;
+    }
+
+    if (!('IntersectionObserver' in window)) {
+      for (const card of unboundCards) {
+        revealServiceOfferingsCard(card);
+      }
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries, currentObserver) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) {
+            continue;
+          }
+
+          revealServiceOfferingsCard(entry.target as HTMLElement);
+          currentObserver.unobserve(entry.target);
+        }
+      },
+      {
+        threshold: 0.2,
+        rootMargin: '0px 0px -10% 0px',
+      },
+    );
+
+    for (const card of unboundCards) {
+      observer.observe(card);
+    }
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener(
+      'DOMContentLoaded',
+      () => bindServiceOfferingsCards(),
+      {
+        once: true,
+      },
+    );
+  } else {
+    bindServiceOfferingsCards();
+  }
+
+  document.addEventListener('astro:page-load', () => bindServiceOfferingsCards());
+</script>
