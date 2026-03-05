@@ -1,0 +1,68 @@
+---
+import Image from '@ui/Image.astro';
+import ImageTileGridSection from '@sections/ImageTileGridSection.astro';
+import './platforms-showcase-section.css';
+
+interface ImageTileGridItem {
+  src: string;
+  alt: string;
+}
+
+interface PlatformsShowcaseContent {
+  id: string;
+  title: string;
+  body: string;
+  backgroundImage: {
+    src: string;
+    alt: string;
+  };
+  gallery: {
+    ariaLabel: string;
+    expandLabel: string;
+    collapsedRows: {
+      mobile: number;
+      tablet: number;
+      desktop: number;
+    };
+    columns: {
+      mobile: number;
+      tablet: number;
+      desktop: number;
+    };
+    items: ImageTileGridItem[];
+  };
+}
+
+const { id, title, body, backgroundImage, gallery } =
+  Astro.props as PlatformsShowcaseContent;
+---
+
+<section id={id} class="platforms-showcase section-stack" aria-label={title}>
+  <div class="platforms-showcase__hero container-95">
+    <div class="platforms-showcase__media" aria-hidden="true">
+      <Image
+        src={backgroundImage.src}
+        alt={backgroundImage.alt}
+        class="platforms-showcase__media-image"
+        imgClass="platforms-showcase__media-image-tag"
+        aspectRatio="21 / 9"
+        fit="cover"
+        bg="var(--color-primary)"
+      />
+    </div>
+
+    <div class="platforms-showcase__panel">
+      <h2 class="platforms-showcase__title text-gold">{title}</h2>
+      <p class="platforms-showcase__body text-white">{body}</p>
+    </div>
+  </div>
+
+  <ImageTileGridSection
+    id={`${id}-gallery`}
+    ariaLabel={gallery.ariaLabel}
+    expandLabel={gallery.expandLabel}
+    collapsedRows={gallery.collapsedRows}
+    columns={gallery.columns}
+    items={gallery.items}
+  />
+</section>

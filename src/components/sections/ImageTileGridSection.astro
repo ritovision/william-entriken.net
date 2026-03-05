@@ -1,0 +1,122 @@
+---
+import Image from '@ui/Image.astro';
+import './image-tile-grid-section.css';
+
+interface ImageTileGridItem {
+  src: string;
+  alt: string;
+}
+
+interface ImageTileGridSectionContent {
+  id: string;
+  title?: string;
+  ariaLabel?: string;
+  subtitle?: string;
+  body?: string;
+  expandLabel: string;
+  collapsedRows: {
+    mobile: number;
+    tablet: number;
+    desktop: number;
+  };
+  columns: {
+    mobile: number;
+    tablet: number;
+    desktop: number;
+  };
+  items: ImageTileGridItem[];
+}
+
+const {
+  id,
+  title,
+  ariaLabel,
+  subtitle,
+  body,
+  expandLabel,
+  collapsedRows,
+  columns,
+  items,
+} = Astro.props as ImageTileGridSectionContent;
+
+const listId = `${id}-image-tile-grid`;
+const sectionLabel = ariaLabel ?? title ?? 'Image gallery';
+const styleVars = [
+  `--image-tile-grid-columns-mobile: ${String(columns.mobile)}`,
+  `--image-tile-grid-columns-tablet: ${String(columns.tablet)}`,
+  `--image-tile-grid-columns-desktop: ${String(columns.desktop)}`,
+  `--image-tile-grid-row-limit-mobile: ${String(collapsedRows.mobile)}`,
+  `--image-tile-grid-row-limit-tablet: ${String(collapsedRows.tablet)}`,
+  `--image-tile-grid-row-limit-desktop: ${String(collapsedRows.desktop)}`,
+].join('; ');
+---
+
+<section
+  id={id}
+  class="image-tile-grid container-95 section-stack"
+  aria-label={sectionLabel}
+  data-image-tile-grid
+  style={styleVars}
+>
+  {title && <h2 class="image-tile-grid__title text-gold">{title}</h2>}
+  {subtitle && <h3 class="image-tile-grid__subtitle text-white">{subtitle}</h3>}
+  {body && <p class="image-tile-grid__body text-white">{body}</p>}
+
+  <div class="image-tile-grid__viewport" data-image-tile-viewport>
+    <div
+      id={listId}
+      class="image-tile-grid__track"
+      data-image-tile-track
+      role="list"
+      aria-label={sectionLabel}
+    >
+      {
+        items.map((item) => (
+          <div class="image-tile-grid__tile" role="listitem">
+            <Image
+              src={item.src}
+              alt={item.alt}
+              class="image-tile-grid__image"
+              imgClass="image-tile-grid__image-tag"
+              aspectRatio="1 / 1"
+              fit="cover"
+              bg="var(--color-black)"
+            />
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="image-tile-grid__expand" data-image-tile-expand-wrap hidden>
+      <div class="image-tile-grid__expand-gradient" aria-hidden="true"></div>
+      <button
+        type="button"
+        class="btn b-g-default-button image-tile-grid__expand-button"
+        data-image-tile-expand
+        aria-expanded="false"
+        aria-controls={listId}
+      >
+        {expandLabel}
+      </button>
+    </div>
+  </div>
+
+  <noscript>
+    <style>{`
+      #${id}.image-tile-grid .image-tile-grid__viewport {
+        max-block-size: none;
+        overflow: visible;
+      }
+
+      #${id}.image-tile-grid [data-image-tile-expand-wrap] {
+        display: none;
+      }
+    `}</style>
+  </noscript>
+</section>
+
+<script>
+  import { initImageTileGrids } from '@sections/scripts/imageTileGridRuntime';
+
+  initImageTileGrids();
+</script>

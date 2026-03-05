@@ -1,0 +1,509 @@
+{
+  "seo": {
+    "title": "William Entriken",
+    "description": "Official site of William Entriken featuring services, speaking, media coverage, and contact information."
+  },
+  "media": {
+    "id": "media",
+    "title": "This work is widely referenced in the media",
+    "expandLabel": "Read More",
+    "collapsedRows": {
+      "mobile": 3,
+      "tablet": 5,
+      "desktop": 5
+    },
+    "columns": {
+      "mobile": 3,
+      "tablet": 4,
+      "desktop": 5
+    },
+    "items": [
+      {
+        "src": "/images/pages/home/media/the-new-york-times.jpg",
+        "alt": "The New York Times"
+      },
+      { "src": "/images/pages/home/media/forbes.jpg", "alt": "Forbes" },
+      { "src": "/images/pages/home/media/cnn.png", "alt": "CNN" },
+      { "src": "/images/pages/home/media/time.webp", "alt": "TIME" },
+      {
+        "src": "/images/pages/home/media/business-insider.webp",
+        "alt": "Business Insider"
+      },
+      { "src": "/images/pages/home/media/bloomberg.png", "alt": "Bloomberg" },
+      { "src": "/images/pages/home/media/bbc.jpg", "alt": "BBC" },
+      { "src": "/images/pages/home/media/wired.jpg", "alt": "WIRED" },
+      { "src": "/images/pages/home/media/yahoo.jpg", "alt": "Yahoo!" },
+      { "src": "/images/pages/home/media/the-verge.png", "alt": "The Verge" },
+      {
+        "src": "/images/pages/home/media/techcrunch.webp",
+        "alt": "TechCrunch"
+      },
+      {
+        "src": "/images/pages/home/media/thomson-reuters.png",
+        "alt": "Thomson Reuters"
+      },
+      { "src": "/images/pages/home/media/fox-news.png", "alt": "Fox News" },
+      { "src": "/images/pages/home/media/nbc.webp", "alt": "NBC" },
+      { "src": "/images/pages/home/media/cbs-news.webp", "alt": "CBS News" },
+      { "src": "/images/pages/home/media/mashable.webp", "alt": "Mashable" },
+      { "src": "/images/pages/home/media/abc.png", "alt": "ABC" },
+      {
+        "src": "/images/pages/home/media/south-china-morning-post.png",
+        "alt": "South China Morning Post"
+      },
+      {
+        "src": "/images/pages/home/media/fast-company.png",
+        "alt": "Fast Company"
+      },
+      { "src": "/images/pages/home/media/ap.jpg", "alt": "Associated Press" }
+    ]
+  },
+  "bigTechAdoption": {
+    "id": "big-tech-adoption",
+    "title": "Big Tech Adoption",
+    "body": "The widespread adoption, compelling innovativeness and diverse utility of William's NFT standard, ERC-721, captured the interest of major tech giants, prompting them to integrate support for it across their platforms at one point or another.",
+    "expandLabel": "Read More",
+    "collapsedRows": {
+      "mobile": 3,
+      "tablet": 5,
+      "desktop": 5
+    },
+    "columns": {
+      "mobile": 3,
+      "tablet": 4,
+      "desktop": 4
+    },
+    "items": [
+      {
+        "src": "/images/shared/brands/apple-logo.webp",
+        "alt": "Apple"
+      },
+      {
+        "src": "/images/shared/brands/microsoft-logo.png",
+        "alt": "Microsoft"
+      },
+      {
+        "src": "/images/pages/home/big-tech/google.webp",
+        "alt": "Google"
+      },
+      {
+        "src": "/images/pages/home/big-tech/meta.png",
+        "alt": "Meta"
+      },
+      {
+        "src": "/images/pages/home/big-tech/facebook.png",
+        "alt": "Facebook"
+      },
+      {
+        "src": "/images/pages/home/big-tech/amazon.jpg",
+        "alt": "Amazon"
+      },
+      {
+        "src": "/images/pages/home/big-tech/adobe.png",
+        "alt": "Adobe"
+      },
+      {
+        "src": "/images/pages/home/big-tech/oracle.png",
+        "alt": "Oracle"
+      },
+      {
+        "src": "/images/pages/home/big-tech/salesforce.png",
+        "alt": "Salesforce"
+      },
+      {
+        "src": "/images/pages/home/big-tech/shopify.jpg",
+        "alt": "Shopify"
+      },
+      {
+        "src": "/images/pages/home/big-tech/twitter.png",
+        "alt": "Twitter"
+      },
+      {
+        "src": "/images/pages/home/big-tech/instagram.webp",
+        "alt": "Instagram"
+      },
+      {
+        "src": "/images/pages/home/big-tech/reddit.png",
+        "alt": "Reddit"
+      },
+      {
+        "src": "/images/pages/home/big-tech/ubisoft.jpg",
+        "alt": "Ubisoft"
+      }
+    ]
+  },
+  "celebrityEmbrace": {
+    "id": "celebrity-embrace",
+    "title": "Celebrity Embrance",
+    "body": "The allure of NFTs has captivated the celebrity sphere, with notable figures investing hefty sums to acquire distinctive ERC-721 NFT collectibles (often using them as profile pics on their social media), most famously from collections like Bored Ape Yacht Club, symbolizing a prestigious blend of digital ownership and exclusivity.",
+    "expandLabel": "Read More",
+    "collapsedRows": {
+      "mobile": 3,
+      "tablet": 5,
+      "desktop": 5
+    },
+    "columns": {
+      "mobile": 3,
+      "tablet": 4,
+      "desktop": 5
+    },
+    "items": [
+      {
+        "src": "/images/pages/home/celebrities/ben-simmons.png",
+        "alt": "Ben Simmons"
+      },
+      {
+        "src": "/images/pages/home/celebrities/paris-hilton.png",
+        "alt": "Paris Hilton"
+      },
+      {
+        "src": "/images/pages/home/celebrities/mark-cuban.jpg",
+        "alt": "Mark Cuban"
+      },
+      { "src": "/images/pages/home/celebrities/diplo.png", "alt": "Diplo" },
+      {
+        "src": "/images/pages/home/celebrities/kevin-hart.jpg",
+        "alt": "Kevin Hart"
+      },
+      {
+        "src": "/images/pages/home/celebrities/jimmy-fallon.webp",
+        "alt": "Jimmy Fallon"
+      },
+      { "src": "/images/pages/home/celebrities/ksi.png", "alt": "KSI" },
+      {
+        "src": "/images/pages/home/celebrities/steve-aoki.jpg",
+        "alt": "Steve Aoki"
+      },
+      { "src": "/images/pages/home/celebrities/eminem.jpg", "alt": "Eminem" },
+      {
+        "src": "/images/pages/home/celebrities/french-montana.webp",
+        "alt": "French Montana"
+      },
+      { "src": "/images/pages/home/celebrities/future.webp", "alt": "Future" },
+      {
+        "src": "/images/pages/home/celebrities/gary-v.png",
+        "alt": "Gary Vaynerchuk"
+      },
+      { "src": "/images/pages/home/celebrities/gunna.jpg", "alt": "Gunna" },
+      {
+        "src": "/images/pages/home/celebrities/jack-dorsey.jpg",
+        "alt": "Jack Dorsey"
+      },
+      {
+        "src": "/images/pages/home/celebrities/justin-bieber.jpeg",
+        "alt": "Justin Bieber"
+      },
+      {
+        "src": "/images/pages/home/celebrities/larry-david.jpeg",
+        "alt": "Larry David"
+      },
+      {
+        "src": "/images/pages/home/celebrities/lil-baby.webp",
+        "alt": "Lil Baby"
+      },
+      {
+        "src": "/images/pages/home/celebrities/lil-durk.png",
+        "alt": "Lil Durk"
+      },
+      {
+        "src": "/images/pages/home/celebrities/logan-paul.jpg",
+        "alt": "Logan Paul"
+      },
+      { "src": "/images/pages/home/celebrities/madonna.jpg", "alt": "Madonna" },
+      {
+        "src": "/images/pages/home/celebrities/marshmello.webp",
+        "alt": "Marshmello"
+      },
+      {
+        "src": "/images/pages/home/celebrities/meek-mill.jpg",
+        "alt": "Meek Mill"
+      },
+      {
+        "src": "/images/pages/home/celebrities/murda-beatz.jpg",
+        "alt": "Murda Beatz"
+      },
+      {
+        "src": "/images/pages/home/celebrities/post-malone.webp",
+        "alt": "Post Malone"
+      },
+      {
+        "src": "/images/pages/home/celebrities/rich-the-kid.jpg",
+        "alt": "Rich the Kid"
+      },
+      {
+        "src": "/images/pages/home/celebrities/serena-williams.png",
+        "alt": "Serena Williams"
+      },
+      {
+        "src": "/images/pages/home/celebrities/shaq.webp",
+        "alt": "Shaquille O'Neal"
+      },
+      {
+        "src": "/images/pages/home/celebrities/snoop-dogg.jpg",
+        "alt": "Snoop Dogg"
+      },
+      {
+        "src": "/images/pages/home/celebrities/steph-curry.png",
+        "alt": "Stephen Curry"
+      },
+      {
+        "src": "/images/pages/home/celebrities/timbaland.png",
+        "alt": "Timbaland"
+      },
+      {
+        "src": "/images/pages/home/celebrities/tom-brady.webp",
+        "alt": "Tom Brady"
+      },
+      {
+        "src": "/images/pages/home/celebrities/dj-khaled.webp",
+        "alt": "DJ Khaled"
+      },
+      {
+        "src": "/images/pages/home/celebrities/travis-barker.jpg",
+        "alt": "Travis Barker"
+      },
+      {
+        "src": "/images/pages/home/celebrities/waka-flocka.jpg",
+        "alt": "Waka Flocka Flame"
+      },
+      {
+        "src": "/images/pages/home/celebrities/von-miller.webp",
+        "alt": "Von Miller"
+      }
+    ]
+  },
+  "scholarlyInfluence": {
+    "id": "scholarly-influence",
+    "title": "Scholarly Influence",
+    "subtitle": "Cited +250 times",
+    "body": "Cited in publications from virtually every major scholarly publisher, William's pioneering contributions have become a touchstone for discourse and investigation in realms as varied as economics, legal theory, computer science, biomedicine, and logistics. It underscores not only the foundational importance of his work but also illuminates its far-reaching influence across different facets of contemporary knowledge and practice.",
+    "expandLabel": "Read More",
+    "collapsedRows": {
+      "mobile": 3,
+      "tablet": 5,
+      "desktop": 5
+    },
+    "columns": {
+      "mobile": 3,
+      "tablet": 4,
+      "desktop": 5
+    },
+    "items": [
+      {
+        "src": "/images/pages/home/scholarly-publishers/elsevier.jpeg",
+        "alt": "Elsevier"
+      },
+      {
+        "src": "/images/pages/home/scholarly-publishers/springerlink.jpg",
+        "alt": "SpringerLink"
+      },
+      {
+        "src": "/images/pages/home/scholarly-publishers/wiley.png",
+        "alt": "Wiley"
+      },
+      {
+        "src": "/images/pages/home/scholarly-publishers/taylor-francis.png",
+        "alt": "Taylor & Francis"
+      },
+      {
+        "src": "/images/pages/home/scholarly-publishers/cambridge.png",
+        "alt": "Cambridge University Press"
+      },
+      {
+        "src": "/images/pages/home/scholarly-publishers/oxford.jpeg",
+        "alt": "Oxford Academic"
+      },
+      {
+        "src": "/images/pages/home/scholarly-publishers/ieee.png",
+        "alt": "IEEE"
+      },
+      {
+        "src": "/images/pages/home/scholarly-publishers/sage.jpg",
+        "alt": "SAGE Publishing"
+      },
+      {
+        "src": "/images/pages/home/scholarly-publishers/mdpi.png",
+        "alt": "MDPI"
+      },
+      {
+        "src": "/images/pages/home/scholarly-publishers/plos.jpeg",
+        "alt": "PLOS"
+      },
+      {
+        "src": "/images/pages/home/scholarly-publishers/aps.png",
+        "alt": "APS"
+      },
+      {
+        "src": "/images/pages/home/scholarly-publishers/iop.png",
+        "alt": "IOP Publishing"
+      },
+      {
+        "src": "/images/pages/home/scholarly-publishers/emerald.png",
+        "alt": "Emerald Publishing"
+      },
+      {
+        "src": "/images/pages/home/scholarly-publishers/pubmed.png",
+        "alt": "PubMed"
+      }
+    ]
+  },
+  "investorBacking": {
+    "id": "investor-backing",
+    "title": "Investor Backing in Standard-Empowered Ecosystems",
+    "body": "Prominent investors have recognized the transformative potential of the technologies enabled by William's standards on the blockchain, channeling substantial investments into projects and platforms leveraging them (both ERC-721 & ERC-165). From major NFT marketplaces, innovative DeFi platforms, to cutting-edge dApps running on Ethereum and Polygon, the ripple effect of William's contributions is far-reaching in the investor community.",
+    "expandLabel": "Read More",
+    "collapsedRows": {
+      "mobile": 3,
+      "tablet": 5,
+      "desktop": 5
+    },
+    "columns": {
+      "mobile": 3,
+      "tablet": 4,
+      "desktop": 5
+    },
+    "items": [
+      {
+        "src": "/images/pages/home/investors/a16z.png",
+        "alt": "Andreessen Horowitz"
+      },
+      {
+        "src": "/images/pages/home/investors/animoca-brands.jpeg",
+        "alt": "Animoca Brands"
+      },
+      {
+        "src": "/images/pages/home/investors/paradigm.png",
+        "alt": "Paradigm"
+      },
+      {
+        "src": "/images/pages/home/investors/sequoia.jpeg",
+        "alt": "Sequoia Capital"
+      },
+      {
+        "src": "/images/pages/home/investors/coatue.jpeg",
+        "alt": "Coatue"
+      },
+      {
+        "src": "/images/pages/home/investors/multicoin-capital.jpg",
+        "alt": "Multicoin Capital"
+      },
+      {
+        "src": "/images/pages/home/investors/digital-currency-group.png",
+        "alt": "Digital Currency Group"
+      },
+      {
+        "src": "/images/pages/home/investors/draper-vc.png",
+        "alt": "Draper VC"
+      },
+      {
+        "src": "/images/pages/home/investors/framework-ventures.png",
+        "alt": "Framework Ventures"
+      },
+      {
+        "src": "/images/pages/home/investors/polychain-capital.png",
+        "alt": "Polychain Capital"
+      },
+      {
+        "src": "/images/pages/home/investors/gumi-cryptos.jpg",
+        "alt": "gumi Cryptos"
+      },
+      {
+        "src": "/images/pages/home/investors/grayscale-ventures.png",
+        "alt": "Grayscale Ventures"
+      },
+      {
+        "src": "/images/pages/home/investors/three-arrows-capital.png",
+        "alt": "Three Arrows Capital"
+      },
+      {
+        "src": "/images/pages/home/investors/au21-capital.jpeg",
+        "alt": "AU21 Capital"
+      },
+      {
+        "src": "/images/pages/home/investors/mark-cuban.webp",
+        "alt": "Mark Cuban"
+      }
+    ]
+  },
+  "platforms": {
+    "id": "platforms",
+    "title": "Commercial Platforms & Marketplaces",
+    "body": "The NFT standard, ERC-721, pioneered by William Entriken, has become a keystone in the blockchain ecosystem. Virtually all major institutions not only support and offer services around it, but regularly utilize and promote it. Its influence extends from the Ethereum & Polygon blockchains to various others bridged together, showcasing the widespread impact and acceptance of this groundbreaking standard across the digital asset landscape.",
+    "backgroundImage": {
+      "src": "/images/pages/home/platforms/will-mural-bg.png",
+      "alt": "William Entriken mural"
+    },
+    "gallery": {
+      "ariaLabel": "Commercial Platforms and Marketplaces",
+      "expandLabel": "Read More",
+      "collapsedRows": {
+        "mobile": 3,
+        "tablet": 5,
+        "desktop": 5
+      },
+      "columns": {
+        "mobile": 3,
+        "tablet": 4,
+        "desktop": 5
+      },
+      "items": [
+        {
+          "src": "/images/pages/home/platforms/opensea.png",
+          "alt": "OpenSea"
+        },
+        {
+          "src": "/images/pages/home/platforms/rarible.jpg",
+          "alt": "Rarible"
+        },
+        {
+          "src": "/images/pages/home/platforms/looksrare.jpg",
+          "alt": "LooksRare"
+        },
+        {
+          "src": "/images/pages/home/platforms/blur.png",
+          "alt": "Blur"
+        },
+        {
+          "src": "/images/pages/home/platforms/superrare.jpg",
+          "alt": "SuperRare"
+        },
+        {
+          "src": "/images/pages/home/platforms/nifty-gateway.jpg",
+          "alt": "Nifty Gateway"
+        },
+        {
+          "src": "/images/pages/home/platforms/makersplace.png",
+          "alt": "MakersPlace"
+        },
+        {
+          "src": "/images/pages/home/platforms/sothebys.png",
+          "alt": "Sotheby's"
+        },
+        {
+          "src": "/images/pages/home/platforms/binance.webp",
+          "alt": "Binance"
+        },
+        {
+          "src": "/images/pages/home/platforms/coinbase.png",
+          "alt": "Coinbase"
+        },
+        {
+          "src": "/images/pages/home/platforms/kraken.jpg",
+          "alt": "Kraken"
+        },
+        {
+          "src": "/images/pages/home/platforms/metamask.png",
+          "alt": "MetaMask"
+        },
+        {
+          "src": "/images/pages/home/platforms/trust-wallet.jpg",
+          "alt": "Trust Wallet"
+        },
+        {
+          "src": "/images/pages/home/platforms/etherscan.png",
+          "alt": "Etherscan"
+        }
+      ]
+    }
+  }
+}

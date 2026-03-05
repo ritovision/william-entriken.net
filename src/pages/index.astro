@@ -1,132 +1,183 @@
 ---
-import BaseLayout from "@layouts/BaseLayout.astro";
-import type { SchemaBlock } from "@shared/types";
-import schemaContent from "./_schema.json";
+import BaseLayout from '@layouts/BaseLayout.astro';
+import type { SchemaBlock } from '@shared/types';
+import ImageTileGridSection from '@sections/ImageTileGridSection.astro';
+import PlatformsShowcaseSection from '@sections/PlatformsShowcaseSection.astro';
+import content from './_content.json';
+import schemaContent from './_schema.json';
 
-const sections = Array.from({ length: 10 }, (_, index) => {
-  const n = index + 1;
-  return {
-    id: `home-section-${String(n).padStart(2, "0")}`,
-    title: `Home Demo Section ${n}`,
+interface ImageTileGridItem {
+  src: string;
+  alt: string;
+}
+
+interface HomePageContent {
+  seo: {
+    title: string;
+    description: string;
   };
-});
+  media: {
+    id: string;
+    title: string;
+    subtitle?: string;
+    body?: string;
+    expandLabel: string;
+    collapsedRows: {
+      mobile: number;
+      tablet: number;
+      desktop: number;
+    };
+    columns: {
+      mobile: number;
+      tablet: number;
+      desktop: number;
+    };
+    items: ImageTileGridItem[];
+  };
+  bigTechAdoption: {
+    id: string;
+    title: string;
+    subtitle?: string;
+    body: string;
+    expandLabel: string;
+    collapsedRows: {
+      mobile: number;
+      tablet: number;
+      desktop: number;
+    };
+    columns: {
+      mobile: number;
+      tablet: number;
+      desktop: number;
+    };
+    items: ImageTileGridItem[];
+  };
+  celebrityEmbrace: {
+    id: string;
+    title: string;
+    subtitle?: string;
+    body: string;
+    expandLabel: string;
+    collapsedRows: {
+      mobile: number;
+      tablet: number;
+      desktop: number;
+    };
+    columns: {
+      mobile: number;
+      tablet: number;
+      desktop: number;
+    };
+    items: ImageTileGridItem[];
+  };
+  scholarlyInfluence: {
+    id: string;
+    title: string;
+    subtitle: string;
+    body: string;
+    expandLabel: string;
+    collapsedRows: {
+      mobile: number;
+      tablet: number;
+      desktop: number;
+    };
+    columns: {
+      mobile: number;
+      tablet: number;
+      desktop: number;
+    };
+    items: ImageTileGridItem[];
+  };
+  investorBacking: {
+    id: string;
+    title: string;
+    subtitle?: string;
+    body: string;
+    expandLabel: string;
+    collapsedRows: {
+      mobile: number;
+      tablet: number;
+      desktop: number;
+    };
+    columns: {
+      mobile: number;
+      tablet: number;
+      desktop: number;
+    };
+    items: ImageTileGridItem[];
+  };
+  platforms: {
+    id: string;
+    title: string;
+    body: string;
+    backgroundImage: {
+      src: string;
+      alt: string;
+    };
+    gallery: {
+      ariaLabel: string;
+      expandLabel: string;
+      collapsedRows: {
+        mobile: number;
+        tablet: number;
+        desktop: number;
+      };
+      columns: {
+        mobile: number;
+        tablet: number;
+        desktop: number;
+      };
+      items: ImageTileGridItem[];
+    };
+  };
+}
 
-const sidebarToc = sections.map((section) => ({
-  label: section.title,
-  targetId: section.id,
-}));
-
-const paragraph =
-  "This section is temporary content used to verify scroll behavior, section navigation anchors, and sidebar table-of-contents flow on large pages.";
-const seo = {
-  title: "William Entriken",
-  description:
-    "Official site of William Entriken featuring services, speaking, media coverage, and contact information.",
-};
+const {
+  seo,
+  media,
+  bigTechAdoption,
+  celebrityEmbrace,
+  scholarlyInfluence,
+  investorBacking,
+  platforms,
+} = content as HomePageContent;
 const schema = schemaContent as SchemaBlock;
+const sidebarToc = [
+  {
+    label: 'News Outlets',
+    targetId: media.id,
+  },
+  {
+    label: bigTechAdoption.title,
+    targetId: bigTechAdoption.id,
+  },
+  {
+    label: celebrityEmbrace.title,
+    targetId: celebrityEmbrace.id,
+  },
+  {
+    label: scholarlyInfluence.title,
+    targetId: scholarlyInfluence.id,
+  },
+  {
+    label: investorBacking.title,
+    targetId: investorBacking.id,
+  },
+  {
+    label: platforms.title,
+    targetId: platforms.id,
+  },
+];
 ---
 
 <BaseLayout seo={seo} schema={schema} sidebarToc={sidebarToc}>
-  <main class="page-main" data-home-demo>
-    <div class="container-95 py-4">
-      {
-        sections.map((section, index) => (
-          <section
-            id={section.id}
-            class="bg-content-dark border-white mb-4 p-4 section-stack"
-            data-home-demo-block
-            style={`--home-demo-delay: ${index * 0.08}s;`}
-          >
-            <h2 class="text-gold m-0">{section.title}</h2>
-            <p class="text-white m-0">{paragraph}</p>
-            <p class="text-white m-0">{paragraph}</p>
-            <p class="text-white m-0">{paragraph}</p>
-            <p class="text-white m-0">{paragraph}</p>
-            <p class="text-white m-0">{paragraph}</p>
-          </section>
-        ))
-      }
-    </div>
+  <main class="page-main home-page">
+    <h1 class="visually-hidden">William Entriken</h1>
+    <ImageTileGridSection {...media} />
+    <ImageTileGridSection {...bigTechAdoption} />
+    <ImageTileGridSection {...celebrityEmbrace} />
+    <ImageTileGridSection {...scholarlyInfluence} />
+    <ImageTileGridSection {...investorBacking} />
+    <PlatformsShowcaseSection {...platforms} />
   </main>
 </BaseLayout>
-
-<style>
-  [data-home-demo-block].home-demo-block--pre {
-    opacity: 0;
-    transform: translateY(24px);
-  }
-</style>
-
-<script>
-  const revealHomeDemoBlock = (block: HTMLElement) => {
-    block.classList.remove('home-demo-block--pre');
-    block.style.setProperty('--animate-duration', '0.6s');
-    block.style.setProperty(
-      '--animate-delay',
-      block.style.getPropertyValue('--home-demo-delay') || '0s',
-    );
-    block.classList.add('animate__animated', 'animate__fadeInUp');
-  };
-
-  const bindHomeDemoBlocks = (root: ParentNode = document) => {
-    const blocks = Array.from(
-      root.querySelectorAll<HTMLElement>('[data-home-demo-block]'),
-    );
-    if (!blocks.length) {
-      return;
-    }
-
-    const unboundBlocks: HTMLElement[] = [];
-    for (const block of blocks) {
-      if (block.dataset.homeDemoBound === 'true') {
-        continue;
-      }
-
-      block.dataset.homeDemoBound = 'true';
-      block.classList.add('home-demo-block--pre');
-      unboundBlocks.push(block);
-    }
-
-    if (!unboundBlocks.length) {
-      return;
-    }
-
-    if (!('IntersectionObserver' in window)) {
-      for (const block of unboundBlocks) {
-        revealHomeDemoBlock(block);
-      }
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      (entries, currentObserver) => {
-        for (const entry of entries) {
-          if (!entry.isIntersecting) {
-            continue;
-          }
-
-          revealHomeDemoBlock(entry.target as HTMLElement);
-          currentObserver.unobserve(entry.target);
-        }
-      },
-      {
-        threshold: 0.2,
-        rootMargin: '0px 0px -10% 0px',
-      },
-    );
-
-    for (const block of unboundBlocks) {
-      observer.observe(block);
-    }
-  };
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => bindHomeDemoBlocks(), {
-      once: true,
-    });
-  } else {
-    bindHomeDemoBlocks();
-  }
-
-  document.addEventListener('astro:page-load', () => bindHomeDemoBlocks());
-</script>

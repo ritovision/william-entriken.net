@@ -105,9 +105,12 @@
       { "src": "/images/pages/services/finra-logo.png", "alt": "FINRA" },
       { "src": "/images/pages/services/FBI-logo.jpg", "alt": "FBI" },
       { "src": "/images/pages/services/ey-white-logo.jpg", "alt": "EY" },
-      { "src": "/images/pages/services/ethereum-foundation-logo.png", "alt": "Ethereum Foundation" },
-      { "src": "/images/pages/services/apple-logo.webp", "alt": "Apple" },
-      { "src": "/images/pages/services/microsoft-logo.png", "alt": "Microsoft" }
+      {
+        "src": "/images/pages/services/ethereum-foundation-logo.png",
+        "alt": "Ethereum Foundation"
+      },
+      { "src": "/images/shared/brands/apple-logo.webp", "alt": "Apple" },
+      { "src": "/images/shared/brands/microsoft-logo.png", "alt": "Microsoft" }
     ]
   },
   "retainerPlans": {
@@ -147,9 +150,7 @@
       },
       {
         "title": "Larger retainer (please discuss in advance)",
-        "features": [
-          "Customized to your needs"
-        ],
+        "features": ["Customized to your needs"],
         "buttonLabel": "Purchase",
         "buttonPrice": "CUSTOM PRICE",
         "customHref": "http://paypal.me/fulldecent/"
