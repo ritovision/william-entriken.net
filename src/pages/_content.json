@@ -527,5 +527,38 @@
         }
       ]
     }
+  },
+  "publicSpeaking": {
+    "id": "public-speaking",
+    "title": "Public Speaking",
+    "intro": "As a thought leader in technology, business finance, and even medical applications, William confidently & passionately engages audiences with his insightful discourse, creating a stimulating dialogue that resonates across diverse sectors. He attends a variety of event formats from workshops and panel discussions to podcasts and live interviews and even hosts his weekly community service hour syndicated across social media.",
+    "ctaLead": "To learn more and request his participation as a speak at your event, head over to the Speaking page.",
+    "cta": {
+      "label": "Speaking",
+      "href": "/speaking"
+    },
+    "features": [
+      {
+        "title": "NFT.nyc's Distinguished Annual Speaker",
+        "body": "As the luminary who coined the term NFT and pioneered the first mainstream standard, William Entriken's influence is palpable and celebrated within the community. His recurring invitation as an honorary speaker at NFT.NYC since its inception is a testament to his seminal role in shaping the narrative and technological framework of the NFT space, making him a revered figure and a highlight of the event year after year.",
+        "image": {
+          "src": "/images/shared/will/Will-NFT-Tallinn.jpg",
+          "alt": "William Entriken speaking at NFT Tallinn"
+        },
+        "imageSide": "left",
+        "tone": "dark"
+      },
+      {
+        "title": "Community Service Hours",
+        "body": "Through weekly live broadcasts syndicated across social media, William extends his expertise to foster a vibrant community dialogue, welcoming enthusiasts and curious minds to share, inquire and delve into innovative projects and prevailing topics within the space. These sessions may feature interviews with prominent persons in leading projects and educational workshops, underlining his commitment to communal growth and knowledge sharing.",
+        "image": {
+          "src": "/images/shared/community/csh-poster.jpg",
+          "alt": "Community Service Hour poster"
+        },
+        "imageFit": "cover",
+        "imageSide": "right",
+        "tone": "light"
+      }
+    ]
   }
 }

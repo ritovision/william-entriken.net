@@ -4,6 +4,7 @@ import IcoAdvisorySection from '@sections/IcoAdvisorySection.astro';
 import type { SchemaBlock } from '@shared/types';
 import ImageTileGridSection from '@sections/ImageTileGridSection.astro';
 import PlatformsShowcaseSection from '@sections/PlatformsShowcaseSection.astro';
+import PublicSpeakingSection from '@sections/PublicSpeakingSection.astro';
 import content from './_content.json';
 import schemaContent from './_schema.json';
 
@@ -153,6 +154,26 @@ interface HomePageContent {
       items: ImageTileGridItem[];
     };
   };
+  publicSpeaking: {
+    id: string;
+    title: string;
+    intro: string;
+    ctaLead: string;
+    cta: {
+      label: string;
+      href: string;
+    };
+    features: Array<{
+      title: string;
+      body: string;
+      image: {
+        src: string;
+        alt: string;
+      };
+      imageSide: 'left' | 'right';
+      tone: 'dark' | 'light';
+    }>;
+  };
 }
 
 const {
@@ -164,6 +185,7 @@ const {
   scholarlyInfluence,
   investorBacking,
   platforms,
+  publicSpeaking,
 } = content as HomePageContent;
 const schema = schemaContent as SchemaBlock;
 const sidebarToc = [
@@ -195,6 +217,10 @@ const sidebarToc = [
     label: platforms.title,
     targetId: platforms.id,
   },
+  {
+    label: publicSpeaking.title,
+    targetId: publicSpeaking.id,
+  },
 ];
 ---
 
@@ -208,5 +234,6 @@ const sidebarToc = [
     <ImageTileGridSection {...investorBacking} />
     <IcoAdvisorySection {...icoAdvisory} />
     <PlatformsShowcaseSection {...platforms} />
+    <PublicSpeakingSection {...publicSpeaking} />
   </main>
 </BaseLayout>
