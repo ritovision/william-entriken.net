@@ -1,0 +1,45 @@
+---
+import '@sections/artwork-revolution-section.css';
+
+interface ArtworkRevolutionSectionContent {
+  id: string;
+  title: string;
+  quote: {
+    text: string;
+    attribution: string;
+  };
+  body: string[];
+  closingQuote: {
+    text: string;
+    attribution: string;
+  };
+}
+
+const { id, title, quote, body, closingQuote } =
+  Astro.props as ArtworkRevolutionSectionContent;
+---
+
+<section id={id} class="artwork-revolution section-stack">
+  <div class="container-95 artwork-revolution__inner">
+    <h2 class="artwork-revolution__title text-accent">{title}</h2>
+    <div class="artwork-revolution__quote-box text-accent">
+      <p class="artwork-revolution__quote-text m-0">{quote.text}</p>
+      <p class="artwork-revolution__quote-attribution m-0 text-white">
+        <strong>{quote.attribution}</strong>
+      </p>
+    </div>
+    <div class="artwork-revolution__body">
+      {
+        body.map((paragraph) => (
+          <p class="artwork-revolution__paragraph m-0">{paragraph}</p>
+        ))
+      }
+    </div>
+    <p class="artwork-revolution__closing-quote m-0">
+      <em class="text-accent">{closingQuote.text}</em>
+      <span class="artwork-revolution__closing-attribution text-white">
+        <strong><em>{closingQuote.attribution}</em></strong>
+      </span>
+    </p>
+  </div>
+</section>

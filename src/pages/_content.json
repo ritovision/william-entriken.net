@@ -349,6 +349,22 @@
       "href": "/services"
     }
   },
+  "artworkRevolution": {
+    "id": "artwork-revolution",
+    "title": "Artwork Revolution",
+    "quote": {
+      "text": "\"Non-Fungible Tokens are deemed the most powerful entity in the art world in ArtReview's 2021 Power 100 Ranking\"",
+      "attribution": "-artnews.net"
+    },
+    "body": [
+      "The word \"revolutionary\" is often used in cliche by every dime-a-dozen innovator. The ERC-721 standard lead by William is considered by authorities to have changed how artwork is transacted, and not just digital artwork but also for the transfer of titles for physical ones too. The blockchain through the ERC-721 standard established a method of authenticating ownership of digital artwork to a single owner, a necessary function in a world of seamless copy-pastings.",
+      "An entire cultural art movement has emerged, there being roots in pre-ERC-721 blockchain art assets, the eco-system exploded within several years of the standard being published. By 2021, ArtReview declared ERC-721 (as a synonym for NFTs) as the most powerful art entity in the world. Crypto art projects began emerging with hundreds of millions and in some cases billions of dollars in total capitalization. Platforms exchanging artwork NFTs like OpenSea grew into billion dollar behemoths. Even the famous Fine Art auction houses Sotheby's and Christie's began selling art NFTs with single artworks selling for tens of millions of dollars."
+    ],
+    "closingQuote": {
+      "text": "Four years on from its publication, ‘ERC-721’, the specification for the ‘non-fungible token’ (on the Ethereum-based blockchain – other specifications exist) has upended the art market, bringing contemporary art and millennial meme culture crashing together.",
+      "attribution": "-ArtReview"
+    }
+  },
   "scholarlyInfluence": {
     "id": "scholarly-influence",
     "title": "Scholarly Influence",

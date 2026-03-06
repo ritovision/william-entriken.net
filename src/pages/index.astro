@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
+import ArtworkRevolutionSection from '@sections/ArtworkRevolutionSection.astro';
 import GenesisPaperSection from '@sections/GenesisPaperSection.astro';
 import IcoAdvisorySection from '@sections/IcoAdvisorySection.astro';
 import LegacyInfluenceSection from '@sections/LegacyInfluenceSection.astro';
@@ -46,6 +47,19 @@ interface HomePageContent {
         href: string;
       }>;
     }>;
+  };
+  artworkRevolution: {
+    id: string;
+    title: string;
+    quote: {
+      text: string;
+      attribution: string;
+    };
+    body: string[];
+    closingQuote: {
+      text: string;
+      attribution: string;
+    };
   };
   media: {
     id: string;
@@ -219,6 +233,7 @@ const {
   seo,
   legacyInfluence,
   otherNotableImpacts,
+  artworkRevolution,
   media,
   bigTechAdoption,
   celebrityEmbrace,
@@ -256,6 +271,10 @@ const sidebarToc = [
     targetId: celebrityEmbrace.id,
   },
   {
+    label: artworkRevolution.title,
+    targetId: artworkRevolution.id,
+  },
+  {
     label: scholarlyInfluence.title,
     targetId: scholarlyInfluence.id,
   },
@@ -287,6 +306,7 @@ const sidebarToc = [
     <ImageTileGridSection {...media} />
     <ImageTileGridSection {...bigTechAdoption} />
     <ImageTileGridSection {...celebrityEmbrace} />
+    <ArtworkRevolutionSection {...artworkRevolution} />
     <ImageTileGridSection {...scholarlyInfluence} />
     <ImageTileGridSection {...investorBacking} />
     <IcoAdvisorySection {...icoAdvisory} />
