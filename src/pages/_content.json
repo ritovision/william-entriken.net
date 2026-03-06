@@ -133,6 +133,17 @@
     },
     "body": "In 2021, users have sent at least $44.2 billion worth of cryptocurrency to ERC-721 and its derivative ERC-1155 contracts, the two types of Ethereum smart contracts associated with NFT marketplaces and collections. Source: Chainalysis"
   },
+  "whatsAnNft": {
+    "id": "whats-an-nft",
+    "tocLabel": "What's an NFT?",
+    "eyebrow": "Hey Will",
+    "title": "What's an NFT?",
+    "image": {
+      "src": "/images/shared/will/will-mic-panel.png",
+      "alt": "William Entriken speaking into a microphone"
+    },
+    "overlayText": "Think of it like a deed that proves you own something, could be artwork, a house or any unique digital or physical item. This deed is on the blockchain so everyone can see it & no one can ever change it. It's authentic & it's YOURS."
+  },
   "bigTechAdoption": {
     "id": "big-tech-adoption",
     "title": "Big Tech Adoption",

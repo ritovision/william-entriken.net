@@ -12,6 +12,7 @@ import type { SchemaBlock } from '@shared/types';
 import ImageTileGridSection from '@sections/ImageTileGridSection.astro';
 import PlatformsShowcaseSection from '@sections/PlatformsShowcaseSection.astro';
 import PublicSpeakingSection from '@sections/PublicSpeakingSection.astro';
+import WhatsAnNftSection from '@sections/WhatsAnNftSection.astro';
 import content from './_content.json';
 import schemaContent from './_schema.json';
 
@@ -98,6 +99,17 @@ interface HomePageContent {
       alt: string;
     };
     body: string;
+  };
+  whatsAnNft: {
+    id: string;
+    tocLabel: string;
+    eyebrow: string;
+    title: string;
+    image: {
+      src: string;
+      alt: string;
+    };
+    overlayText: string;
   };
   bigTechAdoption: {
     id: string;
@@ -282,6 +294,7 @@ const {
   artworkRevolution,
   media,
   historicalMarketStatistics,
+  whatsAnNft,
   bigTechAdoption,
   celebrityEmbrace,
   icoAdvisory,
@@ -313,6 +326,10 @@ const sidebarToc = [
   {
     label: historicalMarketStatistics.title,
     targetId: historicalMarketStatistics.id,
+  },
+  {
+    label: whatsAnNft.tocLabel,
+    targetId: whatsAnNft.id,
   },
   {
     label: bigTechAdoption.title,
@@ -362,6 +379,7 @@ const sidebarToc = [
     <GenesisPaperSection {...genesisPaper} />
     <ImageTileGridSection {...media} />
     <HistoricalMarketStatisticsSection {...historicalMarketStatistics} />
+    <WhatsAnNftSection {...whatsAnNft} />
     <ImageTileGridSection {...bigTechAdoption} />
     <ImageTileGridSection {...celebrityEmbrace} />
     <ArtworkRevolutionSection {...artworkRevolution} />

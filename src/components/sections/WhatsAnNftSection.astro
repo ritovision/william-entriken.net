@@ -1,0 +1,40 @@
+---
+import './whats-an-nft-section.css';
+
+interface WhatsAnNftSectionContent {
+  id: string;
+  tocLabel: string;
+  eyebrow: string;
+  title: string;
+  image: {
+    src: string;
+    alt: string;
+  };
+  overlayText: string;
+}
+
+const { id, title, tocLabel, eyebrow, image, overlayText } =
+  Astro.props as WhatsAnNftSectionContent;
+---
+
+<section
+  id={id}
+  class="whats-an-nft container-95 section-stack"
+  aria-label={tocLabel}
+>
+  <div class="whats-an-nft__panel whats-an-nft__panel--copy">
+    <p class="whats-an-nft__eyebrow text-white">{eyebrow}</p>
+    <h2 class="whats-an-nft__title text-gold">{title}</h2>
+  </div>
+
+  <div class="whats-an-nft__panel whats-an-nft__panel--image">
+    <img
+      src={image.src}
+      alt={image.alt}
+      class="whats-an-nft__image-tag"
+      loading="lazy"
+      decoding="async"
+    />
+    <p class="whats-an-nft__overlay text-white">{overlayText}</p>
+  </div>
+</section>
