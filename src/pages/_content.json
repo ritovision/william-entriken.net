@@ -124,6 +124,15 @@
       { "src": "/images/pages/home/media/ap.jpg", "alt": "Associated Press" }
     ]
   },
+  "historicalMarketStatistics": {
+    "id": "historical-market-statistics",
+    "title": "Historical Market Statistics",
+    "image": {
+      "src": "/images/pages/home/historical-market-statistics/tvl-stats.jpg",
+      "alt": "Historical NFT market statistics chart"
+    },
+    "body": "In 2021, users have sent at least $44.2 billion worth of cryptocurrency to ERC-721 and its derivative ERC-1155 contracts, the two types of Ethereum smart contracts associated with NFT marketplaces and collections. Source: Chainalysis"
+  },
   "bigTechAdoption": {
     "id": "big-tech-adoption",
     "title": "Big Tech Adoption",

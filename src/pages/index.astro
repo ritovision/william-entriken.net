@@ -2,6 +2,7 @@
 import BaseLayout from '@layouts/BaseLayout.astro';
 import ArtworkRevolutionSection from '@sections/ArtworkRevolutionSection.astro';
 import GenesisPaperSection from '@sections/GenesisPaperSection.astro';
+import HistoricalMarketStatisticsSection from '@sections/HistoricalMarketStatisticsSection.astro';
 import HomeBottomCtaSection from '@sections/HomeBottomCtaSection.astro';
 import HomeHeroSection from '@sections/HomeHeroSection.astro';
 import IcoAdvisorySection from '@sections/IcoAdvisorySection.astro';
@@ -88,6 +89,15 @@ interface HomePageContent {
       desktop: number;
     };
     items: ImageTileGridItem[];
+  };
+  historicalMarketStatistics: {
+    id: string;
+    title: string;
+    image: {
+      src: string;
+      alt: string;
+    };
+    body: string;
   };
   bigTechAdoption: {
     id: string;
@@ -271,6 +281,7 @@ const {
   otherNotableImpacts,
   artworkRevolution,
   media,
+  historicalMarketStatistics,
   bigTechAdoption,
   celebrityEmbrace,
   icoAdvisory,
@@ -298,6 +309,10 @@ const sidebarToc = [
   {
     label: 'News Outlets',
     targetId: media.id,
+  },
+  {
+    label: historicalMarketStatistics.title,
+    targetId: historicalMarketStatistics.id,
   },
   {
     label: bigTechAdoption.title,
@@ -346,6 +361,7 @@ const sidebarToc = [
     <OtherNotableImpactsSection {...otherNotableImpacts} />
     <GenesisPaperSection {...genesisPaper} />
     <ImageTileGridSection {...media} />
+    <HistoricalMarketStatisticsSection {...historicalMarketStatistics} />
     <ImageTileGridSection {...bigTechAdoption} />
     <ImageTileGridSection {...celebrityEmbrace} />
     <ArtworkRevolutionSection {...artworkRevolution} />
