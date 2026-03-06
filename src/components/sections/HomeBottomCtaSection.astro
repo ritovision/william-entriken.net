@@ -1,0 +1,79 @@
+---
+import Button from '@ui/Button.astro';
+import Image from '@ui/Image.astro';
+import './home-bottom-cta-section.css';
+
+interface HomeBottomCtaSectionContent {
+  id: string;
+  title: string;
+  image: {
+    src: string;
+    alt: string;
+  };
+  mediaInquiry: {
+    title: string;
+    body: string;
+    cta: {
+      label: string;
+      href: string;
+    };
+  };
+  advisoryServices: {
+    title: string;
+    body: string;
+    cta: {
+      label: string;
+      href: string;
+    };
+  };
+}
+
+const { id, title, image, mediaInquiry, advisoryServices } =
+  Astro.props as HomeBottomCtaSectionContent;
+---
+
+<section
+  id={id}
+  class="home-bottom-cta container-95 section-stack"
+  aria-label={title}
+>
+  <h2 class="home-bottom-cta__title text-gold">{title}</h2>
+  <Image
+    src={image.src}
+    alt={image.alt}
+    class="home-bottom-cta__image"
+    imgClass="home-bottom-cta__image-tag"
+    aspectRatio="4 / 3"
+    fit="cover"
+  />
+
+  <div class="home-bottom-cta__content">
+    <section class="home-bottom-cta__block">
+      <h3 class="home-bottom-cta__subheading text-white">
+        {mediaInquiry.title}
+      </h3>
+      <p class="home-bottom-cta__body text-white">{mediaInquiry.body}</p>
+      <div class="home-bottom-cta__button-wrap">
+        <Button
+          href={mediaInquiry.cta.href}
+          label={mediaInquiry.cta.label}
+          variant="gold-pill"
+        />
+      </div>
+    </section>
+
+    <section class="home-bottom-cta__block">
+      <h2 class="home-bottom-cta__subsection-title text-gold">
+        {advisoryServices.title}
+      </h2>
+      <p class="home-bottom-cta__body text-white">{advisoryServices.body}</p>
+      <div class="home-bottom-cta__button-wrap">
+        <Button
+          href={advisoryServices.cta.href}
+          label={advisoryServices.cta.label}
+          variant="gold-pill"
+        />
+      </div>
+    </section>
+  </div>
+</section>

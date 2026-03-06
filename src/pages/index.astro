@@ -2,6 +2,7 @@
 import BaseLayout from '@layouts/BaseLayout.astro';
 import ArtworkRevolutionSection from '@sections/ArtworkRevolutionSection.astro';
 import GenesisPaperSection from '@sections/GenesisPaperSection.astro';
+import HomeBottomCtaSection from '@sections/HomeBottomCtaSection.astro';
 import HomeHeroSection from '@sections/HomeHeroSection.astro';
 import IcoAdvisorySection from '@sections/IcoAdvisorySection.astro';
 import LegacyInfluenceSection from '@sections/LegacyInfluenceSection.astro';
@@ -226,6 +227,31 @@ interface HomePageContent {
       tone: 'dark' | 'light';
     }>;
   };
+  homeBottomCta: {
+    id: string;
+    tocLabel: string;
+    title: string;
+    image: {
+      src: string;
+      alt: string;
+    };
+    mediaInquiry: {
+      title: string;
+      body: string;
+      cta: {
+        label: string;
+        href: string;
+      };
+    };
+    advisoryServices: {
+      title: string;
+      body: string;
+      cta: {
+        label: string;
+        href: string;
+      };
+    };
+  };
   genesisPaper: {
     id: string;
     title: string;
@@ -252,6 +278,7 @@ const {
   investorBacking,
   platforms,
   publicSpeaking,
+  homeBottomCta,
   genesisPaper,
 } = content as HomePageContent;
 const schema = schemaContent as SchemaBlock;
@@ -304,6 +331,10 @@ const sidebarToc = [
     label: publicSpeaking.title,
     targetId: publicSpeaking.id,
   },
+  {
+    label: homeBottomCta.tocLabel,
+    targetId: homeBottomCta.id,
+  },
 ];
 ---
 
@@ -323,5 +354,6 @@ const sidebarToc = [
     <IcoAdvisorySection {...icoAdvisory} />
     <PlatformsShowcaseSection {...platforms} />
     <PublicSpeakingSection {...publicSpeaking} />
+    <HomeBottomCtaSection {...homeBottomCta} />
   </main>
 </BaseLayout>

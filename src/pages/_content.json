@@ -643,6 +643,31 @@
       }
     ]
   },
+  "homeBottomCta": {
+    "id": "media-inquiries",
+    "tocLabel": "Inquiries Welcomed",
+    "title": "Media Inquiries Welcomed",
+    "image": {
+      "src": "/images/shared/will/will-mic-panel.png",
+      "alt": "William Entriken speaking into a microphone"
+    },
+    "mediaInquiry": {
+      "title": "Distinguished Pioneer & Thought Leader's Commentary",
+      "body": "We invite members of the press to reach out for insightful commentary and expert analysis from a highly-respected thought leader cited over 250 times in academic journals and an established pioneer with authoritative insights spanning a multitude of domains including blockchain, cybersecurity, finance & economics, and medical technology, among others. William is well-positioned to provide nuanced perspectives on current events, emerging technologies, and the evolving digital landscape. His contribution can significantly elevate the discourse, providing a depth of understanding that only few can match. Engage with a distinguished figure whose insights are as pioneering as they are enlightening.",
+      "cta": {
+        "label": "Press Inquiry",
+        "href": "/press"
+      }
+    },
+    "advisoryServices": {
+      "title": "Advisory Services",
+      "body": "William Entriken exemplifies polymathic alacrity across a spectrum of domains where his authority has been acknowledged and sought after by numerous high profile entities for his problem-solving and advisory support. His deep-seated expertise ranges from blockchain technology, cybersecurity, and information architecture to the intersection of business strategy and emerging digital paradigms. His acumen is a blend of technical prowess and strategic foresight, offering a rich tapestry of knowledge and insight that propels industries forward. He can add his blend expertises in an advisory role to your project.",
+      "cta": {
+        "label": "Advisory Services",
+        "href": "/services"
+      }
+    }
+  },
   "genesisPaper": {
     "id": "genesis-paper",
     "title": "The Genesis Paper of NFTs: ERC-721",
