@@ -471,6 +471,85 @@
       }
     ]
   },
+  "landmarkProjects": {
+    "id": "landmark-projects",
+    "title": "Landmark & Pioneering Projects Powered by ERC-721",
+    "body": "The NFT standard (ERC-721) William lead has served as the backbone powering industry-defining projects across various sectors and facilitating the movement of significant financial value in the digital asset landscape.",
+    "items": [
+      {
+        "id": "community-token-gating",
+        "label": "$1B NFT Community & Token Gating",
+        "panelTitle": "Bored Ape Yacht Club",
+        "content": [
+          "The Bored Ape Yacht Club (BAYC), initiated by Yuga Labs in 2021 using generative cartoon ape images as (ERC-721) NFTs, exemplifies the mainstream appeal of NFT communities, bolstered by celebrity endorsements, culminating in over a billion dollars in sales in 2022. The project made its famous debut into the spotlight during <a href=\"https://www.vulture.com/2022/01/paris-hilton-jimmy-fallon-bored-ape-yacht-club-nft.html\" target=\"_blank\" rel=\"noreferrer\">Paris Hilton's guest appearance</a> at The Tonight Show with Jimmy Fallon where both of them showed off their BAYC NFTs. Embodying William Entriken's vision of NFTs verifying ownership, BAYC also serves as a large-scale use case where owning these NFTs grant exclusive access to perks like access to private events, channels & special rewards."
+        ],
+        "images": [
+          {
+            "src": "/images/pages/home/celebrities/paris-hilton.png",
+            "alt": "Paris Hilton with Bored Ape Yacht Club profile image",
+            "caption": "Owns Bored Ape #1294"
+          },
+          {
+            "src": "/images/pages/home/projects/bayc.webp",
+            "alt": "Bored Ape Yacht Club artwork"
+          }
+        ]
+      },
+      {
+        "id": "first-erc721-project",
+        "label": "First ERC-721 Project",
+        "panelTitle": "Su Squares",
+        "content": [
+          "Su Squares, a project created by William and his wife Su, is the first successful testing of the ground-breaking NFT standard, ERC-721, and the predecessor for metaverse real-estate where land plots are represented by NFTs. Inspired by the <a href=\"https://en.wikipedia.org/wiki/The_Million_Dollar_Homepage\" target=\"_blank\" rel=\"noreferrer\">milliondollarhomepage</a>, it's like a map where each location, represented by a single square, can be owned by an NFT. Owners can place images, text, and links into their square, and from a bird's-eye view, one can see the entire shared image formed by different people's contributions, illustrating individual ownership of a communally shared canvas.",
+          "The project has been showcased on display at Times Square during the 2021 NFT.nyc event as well as on the NASDAQ building."
+        ],
+        "images": [
+          {
+            "src": "/images/shared/projects/su-squares-logo.png",
+            "alt": "Su Squares logo",
+            "fit": "contain",
+            "href": "https://tenthsousandsu.com"
+          },
+          {
+            "src": "/images/pages/nfts/susquares-nasdaq.jpg",
+            "alt": "Su Squares displayed on the NASDAQ building",
+            "href": "https://tenthsousandsu.com"
+          }
+        ]
+      },
+      {
+        "id": "gaming-integration",
+        "label": "Breakthrough Gaming-NFT Integration",
+        "panelTitle": "CryptoKitties",
+        "content": [
+          "Cryptokitties pioneered the integration of NFTs and gaming, and was one of the first notable projects propelling Ethereum and the ERC-721 NFT standard into the mainstream spotlight with widespread interest from major media outlets while generating millions of dollars in transactions. Each CryptoKitty is represented as an NFT generated in the game with distinct characteristics, and the user can collect and resell these NFTs or utilize them in the game. CryptoKitties was initially so popular that its usage actually slowed down and jammed up traffic on the entire Ethereum blockchain.",
+          "This pioneering innovation ignited a fervor around blockchain-based gaming, setting a precedent for myriad subsequent ventures in the flourishing NFT gaming ecosystem. Its launch actually pre-dated William's Su Squares NFT project, but since CryptoKitties utilized an experimental and and technically non-compliant version of the ERC-721 codebase, it is technically not the first ERC-721 contract."
+        ],
+        "images": [
+          {
+            "src": "/images/pages/home/projects/cryptokitties.webp",
+            "alt": "CryptoKitties artwork",
+            "desktopAspectRatio": "12 / 3",
+            "desktopMaxWidth": "28rem"
+          }
+        ]
+      },
+      {
+        "id": "record-breaking-artsale",
+        "label": "$69M Record-breaking Artsale",
+        "panelTitle": "Beeple's Everydays: The First 5000 Days",
+        "content": [
+          "Using William Entriken's NFT standard, ERC-721, artist Beeple sold a digital collage <em>Everydays: The First 5000 Days</em> as an NFT for an unprecedented $69 million at Christie's fine art auction house. This was a landmark moment for the art world and mainstream acceptance of NFTs as a vehicle for digital art ownership, highlighting the profound value realized through William's innovation. It also received a seismic amount of news coverage."
+        ],
+        "images": [
+          {
+            "src": "/images/pages/home/projects/beeple.jpg",
+            "alt": "Beeple's Everydays: The First 5000 Days"
+          }
+        ]
+      }
+    ]
+  },
   "investorBacking": {
     "id": "investor-backing",
     "title": "Investor Backing in Standard-Empowered Ecosystems",

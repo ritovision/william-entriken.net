@@ -3,6 +3,7 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 import ArtworkRevolutionSection from '@sections/ArtworkRevolutionSection.astro';
 import GenesisPaperSection from '@sections/GenesisPaperSection.astro';
 import HistoricalMarketStatisticsSection from '@sections/HistoricalMarketStatisticsSection.astro';
+import LandmarkProjectsSection from '@sections/LandmarkProjectsSection.astro';
 import HomeBottomCtaSection from '@sections/HomeBottomCtaSection.astro';
 import HomeHeroSection from '@sections/HomeHeroSection.astro';
 import IcoAdvisorySection from '@sections/IcoAdvisorySection.astro';
@@ -187,6 +188,26 @@ interface HomePageContent {
     };
     items: ImageTileGridItem[];
   };
+  landmarkProjects: {
+    id: string;
+    title: string;
+    body: string;
+    items: Array<{
+      id: string;
+      label: string;
+      panelTitle?: string;
+      content: string[];
+      images?: Array<{
+        src: string;
+        alt: string;
+        caption?: string;
+        fit?: 'cover' | 'contain';
+        href?: string;
+        desktopAspectRatio?: string;
+        desktopMaxWidth?: string;
+      }>;
+    }>;
+  };
   investorBacking: {
     id: string;
     title: string;
@@ -299,6 +320,7 @@ const {
   celebrityEmbrace,
   icoAdvisory,
   scholarlyInfluence,
+  landmarkProjects,
   investorBacking,
   platforms,
   publicSpeaking,
@@ -348,6 +370,10 @@ const sidebarToc = [
     targetId: scholarlyInfluence.id,
   },
   {
+    label: landmarkProjects.title,
+    targetId: landmarkProjects.id,
+  },
+  {
     label: investorBacking.title,
     targetId: investorBacking.id,
   },
@@ -384,6 +410,7 @@ const sidebarToc = [
     <ImageTileGridSection {...celebrityEmbrace} />
     <ArtworkRevolutionSection {...artworkRevolution} />
     <ImageTileGridSection {...scholarlyInfluence} />
+    <LandmarkProjectsSection {...landmarkProjects} />
     <ImageTileGridSection {...investorBacking} />
     <IcoAdvisorySection {...icoAdvisory} />
     <PlatformsShowcaseSection {...platforms} />
