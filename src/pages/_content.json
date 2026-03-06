@@ -3,6 +3,17 @@
     "title": "William Entriken",
     "description": "Official site of William Entriken featuring services, speaking, media coverage, and contact information."
   },
+  "hero": {
+    "backgroundImage": {
+      "src": "/images/shared/will/will-mic-panel.png",
+      "alt": "William Entriken speaking into a microphone"
+    },
+    "title": [
+      "Among the Few Influential Pioneers who Built",
+      "Foundations for Multi-Billion Dollar Ecosystems"
+    ],
+    "subheading": "Leaving an enduring legacy in Digital Ownership, Finance & Cybersecurity"
+  },
   "legacyInfluence": {
     "id": "legacy-introduction",
     "title": "His Legacy & Influence",

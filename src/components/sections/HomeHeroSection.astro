@@ -1,0 +1,28 @@
+---
+import '@sections/home-hero-section.css';
+
+interface HomeHeroSectionContent {
+  backgroundImage: {
+    src: string;
+    alt: string;
+  };
+  title: string[];
+  subheading: string;
+}
+
+const { backgroundImage, title, subheading } =
+  Astro.props as HomeHeroSectionContent;
+const backgroundStyle = `background-image: linear-gradient(rgb(0 0 0 / 0.35), rgb(0 0 0 / 0.35)), url('${backgroundImage.src}');`;
+const headingText = title.join(' ');
+---
+
+<section
+  class="home-hero"
+  style={backgroundStyle}
+  aria-label={backgroundImage.alt}
+>
+  <div class="container-95 home-hero__inner">
+    <h1 class="home-hero__title text-accent">{headingText}</h1>
+    <h2 class="home-hero__subheading text-white">{subheading}</h2>
+  </div>
+</section>
