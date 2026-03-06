@@ -1,0 +1,89 @@
+---
+import Button from '@ui/Button.astro';
+import Image from '@ui/Image.astro';
+import './ico-advisory-section.css';
+
+interface IcoAdvisorySectionContent {
+  id: string;
+  tocLabel: string;
+  portrait: {
+    src: string;
+    alt: string;
+  };
+  coinsImage: {
+    src: string;
+    alt: string;
+  };
+  message: {
+    lead: string;
+    emphasis: string;
+    tail: string;
+    note: string;
+  };
+  cta: {
+    label: string;
+    href: string;
+  };
+}
+
+const { id, tocLabel, portrait, coinsImage, message, cta } =
+  Astro.props as IcoAdvisorySectionContent;
+---
+
+<section
+  id={id}
+  class="ico-advisory container-95"
+  aria-label={tocLabel}
+  data-ico-advisory
+>
+  <div class="ico-advisory__content">
+    <div class="ico-advisory__cta-pane">
+      <div class="ico-advisory__cta-inner">
+        <div class="ico-advisory__portrait-wrap" data-ico-portrait>
+          <Image
+            src={portrait.src}
+            alt={portrait.alt}
+            class="ico-advisory__portrait ico-advisory__portrait--pre"
+            imgClass="ico-advisory__portrait-img"
+            aspectRatio="1 / 1"
+            fit="cover"
+          />
+        </div>
+
+        <div class="ico-advisory__copy">
+          <p class="ico-advisory__message text-white">
+            {message.lead}{' '}
+            <strong>{message.emphasis}</strong>{' '}
+            {message.tail}
+          </p>
+          <p class="ico-advisory__note text-white">
+            <em>{message.note}</em>
+          </p>
+          <Button
+            href={cta.href}
+            label={cta.label}
+            variant="gold-pill"
+            class="ico-advisory__button"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="ico-advisory__coins-pane" data-ico-coins-pane>
+      <Image
+        src={coinsImage.src}
+        alt={coinsImage.alt}
+        class="ico-advisory__coins-image ico-advisory__coins-image--pre"
+        imgClass="ico-advisory__coins-image-tag"
+        aspectRatio="1 / 1"
+        fit="cover"
+      />
+    </div>
+  </div>
+</section>
+
+<script>
+  import { initIcoAdvisorySections } from '@sections/scripts/icoAdvisoryRuntime';
+
+  initIcoAdvisorySections();
+</script>

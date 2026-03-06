@@ -272,6 +272,28 @@
       }
     ]
   },
+  "icoAdvisory": {
+    "id": "ico-advisory",
+    "tocLabel": "ICO Advisory",
+    "portrait": {
+      "src": "/images/shared/will/will-sunglasses.jpg",
+      "alt": "William Entriken wearing sunglasses"
+    },
+    "coinsImage": {
+      "src": "/images/pages/home/ico-advisory/falling-coins.png",
+      "alt": ""
+    },
+    "message": {
+      "lead": "As a technical advisor, he's assisted projects in",
+      "emphasis": "safely, legally & securely",
+      "tail": "generating over $100M through ICOs.",
+      "note": "(Initial Coin Offerings)"
+    },
+    "cta": {
+      "label": "Advisory Services",
+      "href": "/services"
+    }
+  },
   "scholarlyInfluence": {
     "id": "scholarly-influence",
     "title": "Scholarly Influence",

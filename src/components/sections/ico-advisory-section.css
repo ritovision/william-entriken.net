@@ -1,0 +1,162 @@
+.ico-advisory {
+  margin-top: var(--space-section-xl);
+  margin-bottom: var(--space-section-xl);
+  border: 1px solid var(--border-gold);
+  background: var(--color-primary);
+}
+
+.ico-advisory__content {
+  display: flex;
+  flex-direction: column;
+}
+
+.ico-advisory__cta-pane,
+.ico-advisory__coins-pane {
+  flex: 1 1 auto;
+}
+
+.ico-advisory__cta-pane {
+  padding: 1.25rem;
+}
+
+.ico-advisory__cta-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.25rem;
+}
+
+.ico-advisory__portrait-wrap {
+  flex: 0 0 auto;
+  width: min(12rem, 60vw);
+  align-self: center;
+}
+
+.ico-advisory__portrait,
+.ico-advisory__portrait-img {
+  width: 100%;
+  height: 100%;
+}
+
+.ico-advisory__portrait {
+  display: block;
+  clip-path: circle(0% at 50% 50%);
+  transform: scale(0.92);
+  transition:
+    clip-path 0.9s ease,
+    transform 0.9s ease;
+}
+
+.ico-advisory__portrait--revealed {
+  clip-path: circle(50% at 50% 50%);
+  transform: scale(1);
+}
+
+.ico-advisory__copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.875rem;
+}
+
+.ico-advisory__message,
+.ico-advisory__note {
+  margin: 0;
+  text-align: left;
+  line-height: 1.65;
+}
+
+.ico-advisory__message {
+  font-size: clamp(1.125rem, 1.8vw, 1.5rem);
+}
+
+.ico-advisory__note {
+  font-size: 1rem;
+  align-self: center;
+  text-align: center;
+}
+
+.ico-advisory__button {
+  align-self: center;
+}
+
+.ico-advisory__coins-pane {
+  position: relative;
+  min-height: clamp(14rem, 48vw, 18rem);
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, rgb(0 39 84 / 0.1) 0%, rgb(0 39 84 / 0.28) 100%),
+    var(--color-primary);
+}
+
+.ico-advisory__coins-image {
+  position: absolute;
+  inset: -15%;
+  display: block;
+  width: 130%;
+  height: 130%;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+.ico-advisory__coins-image--pre {
+  opacity: 0;
+}
+
+.ico-advisory__coins-image--visible {
+  opacity: 1;
+}
+
+.ico-advisory__coins-image-tag {
+  width: 100%;
+  height: 100%;
+  transform: translate3d(0, var(--ico-advisory-parallax-y, 0px), 0);
+  will-change: transform;
+}
+
+@media (min-width: 992px) {
+  .ico-advisory__content {
+    flex-direction: row;
+  }
+
+  .ico-advisory__cta-pane {
+    flex: 1 1 58%;
+    padding: 1.75rem;
+    display: flex;
+    align-items: center;
+  }
+
+  .ico-advisory__coins-pane {
+    flex: 1 1 42%;
+    min-height: 24rem;
+  }
+
+  .ico-advisory__cta-inner {
+    flex-direction: row;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .ico-advisory__portrait-wrap {
+    width: min(12rem, 18vw);
+    align-self: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ico-advisory__portrait {
+    clip-path: circle(50% at 50% 50%);
+    transform: none;
+    transition: none;
+  }
+
+  .ico-advisory__coins-image-tag {
+    transform: none !important;
+    will-change: auto;
+  }
+
+  .ico-advisory__coins-image {
+    opacity: 1 !important;
+    transition: none;
+  }
+}
