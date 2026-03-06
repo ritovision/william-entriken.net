@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 import IcoAdvisorySection from '@sections/IcoAdvisorySection.astro';
+import LegacyInfluenceSection from '@sections/LegacyInfluenceSection.astro';
 import type { SchemaBlock } from '@shared/types';
 import ImageTileGridSection from '@sections/ImageTileGridSection.astro';
 import PlatformsShowcaseSection from '@sections/PlatformsShowcaseSection.astro';
@@ -17,6 +18,15 @@ interface HomePageContent {
   seo: {
     title: string;
     description: string;
+  };
+  legacyInfluence: {
+    id: string;
+    title: string;
+    switchLabel: string;
+    conciseLabel: string;
+    detailedLabel: string;
+    concise: string;
+    detailed: string[];
   };
   media: {
     id: string;
@@ -178,6 +188,7 @@ interface HomePageContent {
 
 const {
   seo,
+  legacyInfluence,
   media,
   bigTechAdoption,
   celebrityEmbrace,
@@ -189,6 +200,10 @@ const {
 } = content as HomePageContent;
 const schema = schemaContent as SchemaBlock;
 const sidebarToc = [
+  {
+    label: 'Legacy Introduction',
+    targetId: legacyInfluence.id,
+  },
   {
     label: 'News Outlets',
     targetId: media.id,
@@ -227,6 +242,7 @@ const sidebarToc = [
 <BaseLayout seo={seo} schema={schema} sidebarToc={sidebarToc}>
   <main class="page-main home-page">
     <h1 class="visually-hidden">William Entriken</h1>
+    <LegacyInfluenceSection {...legacyInfluence} />
     <ImageTileGridSection {...media} />
     <ImageTileGridSection {...bigTechAdoption} />
     <ImageTileGridSection {...celebrityEmbrace} />

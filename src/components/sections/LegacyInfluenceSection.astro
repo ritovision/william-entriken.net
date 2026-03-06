@@ -1,0 +1,132 @@
+---
+import BGSwitch from '@ui/BGSwitch.astro';
+import './legacy-influence-section.css';
+
+interface LegacyInfluenceContent {
+  id: string;
+  title: string;
+  switchLabel: string;
+  conciseLabel: string;
+  detailedLabel: string;
+  concise: string;
+  detailed: string[];
+}
+
+const {
+  id,
+  title,
+  switchLabel,
+  conciseLabel,
+  detailedLabel,
+  concise,
+  detailed,
+} = Astro.props as LegacyInfluenceContent;
+
+const switchId = `${id}-length-switch`;
+const concisePanelId = `${id}-panel-concise`;
+const detailedPanelId = `${id}-panel-detailed`;
+const options = [
+  {
+    id: 'concise',
+    label: conciseLabel,
+    controlsId: concisePanelId,
+  },
+  {
+    id: 'detailed',
+    label: detailedLabel,
+    controlsId: detailedPanelId,
+  },
+] as const;
+---
+
+<section
+  id={id}
+  class="legacy-influence container-95 section-stack"
+  aria-label={title}
+  data-legacy-influence
+>
+  <h2 class="legacy-influence__title text-gold">{title}</h2>
+  <p class="legacy-influence__switch-label text-gold">
+    <strong>{switchLabel}</strong>
+  </p>
+
+  <BGSwitch
+    id={switchId}
+    class="legacy-influence__switch"
+    ariaLabel={`${title} length selector`}
+    activeId="concise"
+    options={options}
+  />
+
+  <div class="legacy-influence__panels">
+    <div
+      id={concisePanelId}
+      class="legacy-influence__panel is-active"
+      role="tabpanel"
+      aria-labelledby={`${switchId}-tab-concise`}
+      aria-hidden="false"
+      data-legacy-panel="concise"
+    >
+      <p class="legacy-influence__body text-white" set:html={concise} />
+    </div>
+
+    <div
+      id={detailedPanelId}
+      class="legacy-influence__panel"
+      role="tabpanel"
+      aria-labelledby={`${switchId}-tab-detailed`}
+      aria-hidden="true"
+      data-legacy-panel="detailed"
+      hidden
+    >
+      {
+        detailed.map((paragraph) => (
+          <p class="legacy-influence__body text-white" set:html={paragraph} />
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  (() => {
+    type PanelTarget = 'concise' | 'detailed';
+    const isPanelTarget = (value: unknown): value is PanelTarget =>
+      value === 'concise' || value === 'detailed';
+
+    const roots = document.querySelectorAll<HTMLElement>(
+      '[data-legacy-influence]',
+    );
+
+    for (const root of roots) {
+      const switchRoot = root.querySelector<HTMLElement>('[data-b-g-switch]');
+      const panels = Array.from(
+        root.querySelectorAll<HTMLElement>('[data-legacy-panel]'),
+      );
+
+      const setActivePanel = (target: PanelTarget) => {
+        for (const panel of panels) {
+          const isActive = panel.getAttribute('data-legacy-panel') === target;
+          panel.classList.toggle('is-active', isActive);
+          panel.setAttribute('aria-hidden', String(!isActive));
+          if (isActive) {
+            panel.removeAttribute('hidden');
+          } else {
+            panel.setAttribute('hidden', '');
+          }
+        }
+      };
+
+      if (switchRoot) {
+        switchRoot.addEventListener('b-g-switch:change', (event: Event) => {
+          const customEvent = event as CustomEvent<{ id?: unknown }>;
+          if (isPanelTarget(customEvent.detail?.id)) {
+            setActivePanel(customEvent.detail.id);
+          }
+        });
+      }
+
+      setActivePanel('concise');
+    }
+  })();
+</script>
