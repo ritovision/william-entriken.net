@@ -615,5 +615,15 @@
         "tone": "light"
       }
     ]
+  },
+  "genesisPaper": {
+    "id": "genesis-paper",
+    "title": "The Genesis Paper of NFTs: ERC-721",
+    "paperHref": "https://eips.ethereum.org/EIPS/eip-721",
+    "body": "William lead authorship of the industry-defining & landmark paper, known as <a href=\"https://eips.ethereum.org/EIPS/eip-721\" target=\"_blank\" rel=\"noopener noreferrer\"><em>ERC-721: The NFT Standard</em></a>, that is the cornerstone birthing of the NFT industry as we know it. Originated by Dieter Shirley and driven as a community effort, it not only <strong>coined & defined the term \"Non-Fungible Token\"</strong> but also laid the foundational code for implementing the first mainstream NFT standard called \"ERC-721,\" published in 2018 propelling a myriad of digital innovations. It is endorsed by industry experts and cited countless times by the media & peer-reviewed journals around the world. ERC-721's approval marked a seminal shift, catalyzing the emergence of a multibillion-dollar digital collectibles market and adoption from Big Tech firms and notable projects setting the stage for a new digital frontier.",
+    "image": {
+      "src": "/images/pages/home/genesis-paper/erc721.png",
+      "alt": "ERC-721 paper preview"
+    }
   }
 }

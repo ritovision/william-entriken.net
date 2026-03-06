@@ -1,0 +1,41 @@
+---
+import Image from '@ui/Image.astro';
+import './genesis-paper-section.css';
+
+interface GenesisPaperContent {
+  id: string;
+  title: string;
+  body: string;
+  paperHref: string;
+  image: {
+    src: string;
+    alt: string;
+  };
+}
+
+const { id, title, body, paperHref, image } =
+  Astro.props as GenesisPaperContent;
+---
+
+<section id={id} class="genesis-paper container-95" aria-label={title}>
+  <h2 class="genesis-paper__title text-gold">{title}</h2>
+  <p class="genesis-paper__body text-white" set:html={body} />
+
+  <a
+    href={paperHref}
+    class="genesis-paper__image-link"
+    aria-label="Open ERC-721 paper"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <Image
+      src={image.src}
+      alt={image.alt}
+      class="genesis-paper__image"
+      imgClass="genesis-paper__image-tag"
+      aspectRatio="16 / 10"
+      fit="contain"
+      bg="transparent"
+    />
+  </a>
+</section>

@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
+import GenesisPaperSection from '@sections/GenesisPaperSection.astro';
 import IcoAdvisorySection from '@sections/IcoAdvisorySection.astro';
 import LegacyInfluenceSection from '@sections/LegacyInfluenceSection.astro';
 import OtherNotableImpactsSection from '@sections/OtherNotableImpactsSection.astro';
@@ -202,6 +203,16 @@ interface HomePageContent {
       tone: 'dark' | 'light';
     }>;
   };
+  genesisPaper: {
+    id: string;
+    title: string;
+    body: string;
+    paperHref: string;
+    image: {
+      src: string;
+      alt: string;
+    };
+  };
 }
 
 const {
@@ -216,6 +227,7 @@ const {
   investorBacking,
   platforms,
   publicSpeaking,
+  genesisPaper,
 } = content as HomePageContent;
 const schema = schemaContent as SchemaBlock;
 const sidebarToc = [
@@ -226,6 +238,10 @@ const sidebarToc = [
   {
     label: otherNotableImpacts.title,
     targetId: otherNotableImpacts.id,
+  },
+  {
+    label: genesisPaper.title,
+    targetId: genesisPaper.id,
   },
   {
     label: 'News Outlets',
@@ -267,6 +283,7 @@ const sidebarToc = [
     <h1 class="visually-hidden">William Entriken</h1>
     <LegacyInfluenceSection {...legacyInfluence} />
     <OtherNotableImpactsSection {...otherNotableImpacts} />
+    <GenesisPaperSection {...genesisPaper} />
     <ImageTileGridSection {...media} />
     <ImageTileGridSection {...bigTechAdoption} />
     <ImageTileGridSection {...celebrityEmbrace} />
