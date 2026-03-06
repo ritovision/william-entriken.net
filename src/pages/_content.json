@@ -17,6 +17,47 @@
       "In intellectual circles, the ERC-721 paper has been <strong>cited nearly 200 times in scholarly journals</strong> and in nearly all prestigious academic publishers (according to Google scholar), kindling discussions across a variety of fields such as economics, legal theory, logistics, medical technology and finance. News coverage mentioning ERC-721 or projects utilizing it have become <strong>so prolific across mainstream outlets like <em>The New York Times</em>, <em>BBC</em>, <em>Time Magazine</em>, and <em>CNBC</em>, they've become commonplace occurrences.</strong> The crypto market may famously fluctuate, and even at times crash and burn, but the use case and evolution of the digital ownership frontieer continues to evolve, innovate and grow. The influence of William's inventive and transformative contribution has catalyzed a paradigm shift in reshaping the essence of ownership & authenticity in the virtual, and in real life together."
     ]
   },
+  "otherNotableImpacts": {
+    "id": "other-notable-impacts",
+    "title": "Other Notable Impacts",
+    "bottomImage": {
+      "src": "/images/shared/will/will-sunglasses.jpg",
+      "alt": "William Entriken wearing sunglasses"
+    },
+    "panels": [
+      {
+        "id": "dapp-fintech",
+        "label": "dApp and FinTech",
+        "paragraphs": [
+          "William also co-authored a paper establishing a crucial standard that the entire Ethereum eco-system depends on to run normally, ERC-165, in 2018. Like a \"universal translator,\" it allows smart contracts, which are at the heart of blockchain's FinTech & dApp enterprises, to communicate together, underpinning billions of dollars invested in projects relying on this standard to operate smoothly."
+        ],
+        "buttons": [
+          {
+            "label": "ERC-165 Paper",
+            "href": "https://eips.ethereum.org/EIPS/eip-165"
+          }
+        ]
+      },
+      {
+        "id": "civic-hacker",
+        "label": "Civic Hacker",
+        "paragraphs": [
+          "As a recognized Civic Hacker in the Philadelphia area, William has contributed to various projects and efforts to support his community. This has ranged from Freedom of Information Act requests to hold governing bodies accountable, to publicly available open source applications like his most notable autonomous train schedule application for SEPTA passengers in the Greater Philadelphia Area. It has been operational for the past decade as an alternative (and more accurate) source of information regarding train schedules and has even been positively regarded by SEPTA and local media outlets.",
+          "As a cybersecurity specialist (aka hacker who breaks things and repels other hackers) fighting to protect others, including by exposing \"zero-day exploits,\" which are unknown flaws in software that bad guys can use to cause harm. William has found and helped fix such hidden issues before they could be misused. William has an active Department of Defense security clearance signifying a high level of trust and competence as he has worked on cyber-related cases with agencies such as the FBI, SEC, and FINRA. Through these collaborative efforts, he has been instrumental in securing the accounts of millions of retail investors, reflecting his broader mission to utilize his technical expertise for the support of others."
+        ],
+        "buttons": [
+          {
+            "label": "Septa Trains",
+            "href": "https://apps.phor.net/septa/"
+          },
+          {
+            "label": "Privacy Log",
+            "href": "https://privacylog.blogspot.com/"
+          }
+        ]
+      }
+    ]
+  },
   "media": {
     "id": "media",
     "title": "This work is widely referenced in the media",

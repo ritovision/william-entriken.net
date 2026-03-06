@@ -1,0 +1,146 @@
+---
+import BGSwitch from '@ui/BGSwitch.astro';
+import Button from '@ui/Button.astro';
+import Image from '@ui/Image.astro';
+import './other-notable-impacts-section.css';
+
+interface ImpactButton {
+  label: string;
+  href: string;
+}
+
+interface ImpactPanel {
+  id: 'dapp-fintech' | 'civic-hacker';
+  label: string;
+  paragraphs: string[];
+  buttons?: ImpactButton[];
+}
+
+interface OtherNotableImpactsContent {
+  id: string;
+  title: string;
+  panels: [ImpactPanel, ImpactPanel];
+  bottomImage: {
+    src: string;
+    alt: string;
+  };
+}
+
+const { id, title, panels, bottomImage } =
+  Astro.props as OtherNotableImpactsContent;
+
+const switchId = `${id}-mode-switch`;
+const options = panels.map((panel) => ({
+  id: panel.id,
+  label: panel.label,
+  controlsId: `${id}-panel-${panel.id}`,
+}));
+---
+
+<section
+  id={id}
+  class="other-notable-impacts container-95 section-stack"
+  aria-label={title}
+  data-other-notable-impacts
+>
+  <h2 class="other-notable-impacts__title text-gold">{title}</h2>
+
+  <div class="other-notable-impacts__bottom-image-wrap">
+    <Image
+      src={bottomImage.src}
+      alt={bottomImage.alt}
+      class="other-notable-impacts__bottom-image"
+      imgClass="other-notable-impacts__bottom-image-tag"
+      aspectRatio="1 / 1"
+      fit="cover"
+    />
+  </div>
+
+  <BGSwitch
+    id={switchId}
+    class="other-notable-impacts__switch"
+    ariaLabel={`${title} topic selector`}
+    activeId={panels[0].id}
+    options={options}
+  />
+
+  <div class="other-notable-impacts__panels">
+    {
+      panels.map((panel, index) => (
+        <div
+          id={`${id}-panel-${panel.id}`}
+          class:list={[
+            'other-notable-impacts__panel',
+            index === 0 && 'is-active',
+          ]}
+          role="tabpanel"
+          aria-labelledby={`${switchId}-tab-${panel.id}`}
+          aria-hidden={index === 0 ? 'false' : 'true'}
+          data-other-impact-panel={panel.id}
+          hidden={index === 0 ? undefined : true}
+        >
+          {panel.paragraphs.map((paragraph) => (
+            <p class="other-notable-impacts__body text-white">{paragraph}</p>
+          ))}
+
+          {panel.buttons?.length ? (
+            <div class="other-notable-impacts__buttons">
+              {panel.buttons.map((button) => (
+                <Button
+                  href={button.href}
+                  label={button.label}
+                  variant="gold-pill"
+                  class="other-notable-impacts__button"
+                />
+              ))}
+            </div>
+          ) : null}
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<script>
+  (() => {
+    type PanelTarget = 'dapp-fintech' | 'civic-hacker';
+    const isPanelTarget = (value: unknown): value is PanelTarget =>
+      value === 'dapp-fintech' || value === 'civic-hacker';
+
+    const roots = document.querySelectorAll<HTMLElement>(
+      '[data-other-notable-impacts]',
+    );
+
+    for (const root of roots) {
+      const switchRoot = root.querySelector<HTMLElement>('[data-b-g-switch]');
+      const panels = Array.from(
+        root.querySelectorAll<HTMLElement>('[data-other-impact-panel]'),
+      );
+
+      const setActivePanel = (target: PanelTarget) => {
+        for (const panel of panels) {
+          const isActive =
+            panel.getAttribute('data-other-impact-panel') === target;
+          panel.classList.toggle('is-active', isActive);
+          panel.setAttribute('aria-hidden', String(!isActive));
+          if (isActive) {
+            panel.removeAttribute('hidden');
+          } else {
+            panel.setAttribute('hidden', '');
+          }
+        }
+      };
+
+      if (switchRoot) {
+        switchRoot.addEventListener('b-g-switch:change', (event: Event) => {
+          const customEvent = event as CustomEvent<{ id?: unknown }>;
+          if (isPanelTarget(customEvent.detail?.id)) {
+            setActivePanel(customEvent.detail.id);
+          }
+        });
+      }
+
+      setActivePanel('dapp-fintech');
+    }
+  })();
+</script>
