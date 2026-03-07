@@ -1,6 +1,7 @@
 ---
 import type { SocialLink } from '@config/social';
 import type { SidebarTocItem, SiteRoute } from '@config/site';
+import AskAiButton from '@components/layout/navigation/ai-assist/AskAiButton.astro';
 import Image from '@ui/Image.astro';
 import SidebarSocialPanel from './SidebarSocialPanel.astro';
 import SidebarTabsPanel from './SidebarTabsPanel.astro';
@@ -34,6 +35,18 @@ const { currentPath, routes, socials, sidebarToc } = Astro.props;
       sidebarToc={sidebarToc}
     />
 
-    <SidebarSocialPanel socials={socials} />
+    <div
+      class="desktop-sidebar__footer-panel desktop-sidebar__footer-panel--menu"
+    >
+      <SidebarSocialPanel socials={socials} />
+    </div>
+
+    <div
+      class="desktop-sidebar__footer-panel desktop-sidebar__footer-panel--toc"
+    >
+      <div class="desktop-sidebar__ask-ai-wrap">
+        <AskAiButton class="desktop-sidebar__ask-ai-button" />
+      </div>
+    </div>
   </div>
 </aside>

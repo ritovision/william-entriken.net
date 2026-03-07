@@ -1,6 +1,7 @@
 ---
 import '@styles/main.scss';
 import SiteFooter from '@components/layout/footer/SiteFooter.astro';
+import AiAssistModal from '@components/layout/navigation/ai-assist/AiAssistModal.astro';
 import DesktopSidebar from '@components/layout/navigation/desktop-sidebar/DesktopSidebar.astro';
 import MobileNav from '@components/layout/navigation/mobile-nav/MobileNav.astro';
 import { socialLinks } from '@config/social';
@@ -64,5 +65,6 @@ const legalRoutes = siteRoutes
         <SiteFooter socials={socialLinks} legalLinks={legalRoutes} />
       </div>
     </div>
+    <AiAssistModal />
   </body>
 </html>

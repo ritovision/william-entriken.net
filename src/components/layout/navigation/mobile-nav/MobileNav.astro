@@ -1,6 +1,7 @@
 ---
 import type { SocialLink } from '@config/social';
 import type { SidebarTocItem, SiteRoute } from '@config/site';
+import AskAiButton from '@components/layout/navigation/ai-assist/AskAiButton.astro';
 import Image from '@ui/Image.astro';
 import InPageSectionsIcon from '@ui/icons/InPageSectionsIcon.astro';
 import MainMenuIcon from '@ui/icons/MainMenuIcon.astro';
@@ -235,6 +236,12 @@ const isDev = import.meta.env.DEV;
         </nav>
       </div>
 
+      <div class="mobile-drawer__footer mobile-drawer__footer--toc">
+        <AskAiButton
+          class="mobile-drawer__ask-ai-button"
+          mobileDrawerTrigger={true}
+        />
+      </div>
     </div>
   </aside>
 </div>
@@ -265,6 +272,9 @@ const isDev = import.meta.env.DEV;
     );
     const closeLinks = Array.from(
       root.querySelectorAll<HTMLElement>('[data-mobile-close-link]'),
+    );
+    const mobileAiOpenButtons = Array.from(
+      root.querySelectorAll<HTMLButtonElement>('[data-mobile-ai-open]'),
     );
     const tocLinks = Array.from(
       root.querySelectorAll<HTMLAnchorElement>('[data-mobile-toc-target]'),
@@ -346,6 +356,15 @@ const isDev = import.meta.env.DEV;
 
     for (const link of closeLinks) {
       link.addEventListener('click', closeDrawer);
+    }
+
+    for (const button of mobileAiOpenButtons) {
+      button.addEventListener('click', (event: MouseEvent) => {
+        event.preventDefault();
+        event.stopPropagation();
+        closeDrawer();
+        document.dispatchEvent(new CustomEvent('ai-assist:open'));
+      });
     }
 
     for (const link of tocLinks) {
