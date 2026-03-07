@@ -1,0 +1,81 @@
+---
+import Button from '@ui/Button.astro';
+import Picture from '@ui/Picture.astro';
+import './about-rito-panel.css';
+
+interface AboutRitoImage {
+  src: string;
+  alt: string;
+  aspectRatio: string;
+}
+
+interface AboutRitoButtons {
+  profileLabel: string;
+  profileHref: string;
+  caseStudyLabel: string;
+  caseStudyHref: string;
+}
+
+interface AboutRitoSection {
+  id: string;
+  title: string;
+  subtitle: string;
+  paragraphs: string[];
+  image: AboutRitoImage;
+  buttons: AboutRitoButtons;
+}
+
+interface Props {
+  section: AboutRitoSection;
+}
+
+const { section } = Astro.props;
+const titleId = `${section.id}-heading`;
+const subtitleId = `${section.id}-subtitle`;
+---
+
+<section
+  id={section.id}
+  class="about-rito-panel container-95 bg-primary-navy"
+  aria-labelledby={titleId}
+>
+  <header class="about-rito-panel__heading">
+    <h2 id={titleId} class="about-rito-panel__title m-0">{section.title}</h2>
+    <h3 id={subtitleId} class="about-rito-panel__subtitle m-0">
+      {section.subtitle}
+    </h3>
+  </header>
+
+  <Picture
+    src={section.image.src}
+    alt={section.image.alt}
+    class="about-rito-panel__image"
+    imgClass="about-rito-panel__img"
+    aspectRatio={section.image.aspectRatio}
+    fit="contain"
+    bg="var(--color-primary)"
+  />
+
+  <div class="about-rito-panel__body">
+    {
+      section.paragraphs.map((paragraph) => (
+        <p class="about-rito-panel__paragraph text-white m-0">{paragraph}</p>
+      ))
+    }
+
+    <div class="about-rito-panel__actions">
+      <Button
+        href={section.buttons.profileHref}
+        label={section.buttons.profileLabel}
+        variant="gold-pill"
+        class="about-rito-panel__action-btn"
+      />
+      <Button
+        href={section.buttons.caseStudyHref}
+        label={section.buttons.caseStudyLabel}
+        variant="case-study"
+        class="about-rito-panel__action-btn"
+      />
+    </div>
+  </div>
+</section>

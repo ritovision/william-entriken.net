@@ -1,0 +1,26 @@
+{
+  "graph": [
+    {
+      "@type": "CreativeWork",
+      "@id": "https://williamentriken.net/nfts#su-squares",
+      "name": "Su Squares",
+      "creator": [
+        {
+          "@id": "https://williamentriken.net/#person"
+        },
+        {
+          "@type": "Person",
+          "name": "Su"
+        }
+      ],
+      "description": "Su Squares is an early full implementation of ERC-721 where each square is a unique NFT that owners can personalize.",
+      "image": [
+        "https://williamentriken.net/images/pages/nfts/susquares-nasdaq.jpg",
+        "https://williamentriken.net/images/pages/nfts/Su-Squares-NFTnyc.jpg"
+      ],
+      "about": "Su Squares draws inspiration from early internet crowdfunding and established precedent for the NFT marketplace.",
+      "url": "https://tenthousandsu.com",
+      "keywords": "ERC-721, NFT, blockchain, digital art, Su Squares"
+    }
+  ]
+}

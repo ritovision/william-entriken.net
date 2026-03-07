@@ -1,0 +1,93 @@
+---
+import { siteRoutes } from "@config/site";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Button from "@ui/Button.astro";
+import "./404.css";
+
+const primaryRoutes = siteRoutes
+  .filter((route) => route.navGroup === "primary")
+  .sort((a, b) => a.order - b.order)
+  .map((route) => ({ path: route.path, label: route.label }));
+---
+
+<BaseLayout
+  title="404 Not Found | William Entriken"
+  description="The page you are looking for doesn't exist."
+>
+  <main
+    class="not-found-page"
+    data-not-found
+    data-routes={JSON.stringify(primaryRoutes)}
+  >
+    <section class="not-found-page__content container-95">
+      <div class="not-found-page__intro">
+        <h1 class="not-found-page__title m-0">
+          <span class="not-found-page__title-number">404</span>
+          <span class="not-found-page__title-text">Not Found</span>
+        </h1>
+        <p class="not-found-page__description m-0">
+          The page you are looking for doesn't exist.
+        </p>
+      </div>
+
+      <div class="not-found-page__explore">
+        <p class="not-found-page__prompt m-0">Time to explore a new one</p>
+        <Button
+          id="not-found-random-route-button"
+          label="Destination"
+          ariaLabel="Loading destination"
+          variant="default"
+          class="not-found-page__cta"
+        />
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<script>
+  (() => {
+    type RouteOption = {
+      path: string;
+      label: string;
+    };
+
+    const root = document.querySelector<HTMLElement>("[data-not-found]");
+    const button = document.querySelector<HTMLButtonElement>(
+      "#not-found-random-route-button",
+    );
+    if (!root || !button) {
+      return;
+    }
+
+    let routes: RouteOption[] = [];
+    const rawRoutes = root.getAttribute("data-routes");
+    if (rawRoutes) {
+      try {
+        const parsed = JSON.parse(rawRoutes) as unknown;
+        if (Array.isArray(parsed)) {
+          routes = parsed.filter(
+            (route): route is RouteOption =>
+              typeof route === "object" &&
+              route !== null &&
+              typeof (route as { path?: unknown }).path === "string" &&
+              typeof (route as { label?: unknown }).label === "string",
+          );
+        }
+      } catch {
+        routes = [];
+      }
+    }
+
+    if (routes.length === 0) {
+      routes = [{ path: "/", label: "Home" }];
+    }
+
+    const selected = routes[Math.floor(Math.random() * routes.length)];
+    button.textContent = selected.label;
+    button.setAttribute("aria-label", `Go to ${selected.label}`);
+    button.classList.add("is-ready");
+    button.addEventListener("click", () => {
+      window.location.assign(selected.path);
+    });
+  })();
+</script>

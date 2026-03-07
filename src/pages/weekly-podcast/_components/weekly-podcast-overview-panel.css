@@ -1,0 +1,136 @@
+.weekly-podcast-overview {
+  display: grid;
+  row-gap: 0.3rem;
+  padding-top: 3rem;
+  padding-bottom: 2.5rem;
+}
+
+.weekly-podcast-overview__title {
+  line-height: 1.15;
+}
+
+.weekly-podcast-overview__poster {
+  width: min(100%, 450px);
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  --animate-duration: 1s;
+}
+
+.weekly-podcast-overview__poster-img {
+  width: 100%;
+  height: 100%;
+}
+
+.weekly-podcast-overview__columns {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.weekly-podcast-overview__column {
+  flex: 1 1 320px;
+  max-width: 560px;
+}
+
+.weekly-podcast-overview__column--left {
+  display: grid;
+  row-gap: 1.25rem;
+}
+
+.weekly-podcast-overview__left-title {
+  line-height: 1.2;
+  text-align: center;
+}
+
+.weekly-podcast-overview__left-title--pre {
+  opacity: 0;
+}
+
+.weekly-podcast-overview__left-title--reveal {
+  animation: weekly-podcast-blur-reveal 0.8s ease-out both;
+}
+
+.weekly-podcast-overview__lead {
+  font-family: var(--font-heading);
+  text-align: center;
+}
+
+.weekly-podcast-overview__details {
+  display: grid;
+  row-gap: 0.35rem;
+}
+
+.weekly-podcast-overview__description {
+  line-height: 1.45;
+}
+
+.weekly-podcast-overview__column--right {
+  display: grid;
+  row-gap: 1.2rem;
+}
+
+.weekly-podcast-overview__prompt {
+  line-height: 1.45;
+  font-family: var(--font-heading);
+}
+
+.weekly-podcast-overview__icon-link {
+  display: inline-flex;
+  width: 52px;
+  height: 52px;
+  text-decoration: none;
+  outline-offset: 4px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.weekly-podcast-overview__icon {
+  width: 100%;
+  height: 100%;
+}
+
+.weekly-podcast-overview__button.btn {
+  width: fit-content;
+  min-width: 10rem;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@keyframes weekly-podcast-blur-reveal {
+  from {
+    opacity: 0;
+    filter: blur(12px);
+    transform: translate3d(0, 10px, 0);
+  }
+
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@media (max-width: 767px) {
+  .weekly-podcast-overview {
+    padding-top: 2.5rem;
+  }
+
+  .weekly-podcast-overview__columns {
+    gap: 1.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .weekly-podcast-overview__left-title--pre {
+    opacity: 1;
+  }
+
+  .weekly-podcast-overview__left-title--reveal {
+    animation: none;
+  }
+}

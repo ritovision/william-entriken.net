@@ -1,0 +1,54 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import content from "./_content.json";
+import "./style.css";
+
+interface TermsSection {
+  id: string;
+  title: string;
+  paragraphs: string[];
+  email?: string;
+}
+
+const { seo, title, lastUpdated } = content;
+const sections = content.sections as TermsSection[];
+const sidebarToc = sections.map((section) => ({
+  label: section.title,
+  targetId: section.id,
+}));
+---
+
+<BaseLayout seo={seo} sidebarToc={sidebarToc}>
+  <main class="terms-page page-main">
+    <article class="terms-page__inner container-95 border-white">
+      <header class="terms-page__header">
+        <h1 class="terms-page__title text-gold m-0">{title}</h1>
+        <p class="terms-page__updated m-0 text-white">
+          Last updated: {lastUpdated}
+        </p>
+      </header>
+
+      <div class="terms-page__sections">
+        {
+          sections.map((section) => (
+            <section id={section.id} class="terms-page__section section-stack">
+              <h2 class="terms-page__section-title text-gold m-0">
+                {section.title}
+              </h2>
+              {section.paragraphs.map((paragraph) => (
+                <p class="terms-page__paragraph text-white m-0">{paragraph}</p>
+              ))}
+              {section.email && (
+                <p class="terms-page__paragraph m-0">
+                  <a href={`mailto:${section.email}`} class="terms-page__email-link">
+                    {section.email}
+                  </a>
+                </p>
+              )}
+            </section>
+          ))
+        }
+      </div>
+    </article>
+  </main>
+</BaseLayout>

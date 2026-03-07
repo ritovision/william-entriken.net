@@ -1,0 +1,72 @@
+---
+import Button from '@ui/Button.astro';
+import Picture from '@ui/Picture.astro';
+import './about-entriken-intro-panel.css';
+
+interface AboutEntrikenImage {
+  src: string;
+  alt: string;
+  aspectRatio: string;
+}
+
+interface AboutEntrikenIntroSection {
+  id: string;
+  title: string;
+  description: string;
+  blogButtonLabel: string;
+  blogButtonHref: string;
+  images: {
+    willKids: AboutEntrikenImage;
+    su: AboutEntrikenImage;
+  };
+}
+
+interface Props {
+  section: AboutEntrikenIntroSection;
+}
+
+const { section } = Astro.props;
+const headingId = `${section.id}-heading`;
+---
+
+<section
+  id={section.id}
+  class="about-entriken-intro-panel container-95 bg-content-dark border-gold"
+  aria-labelledby={headingId}
+>
+  <div class="about-entriken-intro-panel__media">
+    <Picture
+      src={section.images.willKids.src}
+      alt={section.images.willKids.alt}
+      class="about-entriken-intro-panel__image about-entriken-intro-panel__image--will"
+      imgClass="about-entriken-intro-panel__img"
+      aspectRatio={section.images.willKids.aspectRatio}
+      fit="contain"
+      bg="var(--color-bg-content)"
+      priority
+    />
+
+    <Picture
+      src={section.images.su.src}
+      alt={section.images.su.alt}
+      class="about-entriken-intro-panel__image about-entriken-intro-panel__image--su"
+      imgClass="about-entriken-intro-panel__img"
+      aspectRatio={section.images.su.aspectRatio}
+      fit="contain"
+      bg="var(--color-bg-content)"
+      priority
+    />
+  </div>
+
+  <div class="about-entriken-intro-panel__content section-stack">
+    <h1 id={headingId} class="text-gold text-center m-0">{section.title}</h1>
+    <p class="text-white m-0">{section.description}</p>
+    <Button
+      href={section.blogButtonHref}
+      label={section.blogButtonLabel}
+      variant="gold-pill"
+      class="about-entriken-intro-panel__button"
+      ariaLabel={`Visit ${section.title} blog site`}
+    />
+  </div>
+</section>

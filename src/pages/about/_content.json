@@ -1,0 +1,55 @@
+{
+  "seo": {
+    "title": "About | William Entriken",
+    "description": "Learn more about William Entriken, his background, his family life, and the team behind the site, including Rito, its creator and maintainer."
+  },
+  "intro": {
+    "id": "about-william-entriken",
+    "title": "William Entriken",
+    "description": "Meet William Entriken: a tireless, relentless worker and a life-long learner whose passion for setting and achieving goals is chronicled on his blog site. Alongside his wife, Su, he operates a boudoir photography studio, combining his sharp business acumen with a creative flair. William, also a caring father of two, is a man who seems to have it all: ambition, intellect, creativity, family. But, like many driven individuals, he often finds there are simply not enough hours in the day to fulfill every pursuit.",
+    "blogButtonLabel": "Blog Site",
+    "blogButtonHref": "https://blog.phor.net/",
+    "images": {
+      "willKids": {
+        "src": "/images/pages/about/Will-kids.jpeg",
+        "alt": "William Entriken with his children",
+        "aspectRatio": "4 / 3"
+      },
+      "su": {
+        "src": "/images/pages/about/Su-Entriken.jpg",
+        "alt": "Su Entriken portrait",
+        "aspectRatio": "3 / 4"
+      }
+    }
+  },
+  "bill": {
+    "id": "about-bill-entriken",
+    "title": "Bill Entriken",
+    "description": "Bill Entriken is William's proud father and biggest advocate. He has been watching Will learn and grow using computers since he was just 3 years old. He has championed Will's accomplishments IRL and online, attending his son's numerous public speaking events and cheering on his newest developments. Bill provided Rito with photos and background details to ensure that William's story presented here was true to the man and his (verified) authenticity.",
+    "image": {
+      "src": "/images/pages/about/Bill-Entriken.png",
+      "alt": "Bill Entriken portrait",
+      "aspectRatio": "4 / 5"
+    }
+  },
+  "rito": {
+    "id": "about-rito",
+    "title": "Rito",
+    "subtitle": "Chief Product Officer, UX Leader, Full-Stack Engineer",
+    "paragraphs": [
+      "Rito is the creator and maintainer of this site. By day, Rito is a cross-functional authority building flagship experiences. By night, he is Rito Rhymes, an infotaining rapper armed with punchlines, parody, spoken word wits that relay... infotaining entermation in an unconventional way. He's a creative-strategic powerhouse that has had the honor of partnering with William on the co-authorship of an ERC called \"Universal Asset Signing\" and then after learning more about him, being able to lead a strategic repositioning of him from being \"NFT Guy\" to a complex businessman-developer hybrid who unlocked an entire ecosystem of multi-billion dollar value and utility. This website is the culmination of that effort.",
+      "RitoVision is Rito's studio & consultancy delivering bespoke digital solutions and software development. See his profile page or learn more about this website in the case study at RitoVision.com and other high-impact projects."
+    ],
+    "image": {
+      "src": "/images/pages/about/rito/Rito-suit.png",
+      "alt": "Rito in a suit portrait",
+      "aspectRatio": "1 / 1"
+    },
+    "buttons": {
+      "profileLabel": "Profile",
+      "profileHref": "/about/rito",
+      "caseStudyLabel": "Case Study",
+      "caseStudyHref": "https://ritovision.com/projects/entriken"
+    }
+  }
+}

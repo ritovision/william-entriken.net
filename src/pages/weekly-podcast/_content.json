@@ -1,0 +1,58 @@
+{
+  "seo": {
+    "title": "Weekly Podcast | William Entriken",
+    "description": "Follow William Entriken’s Community Service Hour, a weekly live show covering technology, markets, open source, interviews, and community discussion."
+  },
+  "overviewSection": {
+    "id": "community-service-hour",
+    "title": "Community Service Hour",
+    "poster": {
+      "src": "/images/shared/community/csh-poster.jpg",
+      "alt": "Community Service Hour poster"
+    },
+    "leftColumn": {
+      "title": "Open Source Every Week",
+      "lead": "Check it out live every Tuesday 6PM NY-EST",
+      "description": "A Civic Hacker's duties are to contribute to society. William exemplifies this through his weekly Community Service Hours (CSH), which he hosts live and syndicate on all major podcasting hubs. These sessions are accessible to the public; you can tune in on Twitch to catch the live broadcast or participate directly as a speaker through X (Twitter). Each week brings a new topic, covering a diverse range of subjects from hacking insights and emerging market trends to technology secrets, business strategies, and beyond. Additionally, the sessions feature engaging interviews with notable figures across various projects and fields. Participants also have the opportunity to win prizes. It's like a club. Join us and growth hack your knowledge."
+    },
+    "rightColumn": {
+      "twitchPrompt": "To watch live with video tune in to Twitch",
+      "twitchHref": "https://www.twitch.tv/fulldecent",
+      "xPrompt": "To listen AND speak (if you want), join us on X (twitter)",
+      "xHref": "https://x.com/fulldecent",
+      "contributePrompt": "For more information, and to contribute to the show please check out www.hour.gg",
+      "buttonLabel": "hour.gg",
+      "buttonHref": "https://hour.gg"
+    }
+  },
+  "syndicationSection": {
+    "id": "podcast-syndicated-on",
+    "title": "Podcast Syndicated On",
+    "platforms": [
+      {
+        "label": "Apple Podcasts",
+        "href": "https://podcasts.apple.com/us/podcast/community-service-hour/id1662422217",
+        "imageSrc": "/images/pages/weekly-podcast/apple-podcast.png",
+        "imageAlt": "Apple Podcasts logo"
+      },
+      {
+        "label": "YouTube",
+        "href": "https://www.youtube.com/playlist?list=PLaMigeN8Exx-ChNPpO-j6pFQ3F8oJWrBN",
+        "imageSrc": "/images/pages/weekly-podcast/youtube-podcast.png",
+        "imageAlt": "YouTube logo"
+      },
+      {
+        "label": "Spotify",
+        "href": "https://open.spotify.com/show/3k4PnmjfLiuNo9HpXemCdJ",
+        "imageSrc": "/images/pages/weekly-podcast/spotify-podcast.png",
+        "imageAlt": "Spotify logo"
+      },
+      {
+        "label": "Twitch",
+        "href": "https://www.twitch.tv/fulldecent",
+        "imageSrc": "/images/pages/weekly-podcast/twitch-podcast.png",
+        "imageAlt": "Twitch logo"
+      }
+    ]
+  }
+}

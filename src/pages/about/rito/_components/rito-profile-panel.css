@@ -1,0 +1,165 @@
+.rito-profile-panel {
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+  padding: 1rem;
+  border: 1px solid var(--color-rito-panel-border);
+  display: grid;
+  row-gap: 5rem;
+}
+
+.rito-profile-panel__identity {
+  display: grid;
+  gap: 1rem;
+}
+
+.rito-profile-panel__media {
+  width: min(100%, 360px);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.rito-profile-panel__image-wrap {
+  display: block;
+  width: 100%;
+  border: 1px solid transparent;
+  background: var(--color-primary);
+}
+
+.rito-profile-panel__image {
+  width: 100%;
+  height: 100%;
+}
+
+.rito-profile-panel__socials {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+}
+
+.rito-profile-panel__social-link {
+  color: var(--color-white);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+.rito-profile-panel__social-icon {
+  width: 100%;
+  height: 100%;
+}
+
+.rito-profile-panel__intro {
+  display: grid;
+  row-gap: 1rem;
+}
+
+.rito-profile-panel__name,
+.rito-profile-panel__role,
+.rito-profile-panel__section-title,
+.rito-profile-panel__commentary-title,
+.rito-profile-panel__fact-label {
+  color: var(--color-rito-heading);
+  text-align: center;
+}
+
+.rito-profile-panel__role {
+  font-size: clamp(1.1rem, 2.2vw, 1.45rem);
+}
+
+.rito-profile-panel__summary,
+.rito-profile-panel__commentary-item p {
+  line-height: 1.5;
+}
+
+.rito-profile-panel__summary-stack {
+  display: grid;
+  row-gap: 1rem;
+}
+
+.rito-profile-panel__wordmark-link {
+  display: block;
+  width: min(100%, 320px);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.rito-profile-panel__wordmark-wrap {
+  display: block;
+  width: 100%;
+  border: 1px solid transparent;
+  background: var(--color-primary);
+}
+
+.rito-profile-panel__wordmark-image {
+  width: 100%;
+  height: 100%;
+}
+
+.rito-profile-panel__facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+.rito-profile-panel__fact-item {
+  display: grid;
+  row-gap: 0.25rem;
+  flex: 1 1 220px;
+  max-width: 320px;
+}
+
+.rito-profile-panel__fact-value {
+  color: var(--color-white);
+  text-align: center;
+}
+
+.rito-profile-panel__section {
+  display: grid;
+  row-gap: 1rem;
+}
+
+.rito-profile-panel__section:first-of-type {
+  margin-top: 2rem;
+}
+
+.rito-profile-panel__commentary {
+  display: grid;
+  row-gap: 1rem;
+}
+
+.rito-profile-panel__commentary-item {
+  display: grid;
+  row-gap: 0.5rem;
+}
+
+.rito-profile-panel__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  justify-content: center;
+  text-align: center;
+}
+
+.rito-profile-panel__links a {
+  text-decoration: underline;
+  text-underline-offset: 0.12em;
+}
+
+@media (min-width: 1400px) {
+  .rito-profile-panel__identity {
+    grid-template-columns: minmax(0, 320px) minmax(0, 1fr);
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  .rito-profile-panel__media {
+    width: 100%;
+    margin: 0;
+  }
+}

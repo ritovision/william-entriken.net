@@ -1,0 +1,162 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import {
+  resolveContentImageRefs,
+  resolveSchemaImageRefs,
+  toImageHref,
+} from '@shared/images';
+import type { SchemaBlock } from '@shared/types';
+import RitoBuildingSitePanel from './_components/RitoBuildingSitePanel.astro';
+import Ritoprofielpanel from './_components/ritoprofielpanel.astro';
+import RitoTestimonialPanel from './_components/RitoTestimonialPanel.astro';
+import content from './_content.json';
+
+interface CommentaryItem {
+  title: string;
+  body: string;
+}
+
+interface SelectedLink {
+  label: string;
+  href: string;
+}
+
+interface TestimonialImage {
+  src: string;
+  alt: string;
+}
+
+interface TestimonialSection {
+  id: string;
+  title: string;
+  quote: string;
+  image: TestimonialImage;
+}
+
+interface RitoProfile {
+  name: string;
+  alternateName: string[];
+  role: string;
+  summary: string;
+  url: string;
+  image: string;
+  sameAs: string[];
+  worksFor: {
+    name: string;
+    url: string;
+  };
+  wordmarkLink: {
+    href: string;
+    src: string;
+    alt: string;
+  };
+  socialLinks: {
+    linkedin: string;
+    x: string;
+    instagram: string;
+    github: string;
+  };
+  buildingThisSite: {
+    title: string;
+    items: CommentaryItem[];
+  };
+  selectedLinksTitle: string;
+  selectedLinks: SelectedLink[];
+}
+
+interface RitoProfilePageContent {
+  seo: {
+    title: string;
+    description: string;
+  };
+  profile: RitoProfile;
+  testimonial: TestimonialSection;
+}
+
+const { seo, profile, testimonial } = resolveContentImageRefs(
+  content as RitoProfilePageContent,
+);
+
+const siteBaseUrl = Astro.site ?? new URL(Astro.url.origin);
+const canonicalHref = new URL(Astro.url.pathname, siteBaseUrl).href;
+const aboutHref = new URL('/about', siteBaseUrl).href;
+const homeHref = new URL('/', siteBaseUrl).href;
+const profilePageId = `${canonicalHref}#profile`;
+const personId = `${canonicalHref}#person`;
+const breadcrumbId = `${canonicalHref}#breadcrumb`;
+
+const imageHref = toImageHref(profile.image, siteBaseUrl);
+
+const schema = resolveSchemaImageRefs<SchemaBlock>({
+  breadcrumbItems: [
+    {
+      name: 'Home',
+      href: homeHref,
+    },
+    {
+      name: 'About',
+      href: aboutHref,
+    },
+    {
+      name: 'Rito',
+      href: canonicalHref,
+    },
+  ],
+  graph: [
+    {
+      '@type': 'ProfilePage',
+      '@id': profilePageId,
+      url: canonicalHref,
+      name: `${profile.name} Profile`,
+      description: seo.description,
+      mainEntity: {
+        '@id': personId,
+      },
+      breadcrumb: {
+        '@id': breadcrumbId,
+      },
+    },
+    {
+      '@type': 'Person',
+      '@id': personId,
+      name: profile.name,
+      alternateName: profile.alternateName,
+      jobTitle: profile.role,
+      description: profile.summary,
+      url: profile.url,
+      image: imageHref,
+      sameAs: profile.sameAs,
+      worksFor: {
+        '@type': 'Organization',
+        name: profile.worksFor.name,
+        url: profile.worksFor.url,
+      },
+      mainEntityOfPage: {
+        '@id': profilePageId,
+      },
+    },
+  ],
+}, siteBaseUrl);
+const sidebarToc = [
+  {
+    label: 'Rito Bio',
+    targetId: 'rito-profile',
+  },
+  {
+    label: profile.buildingThisSite.title,
+    targetId: 'rito-building-site',
+  },
+  {
+    label: testimonial.title,
+    targetId: testimonial.id,
+  },
+];
+---
+
+<BaseLayout seo={seo} schema={schema} sidebarToc={sidebarToc}>
+  <main class="page-main">
+    <Ritoprofielpanel profile={profile} />
+    <RitoBuildingSitePanel section={profile.buildingThisSite} />
+    <RitoTestimonialPanel section={testimonial} />
+  </main>
+</BaseLayout>

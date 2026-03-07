@@ -1,0 +1,85 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { resolveContentImageRefs } from '@shared/images';
+import AboutBillEntrikenPanel from './_components/AboutBillEntrikenPanel.astro';
+import AboutEntrikenIntroPanel from './_components/AboutEntrikenIntroPanel.astro';
+import AboutRitoPanel from './_components/AboutRitoPanel.astro';
+import content from './_content.json';
+
+interface AboutEntrikenImage {
+  src: string;
+  alt: string;
+  aspectRatio: string;
+}
+
+interface AboutEntrikenIntroSection {
+  id: string;
+  title: string;
+  description: string;
+  blogButtonLabel: string;
+  blogButtonHref: string;
+  images: {
+    willKids: AboutEntrikenImage;
+    su: AboutEntrikenImage;
+  };
+}
+
+interface AboutBillEntrikenSection {
+  id: string;
+  title: string;
+  description: string;
+  image: AboutEntrikenImage;
+}
+
+interface AboutRitoButtons {
+  profileLabel: string;
+  profileHref: string;
+  caseStudyLabel: string;
+  caseStudyHref: string;
+}
+
+interface AboutRitoSection {
+  id: string;
+  title: string;
+  subtitle: string;
+  paragraphs: string[];
+  image: AboutEntrikenImage;
+  buttons: AboutRitoButtons;
+}
+
+interface AboutPageContent {
+  seo: {
+    title: string;
+    description: string;
+  };
+  intro: AboutEntrikenIntroSection;
+  bill: AboutBillEntrikenSection;
+  rito: AboutRitoSection;
+}
+
+const { seo, intro, bill, rito } = resolveContentImageRefs(
+  content as AboutPageContent,
+);
+const sidebarToc = [
+  {
+    label: intro.title,
+    targetId: intro.id,
+  },
+  {
+    label: bill.title,
+    targetId: bill.id,
+  },
+  {
+    label: rito.title,
+    targetId: rito.id,
+  },
+];
+---
+
+<BaseLayout seo={seo} sidebarToc={sidebarToc}>
+  <main class="page-main">
+    <AboutEntrikenIntroPanel section={intro} />
+    <AboutBillEntrikenPanel section={bill} />
+    <AboutRitoPanel section={rito} />
+  </main>
+</BaseLayout>

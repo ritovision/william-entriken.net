@@ -1,0 +1,125 @@
+{
+  "seo": {
+    "title": "NFTs | William Entriken",
+    "description": "Explore NFTs created by William Entriken, including Su Squares, featured works, and the marketplaces where his digital collectibles appear."
+  },
+  "heroSection": {
+    "id": "nft-gallery",
+    "title": "NFTs by William",
+    "images": {
+      "left": {
+        "src": "/images/pages/nfts/NFT-2.png",
+        "alt": "NFTs by William feature artwork"
+      },
+      "right": {
+        "src": "/images/pages/nfts/NFT-1.jpg",
+        "alt": "William Entriken NFT artwork collage"
+      }
+    }
+  },
+  "suSquaresSection": {
+    "id": "su-squares",
+    "title": "Su Squares",
+    "subtitle": "First Ever ERC-721 Project",
+    "introParagraphs": [
+      "Created by William Entriken and his wife Su, this project is significant as it represents the first full implementation of the ERC-721 standard, marking a pivotal moment in the history of digital assets. Inside a 10,000 Square Billboard, each Square is a unique NFT that owners can personalize with images, text, or links, turning the collective grid into a vibrant mosaic of personal expression and digital ownership.",
+      "Su Squares draws inspiration from the pioneering spirit of the Million Dollar Homepage, one of the earliest experiments in internet crowdfunding and advertising. Like its predecessor, which allowed advertisers to buy individual pixels on a webpage, Su Squares utilizes a similar concept where each square on a digital grid can be purchased and customized but as an NFT on the Ethereum blockchain."
+    ],
+    "billboardLead": "You can interact with the Billboard directly here and even purchase unclaimed Squares.",
+    "iframe": {
+      "title": "Su Squares Billboard",
+      "src": "https://su.ritovision.com/embed.html"
+    },
+    "billboardNote": "The widget is part of a modernized dApp fork of Su Squares, it's the same smart contract just an updated UI in a developer fork run by Rito, the maintainer of this site. <a href=\"https://tenthousandsu.com\" target=\"_blank\" rel=\"noopener noreferrer\">Tenthousandsu.com</a> is Su Square's canonical domain but the sites can be used interchangeably.",
+    "closingParagraph": "In 2021 at the height of the NFT boom, Su Squares was featured on the Nasdaq and in Times Square for the annual NFT.nyc conference.",
+    "featuredImages": [
+      {
+        "src": "/images/pages/nfts/susquares-nasdaq.jpg",
+        "alt": "Su Squares displayed on Nasdaq signage",
+        "aspectRatio": "606 / 1080"
+      },
+      {
+        "src": "/images/pages/nfts/Su-Squares-NFTnyc.jpg",
+        "alt": "Su Squares featured at NFT.nyc in Times Square",
+        "aspectRatio": "536 / 1514"
+      }
+    ],
+    "featuredImagesSection": {
+      "id": "nyc-promo",
+      "title": "NYC Promo"
+    },
+    "sections": [
+      {
+        "id": "historical-significance",
+        "heading": "Historical Significance",
+        "paragraphs": [
+          "Su Squares not only takes inspiration from internet history but also makes its own by being the first to apply the ERC-721 standard effectively, setting a foundational precedent for the NFT marketplace. This early application has influenced countless digital projects, making Su Squares a cornerstone in the ongoing development of blockchain technologies and digital ownership concepts."
+        ]
+      },
+      {
+        "id": "how-su-squares-works",
+        "heading": "How Su Squares Works",
+        "items": [
+          {
+            "label": "Ownership and Customization",
+            "text": "Owners can personalize their square, embedding anything from personal artwork to promotional content, mirroring the individualized approach of the Million Dollar Homepage."
+          },
+          {
+            "label": "Collective Display",
+            "text": "Together, all squares form a large, interactive display, reflecting the diverse contributions of the global community of square owners."
+          }
+        ]
+      },
+      {
+        "id": "community-and-creativity",
+        "heading": "Community and Creativity",
+        "paragraphs": [
+          "Participating in Su Squares means joining a collective digital endeavor where each square adds to a broader narrative. This platform offers a unique blend of personal expression and communal participation, echoing the collaborative art projects and public digital spaces that have become pillars of internet culture."
+        ]
+      },
+      {
+        "id": "engaging-with-su-squares",
+        "heading": "Engaging with Su Squares",
+        "paragraphs": [
+          "Su Squares provides a space for diverse expressions within the digital landscape:"
+        ],
+        "items": [
+          {
+            "label": "Artistic Endeavors",
+            "text": "Each square offers a mini-canvas for artistic expression, contributing to a collective digital mural."
+          },
+          {
+            "label": "Digital Identity",
+            "text": "Squares can reflect personal or corporate identities, showcasing interests or brands in a unique format."
+          },
+          {
+            "label": "Interactive Community",
+            "text": "Owners engage with each other's content, creating a lively and evolving art piece that captures the dynamics of its contributors."
+          }
+        ]
+      }
+    ]
+  },
+  "marketplacesSection": {
+    "id": "nft-marketplaces",
+    "title": "Keep up with William on NFT marketplaces",
+    "items": [
+      {
+        "name": "OpenSea",
+        "href": "https://opensea.io/fulldecent",
+        "image": {
+          "src": "/images/pages/nfts/opensea.png",
+          "alt": "OpenSea logo"
+        }
+      },
+      {
+        "name": "Rarible",
+        "href": "https://rarible.com/fulldecent/owned",
+        "image": {
+          "src": "/images/pages/nfts/rarible.png",
+          "alt": "Rarible logo"
+        }
+      }
+    ]
+  }
+}

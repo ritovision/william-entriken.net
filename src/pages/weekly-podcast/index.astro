@@ -1,0 +1,94 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import {
+  resolveContentImageRefs,
+  resolveSchemaImageRefs,
+} from '@shared/images';
+import type { SchemaBlock } from '@shared/types';
+import WeeklyPodcastOverviewPanel from './_components/WeeklyPodcastOverviewPanel.astro';
+import WeeklyPodcastSyndicationPanel from './_components/WeeklyPodcastSyndicationPanel.astro';
+import content from './_content.json';
+import schemaContent from './_schema.json';
+
+interface WeeklyPodcastPlatform {
+  label: string;
+  href: string;
+  imageSrc: string;
+  imageAlt: string;
+}
+
+interface WeeklyPodcastSyndicationSection {
+  id: string;
+  title: string;
+  platforms: WeeklyPodcastPlatform[];
+}
+
+interface WeeklyPodcastPoster {
+  src: string;
+  alt: string;
+}
+
+interface WeeklyPodcastOverviewLeftColumn {
+  title: string;
+  lead: string;
+  detailsLines: string[];
+  description: string;
+}
+
+interface WeeklyPodcastOverviewRightColumn {
+  twitchPrompt: string;
+  twitchHref: string;
+  xPrompt: string;
+  xHref: string;
+  contributePrompt: string;
+  buttonLabel: string;
+  buttonHref: string;
+}
+
+interface WeeklyPodcastOverviewSection {
+  id: string;
+  title: string;
+  poster: WeeklyPodcastPoster;
+  leftColumn: WeeklyPodcastOverviewLeftColumn;
+  rightColumn: WeeklyPodcastOverviewRightColumn;
+}
+
+interface WeeklyPodcastContent {
+  seo: {
+    title: string;
+    description: string;
+  };
+  overviewSection: WeeklyPodcastOverviewSection;
+  syndicationSection: WeeklyPodcastSyndicationSection;
+}
+
+const { seo, overviewSection, syndicationSection } = resolveContentImageRefs(
+  content as WeeklyPodcastContent,
+);
+const schema = resolveSchemaImageRefs(
+  schemaContent as SchemaBlock,
+  Astro.site ?? new URL(Astro.url.origin),
+);
+const sidebarToc = [
+  {
+    label: overviewSection.title,
+    targetId: overviewSection.id,
+  },
+  {
+    label: syndicationSection.title,
+    targetId: syndicationSection.id,
+  },
+];
+---
+
+<BaseLayout
+  seo={seo}
+  schema={schema}
+  sidebarToc={sidebarToc}
+  includeAnimateCss={true}
+>
+  <main class="page-main">
+    <WeeklyPodcastOverviewPanel section={overviewSection} />
+    <WeeklyPodcastSyndicationPanel section={syndicationSection} />
+  </main>
+</BaseLayout>

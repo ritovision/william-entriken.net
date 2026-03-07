@@ -1,0 +1,51 @@
+.nft-marketplaces-panel {
+  width: min(95%, 600px);
+  margin-top: var(--space-section-xl);
+  margin-bottom: 2rem;
+}
+
+.nft-marketplaces-panel__inner {
+  display: grid;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.nft-marketplaces-panel__row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.nft-marketplaces-panel__item {
+  display: block;
+  width: 100%;
+  max-width: 100px;
+  flex: 0 1 200px;
+  transition:
+    transform 1s ease,
+    opacity 1s ease;
+}
+
+.nft-marketplaces-panel__image {
+  display: block;
+  width: 100%;
+}
+
+.nft-marketplaces-panel__img-tag {
+  width: 100%;
+  height: 100%;
+}
+
+.nft-marketplaces-panel__item:hover,
+.nft-marketplaces-panel__item:focus-visible {
+  transform: translateY(-10px);
+  opacity: 0.8;
+}
+
+@media (min-width: 768px) {
+  .nft-marketplaces-panel__inner {
+    padding: 1.25rem;
+  }
+}

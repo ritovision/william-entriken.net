@@ -1,0 +1,156 @@
+---
+import Picture from '@ui/Picture.astro';
+import suSquaresLogo from '../../../assets/images/shared/projects/su-squares-logo.png';
+import './su-squares-panel.css';
+
+interface IframeConfig {
+  title: string;
+  src: string;
+}
+
+interface SectionItem {
+  label: string;
+  text: string;
+}
+
+interface SectionBlock {
+  id: string;
+  heading: string;
+  paragraphs?: string[];
+  items?: SectionItem[];
+}
+
+interface FeaturedImage {
+  src: string;
+  alt: string;
+  aspectRatio: string;
+}
+
+  interface SuSquaresSection {
+  id: string;
+  title: string;
+  subtitle: string;
+  introParagraphs: string[];
+  billboardLead: string;
+  iframe: IframeConfig;
+  billboardNote: string;
+  closingParagraph: string;
+  featuredImagesSection: {
+    id: string;
+    title: string;
+  };
+  featuredImages: FeaturedImage[];
+  sections: SectionBlock[];
+}
+
+interface Props {
+  section: SuSquaresSection;
+}
+
+const { section } = Astro.props;
+const subtitleId = `${section.id}-subtitle`;
+---
+
+<section
+  id={section.id}
+  class="su-squares-panel container-95 bg-heading-gray"
+  aria-label={section.title}
+>
+  <div class="su-squares-panel__inner">
+    <h2 class="text-gold text-center m-0">{section.title}</h2>
+    <h3 id={subtitleId} class="text-gold text-center m-0">
+      {section.subtitle}
+    </h3>
+
+    {section.introParagraphs[0] && (
+      <p class="text-white m-0">{section.introParagraphs[0]}</p>
+    )}
+
+    <Picture
+      src={suSquaresLogo}
+      alt="Su Squares logo"
+      class="su-squares-panel__logo"
+      imgClass="su-squares-panel__logo-img"
+      aspectRatio="40 / 21"
+      fit="contain"
+      bg="var(--color-bg-heading)"
+    />
+
+    {section.introParagraphs.slice(1).map((paragraph: string) => (
+      <p class="text-white m-0">{paragraph}</p>
+    ))}
+
+    <p class="text-white m-0">{section.billboardLead}</p>
+
+    <div class="su-squares-panel__iframe-group">
+      <div class="su-squares-panel__iframe-banner">Su Squares Billboard</div>
+      <div class="su-squares-panel__iframe-frame">
+        <iframe
+          width="600"
+          height="600"
+          title={section.iframe.title}
+          src={section.iframe.src}
+          loading="lazy"
+          class="su-squares-panel__iframe"></iframe>
+      </div>
+      <p class="text-white m-0 su-squares-panel__note">
+        <em set:html={section.billboardNote} />
+      </p>
+    </div>
+
+    {
+      section.sections.map((contentSection: SectionBlock) => (
+        <section
+          id={contentSection.id}
+          class="su-squares-panel__content-section"
+          aria-label={contentSection.heading}
+        >
+          <h3 class="text-gold text-center m-0">{contentSection.heading}</h3>
+
+          {contentSection.paragraphs?.map((paragraph: string) => (
+            <p class="text-white m-0">{paragraph}</p>
+          ))}
+
+          {contentSection.items?.map((item: SectionItem) => (
+            <p class="text-white m-0">
+              <strong>{item.label}:</strong> {item.text}
+            </p>
+          ))}
+        </section>
+      ))
+    }
+
+    <p class="su-squares-panel__closing text-gold m-0">
+      {section.closingParagraph}
+    </p>
+
+    <section
+      id={section.featuredImagesSection.id}
+      class="su-squares-panel__content-section"
+      aria-label={section.featuredImagesSection.title}
+    >
+      <h3 class="text-gold text-center m-0">{section.featuredImagesSection.title}</h3>
+
+      <div class="su-squares-panel__featured-row">
+        {
+          section.featuredImages.map((image: FeaturedImage) => (
+            <div class="su-squares-panel__featured-item">
+              <Picture
+                src={image.src}
+                alt={image.alt}
+                class:list={[
+                  'su-squares-panel__featured-image',
+                  image.alt.includes('NFT.nyc') &&
+                    'su-squares-panel__featured-image--nftnyc',
+                ]}
+                imgClass="su-squares-panel__featured-img-tag"
+                aspectRatio={image.aspectRatio}
+                fit="contain"
+              />
+            </div>
+          ))
+        }
+      </div>
+    </section>
+  </div>
+</section>

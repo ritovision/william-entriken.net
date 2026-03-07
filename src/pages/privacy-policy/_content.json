@@ -1,0 +1,90 @@
+{
+  "seo": {
+    "title": "Privacy Policy | William Entriken",
+    "description": "Privacy practices for WilliamEntriken.net."
+  },
+  "title": "Privacy Policy",
+  "lastUpdated": "March 1, 2026",
+  "sections": [
+    {
+      "id": "overview",
+      "title": "Overview",
+      "paragraphs": [
+        "At WilliamEntriken.net, we respect the privacy of our visitors.",
+        "This Privacy Policy outlines the types of personal information we collect, how we use it, and the measures we take to protect it."
+      ]
+    },
+    {
+      "id": "information-collection",
+      "title": "1. Information Collection",
+      "paragraphs": [
+        "We collect information from you when you submit forms on our website for service requests, inquiries, or other communications.",
+        "The types of personal information collected may include name, email address, phone number, and any other information you choose to provide."
+      ]
+    },
+    {
+      "id": "use-of-information",
+      "title": "2. Use of Information",
+      "paragraphs": [
+        "The information you provide is used solely for responding to your requests and fulfilling the services you require.",
+        "We may also use this information to improve our website and services, including reviewing anonymized data to understand how users interact with the site and identify areas for improvement."
+      ]
+    },
+    {
+      "id": "data-protection",
+      "title": "3. Data Protection",
+      "paragraphs": [
+        "We implement a variety of security measures to help maintain the safety of your personal information when you submit a request or enter, submit, or access your personal information."
+      ]
+    },
+    {
+      "id": "non-disclosure-of-information",
+      "title": "4. Non-disclosure of Information",
+      "paragraphs": [
+        "We do not sell, trade, or otherwise transfer your personally identifiable information to outside parties.",
+        "This does not include trusted third parties who assist in operating our website, conducting our business, or servicing you, so long as those parties agree to keep this information confidential."
+      ]
+    },
+    {
+      "id": "anonymized-data",
+      "title": "5. Anonymized Data",
+      "paragraphs": [
+        "We may use anonymized and aggregated data for research or quality assurance purposes.",
+        "This data cannot be used to identify individual users and helps improve services and overall user experience."
+      ]
+    },
+    {
+      "id": "no-site-tracking",
+      "title": "6. No Site Tracking",
+      "paragraphs": [
+        "We do not use cookies for analytics or advertising, and we do not track your activity on this site."
+      ]
+    },
+    {
+      "id": "ai-tools-and-third-party-services",
+      "title": "7. AI Tools and Third-Party Services",
+      "paragraphs": [
+        "The \"Ask your AI\" feature is provided only as a convenience to open third-party AI providers through deeplinks.",
+        "Any use of third-party providers, including ChatGPT, Claude, and Perplexity, is solely between you and the applicable provider under that provider's own terms, privacy policy, and practices.",
+        "We do not track, store, keep records of, or receive notifications about any conversations you have with those providers.",
+        "We are not responsible for your use of those third-party services, including any claims, losses, disputes, outputs, or actions that occur on or because of those services.",
+        "We are not sponsored by, affiliated with, or paid by those providers for including these links."
+      ]
+    },
+    {
+      "id": "contact-us",
+      "title": "8. Contact Us",
+      "paragraphs": [
+        "If you have any questions or concerns regarding this Privacy Policy, contact us at:"
+      ],
+      "email": "info@WilliamEntriken.net"
+    },
+    {
+      "id": "policy-updates",
+      "title": "9. Policy Updates",
+      "paragraphs": [
+        "Our privacy practices may be updated from time to time, and any updates will be posted on this page."
+      ]
+    }
+  ]
+}
