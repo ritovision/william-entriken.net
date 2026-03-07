@@ -1,0 +1,48 @@
+---
+interface Props {
+  idPrefix: string;
+}
+
+const { idPrefix } = Astro.props;
+const titleId = `${idPrefix}-form-result-title`;
+---
+
+<section
+  class="form-result-modal"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby={titleId}
+  aria-hidden="true"
+  data-form-result-modal
+  hidden
+>
+  <button
+    type="button"
+    class="form-result-modal__overlay"
+    tabindex="-1"
+    aria-label="Close form result modal"
+    data-form-result-overlay></button>
+
+  <div class="form-result-modal__sheet border-gold">
+    <div class="form-result-modal__header">
+      <h3 id={titleId} class="form-result-modal__title m-0" data-form-result-title>
+      </h3>
+    </div>
+
+    <div class="form-result-modal__body" data-form-result-body>
+      <p class="form-result-modal__text m-0" data-form-result-text></p>
+
+      <ul class="form-result-modal__issues m-0" data-form-result-list hidden></ul>
+    </div>
+
+    <div class="form-result-modal__footer">
+      <button
+        type="button"
+        class="btn btn-brand-gold-pill form-result-modal__okay"
+        data-form-result-close
+      >
+        Okay
+      </button>
+    </div>
+  </div>
+</section>
