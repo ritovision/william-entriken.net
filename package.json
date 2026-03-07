@@ -9,12 +9,20 @@
     "dev": "pnpm run prepare:styles && astro dev --host 0.0.0.0 --port 4321",
     "build": "pnpm run prepare:styles && astro build",
     "preview": "astro preview --host 0.0.0.0 --port 4321",
+    "test": "vitest --reporter=verbose",
+    "test:watch": "vitest --watch --reporter=verbose",
+    "test:run": "vitest run --reporter=verbose",
+    "test:coverage": "vitest run --coverage --reporter=verbose",
     "check": "astro check",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier . --write",
     "format:check": "prettier . --check",
-    "check:all": "pnpm run check && pnpm run lint && pnpm run format:check"
+    "check:all": "pnpm run check && pnpm run lint && pnpm run format:check",
+    "generate:brand-icons": "node scripts/generate-brand-icons.mjs",
+    "perf:lhci:legal": "pnpm run build && lhci autorun --config=./lighthouserc.cjs",
+    "perf:lhci:legal:collect": "pnpm run build && lhci collect --config=./lighthouserc.cjs",
+    "perf:lhci:legal:assert": "lhci assert --config=./lighthouserc.cjs"
   },
   "keywords": [
     "astro",
@@ -35,18 +43,25 @@
     "@astrojs/react": "^4.4.2",
     "@eslint/js": "^9.39.3",
     "@fullhuman/postcss-purgecss": "^8.0.0",
+    "@lhci/cli": "^0.15.1",
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/jest-dom": "^6.9.1",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
+    "@vitest/coverage-v8": "^4.0.18",
     "eslint": "^9.39.3",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-astro": "^1.6.0",
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "globals": "^16.4.0",
+    "jsdom": "^28.1.0",
     "prettier": "^3.8.1",
     "prettier-plugin-astro": "^0.14.1",
     "purgecss": "^8.0.0",
     "sass": "^1.97.3",
+    "simple-icons": "^16.10.0",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.56.1"
+    "typescript-eslint": "^8.56.1",
+    "vitest": "^4.0.18"
   }
 }
