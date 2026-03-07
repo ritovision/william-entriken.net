@@ -1,0 +1,136 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import {
+  resolveContentImageRefs,
+  resolveSchemaImageRefs,
+} from '@shared/images';
+import type { SchemaBlock } from '@shared/types';
+import ServiceAdvisoryHero from './_components/ServiceAdvisoryHero.astro';
+import ServiceClientsPanel from './_components/ServiceClientsPanel.astro';
+import ServiceExpertiseBlocks from './_components/ServiceExpertiseBlocks.astro';
+import ServiceOfferingsPanel from './_components/ServiceOfferingsPanel.astro';
+import ServiceRetainerPlans from './_components/ServiceRetainerPlans.astro';
+import ServicesFormPanel from './_components/ServicesFormPanel.astro';
+import content from './_content.json';
+import schemaContent from './_schema.json';
+
+interface ServicesPageContent {
+  seo: {
+    title: string;
+    description: string;
+  };
+  advisoryHero: {
+    id: string;
+    heading: string;
+    description: string;
+  };
+  expertDomains: {
+    id: string;
+    heading: string;
+    domains: { number: string; lines: string[] }[];
+  };
+  servicesOffered: {
+    id: string;
+    heading: string;
+    image: {
+      src: string;
+      alt: string;
+    };
+    intro: string;
+    cards: {
+      iconKey:
+        | 'whitePaper'
+        | 'communityEvents'
+        | 'codeReview'
+        | 'businessPlanning'
+        | 'financialAnalysis'
+        | 'cybersecurityAudits';
+      title: string;
+      description: string;
+      highlightText?: string;
+      links?: { label: string; href: string }[];
+      button?: { label: string; href: string };
+    }[];
+  };
+  clientsCollaborators: {
+    id: string;
+    heading: string;
+    description: string;
+    images: { src: string; alt: string }[];
+  };
+  retainerPlans: {
+    id: string;
+    heading: string;
+    description: string;
+    plans: {
+      title: string;
+      features: string[];
+      buttonLabel: string;
+      buttonPrice: string;
+      paypal?: { itemName: string; amount: string };
+      customHref?: string;
+    }[];
+  };
+  formSection: {
+    id: string;
+    title: string;
+    submitLabel: string;
+  };
+}
+
+const {
+  seo,
+  advisoryHero,
+  expertDomains,
+  servicesOffered,
+  clientsCollaborators,
+  retainerPlans,
+  formSection,
+} = resolveContentImageRefs(content as ServicesPageContent);
+const schema = resolveSchemaImageRefs(
+  schemaContent as SchemaBlock,
+  Astro.site ?? new URL(Astro.url.origin),
+);
+const sidebarToc = [
+  { label: 'Introduction', targetId: advisoryHero.id },
+  { label: expertDomains.heading, targetId: expertDomains.id },
+  { label: servicesOffered.heading, targetId: servicesOffered.id },
+  { label: clientsCollaborators.heading, targetId: clientsCollaborators.id },
+  { label: retainerPlans.heading, targetId: retainerPlans.id },
+  { label: formSection.title, targetId: formSection.id },
+];
+---
+
+<BaseLayout
+  seo={seo}
+  schema={schema}
+  sidebarToc={sidebarToc}
+  includeAnimateCss={true}
+>
+  <main class="page-main">
+    <ServiceAdvisoryHero
+      id={advisoryHero.id}
+      heading={advisoryHero.heading}
+      description={advisoryHero.description}
+    />
+    <ServiceExpertiseBlocks
+      id={expertDomains.id}
+      heading={expertDomains.heading}
+      domains={expertDomains.domains}
+    />
+    <ServiceOfferingsPanel section={servicesOffered} />
+    <ServiceClientsPanel
+      id={clientsCollaborators.id}
+      heading={clientsCollaborators.heading}
+      description={clientsCollaborators.description}
+      images={clientsCollaborators.images}
+    />
+    <ServiceRetainerPlans
+      id={retainerPlans.id}
+      heading={retainerPlans.heading}
+      description={retainerPlans.description}
+      plans={retainerPlans.plans}
+    />
+    <ServicesFormPanel section={formSection} />
+  </main>
+</BaseLayout>

@@ -1,0 +1,165 @@
+{
+  "seo": {
+    "title": "Services | William Entriken",
+    "description": "Review William Entriken’s advisory services across strategy, code review, cybersecurity, fundraising, and technical consulting for ambitious teams."
+  },
+  "advisoryHero": {
+    "id": "advisory-services",
+    "heading": "Advisory Services",
+    "description": "Using William's polymath cross-domain expertise, you'll have an advisor at your disposal who can serve as a resource for a variety of specialized needs. Having served a multitude of clients from Fortune 100 to decentralized builders to high-tech growth startups, he is a highly experienced provider of advisory services with a methodical approach carefully suited to your business' needs."
+  },
+  "expertDomains": {
+    "id": "expert-domains",
+    "heading": "Expert Domains",
+    "domains": [
+      { "number": "01.", "lines": ["Blockchain & Digital", "Asset Ownership"] },
+      { "number": "02.", "lines": ["Business Finance &", "Strategy"] },
+      { "number": "03.", "lines": ["Cybersecurity"] },
+      { "number": "04.", "lines": ["Product & Information", "Architecture"] },
+      { "number": "05.", "lines": ["Civic Hacking"] }
+    ]
+  },
+  "servicesOffered": {
+    "id": "services-offered",
+    "heading": "Services Offered",
+    "image": {
+      "src": "/images/shared/will/Will-Entriken.png",
+      "alt": "William Entriken portrait"
+    },
+    "intro": "William prefers clients that are established enterprise businesses or innovative growth startups with appetite and resources to make the world better with verifiable and secure products. For the right project, he can provide the following:",
+    "cards": [
+      {
+        "iconKey": "whitePaper",
+        "title": "White Paper Writing and Review",
+        "description": "William offers expert services in crafting and reviewing white papers, ensuring your technology proposals are clear, compelling, and technically sound. He also specializes in strategic planning for long-term market movements, helping you position your product for future trends and sustained success in the competitive tech landscape."
+      },
+      {
+        "iconKey": "communityEvents",
+        "title": "Community Events / Hackathons",
+        "description": "He specializes in building vibrant communities for technology events and products, focusing on engaging and interactive experiences such as hackathons, workshops on NFTs/blockchain, and promotional content creation, as demonstrated in his work with TRON DAO Hackatron and educational presentations. His efforts typically revolve around public events, enriching the tech ecosystem and fostering insightful discussions."
+      },
+      {
+        "iconKey": "codeReview",
+        "title": "Code Review",
+        "description": "William provides a comprehensive suite of support encompassing code review, coding, quality assurance, and solutions architecture analysis. His meticulous approach ensures that both existing code and new developments adhere to the highest standards of quality and functionality, positioning tech projects for operational excellence and long-term reliability.",
+        "highlightText": "Some typical design and code review work he has done includes:",
+        "links": [
+          {
+            "label": "Bridgeworld Harvesters contract review",
+            "href": "https://github.com/ghoul-sol/treasure-staking/issues/69"
+          },
+          {
+            "label": "Trove Marketplace contract review",
+            "href": "https://github.com/TreasureProject/treasure-marketplace-contracts/issues/74"
+          },
+          {
+            "label": "Treasure Marketplace emergency review after hack",
+            "href": "https://github.com/ghoul-sol/treasure-marketplace/issues/25"
+          },
+          {
+            "label": "Informal audit of Arianee",
+            "href": "https://github.com/search?q=org%3AArianee+author%3Afulldecent&type=Issues"
+          },
+          {
+            "label": "Review of Aion Network",
+            "href": "https://github.com/aionnetwork/AVM/issues/created_by/fulldecent"
+          },
+          {
+            "label": "Contract review of Erasure Bay",
+            "href": "https://github.com/erasureprotocol/erasure-protocol/pull/253#pullrequestreview-318470827"
+          },
+          {
+            "label": "Review of EIP-615 (DRAFT) proposal",
+            "href": "https://ethereum-magicians.org/t/eip-615-subroutines-and-static-jumps-for-the-evm-last-call/3472/3"
+          }
+        ]
+      },
+      {
+        "iconKey": "businessPlanning",
+        "title": "Business Planning & Team Setup",
+        "description": "He offers expert business planning services designed to refine your strategy, conduct competitive analysis, and understand market forces. He not only supports the crafting of compelling pitch decks and guides you through the processes of raising financing and securing capital but also assists in cultivating a strong team. William ensures that the right roles are in place with the right people, setting up a viable operation poised for success in a competitive landscape."
+      },
+      {
+        "iconKey": "financialAnalysis",
+        "title": "Financial Analysis & Fundraising",
+        "description": "William Entriken offers expert financial analysis insights, specializing in forecasting, budgeting, and long-term capitalization strategies. His approach integrates comprehensive cash flow analysis with a deep understanding of market forces, ensuring your financial planning is both robust and responsive to changing economic conditions. Additionally, William is skilled in facilitating significant capital raises through investors and Initial Coin Offerings (ICOs), having successfully helped clients raise hundreds of millions in ICOs. This expertise makes him an invaluable asset for securing the funding necessary to propel your projects forward."
+      },
+      {
+        "iconKey": "cybersecurityAudits",
+        "title": "Cybersecurity Audits",
+        "description": "He offers specialized cybersecurity services, including comprehensive audits and vulnerability assessments. With a distinguished track record of collaboration with top-tier organizations like FINRA, the FBI, and Apple, he ensures robust security protocols and systems.",
+        "button": {
+          "label": "Privacy Log",
+          "href": "https://privacylog.blogspot.com/"
+        }
+      }
+    ]
+  },
+  "clientsCollaborators": {
+    "id": "clients-collaborators",
+    "heading": "Clients & Collaborators",
+    "description": "William Entriken's illustrious career is marked by collaborations with high-profile organizations like Microsoft, the FBI, Apple, and Google. His seasoned insights have been instrumental in fostering meaningful engagements with these eminent entities.",
+    "images": [
+      { "src": "/images/pages/services/SEC.png", "alt": "SEC" },
+      { "src": "/images/pages/services/google-logo.webp", "alt": "Google" },
+      { "src": "/images/pages/services/finra-logo.png", "alt": "FINRA" },
+      { "src": "/images/pages/services/FBI-logo.jpg", "alt": "FBI" },
+      { "src": "/images/pages/services/ey-white-logo.jpg", "alt": "EY" },
+      {
+        "src": "/images/pages/services/ethereum-foundation-logo.png",
+        "alt": "Ethereum Foundation"
+      },
+      { "src": "/images/shared/brands/apple-logo.webp", "alt": "Apple" },
+      { "src": "/images/shared/brands/microsoft-logo.png", "alt": "Microsoft" }
+    ]
+  },
+  "retainerPlans": {
+    "id": "retainer-plans",
+    "heading": "Retainer Plans",
+    "description": "Please inquire via the intake form at the bottom of this page before purchase. After your inquiry is received, we will follow up to discuss a feasible engagement plan, then you may place an order for a retainership package.",
+    "plans": [
+      {
+        "title": "Ten-hour retainer (monthly)",
+        "features": [
+          "Advice for your project",
+          "Private team calls",
+          "Technical reviews",
+          "I am your advisor"
+        ],
+        "buttonLabel": "Purchase",
+        "buttonPrice": "USD 6,000",
+        "paypal": {
+          "itemName": "Ten-hour retainer",
+          "amount": "6000.00"
+        }
+      },
+      {
+        "title": "Twenty-hour retainer (monthly)",
+        "features": [
+          "Advice for your project",
+          "Private team calls",
+          "Technical reviews",
+          "I am your advisor"
+        ],
+        "buttonLabel": "Purchase",
+        "buttonPrice": "USD 12,000",
+        "paypal": {
+          "itemName": "Twenty-hour retainer",
+          "amount": "12000.00"
+        }
+      },
+      {
+        "title": "Larger retainer (please discuss in advance)",
+        "features": ["Customized to your needs"],
+        "buttonLabel": "Purchase",
+        "buttonPrice": "CUSTOM PRICE",
+        "customHref": "http://paypal.me/fulldecent/"
+      }
+    ]
+  },
+  "formSection": {
+    "id": "services-form-section",
+    "title": "Services Intake Form",
+    "submitLabel": "Submit"
+  }
+}

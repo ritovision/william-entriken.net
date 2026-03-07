@@ -1,0 +1,77 @@
+---
+import FormResultModal from '@shared/forms/ui/FormResultModal.astro';
+
+interface ContactFormSection {
+  id: string;
+  title: string;
+  submitLabel: string;
+}
+
+interface Props {
+  section: ContactFormSection;
+}
+
+const { section } = Astro.props;
+---
+
+<section
+  id={section.id}
+  class="forms-panel container-95 section-stack"
+  aria-label={`${section.title} section`}
+>
+  <h2 class="forms-panel__title text-gold text-center m-0">{section.title}</h2>
+
+  <form
+    id="contact-form"
+    class="site-form section-stack"
+    data-form-kind="contact"
+    novalidate
+  >
+    <input
+      type="text"
+      name="name"
+      placeholder="Your Name"
+      required
+      maxlength="100"
+    />
+    <input
+      type="email"
+      name="email"
+      placeholder="Your Email"
+      required
+      maxlength="100"
+    />
+    <input
+      type="text"
+      name="organization"
+      placeholder="Organization"
+      maxlength="100"
+    />
+    <input
+      type="text"
+      name="purpose"
+      placeholder="Purpose"
+      required
+      maxlength="100"
+    />
+    <textarea
+      name="message"
+      placeholder="Your Message"
+      required
+      maxlength="2000"
+      rows="5"></textarea>
+
+    <button type="submit" class="btn btn-brand-gold-pill site-form__submit">
+      {section.submitLabel}
+    </button>
+
+  </form>
+
+  <FormResultModal idPrefix="contact" />
+</section>
+
+<script>
+  import { initFormRuntime } from '@shared/forms/runtime/formRuntime';
+
+  initFormRuntime();
+</script>

@@ -1,0 +1,119 @@
+---
+import Picture from '@ui/Picture.astro';
+import './service-clients-panel.css';
+
+interface ClientImage {
+  src: string;
+  alt: string;
+}
+
+interface Props {
+  id: string;
+  heading: string;
+  description: string;
+  images: ClientImage[];
+}
+
+const { id, heading, description, images } = Astro.props;
+---
+
+<section id={id} class="service-clients" data-clients-panel>
+  <h2 class="service-clients__heading text-gold">{heading}</h2>
+  <p class="service-clients__description">{description}</p>
+  <div class="service-clients__grid" data-clients-grid>
+    {images.map((image) => (
+      <div class="service-clients__item" data-clients-item>
+        <Picture
+          src={image.src}
+          alt={image.alt}
+          aspectRatio="1 / 1"
+          fit="cover"
+        />
+      </div>
+    ))}
+  </div>
+</section>
+
+<script>
+  const revealGrid = (grid: HTMLElement) => {
+    const items = Array.from(
+      grid.querySelectorAll<HTMLElement>('[data-clients-item]'),
+    );
+
+    for (const [index, item] of items.entries()) {
+      item.classList.remove('service-clients__item--pre');
+      item.style.setProperty('--animate-duration', '0.6s');
+      item.style.setProperty('--animate-delay', `${index * 0.08}s`);
+      item.classList.add('animate__animated', 'animate__fadeInUp');
+    }
+  };
+
+  const bindClientsPanels = (root: ParentNode = document) => {
+    const grids = Array.from(
+      root.querySelectorAll<HTMLElement>('[data-clients-grid]'),
+    );
+    if (!grids.length) {
+      return;
+    }
+
+    const unboundGrids: HTMLElement[] = [];
+
+    for (const grid of grids) {
+      if (grid.dataset.clientsBound === 'true') {
+        continue;
+      }
+
+      grid.dataset.clientsBound = 'true';
+      unboundGrids.push(grid);
+
+      const items = Array.from(
+        grid.querySelectorAll<HTMLElement>('[data-clients-item]'),
+      );
+      for (const item of items) {
+        item.classList.add('service-clients__item--pre');
+      }
+    }
+
+    if (!unboundGrids.length) {
+      return;
+    }
+
+    if (!('IntersectionObserver' in window)) {
+      for (const grid of unboundGrids) {
+        revealGrid(grid);
+      }
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries, currentObserver) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) {
+            continue;
+          }
+
+          revealGrid(entry.target as HTMLElement);
+          currentObserver.unobserve(entry.target);
+        }
+      },
+      {
+        threshold: 0.2,
+        rootMargin: '0px 0px -10% 0px',
+      },
+    );
+
+    for (const grid of unboundGrids) {
+      observer.observe(grid);
+    }
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => bindClientsPanels(), {
+      once: true,
+    });
+  } else {
+    bindClientsPanels();
+  }
+
+  document.addEventListener('astro:page-load', () => bindClientsPanels());
+</script>

@@ -1,0 +1,49 @@
+{
+  "seo": {
+    "title": "Contact | William Entriken",
+    "description": "Contact William Entriken for press inquiries, advisory discussions, podcast matters, and general questions through the appropriate channel."
+  },
+  "warning": "To ensure your message is processed, please submit to the appropriate form. Incorrect submissions may delay your response or result in a lack of processing altogether.",
+  "routingSections": [
+    {
+      "id": "contact-press",
+      "title": "For Press & Interview Requests",
+      "description": "Please use the email below:",
+      "background": "content-dark",
+      "image": {
+        "src": "/images/shared/will/will-sunglasses.jpg",
+        "alt": "William Entriken wearing sunglasses"
+      },
+      "email": {
+        "address": "Press@WilliamEntriken.net",
+        "label": "Press@WilliamEntriken.net"
+      }
+    },
+    {
+      "id": "contact-services",
+      "title": "For Advisory Services",
+      "description": "For inquiries related to advisory and/or consulting services please review the \"Services\" page and fill out the respective Intake Form.",
+      "background": "heading-gray",
+      "cta": {
+        "label": "Services",
+        "href": "/services"
+      }
+    },
+    {
+      "id": "contact-speaking",
+      "title": "For Public Speaking Opportunities",
+      "description": "Please visit the \"Speaking\" page and fill out the inquiry form at the bottom of the page.",
+      "background": "primary-navy",
+      "border": true,
+      "cta": {
+        "label": "Speaker Inquiries",
+        "href": "/speaking"
+      }
+    }
+  ],
+  "formSection": {
+    "id": "contact-form-section",
+    "title": "For all other inquiries",
+    "submitLabel": "Send"
+  }
+}

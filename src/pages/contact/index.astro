@@ -1,0 +1,68 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { resolveContentImageRefs } from '@shared/images';
+import ContactFormPanel from './_components/ContactFormPanel.astro';
+import ContactRoutingPanel from './_components/ContactRoutingPanel.astro';
+import content from './_content.json';
+
+interface ContactCta {
+  label: string;
+  href: string;
+}
+
+interface ContactEmail {
+  address: string;
+  label: string;
+}
+
+interface ContactImage {
+  src: string;
+  alt: string;
+}
+
+interface ContactRoutingSection {
+  id: string;
+  title: string;
+  description: string;
+  background: 'content-dark' | 'heading-gray' | 'primary-navy';
+  border?: boolean;
+  email?: ContactEmail;
+  image?: ContactImage;
+  cta?: ContactCta;
+}
+
+interface ContactPageContent {
+  seo: {
+    title: string;
+    description: string;
+  };
+  warning: string;
+  routingSections: ContactRoutingSection[];
+  formSection: {
+    id: string;
+    title: string;
+    submitLabel: string;
+  };
+}
+
+const { seo, warning, routingSections, formSection } = resolveContentImageRefs(
+  content as ContactPageContent,
+);
+const sidebarToc = [
+  ...routingSections.map((section) => ({
+    label: section.title,
+    targetId: section.id,
+  })),
+  {
+    label: formSection.title,
+    targetId: formSection.id,
+  },
+];
+---
+
+<BaseLayout seo={seo} sidebarToc={sidebarToc} includeAnimateCss={true}>
+  <main class="page-main">
+    <ContactRoutingPanel warning={warning} sections={routingSections} />
+    <ContactFormPanel section={formSection} />
+  </main>
+</BaseLayout>

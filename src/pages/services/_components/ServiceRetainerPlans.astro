@@ -1,0 +1,82 @@
+---
+import './service-retainer-plans.css';
+
+interface PaypalConfig {
+  itemName: string;
+  amount: string;
+}
+
+interface RetainerPlan {
+  title: string;
+  features: string[];
+  buttonLabel: string;
+  buttonPrice: string;
+  paypal?: PaypalConfig;
+  customHref?: string;
+}
+
+interface Props {
+  id: string;
+  heading: string;
+  description: string;
+  plans: RetainerPlan[];
+}
+
+const { id, heading, description, plans } = Astro.props;
+---
+
+<section id={id} class="retainer-plans">
+  <h2 class="retainer-plans__heading text-gold">{heading}</h2>
+  <p class="retainer-plans__description">{description}</p>
+  <div class="retainer-plans__grid">
+    {plans.map((plan) => (
+      <div class="retainer-plans__card">
+        <p class="retainer-plans__title">{plan.title}</p>
+        <ul class="retainer-plans__features">
+          {plan.features.map((feature) => (
+            <li class="retainer-plans__feature">
+              <svg class="retainer-plans__check" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+              </svg>
+              {feature}
+            </li>
+          ))}
+        </ul>
+        <div class="retainer-plans__action">
+          {plan.paypal ? (
+            <form
+              action="https://www.paypal.com/cgi-bin/webscr"
+              method="post"
+              target="_top"
+              class="retainer-plans__form"
+            >
+              <input type="hidden" name="cmd" value="_xclick-subscriptions" />
+              <input type="hidden" name="business" value="paypal.com@phor.net" />
+              <input type="hidden" name="lc" value="US" />
+              <input type="hidden" name="item_name" value={plan.paypal.itemName} />
+              <input type="hidden" name="no_note" value="1" />
+              <input type="hidden" name="src" value="1" />
+              <input type="hidden" name="a3" value={plan.paypal.amount} />
+              <input type="hidden" name="p3" value="1" />
+              <input type="hidden" name="t3" value="M" />
+              <input type="hidden" name="currency_code" value="USD" />
+              <input type="hidden" name="bn" value="PP-SubscriptionsBF:btn_subscribe_SM.gif:NonHostedGuest" />
+              <button type="submit" class="retainer-plans__button">
+                {plan.buttonLabel} <strong>{plan.buttonPrice}</strong>
+              </button>
+            </form>
+          ) : (
+            <a
+              href={plan.customHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="retainer-plans__button"
+            >
+              {plan.buttonLabel} <strong>{plan.buttonPrice}</strong>
+            </a>
+          )}
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
