@@ -1,0 +1,39 @@
+---
+import Button from '@ui/Button.astro';
+import './speaking-stories-cta-bar.css';
+
+interface SpeakingStoriesCtaItem {
+  title: string;
+  buttonLabel: string;
+  buttonHref: string;
+}
+
+interface SpeakingStoriesCtaSection {
+  items: SpeakingStoriesCtaItem[];
+}
+
+interface Props {
+  section: SpeakingStoriesCtaSection;
+}
+
+const { section } = Astro.props;
+---
+
+<section class="speaking-stories-cta" aria-label="Speaking calls to action">
+  <div class="speaking-stories-cta__inner container-95">
+    {
+      section.items.map((item) => (
+        <article class="speaking-stories-cta__item">
+          <h2 class="speaking-stories-cta__title text-white m-0">
+            {item.title}
+          </h2>
+          <Button
+            href={item.buttonHref}
+            label={item.buttonLabel}
+            variant="gold-pill"
+          />
+        </article>
+      ))
+    }
+  </div>
+</section>

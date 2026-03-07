@@ -1,0 +1,158 @@
+{
+  "seo": {
+    "title": "Press | William Entriken",
+    "description": "Access William Entriken press materials, including media contact details, biographies, fact sheet information, and downloadable photos."
+  },
+  "pressContact": {
+    "id": "press-contact",
+    "title": "For Press & Interview Requests",
+    "description": "Please use the email below:",
+    "background": "content-dark",
+    "image": {
+      "src": "/images/shared/will/will-sunglasses.jpg",
+      "alt": "William Entriken wearing sunglasses"
+    },
+    "email": {
+      "address": "Press@WilliamEntriken.net",
+      "label": "Press@WilliamEntriken.net"
+    }
+  },
+  "shortBio": {
+    "id": "short-bio",
+    "title": "Short Bio",
+    "body": "William Entriken (aka Fulldecent) is a distinguished polymath and technology pioneer. Known as a Civic Hacker, he is renowned for leading authorship of the pivotal \u201cERC-721\u201d standard, which laid the foundation of the multi-billion dollar NFT ecosystem. This work and its projects has been cited countless times in mainstream media and in scholarly journals. As a cybersecurity specialist he holds an active DoD security clearance and is acclaimed for protecting consumers with organizations such as Apple, the FBI, SEC, and FINRA. As a financial analyst, he has aided in M&As, consults with \u201cBig 4\u201d Ernst and Young and regularly advises clients. A sought-after public speaker and thought leader, he delivers charismatic and insightful commentary on his intersecting domains of expertise. He currently serves as a General Manager at Pacific Medical Training."
+  },
+  "detailedBio": {
+    "id": "detailed-bio",
+    "title": "Detailed Bio",
+    "paragraphs": [
+      "William \u201cWill\u201d Entriken, (known by his online moniker Fulldecent) an accomplished Civic Hacker, software architect, and business strategist, is a distinguished pioneer whose groundbreaking work in 2017 led to the publication of the ERC-721 standard, establishing the foundation for the multi-billion dollar NFT eco-system. He also lead completion of another standard known as ERC-165 that serves as a bedrock behind the multi-billion dollar decentralized finance and dApp eco-systems on the Ethereum blockchain. Beyond his technical contributions, Entriken\u2019s multi-faceted career spans across various domains including cybersecurity, finance, and public speaking, making him a polymath in the tech industry.",
+      "With advanced degrees from Drexel, William\u2019s early career was marked by his keen interest in solving complex problems through innovative solutions and analyses. His role in establishing the ERC-721 standard not only formalized and defined the term \u201cNon-Fungible Token\u201d but also ignited the multi-billion dollar digital collectibles ecosystem, influencing diverse industries from gaming to sports to real estate to healthcare, and even the fine arts.",
+      "In cybersecurity, Entriken holds an active DoD security clearance and has been integral in enhancing consumer protections while working with heavyweight entities such as Apple, the FBI, SEC, and FINRA. His expertise in cybersecurity is complemented by his accomplishments as a financial analyst, where he has been involved in major mergers and acquisitions, consulting with prominent firms like Ernst & Young, and advising clients across various sectors.",
+      "William\u2019s impact is further amplified by his role as a thought leader and public speaker, where he shares his insights on digital ownership, blockchain technology, and cybersecurity. His presentations are renowned for their depth and charisma, reflecting his deep understanding of technology and its implications for future innovations.",
+      "Currently, William serves as the General Manager at Pacific Medical Training, where he leverages his extensive background in technology, financial analysis and information architecture to enhance medical education and training practices. His leadership at Pacific Medical is a testament to his ability to cross traditional boundaries and apply his tech expertise in novel contexts.",
+      "His pioneering work has been widely recognized and cited in nearly 200 peer-reviewed journals, highlighting his significant influence across multiple academic disciplines. The widespread adoption of his innovations by Fortune 100 companies, top-tier brands, and celebrities underscores the broad appeal and utility of his contributions to the tech industry.",
+      "Through his career, William Entriken has demonstrated a profound ability to lead and innovate in a rapidly evolving digital landscape. His visionary approach to digital ownership and authenticity continues to shape industries, making him a pivotal figure in the intersection of technology, business, and law. His ongoing work promises to further influence both the digital and real-world domains, securing his place as a transformative leader in the digital age."
+    ]
+  },
+  "importantClarifications": {
+    "id": "important-clarifications",
+    "title": "Important Clarifications",
+    "body": "William\u2019s role in the ERC-721: NFT Standard paper that established the foundation of mainstream NFTs is as the \u201cLead Author.\u201d This was a community effort with many unnamed contributors coordinating with William; it is also not appropriate to use the specific wording \u201ccreator of ERC-721\u201d as he actually took the leadership role after the project had first been started by another person early on. As for ERC-165, he was not given the designation of lead author but he played a crucial role in coordinating the contributors during a very turbulent period to move forward and complete the paper for formal publication."
+  },
+  "factSheet": {
+    "id": "fact-sheet",
+    "title": "Fact Sheet",
+    "intro": "Information may also be found on the Wikipedia article entitled \u201cWilliam Entriken\u201d and possibly other articles relating to civic hacking, NFTs, blockchain and cybersecurity.",
+    "fields": [
+      {
+        "label": "Names / Aliases",
+        "value": "William Entriken | Will | Fulldecent (William\u2019s online pseudonym)"
+      },
+      {
+        "label": "Education",
+        "items": [
+          "Masters of Business Administration in Investment Banking \u2014 Drexel \u2014 2008",
+          "Masters of Science in Finance \u2014 Drexel \u2014 2008",
+          "Bachelor\u2019s in Computer Science \u2014 Villanova University \u2014 2006"
+        ]
+      },
+      {
+        "label": "Domains of Authority",
+        "value": "Open Source Systems | Cybersecurity | Software Development | Information Architecture | Blockchain | Digital Authentication | Business Finance | Investment Banking | Government Policy on Technology | Medical Training"
+      },
+      {
+        "label": "Professional Titles",
+        "value": "Civic Hacker | Financial Analyst | Solutions Architect | Software Engineer | Cybersecurity Specialist | Public Speaker | Product Manager | Consultant | General Manager | Thought Leader | Tech Pioneer"
+      },
+      {
+        "label": "Languages Spoken",
+        "value": "English | Mandarin"
+      },
+      {
+        "label": "Location",
+        "value": "Born and currently lives within the Greater Philadelphia Area."
+      },
+      {
+        "label": "Age & Sex",
+        "value": "40 years old; Male"
+      },
+      {
+        "label": "Notable Publications",
+        "links": [
+          { "name": "ERC-721: NFT Standard [2018]", "url": "https://eips.ethereum.org/EIPS/eip-721", "description": "The paper serving as a foundation for mainstream Non-fungible Tokens (NFTs)" },
+          { "name": "ERC-165: Standard Interface Detection [2018]", "url": "https://eips.ethereum.org/EIPS/eip-165", "description": "The paper serving as a bedrock for the decentralized finance and applications eco-system on the Ethereum blockchain" },
+          { "name": "Patent US 2020/0317242 A1", "url": "https://patentimages.storage.googleapis.com/bf/d3/41/36127fe00817a3/US20200317242A1.pdf", "description": "A Method of Creating a Transit Schedule [2020]" }
+        ]
+      },
+      {
+        "label": "Public Speaking Events",
+        "value": "Please see the Speaking page for full list and details",
+        "href": "/speaking#speaking-events"
+      },
+      {
+        "label": "Notable Accomplishments",
+        "items": [
+          "Lead publication of the ERC-721 paper which served as driving foundation of the multi-billion dollar NFT eco-system.",
+          "Lead completion of ERC-165 paper which catalyzed the multi-billion dollar decentralized finance and dApp eco-systems on Ethereum.",
+          "Created an open-source train schedule in Philadelphia that has run for over a decade and has been endorsed by SEPTA.",
+          "Protected millions of consumer accounts through collaborations with Apple, FBI, FINRA, also maintaining a Department of Defense Security Clearance.",
+          "Acceptance into MENSA."
+        ]
+      },
+      {
+        "label": "Websites & Social Media",
+        "links": [
+          { "name": "Official Blog", "url": "https://phor.net" },
+          { "name": "X (Twitter)", "url": "https://twitter.com/fulldecent" },
+          { "name": "LinkedIn", "url": "https://www.linkedin.com/in/fulldecent" },
+          { "name": "Pacific Medical Center (Primary Job)", "url": "https://pacificmedicaltraining.com/bio-william" },
+          { "name": "GitHub", "url": "https://github.com/fulldecent" },
+          { "name": "TikTok", "url": "https://www.tiktok.com/@fulldecent" },
+          { "name": "Twitch", "url": "https://www.twitch.tv/fulldecent" },
+          { "name": "YouTube", "url": "https://www.youtube.com/user/fulldecent" },
+          { "name": "OpenSea", "url": "https://opensea.io/fulldecent" }
+        ]
+      }
+    ]
+  },
+  "mediaGallery": {
+    "id": "media-gallery",
+    "title": "Media Gallery",
+    "expandLabel": "See More",
+    "visibleCount": {
+      "mobile": 4,
+      "desktop": 6
+    },
+    "images": [
+      {
+        "src": "/images/shared/will/Will-NFT-Tallinn.jpg",
+        "alt": "Will NFT Tallinn"
+      },
+      {
+        "src": "/images/shared/will/Will-Entriken.png",
+        "alt": "Will Entriken"
+      },
+      {
+        "src": "/images/shared/will/will-sunglasses.jpg",
+        "alt": "Will Sunglasses"
+      },
+      {
+        "src": "/images/shared/will/Will-headshot.jpg",
+        "alt": "Will Headshot"
+      },
+      {
+        "src": "/images/shared/will/Will-event-mural.png",
+        "alt": "Will Event Mural"
+      },
+      {
+        "src": "/images/shared/will/will-mic-panel.png",
+        "alt": "Will Mic Panel"
+      },
+      {
+        "src": "/images/shared/will/will-suit.jpg",
+        "alt": "Will Suit"
+      }
+    ]
+  }
+}

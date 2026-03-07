@@ -1,0 +1,19 @@
+---
+import SpeakingEventsFeed from '@shared/feeds/speaking/SpeakingEventsFeed.astro';
+import speakingEvents from '../../../data/feeds/speaking-events.json';
+---
+
+<section
+  id="speaking-events"
+  class="container-95 section-stack speaking-events-panel"
+  aria-label="Speaking events section"
+>
+  <h2 class="text-gold text-center m-0">Speaking Events</h2>
+  <SpeakingEventsFeed items={speakingEvents} />
+</section>
+
+<style>
+  .speaking-events-panel {
+    margin-bottom: 4rem;
+  }
+</style>

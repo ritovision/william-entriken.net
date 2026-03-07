@@ -1,0 +1,108 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { resolveContentImageRefs, resolveSchemaImageRefs } from '@shared/images';
+import SpeakingHeadingPanel from './_components/SpeakingHeadingPanel.astro';
+import SpeakingStoriesStack from './_components/SpeakingStoriesStack.astro';
+import SpeakingStoriesCtaBar from './_components/SpeakingStoriesCtaBar.astro';
+import SpeakingEventsPanel from './_components/SpeakingEventsPanel.astro';
+import SpeakingFormPanel from './_components/SpeakingFormPanel.astro';
+import type { SchemaBlock } from '@shared/types';
+import content from './_content.json';
+import schemaContent from './_schema.json';
+
+interface SpeakingStoryImage {
+  src: string;
+  alt: string;
+}
+
+type SpeakingStorySegment =
+  | {
+      type: 'text';
+      text: string;
+    }
+  | {
+      type: 'link';
+      label: string;
+      href: string;
+    };
+
+interface SpeakingStoryItem {
+  id: string;
+  title: string;
+  image: SpeakingStoryImage;
+  bodySegments: SpeakingStorySegment[];
+}
+
+interface SpeakingStoriesSection {
+  id: string;
+  items: SpeakingStoryItem[];
+}
+
+interface SpeakingStoriesCtaItem {
+  title: string;
+  buttonLabel: string;
+  buttonHref: string;
+}
+
+interface SpeakingStoriesCtaSection {
+  items: SpeakingStoriesCtaItem[];
+}
+
+interface SpeakingPageContent {
+  seo: {
+    title: string;
+    description: string;
+  };
+  heroSection: {
+    title: string;
+    description: string;
+    backgroundImage: {
+      src: string;
+      alt: string;
+    };
+  };
+  speakingStoriesSection: SpeakingStoriesSection;
+  speakingStoriesCtaSection: SpeakingStoriesCtaSection;
+  formSection: {
+    id: string;
+    title: string;
+    submitLabel: string;
+  };
+}
+
+const {
+  seo,
+  heroSection,
+  speakingStoriesSection,
+  speakingStoriesCtaSection,
+  formSection,
+} = resolveContentImageRefs(content as SpeakingPageContent);
+const schema = resolveSchemaImageRefs(
+  schemaContent as SchemaBlock,
+  Astro.site ?? new URL(Astro.url.origin),
+);
+const sidebarToc = [
+  ...speakingStoriesSection.items.map((item) => ({
+    label: item.title,
+    targetId: item.id,
+  })),
+  {
+    label: 'Speaking Events',
+    targetId: 'speaking-events',
+  },
+  {
+    label: formSection.title,
+    targetId: formSection.id,
+  },
+];
+---
+
+<BaseLayout seo={seo} schema={schema} sidebarToc={sidebarToc}>
+  <main class="page-main">
+    <SpeakingHeadingPanel section={heroSection} />
+    <SpeakingStoriesStack section={speakingStoriesSection} />
+    <SpeakingStoriesCtaBar section={speakingStoriesCtaSection} />
+    <SpeakingEventsPanel />
+    <SpeakingFormPanel section={formSection} />
+  </main>
+</BaseLayout>

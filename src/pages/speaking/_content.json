@@ -1,0 +1,103 @@
+{
+  "seo": {
+    "title": "Speaking | William Entriken",
+    "description": "Book William Entriken for speaking engagements on NFTs, blockchain, cybersecurity, digital ownership, and related technical and business topics."
+  },
+  "heroSection": {
+    "title": "Public Speaking",
+    "description": "An engaging and passionate orator, William Entriken captivates audiences with his profound knowledge extending beyond the blockchain realms of NFTs, FinTech & DeFi he is best known for, but also encompassing ethical hacking, cybersecurity, information architecture, biomedicine, economics and business marketing. As a sought-after speaker coupled with a well-rounded expertise, his articulate and insightful discourses resonate in a myriad of settings, from workshops and panel discussions to podcasts and live interviews, embodying a blend of thought leadership and a keen awareness of contemporary developments.",
+    "backgroundImage": {
+      "src": "/images/pages/speaking/william-tallin.jpg",
+      "alt": "William Entriken speaking at an event"
+    }
+  },
+  "speakingStoriesSection": {
+    "id": "speaking-stories",
+    "items": [
+      {
+        "id": "nft-nyc",
+        "title": "NFT.nyc",
+        "image": {
+          "src": "/images/pages/speaking/jodee-rich.jpg",
+          "alt": "William Entriken speaking at NFT.NYC"
+        },
+        "bodySegments": [
+          {
+            "type": "text",
+            "text": "As the luminary who coined the term NFT and pioneered the first mainstream standard, William Entriken's influence is palpable and celebrated within the community. His recurring invitation as an honorary speaker at NFT.NYC since its inception is a testament to his seminal role in shaping the narrative and technological framework of the NFT space, making him a revered figure and a highlight of the event year after year."
+          }
+        ]
+      },
+      {
+        "id": "chain76",
+        "title": "Chain76",
+        "image": {
+          "src": "/images/shared/will/will-suit.jpg",
+          "alt": "William Entriken at Chain76"
+        },
+        "bodySegments": [
+          {
+            "type": "text",
+            "text": "Hosted and spoke at "
+          },
+          {
+            "type": "link",
+            "label": "Philadelphia's first blockchain",
+            "href": "https://chain76org.github.io/chain76.org/"
+          },
+          {
+            "type": "text",
+            "text": " event focused on the pharmaceutical supply chain, CHAIN 76. This notable conference brought together major industry players like Ernst & Young, Celgene, and Johnson & Johnson and other Fortune 100 companies. Participants gained hands-on experience by deploying a smart contract during the event."
+          }
+        ]
+      },
+      {
+        "id": "community-service-hours",
+        "title": "Community Service Hours",
+        "image": {
+          "src": "/images/shared/community/csh-poster.jpg",
+          "alt": "Community Service Hours weekly broadcast poster"
+        },
+        "bodySegments": [
+          {
+            "type": "text",
+            "text": "Through weekly live broadcasts syndicated across social media, William extends his expertise to foster a vibrant community dialogue, welcoming enthusiasts and curious minds to share, inquire and delve into innovative projects and prevailing topics within the space. These sessions may feature interviews with prominent persons in leading projects and educational workshops, underlining his commitment to communal growth and knowledge sharing"
+          }
+        ]
+      },
+      {
+        "id": "dallas-chamber-of-commerce",
+        "title": "Dallas Chamber of Commerce",
+        "image": {
+          "src": "/images/pages/speaking/dallas-chamber-commerce.jpg",
+          "alt": "William Entriken speaking at the Dallas Chamber of Commerce event"
+        },
+        "bodySegments": [
+          {
+            "type": "text",
+            "text": "William served as a distinguished speaker at \"The Future of ICOs - IDOs (Initial Deed Offerings) - ERC-721,\" hosted by the North Texas Blockchain Alliance and the Dallas Regional Chamber of Commerce. This event spotlighted the transformative potential of blockchain in commerce, drawing an enthusiastic audience that highlighted the growing interest in innovative digital business models."
+          }
+        ]
+      }
+    ]
+  },
+  "speakingStoriesCtaSection": {
+    "items": [
+      {
+        "title": "For speaker opportunities",
+        "buttonLabel": "Contact",
+        "buttonHref": "#speaking-form-section"
+      },
+      {
+        "title": "Looking for advistory services?",
+        "buttonLabel": "Services",
+        "buttonHref": "/services"
+      }
+    ]
+  },
+  "formSection": {
+    "id": "speaking-form-section",
+    "title": "Speaking Inquiry",
+    "submitLabel": "Submit"
+  }
+}

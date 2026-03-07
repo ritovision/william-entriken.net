@@ -1,0 +1,37 @@
+.speaking-stories-cta {
+  background: var(--color-primary);
+  border-bottom: 1px solid var(--border-gold);
+  margin-top: 0;
+  margin-bottom: 4rem;
+}
+
+.speaking-stories-cta__inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+  gap: 3rem 2rem;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+.speaking-stories-cta__item {
+  flex: 1 1 320px;
+  max-width: 520px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  text-align: center;
+}
+
+.speaking-stories-cta__title {
+  line-height: 1.2;
+}
+
+.speaking-stories-cta__item .btn {
+  min-width: 10rem;
+  text-align: center;
+}
