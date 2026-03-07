@@ -1,0 +1,107 @@
+.container-95 {
+  width: min(95%, 1280px);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section-stack > * + * {
+  margin-top: 1.5rem;
+}
+
+.bg-primary-navy {
+  background: var(--color-primary);
+}
+
+.bg-white {
+  background: var(--color-white);
+}
+
+.bg-heading-gray {
+  background: var(--color-bg-heading);
+}
+
+.bg-content-dark {
+  background: var(--color-bg-content);
+}
+
+.text-gold {
+  color: var(--color-accent);
+}
+
+.text-white {
+  color: var(--color-white);
+}
+
+.text-black {
+  color: var(--color-black);
+}
+
+.border-gold {
+  border: 1px solid var(--border-gold);
+}
+
+.border-white {
+  border: 1px solid var(--border-white);
+}
+
+.btn-brand-navy,
+.b-g-default-button {
+  background: var(--color-primary);
+  color: var(--color-white);
+  border: 1px solid var(--border-gold);
+  border-radius: var(--radius-btn-navy);
+}
+
+.b-g-default-button {
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.b-g-default-button:hover,
+.b-g-default-button:focus-visible,
+.b-g-default-button:active {
+  background: var(--color-accent);
+  color: var(--color-primary);
+  border-color: var(--border-gold);
+}
+
+.btn-brand-gold-pill {
+  background: var(--color-accent);
+  color: var(--color-primary);
+  border: 1px solid var(--border-gold);
+  border-radius: var(--radius-btn-gold-pill);
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.btn-brand-gold-pill:hover,
+.btn-brand-gold-pill:focus-visible,
+.btn-brand-gold-pill:active,
+.btn-brand-gold-pill.active {
+  background: transparent;
+  color: var(--color-accent);
+  border-color: var(--border-gold);
+}
+
+.btn-brand-case-study {
+  background: transparent;
+  color: var(--color-white);
+  border: 1px solid var(--color-rito-panel-border);
+  border-radius: var(--radius-btn-case-study);
+  transition:
+    background-color 1s ease,
+    color 1s ease,
+    border-color 1s ease;
+}
+
+.btn-brand-case-study:hover,
+.btn-brand-case-study:focus-visible,
+.btn-brand-case-study:active,
+.btn-brand-case-study.active {
+  background: var(--color-rito-panel-border);
+  color: var(--color-white);
+  border-color: var(--color-rito-panel-border);
+}

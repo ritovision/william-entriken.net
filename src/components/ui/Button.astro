@@ -1,0 +1,51 @@
+---
+interface Props {
+  href?: string;
+  label: string;
+  variant?: 'default' | 'navy' | 'gold-pill' | 'case-study';
+  class?: string;
+  id?: string;
+  ariaLabel?: string;
+  type?: 'button' | 'submit' | 'reset';
+}
+
+const {
+  href,
+  label,
+  variant = 'navy',
+  class: className = '',
+  id,
+  ariaLabel,
+  type = 'button',
+} = Astro.props;
+const variantClass =
+  variant === 'gold-pill'
+    ? 'btn-brand-gold-pill'
+    : variant === 'case-study'
+      ? 'btn-brand-case-study'
+      : variant === 'default'
+        ? 'b-g-default-button'
+        : 'btn-brand-navy';
+---
+
+{
+  href ? (
+    <a
+      id={id}
+      href={href}
+      class={`btn ${variantClass} ${className}`.trim()}
+      aria-label={ariaLabel}
+    >
+      {label}
+    </a>
+  ) : (
+    <button
+      id={id}
+      type={type}
+      class={`btn ${variantClass} ${className}`.trim()}
+      aria-label={ariaLabel}
+    >
+      {label}
+    </button>
+  )
+}

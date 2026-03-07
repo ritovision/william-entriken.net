@@ -1,0 +1,10 @@
+---
+interface Props {
+  tone?: "gold" | "white";
+}
+
+const { tone = "gold" } = Astro.props;
+const toneClass = tone === "white" ? "border-white" : "border-gold";
+---
+
+<hr class={toneClass} />

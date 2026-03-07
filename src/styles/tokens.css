@@ -1,0 +1,39 @@
+:root {
+  --color-primary: #002754;
+  --color-primary-rgb: 0 39 84;
+  --color-accent: #eaaa00;
+  --color-secondary: #6059d4;
+  --color-bg-heading: #33343f;
+  --color-bg-content: #242323;
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-rito-panel-border: #04426c;
+  --color-rito-heading: #fc1819;
+
+  --border-gold: var(--color-accent);
+  --border-white: var(--color-white);
+
+  --radius-none: 0;
+  --radius-btn-navy: 8px;
+  --radius-btn-gold-pill: 50px;
+  --radius-btn-case-study: 10px;
+  --space-2rem: 2rem;
+  --space-section-xl: 5rem;
+
+  --form-max-width: 800px;
+  --form-field-bg: var(--color-bg-heading);
+  --form-field-text: var(--color-white);
+  --form-field-placeholder: var(--color-white);
+  --form-field-radius: 10px;
+  --form-field-shadow: 0 2px 4px rgb(0 0 0 / 0.2);
+  --form-field-padding-y: 8px;
+  --form-field-padding-x: 8px;
+  --form-message-color: var(--color-white);
+  --form-message-min-height: 1.2em;
+  --form-invalid-ring: #dc3545;
+  --form-modal-z-index: 3;
+  --form-modal-overlay-bg: rgb(0 0 0 / 0.7);
+  --form-modal-overlay-blur: 2px;
+  --form-modal-max-height: min(84svh, 640px);
+  --form-modal-scroll-max-height: min(48svh, 340px);
+}
