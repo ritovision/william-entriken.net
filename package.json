@@ -13,6 +13,7 @@
     "test:watch": "vitest --watch --reporter=verbose",
     "test:run": "vitest run --reporter=verbose",
     "test:coverage": "vitest run --coverage --reporter=verbose",
+    "sync:coverage": "node scripts/sync-external-coverage.mjs",
     "check": "astro check",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",

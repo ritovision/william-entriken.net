@@ -1,0 +1,63 @@
+---
+import CoverageFeedBase from '@shared/feeds/core/CoverageFeedBase.astro';
+import { isCoverageUrlLinkable } from '@shared/feeds/core/utils';
+import {
+  SPEAKING_EVENTS_REMOTE_URL,
+  normalizeSpeakingEvents,
+} from '@shared/feeds/speaking/speakingEvents';
+
+interface Props {
+  items: unknown;
+  id?: string;
+  class?: string;
+}
+
+const {
+  items,
+  id = 'speaking-events-feed',
+  class: className = '',
+} = Astro.props;
+
+const normalizedItems = normalizeSpeakingEvents(items);
+---
+
+<CoverageFeedBase
+  id={id}
+  kind="speaking"
+  remoteUrl={SPEAKING_EVENTS_REMOTE_URL}
+  items={normalizedItems}
+  listAriaLabel="Speaking events"
+  class={className}
+>
+  {
+    normalizedItems.map((item) => {
+      const linkable = isCoverageUrlLinkable(item.url);
+
+      return (
+        <article class="coverage-card coverage-card--speaking border-gold" data-coverage-card data-coverage-key={item.key}>
+          {
+            linkable ? (
+              <a
+                href={item.url}
+                class="coverage-card__link"
+                aria-label={`Open entry: ${item.title}`}
+              >
+                <p class="coverage-card__date m-0">{item.date}</p>
+                <h3 class="coverage-card__title coverage-card__title--center m-0">
+                  {item.title}
+                </h3>
+              </a>
+            ) : (
+              <div class="coverage-card__content">
+                <p class="coverage-card__date m-0">{item.date}</p>
+                <h3 class="coverage-card__title coverage-card__title--center m-0">
+                  {item.title}
+                </h3>
+              </div>
+            )
+          }
+        </article>
+      );
+    })
+  }
+</CoverageFeedBase>
