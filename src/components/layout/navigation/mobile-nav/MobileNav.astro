@@ -1,7 +1,8 @@
 ---
 import type { SocialLink } from '@config/social';
-import type { SiteRoute } from '@config/site';
+import type { SidebarTocItem, SiteRoute } from '@config/site';
 import Image from '@ui/Image.astro';
+import InPageSectionsIcon from '@ui/icons/InPageSectionsIcon.astro';
 import MainMenuIcon from '@ui/icons/MainMenuIcon.astro';
 import SocialIcon from '@ui/icons/brands/SocialIcon.astro';
 
@@ -9,19 +10,34 @@ interface Props {
   currentPath: string;
   routes: SiteRoute[];
   socials: SocialLink[];
+  sidebarToc: SidebarTocItem[];
 }
 
-const { currentPath, routes, socials } = Astro.props;
+const { currentPath, routes, socials, sidebarToc } = Astro.props;
 
 const normalizePath = (path: string) =>
   path === '/' ? '/' : path.replace(/\/+$/, '');
 const activePath = normalizePath(currentPath);
+const isDev = import.meta.env.DEV;
 ---
 
-<div class="mobile-nav-wrap d-lg-none" data-mobile-nav>
+<div
+  class="mobile-nav-wrap d-lg-none"
+  data-mobile-nav
+  data-dev={isDev ? 'true' : 'false'}
+>
   <header class="mobile-nav-header" aria-label="Mobile navigation">
     <div class="mobile-nav-header__bar">
-      <span class="mobile-nav-header__icon-btn" aria-hidden="true"></span>
+      <button
+        type="button"
+        class="mobile-nav-header__icon-btn"
+        aria-label="Open in-page sections"
+        aria-controls="mobile-drawer-toc"
+        aria-expanded="false"
+        data-mobile-open="toc"
+      >
+        <InPageSectionsIcon class="mobile-nav-header__icon" />
+      </button>
 
       <a href="/" class="mobile-nav-header__logo-link" aria-label="Home">
         <Image
@@ -149,11 +165,88 @@ const activePath = normalizePath(currentPath);
       </div>
     </div>
   </aside>
+
+  <aside
+    id="mobile-drawer-toc"
+    class="mobile-drawer mobile-drawer--toc"
+    aria-labelledby="mobile-drawer-toc-title"
+    aria-hidden="true"
+    data-mobile-drawer="toc"
+    inert
+  >
+    <div class="mobile-drawer__inner mobile-drawer__inner--toc">
+      <div class="mobile-drawer__header">
+        <span class="mobile-drawer__header-spacer" aria-hidden="true"></span>
+        <h2 id="mobile-drawer-toc-title" class="mobile-drawer__title m-0">
+          <span class="mobile-drawer__title-content">
+            <InPageSectionsIcon class="mobile-drawer__title-icon" />
+            <span>In-page Sections</span>
+          </span>
+        </h2>
+        <button
+          type="button"
+          class="mobile-drawer__close-btn"
+          aria-label="Close in-page sections"
+          data-mobile-close
+        >
+          <svg
+            class="mobile-nav-header__icon mobile-nav-header__icon--stroke"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2.6"
+              d="M5 5L19 19M19 5L5 19"></path>
+          </svg>
+        </button>
+      </div>
+
+      <div class="mobile-drawer__scroll">
+        <nav class="mobile-drawer__nav" aria-label="In-page sections">
+          <ul
+            class="mobile-drawer__nav-list list-unstyled m-0 p-0"
+            data-mobile-toc-list
+          >
+            {
+              sidebarToc.map((item) => (
+                <li class="mobile-drawer__nav-item" data-mobile-toc-item>
+                  <a
+                    href={`#${item.targetId}`}
+                    class="mobile-drawer__nav-link mobile-drawer__toc-link"
+                    data-mobile-toc-target={item.targetId}
+                    data-mobile-close-link
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+          <p
+            class="mobile-drawer__toc-empty text-gold m-0"
+            data-mobile-toc-empty
+            hidden
+          >
+            No sections on this page yet.
+          </p>
+        </nav>
+      </div>
+
+    </div>
+  </aside>
 </div>
 
 <script>
+  import {
+    setupTocActiveTracking,
+    validateTocTargets,
+  } from '@components/layout/navigation/scripts/tocTracking';
+
   (() => {
-    type DrawerName = 'menu';
+    type DrawerName = 'menu' | 'toc';
 
     const root = document.querySelector<HTMLElement>('[data-mobile-nav]');
     if (!root) {
@@ -173,6 +266,10 @@ const activePath = normalizePath(currentPath);
     const closeLinks = Array.from(
       root.querySelectorAll<HTMLElement>('[data-mobile-close-link]'),
     );
+    const tocLinks = Array.from(
+      root.querySelectorAll<HTMLAnchorElement>('[data-mobile-toc-target]'),
+    );
+    const isDev = root.getAttribute('data-dev') === 'true';
 
     let activeDrawer: DrawerName | '' = '';
 
@@ -215,11 +312,29 @@ const activePath = normalizePath(currentPath);
     const closeDrawer = () => setDrawerState('');
     const toggleDrawer = (name: DrawerName) =>
       setDrawerState(activeDrawer === name ? '' : name);
+    const isMobileViewport = () =>
+      window.matchMedia('(max-width: 991.98px)').matches;
+    const getMobileScrollOffset = () => {
+      const cssValue = getComputedStyle(document.documentElement)
+        .getPropertyValue('--mobile-nav-height')
+        .trim();
+      const cssHeight = Number.parseFloat(cssValue);
+      const header = root.querySelector('.mobile-nav-header');
+      const measuredHeight =
+        header instanceof HTMLElement
+          ? header.getBoundingClientRect().height
+          : 0;
+      const navHeight =
+        Number.isFinite(cssHeight) && cssHeight > 0
+          ? cssHeight
+          : measuredHeight;
+      return navHeight + 8;
+    };
 
     for (const button of openButtons) {
       button.addEventListener('click', () => {
         const target = button.getAttribute('data-mobile-open');
-        if (target === 'menu') {
+        if (target === 'menu' || target === 'toc') {
           toggleDrawer(target);
         }
       });
@@ -233,6 +348,32 @@ const activePath = normalizePath(currentPath);
       link.addEventListener('click', closeDrawer);
     }
 
+    for (const link of tocLinks) {
+      link.addEventListener('click', (event: MouseEvent) => {
+        if (!isMobileViewport()) {
+          return;
+        }
+
+        const targetId = link.getAttribute('data-mobile-toc-target');
+        if (!targetId) {
+          return;
+        }
+
+        const section = document.getElementById(targetId);
+        if (!section) {
+          return;
+        }
+
+        event.preventDefault();
+        const offsetTop =
+          section.getBoundingClientRect().top +
+          window.scrollY -
+          getMobileScrollOffset();
+        window.scrollTo({ top: Math.max(0, offsetTop), behavior: 'smooth' });
+        history.replaceState(null, '', `#${targetId}`);
+      });
+    }
+
     if (overlay) {
       overlay.addEventListener('click', closeDrawer);
     }
@@ -242,6 +383,34 @@ const activePath = normalizePath(currentPath);
         closeDrawer();
       }
     });
+
+    const initToc = () => {
+      validateTocTargets(root, {
+        itemSelector: '[data-mobile-toc-item]',
+        anchorSelector: '[data-mobile-toc-target]',
+        listSelector: '[data-mobile-toc-list]',
+        emptySelector: '[data-mobile-toc-empty]',
+        targetAttribute: 'data-mobile-toc-target',
+        warningPrefix: 'MobileNav',
+        isDev,
+      });
+
+      setupTocActiveTracking(root, {
+        itemSelector: '[data-mobile-toc-item]',
+        anchorSelector: '[data-mobile-toc-target]',
+        listSelector: '[data-mobile-toc-list]',
+        emptySelector: '[data-mobile-toc-empty]',
+        targetAttribute: 'data-mobile-toc-target',
+        warningPrefix: 'MobileNav',
+        markerRatio: 0,
+      });
+    };
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initToc, { once: true });
+    } else {
+      initToc();
+    }
 
     setDrawerState('');
   })();

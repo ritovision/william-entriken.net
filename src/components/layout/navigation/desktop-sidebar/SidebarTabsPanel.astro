@@ -1,0 +1,162 @@
+---
+import type { SidebarTocItem, SiteRoute } from "@config/site";
+import BGSwitch from "@ui/BGSwitch.astro";
+import InPageSectionsIcon from "@ui/icons/InPageSectionsIcon.astro";
+import MainMenuIcon from "@ui/icons/MainMenuIcon.astro";
+import SidebarMenuPanel from "./SidebarMenuPanel.astro";
+import SidebarTocPanel from "./SidebarTocPanel.astro";
+
+interface Props {
+  currentPath: string;
+  routes: SiteRoute[];
+  sidebarToc: SidebarTocItem[];
+}
+
+const { currentPath, routes, sidebarToc } = Astro.props;
+const isDev = import.meta.env.DEV;
+
+const switchOptions = [
+  {
+    id: "menu",
+    label: "Main menu",
+    ariaLabel: "Main menu",
+    controlsId: "desktop-sidebar-panel-menu",
+    icon: MainMenuIcon,
+  },
+  {
+    id: "toc",
+    label: "In-page sections",
+    ariaLabel: "In-page sections",
+    controlsId: "desktop-sidebar-panel-toc",
+    icon: InPageSectionsIcon,
+  },
+] as const;
+---
+
+<div
+  class="desktop-sidebar__tabs-region"
+  data-sidebar-tabs
+  data-dev={isDev ? "true" : "false"}
+>
+  <h2 class="desktop-sidebar__mode-title m-0" data-tab-title>Main Menu</h2>
+
+  <BGSwitch
+    id="desktop-sidebar-mode-switch"
+    class="desktop-sidebar__switch"
+    ariaLabel="Sidebar navigation mode"
+    activeId="menu"
+    options={switchOptions}
+    iconOnly={true}
+  />
+
+  <div class="desktop-sidebar__tab-panels">
+    <div
+      id="desktop-sidebar-panel-menu"
+      class="desktop-sidebar__panel is-active"
+      role="tabpanel"
+      aria-labelledby="desktop-sidebar-mode-switch-tab-menu"
+      aria-hidden="false"
+      data-tab-panel="menu"
+    >
+      <SidebarMenuPanel currentPath={currentPath} routes={routes} />
+    </div>
+    <div
+      id="desktop-sidebar-panel-toc"
+      class="desktop-sidebar__panel"
+      role="tabpanel"
+      aria-labelledby="desktop-sidebar-mode-switch-tab-toc"
+      aria-hidden="true"
+      data-tab-panel="toc"
+      hidden
+    >
+      <SidebarTocPanel toc={sidebarToc} />
+    </div>
+  </div>
+</div>
+
+<script>
+  import {
+    setupTocActiveTracking,
+    validateTocTargets,
+  } from "@components/layout/navigation/scripts/tocTracking";
+
+  (() => {
+    type TabTarget = "menu" | "toc";
+    const isTabTarget = (value: unknown): value is TabTarget =>
+      value === "menu" || value === "toc";
+
+    const roots = document.querySelectorAll<HTMLElement>("[data-sidebar-tabs]");
+
+    for (const root of roots) {
+      const switchRoot = root.querySelector<HTMLElement>("[data-b-g-switch]");
+      const panels = Array.from(
+        root.querySelectorAll<HTMLElement>("[data-tab-panel]"),
+      );
+      const title = root.querySelector<HTMLElement>("[data-tab-title]");
+      const sidebarContainer = root.closest<HTMLElement>("[data-sidebar-mode]");
+      const titleByTarget = {
+        menu: "Main Menu",
+        toc: "In-page Sections",
+      } satisfies Record<TabTarget, string>;
+
+      const setActiveTab = (target: TabTarget) => {
+        if (title) {
+          title.textContent = titleByTarget[target] || titleByTarget.menu;
+        }
+        if (sidebarContainer) {
+          sidebarContainer.setAttribute("data-sidebar-mode", target);
+        }
+
+        for (const panel of panels) {
+          const isActive = panel.getAttribute("data-tab-panel") === target;
+          panel.classList.toggle("is-active", isActive);
+          panel.setAttribute("aria-hidden", String(!isActive));
+          if (isActive) {
+            panel.removeAttribute("hidden");
+          } else {
+            panel.setAttribute("hidden", "");
+          }
+        }
+      };
+
+      if (switchRoot) {
+        switchRoot.addEventListener("b-g-switch:change", (event: Event) => {
+          const customEvent = event as CustomEvent<{ id?: unknown }>;
+          if (isTabTarget(customEvent.detail?.id)) {
+            setActiveTab(customEvent.detail.id);
+          }
+        });
+      }
+
+      setActiveTab("menu");
+
+      const initToc = () => {
+        validateTocTargets(root, {
+          itemSelector: "[data-toc-item]",
+          anchorSelector: "[data-toc-target]",
+          listSelector: "[data-toc-list]",
+          emptySelector: "[data-toc-empty]",
+          targetAttribute: "data-toc-target",
+          warningPrefix: "DesktopSidebar",
+          isDev: root.getAttribute("data-dev") === "true",
+        });
+
+        setupTocActiveTracking(root, {
+          itemSelector: "[data-toc-item]",
+          anchorSelector: "[data-toc-target]",
+          listSelector: "[data-toc-list]",
+          emptySelector: "[data-toc-empty]",
+          targetAttribute: "data-toc-target",
+          warningPrefix: "DesktopSidebar",
+          markerRatio: 0,
+        });
+      };
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initToc, { once: true });
+      } else {
+        initToc();
+      }
+    }
+  })();
+</script>

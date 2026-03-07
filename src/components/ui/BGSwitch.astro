@@ -1,0 +1,175 @@
+---
+import type { AstroComponentFactory } from "astro/runtime/server/index.js";
+
+interface BGSwitchOption {
+  id: string;
+  label: string;
+  ariaLabel?: string;
+  controlsId?: string;
+  icon?: AstroComponentFactory;
+}
+
+interface Props {
+  id: string;
+  ariaLabel: string;
+  activeId: string;
+  options: ReadonlyArray<BGSwitchOption>;
+  class?: string;
+  iconOnly?: boolean;
+}
+
+const {
+  id,
+  ariaLabel,
+  activeId,
+  options,
+  class: className = "",
+  iconOnly = false,
+} = Astro.props;
+
+if (options.length < 2 || options.length > 3) {
+  throw new Error("BGSwitch requires between 2 and 3 options.");
+}
+
+const normalizedActiveId = options.some((option) => option.id === activeId)
+  ? activeId
+  : options[0].id;
+---
+
+<div
+  id={id}
+  class:list={["b-g-switch", className]}
+  role="tablist"
+  aria-label={ariaLabel}
+  data-b-g-switch
+  data-b-g-switch-active={normalizedActiveId}
+>
+  {
+    options.map((option, index) => {
+      const isActive = option.id === normalizedActiveId;
+      const Icon = option.icon;
+
+      return (
+        <>
+          {index > 0 && <div class="b-g-switch__divider" aria-hidden="true"></div>}
+          <button
+            type="button"
+            id={`${id}-tab-${option.id}`}
+            class:list={["b-g-switch__button", isActive && "is-active"]}
+            role="tab"
+            aria-selected={isActive ? "true" : "false"}
+            aria-controls={option.controlsId}
+            aria-label={option.ariaLabel ?? option.label}
+            tabindex={isActive ? 0 : -1}
+            data-b-g-switch-option={option.id}
+          >
+            {Icon && <Icon class="b-g-switch__icon" />}
+            {iconOnly && Icon ? (
+              <span class="visually-hidden">{option.label}</span>
+            ) : (
+              <span class="b-g-switch__label">{option.label}</span>
+            )}
+          </button>
+        </>
+      );
+    })
+  }
+</div>
+
+<script>
+  (() => {
+    type BGSwitchChangeDetail = { id: string };
+
+    const roots = document.querySelectorAll<HTMLElement>("[data-b-g-switch]");
+
+    for (const root of roots) {
+      const buttons = Array.from(
+        root.querySelectorAll<HTMLButtonElement>("[data-b-g-switch-option]"),
+      );
+      if (buttons.length < 2) {
+        continue;
+      }
+
+      const allowedIds = buttons
+        .map((button) => button.getAttribute("data-b-g-switch-option"))
+        .filter((value): value is string => Boolean(value));
+      const defaultId = allowedIds[0];
+      if (!defaultId) {
+        continue;
+      }
+
+      const isAllowedId = (value: unknown): value is string =>
+        typeof value === "string" && allowedIds.includes(value);
+
+      const setActive = (targetId: string, shouldEmit: boolean) => {
+        root.setAttribute("data-b-g-switch-active", targetId);
+
+        for (const button of buttons) {
+          const optionId = button.getAttribute("data-b-g-switch-option");
+          const isActive = optionId === targetId;
+          button.classList.toggle("is-active", isActive);
+          button.setAttribute("aria-selected", String(isActive));
+          button.tabIndex = isActive ? 0 : -1;
+        }
+
+        if (shouldEmit) {
+          const changeEvent = new CustomEvent<BGSwitchChangeDetail>(
+            "b-g-switch:change",
+            {
+              detail: { id: targetId },
+              bubbles: true,
+            },
+          );
+          root.dispatchEvent(changeEvent);
+        }
+      };
+
+      const initialId = root.getAttribute("data-b-g-switch-active");
+      setActive(isAllowedId(initialId) ? initialId : defaultId, false);
+
+      for (const button of buttons) {
+        button.addEventListener("click", () => {
+          const targetId = button.getAttribute("data-b-g-switch-option");
+          if (isAllowedId(targetId)) {
+            setActive(targetId, true);
+          }
+        });
+
+        button.addEventListener("keydown", (event: KeyboardEvent) => {
+          if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) {
+            return;
+          }
+
+          event.preventDefault();
+
+          const currentIndex = buttons.indexOf(button);
+          if (currentIndex < 0) {
+            return;
+          }
+
+          let nextIndex = currentIndex;
+          if (event.key === "ArrowLeft") {
+            nextIndex = (currentIndex - 1 + buttons.length) % buttons.length;
+          } else if (event.key === "ArrowRight") {
+            nextIndex = (currentIndex + 1) % buttons.length;
+          } else if (event.key === "Home") {
+            nextIndex = 0;
+          } else if (event.key === "End") {
+            nextIndex = buttons.length - 1;
+          }
+
+          const nextButton = buttons[nextIndex];
+          if (!nextButton) {
+            return;
+          }
+
+          nextButton.focus();
+          const targetId = nextButton.getAttribute("data-b-g-switch-option");
+          if (isAllowedId(targetId)) {
+            setActive(targetId, true);
+          }
+        });
+      }
+    }
+  })();
+</script>
