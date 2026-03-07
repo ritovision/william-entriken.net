@@ -1,0 +1,33 @@
+---
+import type { SocialLink } from '@config/social';
+import type { SiteRoute } from '@config/site';
+import Image from '@ui/Image.astro';
+import SidebarMenuPanel from './SidebarMenuPanel.astro';
+import SidebarSocialPanel from './SidebarSocialPanel.astro';
+
+interface Props {
+  currentPath: string;
+  routes: SiteRoute[];
+  socials: SocialLink[];
+}
+
+const { currentPath, routes, socials } = Astro.props;
+---
+
+<aside class="desktop-sidebar d-none d-lg-flex" aria-label="Desktop navigation">
+  <div class="desktop-sidebar__inner">
+    <div class="desktop-sidebar__logo-wrap">
+      <a href="/" class="desktop-sidebar__logo-link" aria-label="Home">
+        <Image
+          src="/images/brand/wordmark.png"
+          alt="William Entriken wordmark"
+          imgClass="desktop-sidebar__logo"
+          aspectRatio="4 / 1"
+        />
+      </a>
+    </div>
+
+    <SidebarMenuPanel currentPath={currentPath} routes={routes} />
+    <SidebarSocialPanel socials={socials} />
+  </div>
+</aside>

@@ -1,0 +1,248 @@
+---
+import type { SocialLink } from '@config/social';
+import type { SiteRoute } from '@config/site';
+import Image from '@ui/Image.astro';
+import MainMenuIcon from '@ui/icons/MainMenuIcon.astro';
+import SocialIcon from '@ui/icons/brands/SocialIcon.astro';
+
+interface Props {
+  currentPath: string;
+  routes: SiteRoute[];
+  socials: SocialLink[];
+}
+
+const { currentPath, routes, socials } = Astro.props;
+
+const normalizePath = (path: string) =>
+  path === '/' ? '/' : path.replace(/\/+$/, '');
+const activePath = normalizePath(currentPath);
+---
+
+<div class="mobile-nav-wrap d-lg-none" data-mobile-nav>
+  <header class="mobile-nav-header" aria-label="Mobile navigation">
+    <div class="mobile-nav-header__bar">
+      <span class="mobile-nav-header__icon-btn" aria-hidden="true"></span>
+
+      <a href="/" class="mobile-nav-header__logo-link" aria-label="Home">
+        <Image
+          src="/images/brand/logomark.png"
+          alt="William Entriken logomark"
+          imgClass="mobile-nav-header__logo"
+          aspectRatio="1 / 1"
+        />
+      </a>
+
+      <button
+        type="button"
+        class="mobile-nav-header__icon-btn"
+        aria-label="Open main menu"
+        aria-controls="mobile-drawer-menu"
+        aria-expanded="false"
+        data-mobile-open="menu"
+      >
+        <svg
+          class="mobile-nav-header__icon mobile-nav-header__icon--stroke"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2.4"
+            d="M3.5 6.5H20.5M3.5 12H20.5M3.5 17.5H20.5"></path>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <div class="mobile-nav-spacer" aria-hidden="true"></div>
+
+  <button
+    type="button"
+    class="mobile-drawer-overlay"
+    aria-label="Close mobile drawer"
+    data-mobile-overlay></button>
+
+  <aside
+    id="mobile-drawer-menu"
+    class="mobile-drawer mobile-drawer--menu"
+    aria-labelledby="mobile-drawer-menu-title"
+    aria-hidden="true"
+    data-mobile-drawer="menu"
+    inert
+  >
+    <div class="mobile-drawer__inner mobile-drawer__inner--menu">
+      <div class="mobile-drawer__header">
+        <span class="mobile-drawer__header-spacer" aria-hidden="true"></span>
+        <h2 id="mobile-drawer-menu-title" class="mobile-drawer__title m-0">
+          <span class="mobile-drawer__title-content">
+            <MainMenuIcon class="mobile-drawer__title-icon" />
+            <span>Main Menu</span>
+          </span>
+        </h2>
+        <button
+          type="button"
+          class="mobile-drawer__close-btn"
+          aria-label="Close main menu"
+          data-mobile-close
+        >
+          <svg
+            class="mobile-nav-header__icon mobile-nav-header__icon--stroke"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2.6"
+              d="M5 5L19 19M19 5L5 19"></path>
+          </svg>
+        </button>
+      </div>
+
+      <div class="mobile-drawer__scroll">
+        <nav class="mobile-drawer__nav" aria-label="Main menu links">
+          <ul class="mobile-drawer__nav-list list-unstyled m-0 p-0">
+            {
+              routes.map((route) => {
+                const isActive = activePath === normalizePath(route.path);
+
+                return (
+                  <li class="mobile-drawer__nav-item">
+                    <a
+                      href={route.path}
+                      class:list={[
+                        'mobile-drawer__nav-link',
+                        isActive && 'is-active',
+                      ]}
+                      aria-current={isActive ? 'page' : undefined}
+                      data-mobile-close-link
+                    >
+                      {route.label}
+                    </a>
+                  </li>
+                );
+              })
+            }
+          </ul>
+        </nav>
+      </div>
+
+      <div class="mobile-drawer__footer">
+        <div class="mobile-drawer__social-grid">
+          {
+            socials.map((social) => (
+              <a
+                href={social.href}
+                class="mobile-drawer__social-link"
+                target="_blank"
+                rel="noreferrer"
+                aria-label={social.label}
+              >
+                <SocialIcon id={social.id} class="mobile-drawer__social-icon" />
+              </a>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<script>
+  (() => {
+    type DrawerName = 'menu';
+
+    const root = document.querySelector<HTMLElement>('[data-mobile-nav]');
+    if (!root) {
+      return;
+    }
+
+    const overlay = root.querySelector<HTMLElement>('[data-mobile-overlay]');
+    const drawers = Array.from(
+      root.querySelectorAll<HTMLElement>('[data-mobile-drawer]'),
+    );
+    const openButtons = Array.from(
+      root.querySelectorAll<HTMLButtonElement>('[data-mobile-open]'),
+    );
+    const closeButtons = Array.from(
+      root.querySelectorAll<HTMLButtonElement>('[data-mobile-close]'),
+    );
+    const closeLinks = Array.from(
+      root.querySelectorAll<HTMLElement>('[data-mobile-close-link]'),
+    );
+
+    let activeDrawer: DrawerName | '' = '';
+
+    const setInert = (element: HTMLElement, inert: boolean) => {
+      if ('inert' in element) {
+        (element as HTMLElement & { inert: boolean }).inert = inert;
+      }
+
+      if (inert) {
+        element.setAttribute('inert', '');
+      } else {
+        element.removeAttribute('inert');
+      }
+    };
+
+    const setDrawerState = (name: DrawerName | '') => {
+      activeDrawer = name;
+
+      for (const drawer of drawers) {
+        const drawerName = drawer.getAttribute('data-mobile-drawer');
+        const isActive = Boolean(name) && drawerName === name;
+        drawer.classList.toggle('is-open', isActive);
+        drawer.setAttribute('aria-hidden', String(!isActive));
+        setInert(drawer, !isActive);
+      }
+
+      for (const button of openButtons) {
+        const target = button.getAttribute('data-mobile-open');
+        button.setAttribute(
+          'aria-expanded',
+          String(Boolean(name) && target === name),
+        );
+      }
+
+      if (overlay) {
+        overlay.classList.toggle('is-open', Boolean(name));
+      }
+    };
+
+    const closeDrawer = () => setDrawerState('');
+    const toggleDrawer = (name: DrawerName) =>
+      setDrawerState(activeDrawer === name ? '' : name);
+
+    for (const button of openButtons) {
+      button.addEventListener('click', () => {
+        const target = button.getAttribute('data-mobile-open');
+        if (target === 'menu') {
+          toggleDrawer(target);
+        }
+      });
+    }
+
+    for (const button of closeButtons) {
+      button.addEventListener('click', closeDrawer);
+    }
+
+    for (const link of closeLinks) {
+      link.addEventListener('click', closeDrawer);
+    }
+
+    if (overlay) {
+      overlay.addEventListener('click', closeDrawer);
+    }
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && activeDrawer) {
+        closeDrawer();
+      }
+    });
+
+    setDrawerState('');
+  })();
+</script>

@@ -1,0 +1,55 @@
+---
+import '@styles/main.scss';
+import SiteFooter from '@components/layout/footer/SiteFooter.astro';
+import DesktopSidebar from '@components/layout/navigation/desktop-sidebar/DesktopSidebar.astro';
+import MobileNav from '@components/layout/navigation/mobile-nav/MobileNav.astro';
+import { socialLinks } from '@config/social';
+import { siteRoutes } from '@config/site';
+
+interface Props {
+  title?: string;
+  description?: string;
+  bodyClass?: string;
+}
+
+const {
+  title = 'William Entriken',
+  description = '',
+  bodyClass = '',
+} = Astro.props;
+
+const normalizePath = (path: string) =>
+  path === '/' ? '/' : path.replace(/\/+$/, '');
+const currentPath = normalizePath(Astro.url.pathname);
+const desktopRoutes = siteRoutes
+  .filter((route) => route.navGroup === 'primary')
+  .sort((a, b) => a.order - b.order);
+const legalRoutes = siteRoutes
+  .filter((route) => route.navGroup === 'legal')
+  .sort((a, b) => a.order - b.order);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preload" href="/fonts/Helvetica.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/Avenir-Bold.woff2" as="font" type="font/woff2" crossorigin />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+    <link rel="stylesheet" href="/css/animate.purged.css" />
+  </head>
+  <body class={bodyClass}>
+    <MobileNav currentPath={currentPath} routes={desktopRoutes} socials={socialLinks} />
+    <div class="app-shell">
+      <div class="desktop-sidebar-spacer d-none d-lg-block" aria-hidden="true">
+      </div>
+      <DesktopSidebar currentPath={currentPath} routes={desktopRoutes} socials={socialLinks} />
+      <div class="app-main">
+        <slot />
+        <SiteFooter socials={socialLinks} legalLinks={legalRoutes} />
+      </div>
+    </div>
+  </body>
+</html>
