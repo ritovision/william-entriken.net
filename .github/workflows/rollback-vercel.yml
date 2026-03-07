@@ -1,0 +1,26 @@
+name: Rollback-vercel
+
+on:
+  workflow_dispatch:
+    inputs:
+      deployment_url:
+        description: Deployment URL to roll back.
+        required: true
+        type: string
+
+concurrency:
+  group: rollback-vercel-manual
+  cancel-in-progress: false
+
+jobs:
+  rollback:
+    runs-on: ubuntu-latest
+    environment: production
+    permissions:
+      contents: read
+    steps:
+      - name: Roll back deployment
+        uses: ./.github/actions/rollback-vercel
+        with:
+          vercel_token: ${{ secrets.VERCEL_TOKEN }}
+          deployment_url: ${{ inputs.deployment_url }}

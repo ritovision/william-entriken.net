@@ -1,0 +1,33 @@
+name: Playwright Predeploy
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  navigation-checks:
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.58.2-noble
+      options: --ipc=host
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run predeploy Playwright checks
+        uses: ./.github/actions/playwright-check
+        with:
+          mode: predeploy
+
+      - name: Upload Playwright artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-predeploy-artifacts
+          path: |
+            playwright-report
+            test-results
+          if-no-files-found: ignore

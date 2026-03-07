@@ -1,0 +1,38 @@
+name: Playwright Postdeploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      base_url:
+        description: Fully-qualified deployed site URL (for example, https://williamentriken.net)
+        required: true
+        type: string
+
+jobs:
+  navigation-checks:
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.58.2-noble
+      options: --ipc=host
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run postdeploy Playwright checks
+        uses: ./.github/actions/playwright-check
+        with:
+          mode: postdeploy
+          base_url: ${{ inputs.base_url }}
+
+      - name: Upload Playwright artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-postdeploy-artifacts
+          path: |
+            playwright-report
+            test-results
+          if-no-files-found: ignore

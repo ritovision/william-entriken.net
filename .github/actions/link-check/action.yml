@@ -1,0 +1,50 @@
+name: Link Check
+description: Build site and run Linkinator against dist.
+
+inputs:
+  node_version:
+    description: Node.js version for the job.
+    required: false
+    default: '22'
+  pnpm_version:
+    description: pnpm version for the job.
+    required: false
+    default: '9'
+  install_command:
+    description: Command used to install dependencies.
+    required: false
+    default: pnpm install --frozen-lockfile
+  build_command:
+    description: Command used to build the site.
+    required: false
+    default: pnpm run build
+  link_check_command:
+    description: Command used to run Linkinator.
+    required: false
+    default: XDG_CACHE_HOME="${XDG_CACHE_HOME:-/tmp/.cache}" pnpm dlx linkinator@7.5.0 ./dist --config ./linkinator.config.json --status-code "403:warn" --status-code "429:warn" --concurrency 25 --timeout 60000 --retry --retry-errors --retry-errors-count 3 --markdown > linkinator-report.md
+
+runs:
+  using: composite
+  steps:
+    - name: Setup pnpm
+      uses: pnpm/action-setup@v4
+      with:
+        version: ${{ inputs.pnpm_version }}
+
+    - name: Setup Node
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ inputs.node_version }}
+        cache: pnpm
+
+    - name: Install dependencies
+      shell: bash
+      run: ${{ inputs.install_command }}
+
+    - name: Build site
+      shell: bash
+      run: ${{ inputs.build_command }}
+
+    - name: Run Linkinator
+      shell: bash
+      run: ${{ inputs.link_check_command }}

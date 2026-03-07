@@ -1,0 +1,99 @@
+name: Deploy Vercel
+description: Build and deploy the production site to Vercel.
+
+inputs:
+  vercel_token:
+    description: Vercel API token.
+    required: true
+  vercel_org_id:
+    description: Vercel organization/team ID.
+    required: true
+  vercel_project_id:
+    description: Vercel project ID.
+    required: true
+  node_version:
+    description: Node.js version for the job.
+    required: false
+    default: '22'
+  pnpm_version:
+    description: pnpm version for the job.
+    required: false
+    default: '9'
+  vercel_version:
+    description: Vercel CLI version.
+    required: false
+    default: latest
+
+outputs:
+  deployment_url:
+    description: Full URL returned by Vercel deployment.
+    value: ${{ steps.deploy.outputs.deployment_url }}
+  deployment_host:
+    description: Deployment host returned by Vercel.
+    value: ${{ steps.deploy.outputs.deployment_host }}
+
+runs:
+  using: composite
+  steps:
+    - name: Setup pnpm
+      uses: pnpm/action-setup@v4
+      with:
+        version: ${{ inputs.pnpm_version }}
+
+    - name: Setup Node
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ inputs.node_version }}
+        cache: pnpm
+
+    - name: Pull Vercel environment
+      shell: bash
+      env:
+        VERCEL_TOKEN: ${{ inputs.vercel_token }}
+        VERCEL_ORG_ID: ${{ inputs.vercel_org_id }}
+        VERCEL_PROJECT_ID: ${{ inputs.vercel_project_id }}
+      run: |
+        set -euo pipefail
+        pnpm dlx vercel@${{ inputs.vercel_version }} pull --yes --environment=production --token="$VERCEL_TOKEN"
+
+    - name: Build Vercel artifacts
+      shell: bash
+      env:
+        VERCEL_TOKEN: ${{ inputs.vercel_token }}
+        VERCEL_ORG_ID: ${{ inputs.vercel_org_id }}
+        VERCEL_PROJECT_ID: ${{ inputs.vercel_project_id }}
+      run: |
+        set -euo pipefail
+        pnpm dlx vercel@${{ inputs.vercel_version }} build --prod --token="$VERCEL_TOKEN"
+
+    - name: Deploy to Vercel
+      id: deploy
+      shell: bash
+      env:
+        VERCEL_TOKEN: ${{ inputs.vercel_token }}
+        VERCEL_ORG_ID: ${{ inputs.vercel_org_id }}
+        VERCEL_PROJECT_ID: ${{ inputs.vercel_project_id }}
+      run: |
+        set -euo pipefail
+
+        deploy_output="$(pnpm dlx vercel@${{ inputs.vercel_version }} deploy --prebuilt --prod --yes --token="$VERCEL_TOKEN" 2>&1)"
+        printf '%s\n' "$deploy_output"
+
+        deployment_url="$(printf '%s\n' "$deploy_output" | grep -Eo 'https://[^[:space:]]+' | head -n 1 || true)"
+        if [[ -z "$deployment_url" ]]; then
+          echo "Failed to parse deployment URL from Vercel output"
+          exit 1
+        fi
+
+        deployment_host="${deployment_url#https://}"
+        deployment_host="${deployment_host%%/*}"
+
+        if [[ -z "$deployment_host" || "$deployment_host" == "$deployment_url" ]]; then
+          echo "Failed to parse deployment host from URL: $deployment_url"
+          exit 1
+        fi
+
+        {
+          echo "deployment_url=$deployment_url"
+          echo "deployment_host=$deployment_host"
+        } >> "$GITHUB_OUTPUT"

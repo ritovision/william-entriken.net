@@ -1,0 +1,20 @@
+name: Vitest
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: vitest-manual
+  cancel-in-progress: false
+
+jobs:
+  vitest:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run vitest composite
+        uses: ./.github/actions/vitest

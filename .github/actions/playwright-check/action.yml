@@ -1,0 +1,113 @@
+name: Playwright Check
+description: Run Playwright checks in predeploy or postdeploy mode.
+
+inputs:
+  mode:
+    description: Predeploy runs against local preview build, postdeploy runs against a live URL.
+    required: false
+    default: predeploy
+  base_url:
+    description: Base URL to test in postdeploy mode.
+    required: false
+  forms_endpoint:
+    description: Forms endpoint used by client runtime during local predeploy builds.
+    required: false
+    default: https://cloudflare.example.com
+  node_version:
+    description: Node.js version for the job.
+    required: false
+    default: '22'
+  pnpm_version:
+    description: pnpm version for the job.
+    required: false
+    default: '9'
+  install_command:
+    description: Command used to install dependencies.
+    required: false
+    default: pnpm install --frozen-lockfile
+  playwright_command:
+    description: Command used to execute Playwright tests.
+    required: false
+    default: pnpm exec playwright test
+
+runs:
+  using: composite
+  steps:
+    - name: Validate inputs
+      shell: bash
+      run: |
+        set -euo pipefail
+
+        if [[ "${{ inputs.mode }}" != "predeploy" && "${{ inputs.mode }}" != "postdeploy" ]]; then
+          echo "Unsupported mode: ${{ inputs.mode }}"
+          exit 1
+        fi
+
+        if [[ "${{ inputs.mode }}" == "postdeploy" ]]; then
+          if [[ -z "${{ inputs.base_url }}" ]]; then
+            echo "base_url is required when mode=postdeploy"
+            exit 1
+          fi
+
+          if [[ ! "${{ inputs.base_url }}" =~ ^https?:// ]]; then
+            echo "base_url must start with http:// or https://"
+            exit 1
+          fi
+        fi
+
+        if [[ -z "${{ inputs.forms_endpoint }}" ]]; then
+          echo "forms_endpoint is required"
+          exit 1
+        fi
+
+        if [[ ! "${{ inputs.forms_endpoint }}" =~ ^https?:// ]]; then
+          echo "forms_endpoint must start with http:// or https://"
+          exit 1
+        fi
+
+    - name: Setup pnpm
+      uses: pnpm/action-setup@v4
+      with:
+        version: ${{ inputs.pnpm_version }}
+
+    - name: Setup Node
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ inputs.node_version }}
+        cache: pnpm
+
+    - name: Install dependencies
+      shell: bash
+      run: ${{ inputs.install_command }}
+
+    - name: Run Playwright (predeploy)
+      if: ${{ inputs.mode == 'predeploy' }}
+      shell: bash
+      env:
+        PLAYWRIGHT_BASE_URL: http://127.0.0.1:4321
+        PLAYWRIGHT_EXTERNAL_BASE_URL: '0'
+        PUBLIC_FORMS_ENDPOINT: ${{ inputs.forms_endpoint }}
+        PUBLIC_FORMS_MOCK: 'true'
+      run: |
+        set -euo pipefail
+        export HOME=/tmp/pw-home
+        mkdir -p "$HOME"
+        chmod 700 "$HOME"
+        export PLAYWRIGHT_BROWSERS_PATH=/ms-playwright
+        ${{ inputs.playwright_command }}
+
+    - name: Run Playwright (postdeploy)
+      if: ${{ inputs.mode == 'postdeploy' }}
+      shell: bash
+      env:
+        PLAYWRIGHT_BASE_URL: ${{ inputs.base_url }}
+        PLAYWRIGHT_EXTERNAL_BASE_URL: '1'
+        PUBLIC_FORMS_ENDPOINT: ${{ inputs.forms_endpoint }}
+        PUBLIC_FORMS_MOCK: 'false'
+      run: |
+        set -euo pipefail
+        export HOME=/tmp/pw-home
+        mkdir -p "$HOME"
+        chmod 700 "$HOME"
+        export PLAYWRIGHT_BROWSERS_PATH=/ms-playwright
+        ${{ inputs.playwright_command }}

@@ -1,0 +1,172 @@
+name: Production Pipeline
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+concurrency:
+  group: production-pipeline
+  cancel-in-progress: false
+
+jobs:
+  validate-config:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Validate required secrets and production URL
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+          PRODUCTION_URL: ${{ vars.PRODUCTION_URL }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          : "${VERCEL_TOKEN:?Missing VERCEL_TOKEN secret}"
+          : "${VERCEL_ORG_ID:?Missing VERCEL_ORG_ID secret}"
+          : "${VERCEL_PROJECT_ID:?Missing VERCEL_PROJECT_ID secret}"
+          : "${PRODUCTION_URL:?Missing PRODUCTION_URL environment variable}"
+
+          if [[ ! "$PRODUCTION_URL" =~ ^https?:// ]]; then
+            echo "PRODUCTION_URL must start with http:// or https://"
+            exit 1
+          fi
+
+  lint:
+    runs-on: ubuntu-latest
+    needs: validate-config
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run lint composite
+        uses: ./.github/actions/lint
+
+  vitest:
+    runs-on: ubuntu-latest
+    needs: lint
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run vitest composite
+        uses: ./.github/actions/vitest
+
+  link_check:
+    runs-on: ubuntu-latest
+    needs: vitest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run link check composite
+        uses: ./.github/actions/link-check
+
+      - name: Upload link check report artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: link-check-report
+          path: linkinator-report.md
+          if-no-files-found: ignore
+
+  playwright_predeploy:
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.58.2-noble
+      options: --ipc=host
+    needs: link_check
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run predeploy Playwright checks
+        uses: ./.github/actions/playwright-check
+        with:
+          mode: predeploy
+
+      - name: Upload Playwright predeploy artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-predeploy-artifacts
+          path: |
+            playwright-report
+            test-results
+          if-no-files-found: ignore
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: playwright_predeploy
+    environment: production
+    permissions:
+      contents: read
+    outputs:
+      deployment_url: ${{ steps.deploy.outputs.deployment_url }}
+      deployment_host: ${{ steps.deploy.outputs.deployment_host }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Deploy to Vercel
+        id: deploy
+        uses: ./.github/actions/deploy-vercel
+        with:
+          vercel_token: ${{ secrets.VERCEL_TOKEN }}
+          vercel_org_id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel_project_id: ${{ secrets.VERCEL_PROJECT_ID }}
+
+  playwright_postdeploy:
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.58.2-noble
+      options: --ipc=host
+    needs: deploy
+    environment: production
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run postdeploy Playwright checks
+        uses: ./.github/actions/playwright-check
+        with:
+          mode: postdeploy
+          base_url: ${{ vars.PRODUCTION_URL }}
+
+      - name: Upload Playwright postdeploy artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-postdeploy-artifacts
+          path: |
+            playwright-report
+            test-results
+          if-no-files-found: ignore
+
+  rollback_on_postdeploy_failure:
+    runs-on: ubuntu-latest
+    needs:
+      - deploy
+      - playwright_postdeploy
+    if: ${{ always() && needs.deploy.result == 'success' && needs.playwright_postdeploy.result == 'failure' }}
+    environment: production
+    permissions:
+      contents: read
+    steps:
+      - name: Rollback Vercel deployment
+        uses: ./.github/actions/rollback-vercel
+        with:
+          vercel_token: ${{ secrets.VERCEL_TOKEN }}
+          deployment_url: ${{ needs.deploy.outputs.deployment_url }}

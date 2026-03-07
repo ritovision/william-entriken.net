@@ -3,5 +3,7 @@ export const eslintIgnores = [
   "dist/",
   ".astro/",
   "coverage/",
+  "playwright-report/",
+  "test-results/",
   "public/css/*.purged.css",
 ];

@@ -1,0 +1,27 @@
+name: Link Check
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  link-check:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run link check
+        uses: ./.github/actions/link-check
+        with:
+          build_command: ASTRO_FAST_LINK_BUILD=1 pnpm run build
+
+      - name: Upload link check report artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: link-check-report
+          path: linkinator-report.md
+          if-no-files-found: ignore
