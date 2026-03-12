@@ -1,0 +1,92 @@
+---
+import Button from '@ui/Button.astro';
+import Picture from '@ui/Picture.astro';
+import '../_styles/public-speaking-section.css';
+
+interface PublicSpeakingFeature {
+  title: string;
+  body: string;
+  image: {
+    src: string;
+    alt: string;
+  };
+  imageFit?: 'cover' | 'contain';
+  imageSide: 'left' | 'right';
+  tone: 'dark' | 'light';
+}
+
+interface PublicSpeakingContent {
+  id: string;
+  title: string;
+  intro: string;
+  ctaLead: string;
+  cta: {
+    label: string;
+    href: string;
+  };
+  features: PublicSpeakingFeature[];
+}
+
+const { id, title, intro, ctaLead, cta, features } =
+  Astro.props as PublicSpeakingContent;
+---
+
+<section
+  id={id}
+  class="public-speaking container-95 section-stack"
+  aria-label={title}
+>
+  <h2 class="public-speaking__title text-gold">{title}</h2>
+  <p class="public-speaking__intro text-white">{intro}</p>
+  <p class="public-speaking__cta-lead text-gold">{ctaLead}</p>
+  <div class="public-speaking__button-wrap">
+    <Button
+      href={cta.href}
+      label={cta.label}
+      variant="gold-pill"
+      class="public-speaking__button"
+    />
+  </div>
+
+  <div class="public-speaking__features">
+    {
+      features.map((feature) => (
+        <article class="public-speaking__feature">
+          <div
+            class:list={[
+              'public-speaking__feature-image-wrap',
+              feature.imageSide === 'right' &&
+                'public-speaking__feature-image-wrap--right',
+            ]}
+          >
+            <Picture
+              src={feature.image.src}
+              alt={feature.image.alt}
+              class="public-speaking__feature-image"
+              imgClass="public-speaking__feature-image-tag"
+              aspectRatio="4 / 3"
+              fit={feature.imageFit ?? 'cover'}
+            />
+          </div>
+          <div
+            class:list={[
+              'public-speaking__feature-copy',
+              feature.tone === 'dark'
+                ? 'public-speaking__feature-copy--dark'
+                : 'public-speaking__feature-copy--light',
+              feature.imageSide === 'right' &&
+                'public-speaking__feature-copy--left',
+            ]}
+          >
+            <h3 class="public-speaking__feature-title text-gold">
+              {feature.title}
+            </h3>
+            <p class="public-speaking__feature-body text-white">
+              {feature.body}
+            </p>
+          </div>
+        </article>
+      ))
+    }
+  </div>
+</section>

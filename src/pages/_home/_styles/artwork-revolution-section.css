@@ -1,0 +1,64 @@
+.artwork-revolution {
+  margin-top: var(--home-section-space, var(--space-section-xl));
+  margin-bottom: var(--home-section-space, var(--space-section-xl));
+}
+
+.artwork-revolution__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2rem);
+}
+
+.artwork-revolution__title {
+  margin: 0;
+  text-align: center;
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  line-height: 1.08;
+}
+
+.artwork-revolution__quote-box {
+  width: min(100%, 400px);
+  border: 1px solid var(--border-gold);
+  background-color: var(--color-bg-content);
+  padding: 1.5rem;
+}
+
+.artwork-revolution__quote-text,
+.artwork-revolution__quote-attribution,
+.artwork-revolution__paragraph,
+.artwork-revolution__closing-quote,
+.artwork-revolution__closing-attribution {
+  line-height: 1.8;
+  font-size: clamp(1rem, 1.2vw, 1.125rem);
+}
+
+.artwork-revolution__quote-attribution {
+  margin-top: 0.5rem;
+  text-align: right;
+}
+
+.artwork-revolution__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2rem);
+}
+
+.artwork-revolution__body,
+.artwork-revolution__closing-quote {
+  width: 100%;
+  text-align: left;
+}
+
+.artwork-revolution__body {
+  color: var(--color-white);
+}
+
+.artwork-revolution__closing-quote {
+  font-weight: 400;
+}
+
+.artwork-revolution__closing-attribution {
+  margin-left: 0.35rem;
+}

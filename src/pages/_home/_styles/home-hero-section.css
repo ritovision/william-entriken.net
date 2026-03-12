@@ -1,0 +1,108 @@
+.home-hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: clamp(26rem, 72vw, 36rem);
+  margin-top: 0;
+  margin-left: 0;
+  overflow: hidden;
+}
+
+.home-hero__media {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  --ui-image-aspect-ratio: auto;
+}
+
+.home-hero__media-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+}
+
+.home-hero__shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(rgb(0 0 0 / 0.35), rgb(0 0 0 / 0.35));
+  pointer-events: none;
+}
+
+.home-hero__inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding-top: var(--space-section-xl);
+  padding-bottom: var(--space-section-xl);
+}
+
+.home-hero__title {
+  display: block;
+  margin: 0;
+  text-align: center;
+  font-family: var(--font-heading);
+  font-size: clamp(1.5rem, 5.35vw, 2.5rem);
+  line-height: 1.05;
+  text-wrap: balance;
+  animation: home-hero-title-enter 900ms ease-out both;
+}
+
+.home-hero__subheading {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  width: min(95%, 52rem);
+  margin: 0;
+  text-align: center;
+  font-family: var(--font-heading);
+  font-size: clamp(1rem, 3.5vw, 2rem);
+  line-height: 1.15;
+  transform: translateX(-50%);
+  animation: home-hero-subheading-enter 700ms ease-out 1.5s both;
+}
+
+@media (min-width: 992px) {
+  .home-hero {
+    min-height: 32rem;
+  }
+}
+
+@keyframes home-hero-title-enter {
+  from {
+    opacity: 0;
+    filter: blur(16px);
+    transform: translateY(1.25rem);
+  }
+
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+}
+
+@keyframes home-hero-subheading-enter {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(1rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-hero__title,
+  .home-hero__subheading {
+    animation: none;
+  }
+}

@@ -1,0 +1,780 @@
+{
+  "seo": {
+    "title": "Legacy | William Entriken",
+    "description": "Explore the legacy and achievements of William Entriken; Thought Leader, Civic Hacker, Polymath, and Lead Author of ERC-721"
+  },
+  "hero": {
+    "backgroundImage": {
+      "src": "/images/shared/will/will-mic-panel.png",
+      "alt": "William Entriken speaking into a microphone"
+    },
+    "title": [
+      "Among the Few Influential Pioneers who Built",
+      "Foundations for Multi-Billion Dollar Ecosystems"
+    ],
+    "subheading": "Leaving an enduring legacy in Digital Ownership, Finance & Cybersecurity"
+  },
+  "legacyInfluence": {
+    "id": "legacy-introduction",
+    "title": "His Legacy & Influence",
+    "switchLabel": "Choose length",
+    "conciseLabel": "Concise",
+    "detailedLabel": "Detailed",
+    "concise": "William Entriken is a Civic Hacker, business strategist & software architect whose pioneering work in 2017 established the first mainstream NFT standard, called ERC-721, that also <strong>coined and defined the term \"Non-Fungible Token\"</strong>, now used universally by all relevant authorities, mainstream media, and effectively catalyzed the multi-billion dollar digital collectibles eco-system. This innovation has won the support of <em>Fortune 100</em> companies, ignited a torrent of funding from high-profile investors into Web 3 projects using it in their business models, and empowered multi-billion-dollar company valuations and overall market size. Its sweeping influence spans various industries including gaming, real estate, healthcare and even fine art marketplaces, while major sports leagues, titan brands, and a host of celebrities have embraced it for diverse projects. The influence of ERC-721 is further underscored by its near 200 citations in peer-reviewed journals across multiple disciplines, cementing William's pioneering & transformative contribution to how we affirm ownership and authenticity in the digital and real worlds.",
+    "detailed": [
+      "Civic Hacker William Entriken lead authorship of the paper establishing the first mainstream NFT standard, known as ERC-721 in 2017, that directly <strong>coined and defined the term \"Non-Fungible Token\"</strong> now used universally by all relevant authorities & media as well as a label for the digital collectibles eco-system as a whole. The power of this standard to affirm <em>digital ownership</em> and <em>authenticity</em> of virtual & real-world things has pioneered an expansive use case potential across a wide variety of industries starting from the top with <em>Fortune 100</em> companies like Microsoft, Meta, Amazon & Oracle building infrastructure support for it.",
+      "Large swaths of high-profile investors like Marc Andreessen, Mark Cuban, the Winklevoss Twins, Peter Thiel, alongside major VC firms including Sequoia and Greylock have poured hundreds of millions into Web 3 projects incorporating ERC-721 in their business models. Some such companies making extensive use of it like <em>Open Sea</em>, <em>Sorare</em> and <em>the Sandbox</em> each have had multi-billion dollar valuations. Titan brands like Warner Music Group, Adidas and Ubisoft have created projects incorporating it, while major sports leagues including the MLB, NBA & Premier League have licensed their teams & players for the creation and sale of NFTs. Celebrities like Snoop Dogg, Paris Hilton, Eminem & Madonna alongside superstar athletes including Tom Brady, Shaq & Neymar Jr. have purchased these NFT types for large sums of money, even launching their own projects utilizing it.",
+      "Gaming initially catapulted ERC-721 NFTs into the limelight with the internationally acclaimed <em>CryptoKitties</em> game (akin to the Beanie Babies of crypto) inspiring a new mainstream perception of digital asset ownership and spawning a lucrative game-NFT industry. Huge investments and the prominent rebrand of Facebook-to-Meta underline the metaverse's ascendancy, where <strong>ERC-721 has pioneered itself as a cornerstone in virtual asset ownership</strong>. Within this, virtual real estate has emerged as a lucrative domain, with properties fetching millions and even drawing JP Morgan into virtual land acquisition. The ERC-721 standard led the early practice of blockchain-powered digital artwork from fringe to mainstream, with millions of NFT artworks created by both renowned and everyday artists. Esteemed auction houses like <em>Sotheby's</em> and <em>Christie's</em> have joined in, highlighted by the $69M NFT auction from artist <em>Beeple</em>. Projects major and minor have been empowered by this standard, facilitating a cultural shift and an immense volume of activity with billions of dollars' worth of transactions over the years.",
+    "In intellectual circles, the ERC-721 paper has been <strong>cited nearly 200 times in scholarly journals</strong> and in nearly all prestigious academic publishers (according to Google scholar), kindling discussions across a variety of fields such as economics, legal theory, logistics, medical technology and finance. News coverage mentioning ERC-721 or projects utilizing it have become <strong>so prolific across mainstream outlets like <em>The New York Times</em>, <em>BBC</em>, <em>Time Magazine</em>, and <em>CNBC</em>, they've become commonplace occurrences.</strong> The crypto market may famously fluctuate, and even at times crash and burn, but the use case and evolution of the digital ownership frontier continues to evolve, innovate and grow. The influence of William's inventive and transformative contribution has catalyzed a paradigm shift in reshaping the essence of ownership & authenticity in the virtual, and in real life together."
+    ]
+  },
+  "otherNotableImpacts": {
+    "id": "other-notable-impacts",
+    "title": "Other Notable Impacts",
+    "bottomImage": {
+      "src": "/images/shared/will/will-sunglasses.jpg",
+      "alt": "William Entriken wearing sunglasses"
+    },
+    "panels": [
+      {
+        "id": "dapp-fintech",
+        "label": "dApp and FinTech",
+        "paragraphs": [
+          "William also co-authored a paper establishing a crucial standard that the entire Ethereum eco-system depends on to run normally, ERC-165, in 2018. Like a \"universal translator,\" it allows smart contracts, which are at the heart of blockchain's FinTech & dApp enterprises, to communicate together, underpinning billions of dollars invested in projects relying on this standard to operate smoothly."
+        ],
+        "buttons": [
+          {
+            "label": "ERC-165 Paper",
+            "href": "https://eips.ethereum.org/EIPS/eip-165"
+          }
+        ]
+      },
+      {
+        "id": "civic-hacker",
+        "label": "Civic Hacker",
+        "paragraphs": [
+          "As a recognized Civic Hacker in the Philadelphia area, William has contributed to various projects and efforts to support his community. This has ranged from Freedom of Information Act requests to hold governing bodies accountable, to publicly available open source applications like his most notable autonomous train schedule application for SEPTA passengers in the Greater Philadelphia Area. It has been operational for the past decade as an alternative (and more accurate) source of information regarding train schedules and has even been positively regarded by SEPTA and local media outlets.",
+          "As a cybersecurity specialist (aka hacker who breaks things and repels other hackers) fighting to protect others, including by exposing \"zero-day exploits,\" which are unknown flaws in software that bad guys can use to cause harm. William has found and helped fix such hidden issues before they could be misused. William has an active Department of Defense security clearance signifying a high level of trust and competence as he has worked on cyber-related cases with agencies such as the FBI, SEC, and FINRA. Through these collaborative efforts, he has been instrumental in securing the accounts of millions of retail investors, reflecting his broader mission to utilize his technical expertise for the support of others."
+        ],
+        "buttons": [
+          {
+            "label": "Septa Trains",
+            "href": "https://apps.phor.net/septa/"
+          },
+          {
+            "label": "Privacy Log",
+            "href": "https://privacylog.blogspot.com/"
+          }
+        ]
+      }
+    ]
+  },
+  "media": {
+    "id": "media",
+    "title": "This work is widely referenced in the media",
+    "expandLabel": "Read More",
+    "collapsedRows": {
+      "mobile": 3,
+      "tablet": 5,
+      "desktop": 5
+    },
+    "columns": {
+      "mobile": 3,
+      "tablet": 4,
+      "desktop": 5
+    },
+    "items": [
+      {
+        "src": "/images/pages/home/media/the-new-york-times.jpg",
+        "alt": "The New York Times"
+      },
+      { "src": "/images/pages/home/media/forbes.jpg", "alt": "Forbes" },
+      { "src": "/images/pages/home/media/cnn.png", "alt": "CNN" },
+      { "src": "/images/pages/home/media/time.webp", "alt": "TIME" },
+      {
+        "src": "/images/pages/home/media/business-insider.webp",
+        "alt": "Business Insider"
+      },
+      { "src": "/images/pages/home/media/bloomberg.png", "alt": "Bloomberg" },
+      { "src": "/images/pages/home/media/bbc.jpg", "alt": "BBC" },
+      { "src": "/images/pages/home/media/wired.jpg", "alt": "WIRED" },
+      { "src": "/images/pages/home/media/yahoo.jpg", "alt": "Yahoo!" },
+      { "src": "/images/pages/home/media/the-verge.png", "alt": "The Verge" },
+      {
+        "src": "/images/pages/home/media/techcrunch.webp",
+        "alt": "TechCrunch"
+      },
+      {
+        "src": "/images/pages/home/media/thomson-reuters.png",
+        "alt": "Thomson Reuters"
+      },
+      { "src": "/images/pages/home/media/fox-news.png", "alt": "Fox News" },
+      { "src": "/images/pages/home/media/nbc.webp", "alt": "NBC" },
+      { "src": "/images/pages/home/media/cbs-news.webp", "alt": "CBS News" },
+      { "src": "/images/pages/home/media/mashable.webp", "alt": "Mashable" },
+      { "src": "/images/pages/home/media/abc.png", "alt": "ABC" },
+      {
+        "src": "/images/pages/home/media/south-china-morning-post.png",
+        "alt": "South China Morning Post"
+      },
+      {
+        "src": "/images/pages/home/media/fast-company.png",
+        "alt": "Fast Company"
+      },
+      { "src": "/images/pages/home/media/ap.jpg", "alt": "Associated Press" }
+    ]
+  },
+  "historicalMarketStatistics": {
+    "id": "historical-market-statistics",
+    "title": "Historical Market Statistics",
+    "image": {
+      "src": "/images/pages/home/historical-market-statistics/tvl-stats.jpg",
+      "alt": "Historical NFT market statistics chart"
+    },
+    "body": "In 2021, users have sent at least $44.2 billion worth of cryptocurrency to ERC-721 and its derivative ERC-1155 contracts, the two types of Ethereum smart contracts associated with NFT marketplaces and collections. Source: Chainalysis"
+  },
+  "whatsAnNft": {
+    "id": "whats-an-nft",
+    "tocLabel": "What's an NFT?",
+    "eyebrow": "Hey Will",
+    "title": "What's an NFT?",
+    "image": {
+      "src": "/images/shared/will/will-mic-panel.png",
+      "alt": "William Entriken speaking into a microphone"
+    },
+    "overlayText": "Think of it like a deed that proves you own something, could be artwork, a house or any unique digital or physical item. This deed is on the blockchain so everyone can see it & no one can ever change it. It's authentic & it's YOURS."
+  },
+  "bigTechAdoption": {
+    "id": "big-tech-adoption",
+    "title": "Big Tech Adoption",
+    "body": "The widespread adoption, compelling innovativeness and diverse utility of William's NFT standard, ERC-721, captured the interest of major tech giants, prompting them to integrate support for it across their platforms at one point or another.",
+    "expandLabel": "Read More",
+    "collapsedRows": {
+      "mobile": 3,
+      "tablet": 5,
+      "desktop": 5
+    },
+    "columns": {
+      "mobile": 3,
+      "tablet": 4,
+      "desktop": 4
+    },
+    "items": [
+      {
+        "src": "/images/shared/brands/apple-logo.webp",
+        "alt": "Apple"
+      },
+      {
+        "src": "/images/shared/brands/microsoft-logo.png",
+        "alt": "Microsoft"
+      },
+      {
+        "src": "/images/pages/home/big-tech/google.webp",
+        "alt": "Google"
+      },
+      {
+        "src": "/images/pages/home/big-tech/meta.png",
+        "alt": "Meta"
+      },
+      {
+        "src": "/images/pages/home/big-tech/facebook.png",
+        "alt": "Facebook"
+      },
+      {
+        "src": "/images/pages/home/big-tech/amazon.jpg",
+        "alt": "Amazon"
+      },
+      {
+        "src": "/images/pages/home/big-tech/adobe.png",
+        "alt": "Adobe"
+      },
+      {
+        "src": "/images/pages/home/big-tech/oracle.png",
+        "alt": "Oracle"
+      },
+      {
+        "src": "/images/pages/home/big-tech/salesforce.png",
+        "alt": "Salesforce"
+      },
+      {
+        "src": "/images/pages/home/big-tech/shopify.jpg",
+        "alt": "Shopify"
+      },
+      {
+        "src": "/images/pages/home/big-tech/twitter.png",
+        "alt": "Twitter"
+      },
+      {
+        "src": "/images/pages/home/big-tech/instagram.webp",
+        "alt": "Instagram"
+      },
+      {
+        "src": "/images/pages/home/big-tech/reddit.png",
+        "alt": "Reddit"
+      },
+      {
+        "src": "/images/pages/home/big-tech/ubisoft.jpg",
+        "alt": "Ubisoft"
+      }
+    ]
+  },
+  "celebrityEmbrace": {
+    "id": "celebrity-embrace",
+    "title": "Celebrity Embrace",
+    "body": "The allure of NFTs has captivated the celebrity sphere, with notable figures investing hefty sums to acquire distinctive ERC-721 NFT collectibles (often using them as profile pics on their social media), most famously from collections like Bored Ape Yacht Club, symbolizing a prestigious blend of digital ownership and exclusivity.",
+    "expandLabel": "Read More",
+    "collapsedRows": {
+      "mobile": 3,
+      "tablet": 5,
+      "desktop": 5
+    },
+    "columns": {
+      "mobile": 3,
+      "tablet": 4,
+      "desktop": 5
+    },
+    "items": [
+      {
+        "src": "/images/pages/home/celebrities/ben-simmons.png",
+        "alt": "Ben Simmons"
+      },
+      {
+        "src": "/images/pages/home/celebrities/paris-hilton.png",
+        "alt": "Paris Hilton"
+      },
+      {
+        "src": "/images/pages/home/celebrities/mark-cuban.jpg",
+        "alt": "Mark Cuban"
+      },
+      { "src": "/images/pages/home/celebrities/diplo.png", "alt": "Diplo" },
+      {
+        "src": "/images/pages/home/celebrities/kevin-hart.jpg",
+        "alt": "Kevin Hart"
+      },
+      {
+        "src": "/images/pages/home/celebrities/jimmy-fallon.webp",
+        "alt": "Jimmy Fallon"
+      },
+      { "src": "/images/pages/home/celebrities/ksi.png", "alt": "KSI" },
+      {
+        "src": "/images/pages/home/celebrities/steve-aoki.jpg",
+        "alt": "Steve Aoki"
+      },
+      { "src": "/images/pages/home/celebrities/eminem.jpg", "alt": "Eminem" },
+      {
+        "src": "/images/pages/home/celebrities/french-montana.webp",
+        "alt": "French Montana"
+      },
+      { "src": "/images/pages/home/celebrities/future.webp", "alt": "Future" },
+      {
+        "src": "/images/pages/home/celebrities/gary-v.png",
+        "alt": "Gary Vaynerchuk"
+      },
+      { "src": "/images/pages/home/celebrities/gunna.jpg", "alt": "Gunna" },
+      {
+        "src": "/images/pages/home/celebrities/jack-dorsey.jpg",
+        "alt": "Jack Dorsey"
+      },
+      {
+        "src": "/images/pages/home/celebrities/justin-bieber.jpeg",
+        "alt": "Justin Bieber"
+      },
+      {
+        "src": "/images/pages/home/celebrities/larry-david.jpeg",
+        "alt": "Larry David"
+      },
+      {
+        "src": "/images/pages/home/celebrities/lil-baby.webp",
+        "alt": "Lil Baby"
+      },
+      {
+        "src": "/images/pages/home/celebrities/lil-durk.png",
+        "alt": "Lil Durk"
+      },
+      {
+        "src": "/images/pages/home/celebrities/logan-paul.jpg",
+        "alt": "Logan Paul"
+      },
+      { "src": "/images/pages/home/celebrities/madonna.jpg", "alt": "Madonna" },
+      {
+        "src": "/images/pages/home/celebrities/marshmello.webp",
+        "alt": "Marshmello"
+      },
+      {
+        "src": "/images/pages/home/celebrities/meek-mill.jpg",
+        "alt": "Meek Mill"
+      },
+      {
+        "src": "/images/pages/home/celebrities/murda-beatz.jpg",
+        "alt": "Murda Beatz"
+      },
+      {
+        "src": "/images/pages/home/celebrities/post-malone.webp",
+        "alt": "Post Malone"
+      },
+      {
+        "src": "/images/pages/home/celebrities/rich-the-kid.jpg",
+        "alt": "Rich the Kid"
+      },
+      {
+        "src": "/images/pages/home/celebrities/serena-williams.png",
+        "alt": "Serena Williams"
+      },
+      {
+        "src": "/images/pages/home/celebrities/shaq.webp",
+        "alt": "Shaquille O'Neal"
+      },
+      {
+        "src": "/images/pages/home/celebrities/snoop-dogg.jpg",
+        "alt": "Snoop Dogg"
+      },
+      {
+        "src": "/images/pages/home/celebrities/steph-curry.png",
+        "alt": "Stephen Curry"
+      },
+      {
+        "src": "/images/pages/home/celebrities/timbaland.png",
+        "alt": "Timbaland"
+      },
+      {
+        "src": "/images/pages/home/celebrities/tom-brady.webp",
+        "alt": "Tom Brady"
+      },
+      {
+        "src": "/images/pages/home/celebrities/dj-khaled.webp",
+        "alt": "DJ Khaled"
+      },
+      {
+        "src": "/images/pages/home/celebrities/travis-barker.jpg",
+        "alt": "Travis Barker"
+      },
+      {
+        "src": "/images/pages/home/celebrities/waka-flocka.jpg",
+        "alt": "Waka Flocka Flame"
+      },
+      {
+        "src": "/images/pages/home/celebrities/von-miller.webp",
+        "alt": "Von Miller"
+      }
+    ]
+  },
+  "icoAdvisory": {
+    "id": "ico-advisory",
+    "tocLabel": "ICO Advisory",
+    "portrait": {
+      "src": "/images/shared/will/will-sunglasses.jpg",
+      "alt": "William Entriken wearing sunglasses"
+    },
+    "coinsImage": {
+      "src": "/images/pages/home/ico-advisory/falling-coins.png",
+      "alt": ""
+    },
+    "message": {
+      "lead": "As a technical advisor, he's assisted projects in",
+      "emphasis": "safely, legally & securely",
+      "tail": "generating over $100M through ICOs.",
+      "note": "(Initial Coin Offerings)"
+    },
+    "cta": {
+      "label": "Advisory Services",
+      "href": "/services"
+    }
+  },
+  "artworkRevolution": {
+    "id": "artwork-revolution",
+    "title": "Artwork Revolution",
+    "quote": {
+      "text": "\"Non-Fungible Tokens are deemed the most powerful entity in the art world in ArtReview's 2021 Power 100 Ranking\"",
+      "attribution": "-artnews.net"
+    },
+    "body": [
+      "The word \"revolutionary\" is often used in cliche by every dime-a-dozen innovator. The ERC-721 standard lead by William is considered by authorities to have changed how artwork is transacted, and not just digital artwork but also for the transfer of titles for physical ones too. The blockchain through the ERC-721 standard established a method of authenticating ownership of digital artwork to a single owner, a necessary function in a world of seamless copy-pastings.",
+      "An entire cultural art movement has emerged, there being roots in pre-ERC-721 blockchain art assets, the eco-system exploded within several years of the standard being published. By 2021, ArtReview declared ERC-721 (as a synonym for NFTs) as the most powerful art entity in the world. Crypto art projects began emerging with hundreds of millions and in some cases billions of dollars in total capitalization. Platforms exchanging artwork NFTs like OpenSea grew into billion dollar behemoths. Even the famous Fine Art auction houses Sotheby's and Christie's began selling art NFTs with single artworks selling for tens of millions of dollars."
+    ],
+    "closingQuote": {
+      "text": "Four years on from its publication, ‘ERC-721’, the specification for the ‘non-fungible token’ (on the Ethereum-based blockchain – other specifications exist) has upended the art market, bringing contemporary art and millennial meme culture crashing together.",
+      "attribution": "-ArtReview"
+    }
+  },
+  "scholarlyInfluence": {
+    "id": "scholarly-influence",
+    "title": "Scholarly Influence",
+    "subtitle": "Cited +250 times",
+    "body": "Cited in publications from virtually every major scholarly publisher, William's pioneering contributions have become a touchstone for discourse and investigation in realms as varied as economics, legal theory, computer science, biomedicine, and logistics. It underscores not only the foundational importance of his work but also illuminates its far-reaching influence across different facets of contemporary knowledge and practice.",
+    "expandLabel": "Read More",
+    "collapsedRows": {
+      "mobile": 3,
+      "tablet": 5,
+      "desktop": 5
+    },
+    "columns": {
+      "mobile": 3,
+      "tablet": 4,
+      "desktop": 5
+    },
+    "items": [
+      {
+        "src": "/images/pages/home/scholarly-publishers/elsevier.jpeg",
+        "alt": "Elsevier"
+      },
+      {
+        "src": "/images/pages/home/scholarly-publishers/springerlink.jpg",
+        "alt": "SpringerLink"
+      },
+      {
+        "src": "/images/pages/home/scholarly-publishers/wiley.png",
+        "alt": "Wiley"
+      },
+      {
+        "src": "/images/pages/home/scholarly-publishers/taylor-francis.png",
+        "alt": "Taylor & Francis"
+      },
+      {
+        "src": "/images/pages/home/scholarly-publishers/cambridge.png",
+        "alt": "Cambridge University Press"
+      },
+      {
+        "src": "/images/pages/home/scholarly-publishers/oxford.jpeg",
+        "alt": "Oxford Academic"
+      },
+      {
+        "src": "/images/pages/home/scholarly-publishers/ieee.png",
+        "alt": "IEEE"
+      },
+      {
+        "src": "/images/pages/home/scholarly-publishers/sage.jpg",
+        "alt": "SAGE Publishing"
+      },
+      {
+        "src": "/images/pages/home/scholarly-publishers/mdpi.png",
+        "alt": "MDPI"
+      },
+      {
+        "src": "/images/pages/home/scholarly-publishers/plos.jpeg",
+        "alt": "PLOS"
+      },
+      {
+        "src": "/images/pages/home/scholarly-publishers/aps.png",
+        "alt": "APS"
+      },
+      {
+        "src": "/images/pages/home/scholarly-publishers/iop.png",
+        "alt": "IOP Publishing"
+      },
+      {
+        "src": "/images/pages/home/scholarly-publishers/emerald.png",
+        "alt": "Emerald Publishing"
+      },
+      {
+        "src": "/images/pages/home/scholarly-publishers/pubmed.png",
+        "alt": "PubMed"
+      }
+    ]
+  },
+  "landmarkProjects": {
+    "id": "landmark-projects",
+    "title": "Landmark & Pioneering Projects Powered by ERC-721",
+    "body": "The NFT standard (ERC-721) William lead has served as the backbone powering industry-defining projects across various sectors and facilitating the movement of significant financial value in the digital asset landscape.",
+    "items": [
+      {
+        "id": "community-token-gating",
+        "label": "$1B NFT Community & Token Gating",
+        "panelTitle": "Bored Ape Yacht Club",
+        "content": [
+          "The Bored Ape Yacht Club (BAYC), initiated by Yuga Labs in 2021 using generative cartoon ape images as (ERC-721) NFTs, exemplifies the mainstream appeal of NFT communities, bolstered by celebrity endorsements, culminating in over a billion dollars in sales in 2022. The project made its famous debut into the spotlight during <a href=\"https://www.vulture.com/2022/01/paris-hilton-jimmy-fallon-bored-ape-yacht-club-nft.html\" target=\"_blank\" rel=\"noreferrer\">Paris Hilton's guest appearance</a> at The Tonight Show with Jimmy Fallon where both of them showed off their BAYC NFTs. Embodying William Entriken's vision of NFTs verifying ownership, BAYC also serves as a large-scale use case where owning these NFTs grant exclusive access to perks like access to private events, channels & special rewards."
+        ],
+        "images": [
+          {
+            "src": "/images/pages/home/celebrities/paris-hilton.png",
+            "alt": "Paris Hilton with Bored Ape Yacht Club profile image",
+            "caption": "Owns Bored Ape #1294"
+          },
+          {
+            "src": "/images/pages/home/projects/bayc.webp",
+            "alt": "Bored Ape Yacht Club artwork"
+          }
+        ]
+      },
+      {
+        "id": "first-erc721-project",
+        "label": "First ERC-721 Project",
+        "panelTitle": "Su Squares",
+        "content": [
+          "Su Squares, a project created by William and his wife Su, is the first successful testing of the ground-breaking NFT standard, ERC-721, and the predecessor for metaverse real-estate where land plots are represented by NFTs. Inspired by the <a href=\"https://en.wikipedia.org/wiki/The_Million_Dollar_Homepage\" target=\"_blank\" rel=\"noreferrer\">milliondollarhomepage</a>, it's like a map where each location, represented by a single square, can be owned by an NFT. Owners can place images, text, and links into their square, and from a bird's-eye view, one can see the entire shared image formed by different people's contributions, illustrating individual ownership of a communally shared canvas.",
+          "The project has been showcased on display at Times Square during the 2021 NFT.nyc event as well as on the NASDAQ building."
+        ],
+        "images": [
+          {
+            "src": "/images/shared/projects/su-squares-logo.png",
+            "alt": "Su Squares logo",
+            "fit": "contain",
+            "href": "https://tenthousandsu.com"
+          },
+          {
+            "src": "/images/pages/nfts/susquares-nasdaq.jpg",
+            "alt": "Su Squares displayed on the NASDAQ building",
+            "href": "https://tenthousandsu.com"
+          }
+        ]
+      },
+      {
+        "id": "gaming-integration",
+        "label": "Breakthrough Gaming-NFT Integration",
+        "panelTitle": "CryptoKitties",
+        "content": [
+          "Cryptokitties pioneered the integration of NFTs and gaming, and was one of the first notable projects propelling Ethereum and the ERC-721 NFT standard into the mainstream spotlight with widespread interest from major media outlets while generating millions of dollars in transactions. Each CryptoKitty is represented as an NFT generated in the game with distinct characteristics, and the user can collect and resell these NFTs or utilize them in the game. CryptoKitties was initially so popular that its usage actually slowed down and jammed up traffic on the entire Ethereum blockchain.",
+          "This pioneering innovation ignited a fervor around blockchain-based gaming, setting a precedent for myriad subsequent ventures in the flourishing NFT gaming ecosystem. Its launch actually pre-dated William's Su Squares NFT project, but since CryptoKitties utilized an experimental and and technically non-compliant version of the ERC-721 codebase, it is technically not the first ERC-721 contract."
+        ],
+        "images": [
+          {
+            "src": "/images/pages/home/projects/cryptokitties.webp",
+            "alt": "CryptoKitties artwork",
+            "desktopAspectRatio": "12 / 3",
+            "desktopMaxWidth": "28rem"
+          }
+        ]
+      },
+      {
+        "id": "record-breaking-artsale",
+        "label": "$69M Record-breaking Artsale",
+        "panelTitle": "Beeple's Everydays: The First 5000 Days",
+        "content": [
+          "Using William Entriken's NFT standard, ERC-721, artist Beeple sold a digital collage <em>Everydays: The First 5000 Days</em> as an NFT for an unprecedented $69 million at Christie's fine art auction house. This was a landmark moment for the art world and mainstream acceptance of NFTs as a vehicle for digital art ownership, highlighting the profound value realized through William's innovation. It also received a seismic amount of news coverage."
+        ],
+        "images": [
+          {
+            "src": "/images/pages/home/projects/beeple.jpg",
+            "alt": "Beeple's Everydays: The First 5000 Days"
+          }
+        ]
+      }
+    ]
+  },
+  "investorBacking": {
+    "id": "investor-backing",
+    "title": "Investor Backing in Standard-Empowered Ecosystems",
+    "body": "Prominent investors have recognized the transformative potential of the technologies enabled by William's standards on the blockchain, channeling substantial investments into projects and platforms leveraging them (both ERC-721 & ERC-165). From major NFT marketplaces, innovative DeFi platforms, to cutting-edge dApps running on Ethereum and Polygon, the ripple effect of William's contributions is far-reaching in the investor community.",
+    "expandLabel": "Read More",
+    "collapsedRows": {
+      "mobile": 3,
+      "tablet": 5,
+      "desktop": 5
+    },
+    "columns": {
+      "mobile": 3,
+      "tablet": 4,
+      "desktop": 5
+    },
+    "items": [
+      {
+        "src": "/images/pages/home/investors/a16z.png",
+        "alt": "Andreessen Horowitz"
+      },
+      {
+        "src": "/images/pages/home/investors/animoca-brands.jpeg",
+        "alt": "Animoca Brands"
+      },
+      {
+        "src": "/images/pages/home/investors/paradigm.png",
+        "alt": "Paradigm"
+      },
+      {
+        "src": "/images/pages/home/investors/sequoia.jpeg",
+        "alt": "Sequoia Capital"
+      },
+      {
+        "src": "/images/pages/home/investors/coatue.jpeg",
+        "alt": "Coatue"
+      },
+      {
+        "src": "/images/pages/home/investors/multicoin-capital.jpg",
+        "alt": "Multicoin Capital"
+      },
+      {
+        "src": "/images/pages/home/investors/digital-currency-group.png",
+        "alt": "Digital Currency Group"
+      },
+      {
+        "src": "/images/pages/home/investors/draper-vc.png",
+        "alt": "Draper VC"
+      },
+      {
+        "src": "/images/pages/home/investors/framework-ventures.png",
+        "alt": "Framework Ventures"
+      },
+      {
+        "src": "/images/pages/home/investors/polychain-capital.png",
+        "alt": "Polychain Capital"
+      },
+      {
+        "src": "/images/pages/home/investors/gumi-cryptos.jpg",
+        "alt": "gumi Cryptos"
+      },
+      {
+        "src": "/images/pages/home/investors/grayscale-ventures.png",
+        "alt": "Grayscale Ventures"
+      },
+      {
+        "src": "/images/pages/home/investors/three-arrows-capital.png",
+        "alt": "Three Arrows Capital"
+      },
+      {
+        "src": "/images/pages/home/investors/au21-capital.jpeg",
+        "alt": "AU21 Capital"
+      },
+      {
+        "src": "/images/pages/home/investors/mark-cuban.webp",
+        "alt": "Mark Cuban"
+      }
+    ]
+  },
+  "platforms": {
+    "id": "platforms",
+    "title": "Commercial Platforms & Marketplaces",
+    "body": "The NFT standard, ERC-721, pioneered by William Entriken, has become a keystone in the blockchain ecosystem. Virtually all major institutions not only support and offer services around it, but regularly utilize and promote it. Its influence extends from the Ethereum & Polygon blockchains to various others bridged together, showcasing the widespread impact and acceptance of this groundbreaking standard across the digital asset landscape.",
+    "backgroundImage": {
+      "src": "/images/pages/home/platforms/will-mural-bg.png",
+      "alt": "William Entriken mural"
+    },
+    "gallery": {
+      "ariaLabel": "Commercial Platforms and Marketplaces",
+      "expandLabel": "Read More",
+      "collapsedRows": {
+        "mobile": 3,
+        "tablet": 5,
+        "desktop": 5
+      },
+      "columns": {
+        "mobile": 3,
+        "tablet": 4,
+        "desktop": 5
+      },
+      "items": [
+        {
+          "src": "/images/pages/home/platforms/opensea.png",
+          "alt": "OpenSea"
+        },
+        {
+          "src": "/images/pages/home/platforms/rarible.jpg",
+          "alt": "Rarible"
+        },
+        {
+          "src": "/images/pages/home/platforms/looksrare.jpg",
+          "alt": "LooksRare"
+        },
+        {
+          "src": "/images/pages/home/platforms/blur.png",
+          "alt": "Blur"
+        },
+        {
+          "src": "/images/pages/home/platforms/superrare.jpg",
+          "alt": "SuperRare"
+        },
+        {
+          "src": "/images/pages/home/platforms/nifty-gateway.jpg",
+          "alt": "Nifty Gateway"
+        },
+        {
+          "src": "/images/pages/home/platforms/makersplace.png",
+          "alt": "MakersPlace"
+        },
+        {
+          "src": "/images/pages/home/platforms/sothebys.png",
+          "alt": "Sotheby's"
+        },
+        {
+          "src": "/images/pages/home/platforms/binance.webp",
+          "alt": "Binance"
+        },
+        {
+          "src": "/images/pages/home/platforms/coinbase.png",
+          "alt": "Coinbase"
+        },
+        {
+          "src": "/images/pages/home/platforms/kraken.jpg",
+          "alt": "Kraken"
+        },
+        {
+          "src": "/images/pages/home/platforms/metamask.png",
+          "alt": "MetaMask"
+        },
+        {
+          "src": "/images/pages/home/platforms/trust-wallet.jpg",
+          "alt": "Trust Wallet"
+        },
+        {
+          "src": "/images/pages/home/platforms/etherscan.png",
+          "alt": "Etherscan"
+        }
+      ]
+    }
+  },
+  "publicSpeaking": {
+    "id": "public-speaking",
+    "title": "Public Speaking",
+    "intro": "As a thought leader in technology, business finance, and even medical applications, William confidently & passionately engages audiences with his insightful discourse, creating a stimulating dialogue that resonates across diverse sectors. He attends a variety of event formats from workshops and panel discussions to podcasts and live interviews and even hosts his weekly community service hour syndicated across social media.",
+    "ctaLead": "To learn more and request his participation as a speak at your event, head over to the Speaking page.",
+    "cta": {
+      "label": "Speaking",
+      "href": "/speaking"
+    },
+    "features": [
+      {
+        "title": "NFT.nyc's Distinguished Annual Speaker",
+        "body": "As the luminary who coined the term NFT and pioneered the first mainstream standard, William Entriken's influence is palpable and celebrated within the community. His recurring invitation as an honorary speaker at NFT.NYC since its inception is a testament to his seminal role in shaping the narrative and technological framework of the NFT space, making him a revered figure and a highlight of the event year after year.",
+        "image": {
+          "src": "/images/shared/will/Will-NFT-Tallinn.jpg",
+          "alt": "William Entriken speaking at NFT Tallinn"
+        },
+        "imageSide": "left",
+        "tone": "dark"
+      },
+      {
+        "title": "Community Service Hours",
+        "body": "Through weekly live broadcasts syndicated across social media, William extends his expertise to foster a vibrant community dialogue, welcoming enthusiasts and curious minds to share, inquire and delve into innovative projects and prevailing topics within the space. These sessions may feature interviews with prominent persons in leading projects and educational workshops, underlining his commitment to communal growth and knowledge sharing.",
+        "image": {
+          "src": "/images/shared/community/csh-poster.jpg",
+          "alt": "Community Service Hour poster"
+        },
+        "imageFit": "cover",
+        "imageSide": "right",
+        "tone": "light"
+      }
+    ]
+  },
+  "homeBottomCta": {
+    "id": "media-inquiries",
+    "tocLabel": "Inquiries Welcomed",
+    "title": "Media Inquiries Welcomed",
+    "image": {
+      "src": "/images/shared/will/will-mic-panel.png",
+      "alt": "William Entriken speaking into a microphone"
+    },
+    "mediaInquiry": {
+      "title": "Distinguished Pioneer & Thought Leader's Commentary",
+      "body": "We invite members of the press to reach out for insightful commentary and expert analysis from a highly-respected thought leader cited over 250 times in academic journals and an established pioneer with authoritative insights spanning a multitude of domains including blockchain, cybersecurity, finance & economics, and medical technology, among others. William is well-positioned to provide nuanced perspectives on current events, emerging technologies, and the evolving digital landscape. His contribution can significantly elevate the discourse, providing a depth of understanding that only few can match. Engage with a distinguished figure whose insights are as pioneering as they are enlightening.",
+      "cta": {
+        "label": "Press Inquiry",
+        "href": "/press"
+      }
+    },
+    "advisoryServices": {
+      "title": "Advisory Services",
+      "body": "William Entriken exemplifies polymathic alacrity across a spectrum of domains where his authority has been acknowledged and sought after by numerous high profile entities for his problem-solving and advisory support. His deep-seated expertise ranges from blockchain technology, cybersecurity, and information architecture to the intersection of business strategy and emerging digital paradigms. His acumen is a blend of technical prowess and strategic foresight, offering a rich tapestry of knowledge and insight that propels industries forward. He can add his blend expertises in an advisory role to your project.",
+      "cta": {
+        "label": "Advisory Services",
+        "href": "/services"
+      }
+    }
+  },
+  "genesisPaper": {
+    "id": "genesis-paper",
+    "title": "The Genesis Paper of NFTs: ERC-721",
+    "paperHref": "https://eips.ethereum.org/EIPS/eip-721",
+    "body": "William lead authorship of the industry-defining & landmark paper, known as <a href=\"https://eips.ethereum.org/EIPS/eip-721\" target=\"_blank\" rel=\"noopener noreferrer\"><em>ERC-721: The NFT Standard</em></a>, that is the cornerstone birthing of the NFT industry as we know it. Originated by Dieter Shirley and driven as a community effort, it not only <strong>coined & defined the term \"Non-Fungible Token\"</strong> but also laid the foundational code for implementing the first mainstream NFT standard called \"ERC-721,\" published in 2018 propelling a myriad of digital innovations. It is endorsed by industry experts and cited countless times by the media & peer-reviewed journals around the world. ERC-721's approval marked a seminal shift, catalyzing the emergence of a multibillion-dollar digital collectibles market and adoption from Big Tech firms and notable projects setting the stage for a new digital frontier.",
+    "image": {
+      "src": "/images/pages/home/genesis-paper/erc721.png",
+      "alt": "ERC-721 paper preview"
+    }
+  }
+}

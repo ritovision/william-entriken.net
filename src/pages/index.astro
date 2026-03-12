@@ -1,0 +1,430 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { resolveContentImageRefs, resolveSchemaImageRefs } from '@shared/images';
+import type { SchemaBlock } from '@shared/types';
+import ArtworkRevolutionSection from './_home/_components/ArtworkRevolutionSection.astro';
+import GenesisPaperSection from './_home/_components/GenesisPaperSection.astro';
+import HistoricalMarketStatisticsSection from './_home/_components/HistoricalMarketStatisticsSection.astro';
+import HomeBottomCtaSection from './_home/_components/HomeBottomCtaSection.astro';
+import HomeHeroSection from './_home/_components/HomeHeroSection.astro';
+import IcoAdvisorySection from './_home/_components/IcoAdvisorySection.astro';
+import LandmarkProjectsSection from './_home/_components/LandmarkProjectsSection.astro';
+import LegacyInfluenceSection from './_home/_components/LegacyInfluenceSection.astro';
+import OtherNotableImpactsSection from './_home/_components/OtherNotableImpactsSection.astro';
+import PlatformsShowcaseSection from './_home/_components/PlatformsShowcaseSection.astro';
+import PublicSpeakingSection from './_home/_components/PublicSpeakingSection.astro';
+import WhatsAnNftSection from './_home/_components/WhatsAnNftSection.astro';
+import ImageTileGridSection from '@components/shared/galleries/image-tile-grid/ImageTileGridSection.astro';
+import content from './_home/_content.json';
+import schemaContent from './_home/_schema.json';
+
+interface ImageTileGridItem {
+  src: string;
+  alt: string;
+}
+
+interface HomePageContent {
+  seo: {
+    title: string;
+    description: string;
+  };
+  hero: {
+    backgroundImage: {
+      src: string;
+      alt: string;
+    };
+    title: string[];
+    subheading: string;
+  };
+  legacyInfluence: {
+    id: string;
+    title: string;
+    switchLabel: string;
+    conciseLabel: string;
+    detailedLabel: string;
+    concise: string;
+    detailed: string[];
+  };
+  otherNotableImpacts: {
+    id: string;
+    title: string;
+    bottomImage: {
+      src: string;
+      alt: string;
+    };
+    panels: Array<{
+      id: 'dapp-fintech' | 'civic-hacker';
+      label: string;
+      paragraphs: string[];
+      buttons?: Array<{
+        label: string;
+        href: string;
+      }>;
+    }>;
+  };
+  artworkRevolution: {
+    id: string;
+    title: string;
+    quote: {
+      text: string;
+      attribution: string;
+    };
+    body: string[];
+    closingQuote: {
+      text: string;
+      attribution: string;
+    };
+  };
+  media: {
+    id: string;
+    title: string;
+    subtitle?: string;
+    body?: string;
+    expandLabel: string;
+    collapsedRows: {
+      mobile: number;
+      tablet: number;
+      desktop: number;
+    };
+    columns: {
+      mobile: number;
+      tablet: number;
+      desktop: number;
+    };
+    items: ImageTileGridItem[];
+  };
+  historicalMarketStatistics: {
+    id: string;
+    title: string;
+    image: {
+      src: string;
+      alt: string;
+    };
+    body: string;
+  };
+  whatsAnNft: {
+    id: string;
+    tocLabel: string;
+    eyebrow: string;
+    title: string;
+    image: {
+      src: string;
+      alt: string;
+    };
+    overlayText: string;
+  };
+  bigTechAdoption: {
+    id: string;
+    title: string;
+    subtitle?: string;
+    body: string;
+    expandLabel: string;
+    collapsedRows: {
+      mobile: number;
+      tablet: number;
+      desktop: number;
+    };
+    columns: {
+      mobile: number;
+      tablet: number;
+      desktop: number;
+    };
+    items: ImageTileGridItem[];
+  };
+  celebrityEmbrace: {
+    id: string;
+    title: string;
+    subtitle?: string;
+    body: string;
+    expandLabel: string;
+    collapsedRows: {
+      mobile: number;
+      tablet: number;
+      desktop: number;
+    };
+    columns: {
+      mobile: number;
+      tablet: number;
+      desktop: number;
+    };
+    items: ImageTileGridItem[];
+  };
+  icoAdvisory: {
+    id: string;
+    tocLabel: string;
+    portrait: {
+      src: string;
+      alt: string;
+    };
+    coinsImage: {
+      src: string;
+      alt: string;
+    };
+    message: {
+      lead: string;
+      emphasis: string;
+      tail: string;
+      note: string;
+    };
+    cta: {
+      label: string;
+      href: string;
+    };
+  };
+  scholarlyInfluence: {
+    id: string;
+    title: string;
+    subtitle: string;
+    body: string;
+    expandLabel: string;
+    collapsedRows: {
+      mobile: number;
+      tablet: number;
+      desktop: number;
+    };
+    columns: {
+      mobile: number;
+      tablet: number;
+      desktop: number;
+    };
+    items: ImageTileGridItem[];
+  };
+  landmarkProjects: {
+    id: string;
+    title: string;
+    body: string;
+    items: Array<{
+      id: string;
+      label: string;
+      panelTitle?: string;
+      content: string[];
+      images?: Array<{
+        src: string;
+        alt: string;
+        caption?: string;
+        fit?: 'cover' | 'contain';
+        href?: string;
+        desktopAspectRatio?: string;
+        desktopMaxWidth?: string;
+      }>;
+    }>;
+  };
+  investorBacking: {
+    id: string;
+    title: string;
+    subtitle?: string;
+    body: string;
+    expandLabel: string;
+    collapsedRows: {
+      mobile: number;
+      tablet: number;
+      desktop: number;
+    };
+    columns: {
+      mobile: number;
+      tablet: number;
+      desktop: number;
+    };
+    items: ImageTileGridItem[];
+  };
+  platforms: {
+    id: string;
+    title: string;
+    body: string;
+    backgroundImage: {
+      src: string;
+      alt: string;
+    };
+    gallery: {
+      ariaLabel: string;
+      expandLabel: string;
+      collapsedRows: {
+        mobile: number;
+        tablet: number;
+        desktop: number;
+      };
+      columns: {
+        mobile: number;
+        tablet: number;
+        desktop: number;
+      };
+      items: ImageTileGridItem[];
+    };
+  };
+  publicSpeaking: {
+    id: string;
+    title: string;
+    intro: string;
+    ctaLead: string;
+    cta: {
+      label: string;
+      href: string;
+    };
+    features: Array<{
+      title: string;
+      body: string;
+      image: {
+        src: string;
+        alt: string;
+      };
+      imageSide: 'left' | 'right';
+      tone: 'dark' | 'light';
+    }>;
+  };
+  homeBottomCta: {
+    id: string;
+    tocLabel: string;
+    title: string;
+    image: {
+      src: string;
+      alt: string;
+    };
+    mediaInquiry: {
+      title: string;
+      body: string;
+      cta: {
+        label: string;
+        href: string;
+      };
+    };
+    advisoryServices: {
+      title: string;
+      body: string;
+      cta: {
+        label: string;
+        href: string;
+      };
+    };
+  };
+  genesisPaper: {
+    id: string;
+    title: string;
+    body: string;
+    paperHref: string;
+    image: {
+      src: string;
+      alt: string;
+    };
+  };
+}
+
+const {
+  seo,
+  hero,
+  legacyInfluence,
+  otherNotableImpacts,
+  artworkRevolution,
+  media,
+  historicalMarketStatistics,
+  whatsAnNft,
+  bigTechAdoption,
+  celebrityEmbrace,
+  icoAdvisory,
+  scholarlyInfluence,
+  landmarkProjects,
+  investorBacking,
+  platforms,
+  publicSpeaking,
+  homeBottomCta,
+  genesisPaper,
+} = resolveContentImageRefs(content as HomePageContent);
+const schema = resolveSchemaImageRefs(
+  schemaContent as SchemaBlock,
+  Astro.site ?? new URL(Astro.url.origin),
+);
+const sidebarToc = [
+  {
+    label: 'Legacy Introduction',
+    targetId: legacyInfluence.id,
+  },
+  {
+    label: otherNotableImpacts.title,
+    targetId: otherNotableImpacts.id,
+  },
+  {
+    label: genesisPaper.title,
+    targetId: genesisPaper.id,
+  },
+  {
+    label: 'News Outlets',
+    targetId: media.id,
+  },
+  {
+    label: historicalMarketStatistics.title,
+    targetId: historicalMarketStatistics.id,
+  },
+  {
+    label: whatsAnNft.tocLabel,
+    targetId: whatsAnNft.id,
+  },
+  {
+    label: bigTechAdoption.title,
+    targetId: bigTechAdoption.id,
+  },
+  {
+    label: celebrityEmbrace.title,
+    targetId: celebrityEmbrace.id,
+  },
+  {
+    label: artworkRevolution.title,
+    targetId: artworkRevolution.id,
+  },
+  {
+    label: scholarlyInfluence.title,
+    targetId: scholarlyInfluence.id,
+  },
+  {
+    label: landmarkProjects.title,
+    targetId: landmarkProjects.id,
+  },
+  {
+    label: investorBacking.title,
+    targetId: investorBacking.id,
+  },
+  {
+    label: icoAdvisory.tocLabel,
+    targetId: icoAdvisory.id,
+  },
+  {
+    label: platforms.title,
+    targetId: platforms.id,
+  },
+  {
+    label: publicSpeaking.title,
+    targetId: publicSpeaking.id,
+  },
+  {
+    label: homeBottomCta.tocLabel,
+    targetId: homeBottomCta.id,
+  },
+];
+---
+
+<BaseLayout seo={seo} schema={schema} sidebarToc={sidebarToc}>
+  <main class="page-main home-page" style="--home-section-space: 8rem;">
+    <h1 class="visually-hidden">William Entriken</h1>
+    <HomeHeroSection {...hero} />
+    <LegacyInfluenceSection {...legacyInfluence} />
+    <OtherNotableImpactsSection {...otherNotableImpacts} />
+    <GenesisPaperSection {...genesisPaper} />
+    <ImageTileGridSection {...media} />
+    <HistoricalMarketStatisticsSection {...historicalMarketStatistics} />
+    <WhatsAnNftSection {...whatsAnNft} />
+    <ImageTileGridSection {...bigTechAdoption} />
+    <ImageTileGridSection {...celebrityEmbrace} />
+    <ArtworkRevolutionSection {...artworkRevolution} />
+    <ImageTileGridSection {...scholarlyInfluence} />
+    <LandmarkProjectsSection {...landmarkProjects} />
+    <ImageTileGridSection {...investorBacking} />
+    <IcoAdvisorySection {...icoAdvisory} />
+    <PlatformsShowcaseSection {...platforms} />
+    <PublicSpeakingSection {...publicSpeaking} />
+    <HomeBottomCtaSection {...homeBottomCta} />
+  </main>
+</BaseLayout>
+
+<style>
+  :global(.home-page > .legacy-influence) {
+    margin-top: calc(var(--home-section-space, var(--space-section-xl)) / 2);
+  }
+</style>

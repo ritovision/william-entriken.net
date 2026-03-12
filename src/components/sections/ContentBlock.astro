@@ -1,0 +1,30 @@
+---
+interface Props {
+  title?: string;
+  body?: string;
+  tone?: "gold" | "white" | "black";
+  bg?: "none" | "heading-gray" | "content-dark" | "white";
+}
+
+const { title, body, tone = "gold", bg = "none" } = Astro.props;
+
+const toneClass =
+  tone === "white"
+    ? "text-white"
+    : tone === "black"
+      ? "text-black"
+      : "text-gold";
+const bgClass =
+  bg === "heading-gray"
+    ? "bg-heading-gray"
+    : bg === "content-dark"
+      ? "bg-content-dark"
+      : bg === "white"
+        ? "bg-white"
+        : "";
+---
+
+<section class={`container-95 ${bgClass}`.trim()}>
+  {title && <h3 class={toneClass}>{title}</h3>}
+  {body && <p class={toneClass}>{body}</p>}
+</section>

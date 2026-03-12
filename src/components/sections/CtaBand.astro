@@ -1,0 +1,18 @@
+---
+import Button from "@ui/Button.astro";
+
+interface Props {
+  message?: string;
+  cta?: {
+    label: string;
+    href: string;
+  };
+}
+
+const { message, cta } = Astro.props;
+---
+
+<section class="container-95 border-gold section-stack">
+  {message && <p class="text-gold">{message}</p>}
+  {cta && <Button href={cta.href} label={cta.label} variant="navy" />}
+</section>

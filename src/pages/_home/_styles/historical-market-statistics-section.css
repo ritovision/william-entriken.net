@@ -1,0 +1,40 @@
+.historical-market-statistics {
+  margin-top: var(--home-section-space, var(--space-section-xl));
+  margin-bottom: var(--home-section-space, var(--space-section-xl));
+}
+
+.historical-market-statistics__title {
+  margin: 0;
+  text-align: center;
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  line-height: 1.08;
+}
+
+.historical-market-statistics__image {
+  display: block;
+  width: min(100%, 600px);
+  margin: var(--space-2rem) auto;
+}
+
+.historical-market-statistics__image-tag {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.historical-market-statistics__body {
+  margin: 0;
+  width: min(100%, 62rem);
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+  line-height: 1.8;
+  font-size: clamp(1rem, 1.2vw, 1.125rem);
+}
+
+@media (min-width: 992px) {
+  .historical-market-statistics__image {
+    width: min(100%, 800px);
+  }
+}

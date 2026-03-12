@@ -1,0 +1,36 @@
+---
+import Picture from '@ui/Picture.astro';
+import '../_styles/home-hero-section.css';
+
+interface HomeHeroSectionContent {
+  backgroundImage: {
+    src: string;
+    alt: string;
+  };
+  title: string[];
+  subheading: string;
+}
+
+const { backgroundImage, title, subheading } =
+  Astro.props as HomeHeroSectionContent;
+const headingText = title.join(' ');
+---
+
+<section class="home-hero" aria-label={backgroundImage.alt}>
+  <Picture
+    src={backgroundImage.src}
+    alt={backgroundImage.alt}
+    class="home-hero__media"
+    imgClass="home-hero__media-img"
+    aspectRatio="16 / 9"
+    fit="cover"
+    sizes="100vw"
+    widths={[768, 1280, 1600, 1920]}
+    priority
+  />
+  <div class="home-hero__shade" aria-hidden="true"></div>
+  <div class="container-95 home-hero__inner">
+    <h1 class="home-hero__title text-accent">{headingText}</h1>
+    <h2 class="home-hero__subheading text-white">{subheading}</h2>
+  </div>
+</section>

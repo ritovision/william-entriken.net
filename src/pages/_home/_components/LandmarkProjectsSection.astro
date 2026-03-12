@@ -1,0 +1,158 @@
+---
+import DropdownTabs from '@ui/dropdown-tabs/DropdownTabs.astro';
+import Picture from '@ui/Picture.astro';
+import '../_styles/landmark-projects-section.css';
+
+interface LandmarkProjectImage {
+  src: string;
+  alt: string;
+  caption?: string;
+  fit?: 'cover' | 'contain';
+  href?: string;
+  desktopAspectRatio?: string;
+  desktopMaxWidth?: string;
+}
+
+interface LandmarkProjectItem {
+  id: string;
+  label: string;
+  panelTitle?: string;
+  content: string[];
+  images?: LandmarkProjectImage[];
+}
+
+interface LandmarkProjectsContent {
+  id: string;
+  title: string;
+  body: string;
+  items: LandmarkProjectItem[];
+}
+
+const { id, title, body, items } = Astro.props as LandmarkProjectsContent;
+
+if (items.length === 0) {
+  throw new Error('LandmarkProjectsSection requires at least one item.');
+}
+
+const dropdownId = `${id}-dropdown`;
+const activeId = items[0].id;
+const options = items.map((item) => ({
+  id: item.id,
+  label: item.label,
+  controlsId: `${id}-panel-${item.id}`,
+}));
+---
+
+<section
+  id={id}
+  class="landmark-projects container-95 section-stack"
+  aria-label={title}
+>
+  <h2 class="landmark-projects__title text-gold">{title}</h2>
+  <p class="landmark-projects__body text-white">{body}</p>
+
+  <div class="landmark-projects__panel">
+    <DropdownTabs
+      id={dropdownId}
+      class="landmark-projects__tabs"
+      label={`${title} project selector`}
+      activeId={activeId}
+      options={options}
+    />
+
+    <div class="landmark-projects__panels">
+      {
+        items.map((item) => {
+          const panelId = `${id}-panel-${item.id}`;
+          const isActive = item.id === activeId;
+
+          return (
+            <div
+              id={panelId}
+              class:list={[
+                'landmark-projects__tab-panel',
+                isActive && 'is-active',
+              ]}
+              role="tabpanel"
+              aria-labelledby={`${dropdownId}-tab-${item.id}`}
+              aria-hidden={isActive ? 'false' : 'true'}
+              hidden={!isActive}
+            >
+              <h3 class="landmark-projects__tab-panel-title text-gold">
+                {item.panelTitle ?? item.label}
+              </h3>
+              {item.content.map((paragraph) => (
+                <p class="landmark-projects__tab-panel-copy text-white">
+                  <span set:html={paragraph} />
+                </p>
+              ))}
+              {item.images && item.images.length > 0 && (
+                <div class="landmark-projects__image-row">
+                  {item.images.map((image) => (
+                    <figure
+                      class="landmark-projects__image-card"
+                      style={
+                        [
+                          image.desktopAspectRatio
+                            ? `--landmark-projects-desktop-aspect-ratio: ${image.desktopAspectRatio};`
+                            : '',
+                          image.desktopMaxWidth
+                            ? `--landmark-projects-desktop-max-width: ${image.desktopMaxWidth};`
+                            : '',
+                        ]
+                          .filter(Boolean)
+                          .join(' ') || undefined
+                      }
+                    >
+                      {image.href ? (
+                        <a
+                          href={image.href}
+                          class="landmark-projects__image-link"
+                          target="_blank"
+                          rel="noreferrer"
+                          aria-label={image.alt}
+                        >
+                          <Picture
+                            src={image.src}
+                            alt={image.alt}
+                            class="landmark-projects__image"
+                            imgClass="landmark-projects__image-tag"
+                            aspectRatio="4 / 3"
+                            fit={image.fit ?? 'cover'}
+                            bg="var(--color-primary)"
+                          />
+                          {image.caption && (
+                            <figcaption class="landmark-projects__image-caption text-white">
+                              {image.caption}
+                            </figcaption>
+                          )}
+                        </a>
+                      ) : (
+                        <>
+                          <Picture
+                            src={image.src}
+                            alt={image.alt}
+                            class="landmark-projects__image"
+                            imgClass="landmark-projects__image-tag"
+                            aspectRatio="4 / 3"
+                            fit={image.fit ?? 'cover'}
+                            bg="var(--color-primary)"
+                          />
+                          {image.caption && (
+                            <figcaption class="landmark-projects__image-caption text-white">
+                              {image.caption}
+                            </figcaption>
+                          )}
+                        </>
+                      )}
+                    </figure>
+                  ))}
+                </div>
+              )}
+            </div>
+          );
+        })
+      }
+    </div>
+  </div>
+</section>

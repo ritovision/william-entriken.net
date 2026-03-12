@@ -1,0 +1,57 @@
+{
+  "graph": [
+    {
+      "@type": "Person",
+      "@id": "https://williamentriken.net/#person",
+      "name": "William Entriken",
+      "alternateName": ["Fulldecent", "Will"],
+      "jobTitle": [
+        "Civic Hacker",
+        "Cybersecurity Specialist",
+        "Software Architect",
+        "Financial Analyst",
+        "Technical Advisor",
+        "General Manager"
+      ],
+      "url": "https://williamentriken.net/",
+      "image": "https://williamentriken.net/images/shared/will/Will-headshot.jpg",
+      "sameAs": [
+        "https://x.com/fulldecent",
+        "https://www.youtube.com/@fulldecent",
+        "https://www.twitch.tv/fulldecent",
+        "https://www.linkedin.com/in/fulldecent/",
+        "https://github.com/fulldecent",
+        "https://en.wikipedia.org/wiki/William_Entriken",
+        "https://phor.net/",
+        "https://www.crunchbase.com/person/william-entriken",
+        "https://pacificmedicaltraining.com/bio-william"
+      ],
+      "description": "William Entriken, also known as Fulldecent or Will, is a civic hacker, cybersecurity specialist, software architect, financial analyst, and technical advisor.",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Pacific Medical Training",
+        "url": "https://pacificmedicaltraining.com/bio-william"
+      }
+    },
+    {
+      "@type": "CreativeWork",
+      "@id": "https://williamentriken.net/#erc721",
+      "name": "ERC-721: NFT Standard",
+      "url": "https://eips.ethereum.org/EIPS/eip-721",
+      "description": "ERC-721 is a standard for non-fungible tokens on the Ethereum blockchain.",
+      "creator": {
+        "@id": "https://williamentriken.net/#person"
+      }
+    },
+    {
+      "@type": "CreativeWork",
+      "@id": "https://williamentriken.net/#erc165",
+      "name": "ERC-165: Standard Interface Detection",
+      "url": "https://eips.ethereum.org/EIPS/eip-165",
+      "description": "ERC-165 is a standard for contracts to declare supported interfaces.",
+      "creator": {
+        "@id": "https://williamentriken.net/#person"
+      }
+    }
+  ]
+}
