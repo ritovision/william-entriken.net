@@ -1,9 +1,16 @@
 import { defineConfig } from "astro/config";
 import react from "@astrojs/react";
+import sitemap from "@astrojs/sitemap";
 
 export default defineConfig({
   output: "static",
-  integrations: [react()],
+  site: "https://williamentriken.net",
+  integrations: [
+    react(),
+    sitemap({
+      filter: (page) => !page.includes("/404"),
+    }),
+  ],
   server: {
     host: true,
     port: 4321,
