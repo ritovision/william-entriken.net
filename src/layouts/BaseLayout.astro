@@ -18,6 +18,7 @@ interface Props {
   description?: string;
   bodyClass?: string;
   sidebarToc?: SidebarTocItem[];
+  includeAnimateCss?: boolean;
 }
 
 const {
@@ -27,6 +28,7 @@ const {
   description,
   bodyClass = '',
   sidebarToc = [],
+  includeAnimateCss = false,
 } = Astro.props;
 
 const normalizePath = (path: string) =>
@@ -107,7 +109,11 @@ const schemaPayload = buildSchemaPayload(schemaGraph);
     <title>{effectiveTitle}</title>
     <link rel="icon" type="image/png" href="/images/brand/SEO/favicon.png" />
     <link rel="apple-touch-icon" href="/images/brand/logomark-square.png" />
-    <link rel="stylesheet" href="/css/animate.purged.css" />
+    {
+      includeAnimateCss && (
+        <link rel="stylesheet" href="/css/animate.purged.css" />
+      )
+    }
   </head>
   <body class={bodyClass}>
     <MobileNav
