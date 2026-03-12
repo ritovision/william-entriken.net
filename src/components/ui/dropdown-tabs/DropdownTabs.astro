@@ -1,0 +1,110 @@
+---
+import './dropdown-tabs.css';
+
+interface DropdownTabsOption {
+  id: string;
+  label: string;
+  controlsId: string;
+}
+
+interface Props {
+  id: string;
+  label: string;
+  activeId: string;
+  options: ReadonlyArray<DropdownTabsOption>;
+  class?: string;
+}
+
+const {
+  id,
+  label,
+  activeId,
+  options,
+  class: className = '',
+} = Astro.props as Props;
+
+if (options.length === 0) {
+  throw new Error('DropdownTabs requires at least one option.');
+}
+
+const normalizedActiveId = options.some((option) => option.id === activeId)
+  ? activeId
+  : options[0].id;
+const activeOption =
+  options.find((option) => option.id === normalizedActiveId) || options[0];
+const menuId = `${id}-menu`;
+const triggerId = `${id}-trigger`;
+---
+
+<div
+  id={id}
+  class:list={['dropdown-tabs', className]}
+  data-dropdown-tabs
+  data-dropdown-tabs-active={normalizedActiveId}
+  data-dropdown-tabs-open="false"
+>
+  <button
+    id={triggerId}
+    type="button"
+    class="dropdown-tabs__trigger"
+    aria-label={label}
+    aria-expanded="false"
+    aria-controls={menuId}
+    data-dropdown-tabs-trigger
+  >
+    <span class="dropdown-tabs__trigger-label" data-dropdown-tabs-trigger-label>
+      {activeOption.label}
+    </span>
+    <svg
+      class="dropdown-tabs__trigger-chevron"
+      viewBox="0 0 16 12"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <path
+        d="M2 9L8 3L14 9"
+        fill="none"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"></path>
+    </svg>
+  </button>
+
+  <div
+    id={menuId}
+    class="dropdown-tabs__menu"
+    role="tablist"
+    aria-label={label}
+    data-dropdown-tabs-menu
+    hidden
+  >
+    {
+      options.map((option) => {
+        const isActive = option.id === normalizedActiveId;
+
+        return (
+          <button
+            type="button"
+            id={`${id}-tab-${option.id}`}
+            class:list={['dropdown-tabs__option', isActive && 'is-active']}
+            role="tab"
+            aria-selected={isActive ? 'true' : 'false'}
+            aria-controls={option.controlsId}
+            tabindex={isActive ? 0 : -1}
+            data-dropdown-tabs-option={option.id}
+            data-dropdown-tabs-label={option.label}
+          >
+            {option.label}
+          </button>
+        );
+      })
+    }
+  </div>
+</div>
+
+<script>
+  import { initDropdownTabs } from './dropdownTabsRuntime';
+
+  initDropdownTabs();
+</script>
